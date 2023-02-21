@@ -1,4 +1,5 @@
 package tp.view;
+package tp.view;
 
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -18,6 +19,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import net.sourceforge.jdatepicker.JDatePicker;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
+
 public class GroceryInput extends JFrame implements ActionListener{
 /*	 -INPUT_ID             (입고ID, PK)
 	 -GROCERY_ID           (식자재ID, FOREIGN KEY)
@@ -35,11 +41,11 @@ public class GroceryInput extends JFrame implements ActionListener{
 */	
 	
 	//component
-	JPanel p;
-	JTextField groName, inQuan, price, store;
-	JComboBox  majorCla, minorCla, storPlace;
-	
-	JButton    btnInput, btnCancel;
+	JPanel      p;
+	JTextField  groName, inQuan, price, store;
+	JComboBox   majorCla, minorCla, storPlace, unit;
+	JDatePicker inputD, expirD;
+	JButton     btnInput, btnCancel;
 	
 	//GridBagLayout
 	GridBagLayout      gbl;
@@ -49,6 +55,16 @@ public class GroceryInput extends JFrame implements ActionListener{
 	//defaultCons
 	public GroceryInput() {
 		init();
+		JFrame frame = new JFrame();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+        //add(major);
+        //add(minor);
+        pack();
+        setSize(320, 600);
+        setLocation(200, 200);
+        setVisible(true);
+		
 	}
 	
 	private void init() {
@@ -67,6 +83,7 @@ public class GroceryInput extends JFrame implements ActionListener{
 		JLabel jlbCat = new JLabel("카테고리");
 		gblAdd (jlbCat, 0, 0, 2, 1);
 		
+		//대분류/중분류/보관장소
 		JComboBox<String> major = new JComboBox<>(new String [] 
 				{"과일", "쌀/잡곡", "채소", "결과", "수산물/건어물", "정육/계란",
 				 "친환경/유기농", "델리/치킨/초밥", "우유/유제품", "냉장/냉동/밀키트", 
@@ -116,17 +133,63 @@ public class GroceryInput extends JFrame implements ActionListener{
 				}
 			}
 		});
+		JComboBox<String> place = new JComboBox<>(new String [] 
+				{"실온", "냉장", "냉동"});
+		majorCla  = new JComboBox( major);
+		minorCla  = new JComboBox(minor);
+		storPlace = new JComboBox(place);
+		gblAdd(major, 0, 1, 2, 1);
+		gblAdd(minor, 2, 1, 2, 1);
+		gblAdd(major, 4, 1, 2, 1);
 		
+		//세부정보
+		JLabel jlbDet = new JLabel("세부정보");
+		gblAdd (jlbCat, 0, 2, 2, 1);
 		
-		JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new FlowLayout());
-        frame.add(major);
-        frame.add(minor);
-        frame.pack();
-        frame.setSize(320, 600);
-        frame.setLocation(200, 200);
-        frame.setVisible(true);
+		//식자재이름
+		JLabel jlbName = new JLabel("이름");
+		groName        = new JTextField(20);
+		gblAdd(jlbName, 0, 3, 1, 1);
+		gblAdd(groName, 1, 3, 5, 1);
+		
+		//식자재수량
+		JLabel jlbQuan = new JLabel("수량");
+		inQuan         = new JTextField(20);
+		String [] units = {"g", "Kg", "ml", "L"};
+		unit           = new JComboBox (units);
+		gblAdd(jlbQuan, 0, 4, 1, 1);
+		gblAdd(inQuan, 1, 4, 4, 1);
+		gblAdd(unit, 5, 4, 1, 1);
+		
+		//식자재가격
+		JLabel jlbPri  = new JLabel("가격");
+		price          = new JTextField(20);
+		JLabel jlbWon  = new JLabel("원");
+		gblAdd(jlbPri, 0, 5, 1, 1);
+		gblAdd(price, 1, 5, 4, 1);
+		gblAdd(jlbWon, 5, 5, 1, 1);
+		
+		//구매처
+		JLabel jlbSto  = new JLabel("구매처");
+		store          = new JTextField(20);
+		gblAdd(jlbSto, 0, 6, 1, 1);
+		gblAdd(store, 1, 6, 5, 1);
+		
+		//입고일
+		JLabel jlbInpD  = new JLabel("입고일");
+		gblAdd(jlbInpD, 0, 7, 1, 1);
+		UtilDateModel model = new UtilDateModel();
+		JDatePanelImpl datePanel = new JDatePanelImpl(model);
+		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+		this.add(datePicker);
+		
+		//소비기한
+		JLabel jlbExpD  = new JLabel("소비기한");
+		gblAdd(jlbExpD, 0, 8, 1, 1);
+		UtilDateModel model1 = new UtilDateModel();
+		JDatePanelImpl datePanel1 = new JDatePanelImpl(model1);
+		JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
+		this.add(datePicker1);
 		
 	}
 
