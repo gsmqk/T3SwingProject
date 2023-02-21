@@ -10,6 +10,8 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,53 +20,53 @@ import javax.swing.table.DefaultTableModel;
 
 public class MainTable02 {
 
+	// 필요한 부품준비
+	JPanel            p; 
+	JFrame            f;
+	JTextField        txtId,  txtName,  txtIndate;
+	JTextArea         taIntro;
+				
+	JButton           btnInput, btnIngredient, btnRecipe, btnmain, btnAhb;
+	
+	MainTable01 mT01 = null;
+	MainTable02 mT02 = null;
+	FindRecipe mFr   = null;
+	GroceryInput mGi = null;
+	GrocerySearch mGs = null;
+	
 	private JFrame frame;
 	private JTable table;
 	
 	FindName  mProc = null; 
 	static MainTable02  mList = null;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainTable02 window = new MainTable02();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		new MainTable02();
 	}
 
-	/**
-	 * Create the application.
-	 */
+	
 	public MainTable02() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
-		frame = new JFrame();
-		frame.setTitle("보관목록");
-		frame.setBounds(100, 100, 1200, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		f = new JFrame();
+		f.setTitle("보관목록");
+		f.setBounds(100, 100, 1200, 800);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		f.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1184, 761);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		p = new JPanel();
+		p.setBounds(0, 0, 1184, 761);
+		f.getContentPane().add(p);
+		p.setLayout(null);
 		
 		
 		
-		JButton btnInput = new JButton("신규 입력");
+		btnInput = new JButton("신규 입력");
 		btnInput.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -73,54 +75,48 @@ public class MainTable02 {
 		btnInput.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnInput.setBackground(new Color(135, 206, 250));
 		btnInput.setBounds(30, 50, 120, 50);
-		panel.add(btnInput);
+		p.add(btnInput);
 		
-		JButton btnIngredient = new JButton("식자재 검색");
+		btnIngredient = new JButton("식자재 검색");
 		btnIngredient.setForeground(Color.WHITE);
 		btnIngredient.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnIngredient.setBackground(new Color(135, 206, 250));
 		btnIngredient.setBounds(30, 130, 120, 50);
-		panel.add(btnIngredient);
+		p.add(btnIngredient);
 		
-		JButton btnRecipe = new JButton("레시피 검색");
+		btnRecipe = new JButton("레시피 검색");
 		btnRecipe.setForeground(Color.WHITE);
 		btnRecipe.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnRecipe.setBackground(new Color(135, 206, 250));
 		btnRecipe.setBounds(30, 210, 120, 50);
-		panel.add(btnRecipe);
+		p.add(btnRecipe);
 		
-		JButton btnStorage = new JButton("필터");
-		btnStorage.setForeground(Color.WHITE);
-		btnStorage.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnStorage.setBackground(new Color(135, 206, 250));
-		btnStorage.setBounds(30, 290, 120, 50);
-		panel.add(btnStorage);
 		
-		JButton btnSet = new JButton("메인 화면");
-		btnSet.setForeground(Color.WHITE);
-		btnSet.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnSet.setBackground(new Color(135, 206, 250));
-		btnSet.setBounds(30, 550, 120, 50);
-		panel.add(btnSet);
+		btnmain = new JButton("메인 화면");
+		btnmain.setForeground(Color.WHITE);
+		btnmain.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		btnmain.setBackground(new Color(135, 206, 250));
+		btnmain.setBounds(30, 550, 120, 50);
+		p.add(btnmain);
 		
-		JButton btnLogout = new JButton("가계부");
-		btnLogout.setForeground(Color.WHITE);
-		btnLogout.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnLogout.setBackground(new Color(135, 206, 250));
-		btnLogout.setBounds(30, 630, 120, 50);
-		panel.add(btnLogout);
+		btnAhb = new JButton("가계부");
+		btnAhb.setForeground(Color.WHITE);
+		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		btnAhb.setBackground(new Color(135, 206, 250));
+		btnAhb.setBounds(30, 630, 120, 50);
+		p.add(btnAhb);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(209, 50, 894, 630);
-		panel.add(scrollPane);
+		p.add(scrollPane);
 		
 		btnInput.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
+				if(mGi != null)
+					mGi.dispose();
+				mGi = new GroceryInput();
 				
 			}
 		}); 
@@ -129,9 +125,9 @@ public class MainTable02 {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
+				if(mGs != null)
+					mGs.dispose();
+				mGs = new GrocerySearch();
 				
 			}
 		}); 
@@ -140,40 +136,26 @@ public class MainTable02 {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
+				if(mFr != null)
+					mFr.dispose();
+				mFr = new FindRecipe();
 				
 			}
 		}); 
-		
-		btnStorage.addActionListener(new ActionListener() {
+		btnmain.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
+				f.setVisible(false);
+				mT01 = new MainTable01();
 				
 			}
 		}); 
-		btnSet.addActionListener(new ActionListener() {
+		btnAhb.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
 				
-			}
-		}); 
-		btnLogout.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
 				
 			}
 		}); 
