@@ -4,16 +4,21 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Exit extends JFrame{
+import model.U_Dao;
+
+public class Exit extends JFrame implements ActionListener {
 
 	GridBagConstraints gbc;
 	GridBagLayout gbl;
@@ -92,15 +97,18 @@ public class Exit extends JFrame{
 		
 		// 버튼
 		JPanel pButton = new JPanel();
-		JButton loginBtn = new JButton("회원탈퇴");
-		JButton joinBtn = new JButton("취소");
+		exitBtn = new JButton("회원탈퇴");
+		cancelBtn = new JButton("취소");
 		
-		loginBtn.setFont(f4);
-		joinBtn.setFont(f4);
+		exitBtn.setFont(f4);
+		cancelBtn.setFont(f4);
 
-		pButton.add(loginBtn);
-		pButton.add(joinBtn);
+		pButton.add(exitBtn);
+		pButton.add(cancelBtn);
 		gblAdd(pButton, 0, 4, 4, 1);
+		
+		cancelBtn.addActionListener(this);
+		exitBtn.addActionListener(this);
 		
 	}
 
@@ -116,6 +124,32 @@ public class Exit extends JFrame{
 	
 	public static void main(String[] args) {
 		new Exit();
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch(e.getActionCommand()) {
+		case "취소" :
+			this.dispose();
+			break;
+		case "회원탈퇴" :
+			System.out.println("탈퇴버튼 클릭");
+			exit();
+			break;
+		}
+		
+	}
+
+	private void exit() {
+		String pw = pwTxt.getText();
+		String cfpw = pwcfTxt.getText();
+		U_Dao uao = new U_Dao();
+		if (pw.equals(cfpw)) {
+			uao.eXit(pw,cfpw);
+		} else { 
+			JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요.");
+		}
 		
 	}
 

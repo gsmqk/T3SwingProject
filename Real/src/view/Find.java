@@ -21,8 +21,7 @@ public class Find extends JFrame implements ActionListener {
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 	Font f1, f2, f3, f4;
-	JTextField emailTxt;
-	JTextField idTxt;
+	JTextField emailTxt, idTxt, emailTxt2;
 	
 	public Find() {
 		setTitle("회원가입");
@@ -94,7 +93,7 @@ public class Find extends JFrame implements ActionListener {
 		gblAdd(idTxt, 1, 5, 8, 1);
 		
 		JLabel emailLbl2 = new JLabel("가입시 사용한 이메일");
-		JTextField emailTxt2 = new JTextField();
+		emailTxt2 = new JTextField();
 		emailLbl2.setFont(f3);
 		gblAdd(emailLbl2, 0, 6, 2, 1);
 		gblAdd(emailTxt2, 1, 6, 8, 1);
@@ -113,6 +112,7 @@ public class Find extends JFrame implements ActionListener {
 		cancelBtn1.addActionListener(this);
 		cancelBtn2.addActionListener(this);
 		idFindBtn.addActionListener(this);
+		pwFindBtn.addActionListener(this);
 	}
 	
 	public void gblAdd(JComponent c, int x, int y, int w, int h) {
@@ -149,7 +149,10 @@ public class Find extends JFrame implements ActionListener {
 	}
 
 	private void pwFind() {
-		String id = txt
+		String id = idTxt.getText();
+		String email = emailTxt2.getText();
+		U_Dao uao = new U_Dao();
+		uao.findPw(id,email);
 		
 	}
 

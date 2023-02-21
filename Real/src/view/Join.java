@@ -184,9 +184,7 @@ public class Join extends JFrame implements ActionListener{
 		U_Dao uao = new U_Dao();
 		
 		String msg = uao.checkExist(id);
-		JOptionPane.showMessageDialog(null, msg,
-				"중복확인",
-				JOptionPane.OK_OPTION);
+		JOptionPane.showMessageDialog(null, msg);
 	}	
 
 	private void join() {
@@ -194,9 +192,7 @@ public class Join extends JFrame implements ActionListener{
 		U_DTO uto = getViewData();
 		int aftcnt = uao.insertUser(uto);
 		
-		JOptionPane.showMessageDialog(null, aftcnt + "건 저장되었습니다",
-				"추가",
-				JOptionPane.OK_OPTION);
+		JOptionPane.showMessageDialog(null, aftcnt + "건 저장되었습니다");
 		
 		this.dispose();
 	}

@@ -7,6 +7,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
+import view.ExitCf;
+
 public class U_Dao {
 	
 	private Connection conn = null;
@@ -35,9 +37,9 @@ public class U_Dao {
 		return aftcnt;
 	}
 	// 회원가입
-	private int insertUser(String userid, String passwd, String username, String email) {
+	private int insertUser(String userid, String username, String passwd, String email) {
 		String sql = "INSERT INTO USERS "
-				+ "(USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL) "
+				+ "(USER_ID, USER_PASSWORD, USER_NAME, USER_EMAIL) "
 				+ "VALUES "
 				+ "(?, ?, ?, ?) ";
 		
@@ -46,8 +48,8 @@ public class U_Dao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userid);
-			pstmt.setString(2, username);
-			pstmt.setString(3, passwd);
+			pstmt.setString(2, passwd);
+			pstmt.setString(3, username);
 			pstmt.setString(4, email);
 			
 			aftcnt = pstmt.executeUpdate();
@@ -115,10 +117,10 @@ public class U_Dao {
 				String pwd = rs.getString("USER_PASSWORD");
 				System.out.println("password:" + pwd);
 				if (pw.equals(pwd)) {
-					JOptionPane.showMessageDialog(null, "맞습니다");
+					JOptionPane.showMessageDialog(null, "로그인되었습니다.");
 				} 
 			} else {
-				JOptionPane.showMessageDialog(null, "비밀번호가다릅니다");				
+				JOptionPane.showMessageDialog(null, "틀린 정보를 입력하셨습니다.");				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -164,6 +166,101 @@ public class U_Dao {
 			}
 		}
 		
+	}
+
+	public void findPw(String id, String email) {
+		String sql = "SELECT USER_ID, USER_EMAIL, USER_PASSWORD "
+				+ "FROM USERS "
+				+ "WHERE USER_ID = ? "
+				+ "AND USER_EMAIL = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String id1 = rs.getString("USER_ID");
+				String email1 = rs.getString("USER_EMAIL");
+				String pw = rs.getString("USER_PASSWORD");
+				if(id.equals(id1) && email.equals(email1)) {
+					JOptionPane.showMessageDialog(null, "당신의 비밀번호는 " + pw + "입니다.",
+							"비밀번호 찾기", JOptionPane.OK_OPTION);
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "정보를 다시 확인해주세요", "비밀번호 찾기",
+						JOptionPane.OK_OPTION);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public void eXit(String pw, String cfpw) {
+		String sql = "SELECT USER_PASSWORD "
+				+ "FROM USERS "
+				+ "WHERE USER_PASSWORD = ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pw);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String pw1 = rs.getString("USER_PASSWORD");
+				if(pw.equals(pw1)) {
+					ExitCf ecf = new ExitCf(); 
+				} else {
+					JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요", "탈퇴확인", 
+							JOptionPane.OK_OPTION);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	public int removeUser(String id) {
+		String sql = "DELETE FROM USERS "
+				+ "WHERE USER_ID = ?";
+		
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return aftcnt;
 	}
 
 
