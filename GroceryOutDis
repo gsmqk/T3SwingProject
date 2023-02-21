@@ -87,7 +87,7 @@ public class GroceryOutDis extends JFrame {
 		btnCancel.setBounds(232, 299, 100, 40);
 		getContentPane().add(btnCancel);
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setSize(360, 400);
 		setLocation(200, 200);
 		getContentPane().setLayout(null);
