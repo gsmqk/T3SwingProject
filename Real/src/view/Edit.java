@@ -4,16 +4,22 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Edit extends JFrame  {
+import model.U_DTO;
+import model.U_Dao;
+
+public class Edit extends JFrame implements ActionListener {
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
@@ -138,7 +144,7 @@ public class Edit extends JFrame  {
 		// 버튼
 		JPanel pButton = new JPanel();
 		exitBtn = new JButton("회원탈퇴");
-		joinBtn = new JButton("회원가입");
+		joinBtn = new JButton("정보수정");
 		cancelBtn = new JButton("입력취소");
 		
 		exitBtn.setFont(f4);
@@ -150,6 +156,8 @@ public class Edit extends JFrame  {
 		pButton.add(cancelBtn);
 		
 		gblAdd(pButton, 0, 7, 4, 1);
+		
+		exitBtn.addActionListener(this);
 	}
 
 	private void gblAdd(JComponent c, int x, int y, int w, int h) {
@@ -164,6 +172,49 @@ public class Edit extends JFrame  {
 
 	public static void main(String[] args) {
 		new Edit();
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch(e.getActionCommand()) {
+		case "회원탈퇴" : 
+			Exit e1 = new Exit();
+			e1.exit();
+			break;
+		case "입력취소" :
+			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+			this.dispose();
+			break;
+		case "정보수정" :
+			sujung();
+			break;
+		}
+		
+	}
+
+	private void sujung() {
+		String id = idTxt.getText();
+		String pw = ppwTxt.getText();
+		String npw = pwTxt.getText();
+		String cfnpw = pwcfTxt.getText();
+		String name = nameTxt.getText();
+		String email = emailTxt.getText();
+
+		U_Dao uao = new U_Dao();
+		boolean flag = uao.checkPw(id, pw);
+		if (flag = true) {
+			if (npw.equals(cfnpw)) {
+			U_DTO dto = new U_DTO(id, pw, npw, name, email);
+			uao.updateUser(dto);
+			JOptionPane.showMessageDialog(null, "수정되었습니다 !");
+			this.dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "비밀번호를 다시 확인해주세요.");
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "이전 비밀번호가 맞지않습니다.");
+		}
 		
 	}
 

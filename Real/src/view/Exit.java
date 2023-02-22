@@ -141,7 +141,7 @@ public class Exit extends JFrame implements ActionListener {
 		
 	}
 
-	private void exit() {
+	public void exit() {
 		String pw = pwTxt.getText();
 		String cfpw = pwcfTxt.getText();
 		U_Dao uao = new U_Dao();

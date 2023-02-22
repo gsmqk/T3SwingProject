@@ -5,6 +5,7 @@ public class U_DTO {
 	private String u_id;
 	private String u_name;
 	private String u_password;
+	private String u_prePassword;
 	private String u_email;
 	private String u_grade;
 	private String u_status;
@@ -18,6 +19,14 @@ public class U_DTO {
 		this.u_email = u_email;
 		this.u_grade = u_grade;
 		this.u_status = u_status;
+	}
+	
+	public U_DTO(String u_id, String u_name, String u_password, String u_prePassword, String u_email) {
+		this.u_id = u_id;
+		this.u_name = u_name;
+		this.u_password = u_password;
+		this.u_prePassword = u_prePassword;
+		this.u_email = u_email;
 	}
 	public U_DTO(String u_id, String u_name, String u_password, String u_email) {
 		this.u_id = u_id;

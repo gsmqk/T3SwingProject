@@ -263,6 +263,70 @@ public class U_Dao {
 		return aftcnt;
 	}
 
+	public boolean checkPw(String id, String pw) {
+		String sql = "SELECT USER_PASSWORD "
+				+ "FROM USERS "
+				+ "WHERE USER_ID = ?"
+				+ "AND USER_PASSWORD = ?";
+		
+		boolean flag = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				flag = true;
+			}
+			else {
+				flag = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return flag;
+	}
+
+	public int updateUser(U_DTO dto) {
+		String sql = "UPDATE USERS "
+				+ "SET USER_PASSWORD = ?, "
+				+ "    USER_NAME = ?, "
+				+ "    USER_EMAIL = ? "
+				+ "WHERE USER_ID = ? ";
+		
+		int aftcnt = 0;
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_password());
+			pstmt.setString(2, dto.getU_name());
+			pstmt.setString(3, dto.getU_email());
+			pstmt.setString(4, dto.getU_id());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return aftcnt;
+	}
+
 
 	// 로그인
 	
