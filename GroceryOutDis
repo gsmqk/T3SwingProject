@@ -35,16 +35,22 @@ public class GroceryOutDis extends JFrame {
 		majorCla.setBounds(12, 80, 155, 40);
 		getContentPane().add(majorCla);
 		
+		JTextPane moderCla = new JTextPane();
+		moderCla.setText("중분류");
+		moderCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		moderCla.setBounds(177, 80, 155, 40);
+		getContentPane().add(moderCla);
+		
 		JTextPane minorCla = new JTextPane();
-		minorCla.setText("중분류");
+		minorCla.setText("소분류");
 		minorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		minorCla.setBounds(177, 80, 155, 40);
+		minorCla.setBounds(12, 130, 155, 40);
 		getContentPane().add(minorCla);
 		
 		JTextPane storPlace = new JTextPane();
 		storPlace.setText("보관장소");
 		storPlace.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		storPlace.setBounds(12, 130, 155, 40);
+		storPlace.setBounds(177, 130, 155, 40);
 		getContentPane().add(storPlace);
 		
 		JTextPane groQuan= new JTextPane();
@@ -87,7 +93,7 @@ public class GroceryOutDis extends JFrame {
 		btnCancel.setBounds(232, 299, 100, 40);
 		getContentPane().add(btnCancel);
 		
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(360, 400);
 		setLocation(200, 200);
 		getContentPane().setLayout(null);
