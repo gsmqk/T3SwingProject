@@ -156,7 +156,6 @@ public class Find extends JFrame implements ActionListener {
 		String email = emailTxt2.getText();
 		U_Dao uao = new U_Dao();
 		uao.findPw(id,email);
-		
 	}
 
 	private void idFind() {
