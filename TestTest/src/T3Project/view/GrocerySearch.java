@@ -1,4 +1,4 @@
-package Test;
+package T3Project.view;
 
 import java.awt.Font;
 import java.awt.event.ItemEvent;
@@ -16,7 +16,7 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
-public class GroceryInput extends JFrame {
+public class GrocerySearch extends JFrame {
 	
 	//component
 	private JTextField  groName, inQuan, price, store;
@@ -26,14 +26,14 @@ public class GroceryInput extends JFrame {
 
 	//constructor
 	//defaultCons
-	public GroceryInput() {
+	public GrocerySearch() {
 		init();
 		
 	}
 
 	private void init() {
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
-		setTitle("신규 식자재 입력");
+		setTitle("보관중인 식자재 검색");
 		getContentPane().setLayout(null);
 
 		//카테고리
@@ -232,7 +232,7 @@ public class GroceryInput extends JFrame {
 		datePicker1.setBounds(82, 384, 250, 40);
 		
 		//입력/취소버튼
-		JButton	btnInput  = new JButton("입력");
+		JButton	btnInput  = new JButton("검색");
 		btnInput.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		btnInput.setBounds(70, 458, 90, 40);
 		getContentPane().add(btnInput);
@@ -250,9 +250,8 @@ public class GroceryInput extends JFrame {
 
 
 	public static void main(String[] args) {
-		new GroceryInput();
+		new GrocerySearch();
 	}
 
 
 }
-

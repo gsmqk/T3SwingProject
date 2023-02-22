@@ -1,52 +1,49 @@
-package Test;
+package T3Project.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import T3Project.model.ListDao;
+import T3Project.model.ListDao2;
 
 
-public class MainTable02 {
+
+public class StorageList implements MouseListener {
 
 	// 필요한 부품준비
 	JPanel            p; 
 	JFrame            f;
-	JTextField        txtId,  txtName,  txtIndate;
-	JTextArea         taIntro;
 				
 	JButton           btnInput, btnIngredient, btnRecipe, btnmain, btnAhb;
 	
 	MainTable01 mT01 = null;
-	MainTable02 mT02 = null;
+	StorageList mSt01 = null;
 	FindRecipe mFr   = null;
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
 	
-	private JFrame frame;
 	private JTable table;
 	
 	FindName  mProc = null; 
-	static MainTable02  mList = null;
+	static StorageList  mSt = null;
 
 	
-	public static void main(String[] args) {
-		new MainTable02();
-	}
+	
 
 	
-	public MainTable02() {
+	public StorageList() {
 		initialize();
 	}
 
@@ -106,10 +103,6 @@ public class MainTable02 {
 		btnAhb.setBounds(30, 630, 120, 50);
 		p.add(btnAhb);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(209, 50, 894, 630);
-		p.add(scrollPane);
-		
 		btnInput.addActionListener(new ActionListener() {
 			
 			@Override
@@ -160,19 +153,98 @@ public class MainTable02 {
 			}
 		}); 
 		
+		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-				{null, null, null, null, null, null, null, null, null},
-			},
-			new String[] {
-				"대분류", "소분류", "보관장소", "이름", "수량/단위", "구매처", "입고일", "소비기한", "만기일"
-			}
-		));
-		scrollPane.setViewportView(table);
+		table.setModel(
+				new DefaultTableModel( getDataList(), getColumnList() )	{
+
+					// 기본 option 설정 - 각 cell 에 대한 편집가능여부 : isCellEditable
+					@Override
+					public boolean isCellEditable(int row, int column) {
+						//int currLine = jTable.getSelectedRow(); // 선택한 줄만 수정
+						//if(row == currLine)
+						//	return true;
+						//if(column == 0)
+						//	return true;
+						return false; // 모든 cell 편집불가능
+					}
+				}
+			);
+			
+			
+			JScrollPane scrollPane1 = new JScrollPane();
+//			scrollPane.addMouseListener(new MouseAdapter() {
+//				@Override
+//				public void mouseClicked(MouseEvent e) {
+//					table.addMouseListener(this);
+//					
+//					pane = new JScrollPane(table);
+//					table.add(pane);
+//				}
+//			});
+			table.addMouseListener(this);
+			scrollPane1.setBounds(236, 140, 830, 479);
+			p.add(scrollPane1);
+			scrollPane1.setViewportView(table);
+			
+
+
+			
+		}
+		private Vector<Vector> getDataList() {
+			ListDao2        dao   = new ListDao2();
+			Vector<Vector> list  = dao.getList();
+			return list;
+		}
+		
+		private Vector<String> getColumnList(){
+			Vector<String>   cols = new Vector<>(); // 문자배열
+			cols.add("대분류");
+			cols.add("중분류");
+			cols.add("소분류");
+			cols.add("보관장소");
+			cols.add("상품명");
+			cols.add("수량/단위");
+			cols.add("구매처");
+			cols.add("입고일");
+			cols.add("소비기한");
+			cols.add("만기일");
+			
+			return cols;
+		}
+		public static void main(String[] args) {
+			new StorageList();
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+		
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 		
 		
 	}
-}
+
