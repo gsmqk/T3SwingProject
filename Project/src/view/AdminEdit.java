@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class AdminEdit extends JFrame  {
-
+// 관리자 수정창!!!
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 	Font f1;
