@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -113,6 +115,7 @@ public class Find extends JFrame implements ActionListener {
 		cancelBtn2.addActionListener(this);
 		idFindBtn.addActionListener(this);
 		pwFindBtn.addActionListener(this);
+		
 	}
 	
 	public void gblAdd(JComponent c, int x, int y, int w, int h) {
