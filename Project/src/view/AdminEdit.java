@@ -24,7 +24,7 @@ public class AdminEdit extends JFrame  {
 	JTextField idTxt, nameTxt, emailTxt;
 	JPasswordField pwTxt, ppwTxt, pwcfTxt;
 	JButton joinBtn, cancelBtn;
-	JLabel title, idLbl, pwLbl, ppwLbl, pwcfLbl, nameLbl, emailLbl, user_grade;
+	JLabel title, idLbl, pwLbl, ppwLbl, pwcfLbl, nameLbl, emailLbl;
 	JComboBox combo_user;
 	
 	public AdminEdit() {
