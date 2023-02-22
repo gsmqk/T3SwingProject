@@ -31,14 +31,23 @@ public class GroceryInput extends JFrame implements ActionListener {
 	JLabel jlbName, jlbQuan, jlbPri, jlbSto;
 	UtilDateModel model, model1;
 	String [] units;
+	String id;
+	F_Dao Fdao = null;
 	//private JButton     btnInput, btnCancel;
 
 	//constructor
 	//defaultCons
 	public GroceryInput() {
-		init();
 		
+		init();
 	}
+
+	public GroceryInput(MainTable01 mt01) {
+		this.id = mt01.id;
+		System.out.println("인풋값" + id);
+		init();
+	}
+
 
 	private void init() {
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
@@ -302,9 +311,12 @@ public class GroceryInput extends JFrame implements ActionListener {
 		String store = this.store.getText();
 		String indate = this.model.getYear() + "-" + (this.model.getMonth() + 1) + "-" + this.model.getDay();
 		String sobi = this.model1.getYear() + "-" + (this.model1.getMonth() + 1) + "-" + this.model1.getDay();
+		String uid = this.id;
+		
+		System.out.println("인풋화면에서 보내기전 :" + uid); 
 		
 		F_DTO fto = new F_DTO(major, minor, place, fname, quan, unit, price,
-				              store, indate, sobi);
+				              store, indate, sobi, uid);
 		return fto;
 	}
 

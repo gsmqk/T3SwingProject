@@ -8,14 +8,18 @@ import view.Login;
 
 public class F_Dao {
 	
+	String id;
 	
-
 	private Connection conn = null;
 	
 	public F_Dao() {
 		conn = DBConn.getInstance();
 	}
 	
+	public F_Dao(String id) {
+		this.id = id;
+	}
+
 	public void close() {
 		try {
 			if(conn != null) conn.close();
@@ -37,8 +41,8 @@ public class F_Dao {
 		String store = fto.getF_store(); 
 		String indate = fto.getF_inDate(); 
 		String sobi = fto.getF_sobi();
-		
-		String uid = "";
+		String uid = fto.getF_uid();
+		System.out.println("넘기기전 값 : " + uid);
 		
 		int aftcnt = insertGrosery(major, minor, place, fname, quan, unit, price, store, indate, sobi, uid);
 		return aftcnt;
@@ -67,7 +71,8 @@ public class F_Dao {
 			pstmt.setString(8, store);
 			pstmt.setString(9, indate);
 			pstmt.setString(10, sobi);
-			pstmt.setString(11, "son");
+			System.out.println("넣기전 값" + uid);
+			pstmt.setString(11, uid);
 			
 			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {

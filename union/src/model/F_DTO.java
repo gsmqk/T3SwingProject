@@ -12,11 +12,12 @@ public class F_DTO {
 	private String F_store;
 	private String F_inDate;
 	private String F_sobi;
+	private String F_uid;
 	
 	//Constructor
 	public F_DTO() {}
 	public F_DTO(String f_name, String f_major, String f_minor, String f_place, String f_Quantity, String f_unit,
-			String f_price, String f_store, String f_inDate, String f_sobi) {
+			String f_price, String f_store, String f_inDate, String f_sobi, String f_uid) {
 		F_name = f_name;
 		F_major = f_major;
 		F_minor = f_minor;
@@ -27,6 +28,7 @@ public class F_DTO {
 		F_store = f_store;
 		F_inDate = f_inDate;
 		F_sobi = f_sobi;
+		F_uid = f_uid;
 	}
 	
 	// Getter / Setter
@@ -90,7 +92,12 @@ public class F_DTO {
 	public void setF_sobi(String f_sobi) {
 		F_sobi = f_sobi;
 	}
-	
+	public String getF_uid() {
+		return F_uid;
+	}
+	public void setF_uid(String f_uid) {
+		F_uid = f_uid;
+	}
 	// toString
 	@Override
 	public String toString() {

@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import model.F_Dao;
+import model.LoginVo;
 import model.U_DTO;
 import model.U_Dao;
 
@@ -30,7 +32,8 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 	Join j = null; // 회원가입전역변수
 	Find f = null; // 찾기 전역변수
 	JLabel idLbl, pwLbl;
-	JTextField idTxt;
+	MainTable01 mt01 = null;
+	public JTextField idTxt;
 	JPasswordField pwTxt;
 	JButton loginBtn;
 	
@@ -160,9 +163,10 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		boolean flag = uao.login(id,pw);
 		
 		if (flag == true) {
+//			mt01 = new MainTable01(this);
+//			System.out.println("Login창 값 :" + id);
 			this.dispose();
-			
-			MainTable01 mt1 = new MainTable01();
+			MainTable01 mt1 = new MainTable01(this);
 		}
 		
 	}

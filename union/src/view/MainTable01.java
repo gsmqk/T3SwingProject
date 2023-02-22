@@ -39,7 +39,9 @@ public class MainTable01 {
 	admin     madmin = null;
 	FindRecipe mFr   = null;
 	GroceryInput mGi = null;
+	public MainTable01 mt01 = null;
 	GrocerySearch mGs = null;
+	String id;
 
 	private JFrame frame;
 	private JTextField textField;
@@ -50,6 +52,12 @@ public class MainTable01 {
 	}
 
 	public MainTable01() {
+		initialize();
+	}
+
+	public MainTable01(Login login) {
+		this.id = login.idTxt.getText();
+		System.out.println("메인테이블" + id);
 		initialize();
 	}
 
@@ -124,6 +132,7 @@ public class MainTable01 {
 		btnLogout.setBounds(30, 690, 120, 50);
 		p.add(btnLogout);
 		
+		mt01 = this;
 		
 		btnInput.addActionListener(new ActionListener() {
 			
@@ -132,7 +141,8 @@ public class MainTable01 {
 		
 				if(mGi != null)
 					mGi.dispose();
-				mGi = new GroceryInput();
+//				gi = new GroceryInput();
+				mGi = new GroceryInput(mt01);
 			}
 		}); 
 		
