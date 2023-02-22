@@ -39,22 +39,22 @@ public class GrocerySearch extends JFrame {
 		jlbCat.setBounds(12, 10, 64, 24);
 		getContentPane().add(jlbCat);
 		
-		JComboBox <String> large_classific = new JComboBox<>(new String [] {"대분류"});
+		JComboBox large_classific = new JComboBox(new String [] {"대분류"});
 		large_classific.setToolTipText("대분류");
 		large_classific.setBounds(12, 44, 155, 40);
 		getContentPane().add(large_classific);
 		
-		JComboBox <String> middle_classific = new JComboBox<>(new String [] {"중분류"});
+		JComboBox middle_classific = new JComboBox(new String [] {"중분류"});
 		middle_classific.setToolTipText("중분류");
 		middle_classific.setBounds(177, 44, 155, 40);
 		getContentPane().add(middle_classific);
 		
-		JComboBox <String> small_classific = new JComboBox<>(new String [] {"소분류"});
+		JComboBox small_classific = new JComboBox(new String [] {"소분류"});
 		small_classific.setToolTipText("소분류");
 		small_classific.setBounds(12, 94, 155, 40);
 		getContentPane().add(small_classific);
 		
-		JComboBox <String> storage_place = new JComboBox<>(new String [] {"실온", "냉장", "냉동"});
+		JComboBox storage_place = new JComboBox(new String [] {"실온", "냉장", "냉동"});
 		storage_place.setToolTipText("보관장소");
 		storage_place.setBounds(177, 94, 155, 40);
 		getContentPane().add(storage_place);
@@ -166,5 +166,6 @@ public class GrocerySearch extends JFrame {
 	public static void main(String[] args) {
 		new GrocerySearch();
 	}
+
 
 }
