@@ -14,16 +14,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class AdminEdit extends JFrame  {
-
+// 관리자 수정창!!!
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 	Font f1;
 	JTextField idTxt, nameTxt, emailTxt;
 	JPasswordField pwTxt, ppwTxt, pwcfTxt;
 	JButton joinBtn, cancelBtn;
-	JLabel title, idLbl, pwLbl, ppwLbl, pwcfLbl, nameLbl, emailLbl, user_grade;
+	JLabel title, idLbl, pwLbl, ppwLbl, pwcfLbl, nameLbl, emailLbl;
 	JComboBox combo_user;
 	
 	public AdminEdit() {
@@ -33,122 +34,107 @@ public class AdminEdit extends JFrame  {
 		init();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,700);
+		setSize(430,600);
 		setVisible(true);
 		
 	}
 	
 	private void init() {
 		
-		gbl = new GridBagLayout();
-		this.setLayout(gbl);
-		gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+getContentPane().setLayout(null);
 		
-		f1 = new Font("HY견고딕", Font.BOLD, 40);
+		title = new JLabel("\uD68C\uC6D0 \uC815\uBCF4 \uC218\uC815 ");
+		title.setFont(new Font("D2Coding", Font.PLAIN, 23));
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setBounds(12, 10, 410, 57);
+		getContentPane().add(title);
 		
-		// 제목
-		title = new JLabel("회원 정보 수정");
-		title.setFont(f1);
-		title.setHorizontalAlignment(JLabel.CENTER);
-		gblAdd(title, 0, 0, 4, 1);
-		
-		// 유저등급
 		combo_user = new JComboBox();
-		combo_user.setFont(new Font("D2Coding", Font.PLAIN, 20));
+		combo_user.setToolTipText("\uAD00\uB9AC\uC790 ");
 		combo_user.setModel(
 				new DefaultComboBoxModel(
 						new String[] {"현회원","전회원","관리자"}
 					)
 				);
-		JPanel pcom = new JPanel();
-		pcom.add(combo_user);
-		gblAdd(pcom,0,1,4,1);
+		combo_user.setBounds(130, 66, 166, 32);
+		getContentPane().add(combo_user);
 		
-		// 아이디
-		JPanel pId = new JPanel();
-		idLbl = new JLabel("아이디 :");
-		idTxt = new JTextField(20);
-		idTxt.setEditable(false);
+		nameTxt = new JTextField();
+		nameTxt.setBounds(142, 116, 230, 38);
+		getContentPane().add(nameTxt);
+		nameTxt.setColumns(10);
 		
-		pId = new JPanel();
-		pId.add(idLbl);
-		pId.add(idTxt);
+		pwTxt = new JPasswordField();
+		pwTxt.setColumns(10);
+		pwTxt.setBounds(142, 172, 230, 38);
+		getContentPane().add(pwTxt);
 		
-		gblAdd(pId,0,2,4,1);
-
-		// 이전 비밀번호
-		JPanel ppPw = new JPanel();
-		ppwLbl = new JLabel("이전 비밀번호 :");
-		ppwTxt = new JPasswordField(20);
-
-		ppPw.add(ppwLbl);
-		ppPw.add(ppwTxt);
-
-		gblAdd(ppPw, 0, 3, 4, 1);
+		ppwTxt = new JPasswordField();
+		ppwTxt.setColumns(10);
+		ppwTxt.setBounds(142, 227, 230, 38);
+		getContentPane().add(ppwTxt);
 		
-		// 비밀번호
-		JPanel pPw = new JPanel();
-		pwLbl = new JLabel("새 비밀번호 :");
-		pwTxt = new JPasswordField(20);
-
-		pPw.add(pwLbl);
-		pPw.add(pwTxt);
-
-		gblAdd(pPw, 0, 4, 4, 1);
+		pwcfTxt = new JPasswordField();
+		pwcfTxt.setColumns(10);
+		pwcfTxt.setBounds(142, 282, 230, 38);
+		getContentPane().add(pwcfTxt);
 		
-		// 비밀번호 확인
-		JPanel pCF = new JPanel();
-		pwcfLbl = new JLabel("비밀번호 확인:");
-		pwcfTxt = new JPasswordField(20);
-
-		pCF.add(pwcfLbl);
-		pCF.add(pwcfTxt);
-
-		gblAdd(pCF, 0, 5, 4, 1);
+		nameTxt = new JTextField();
+		nameTxt.setColumns(10);
+		nameTxt.setBounds(142, 338, 230, 38);
+		getContentPane().add(nameTxt);
 		
-		// 이름
-		JPanel pName = new JPanel();
-		nameLbl = new JLabel("이름 :");
-		nameTxt = new JTextField(20);
+		emailTxt = new JTextField();
+		emailTxt.setColumns(10);
+		emailTxt.setBounds(142, 398, 230, 38);
+		getContentPane().add(emailTxt);
 		
-		pName.add(nameLbl);
-		pName.add(nameTxt);
+		JLabel idLbl = new JLabel("\uC544\uC774\uB514 :");
+		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		idLbl.setBounds(57, 116, 85, 38);
+		getContentPane().add(idLbl);
 		
-		gblAdd(pName, 0, 6, 4, 1);
+		JLabel pwLbl = new JLabel("\uD604\uC7AC \uBE44\uBC00\uBC88\uD638 :");
+		pwLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		pwLbl.setBounds(12, 171, 130, 39);
+		getContentPane().add(pwLbl);
 		
-		// 이메일
-		JPanel pMail = new JPanel();
-		emailLbl = new JLabel("이메일 :");
-		emailTxt = new JTextField(20);
+		JLabel ppwLbl = new JLabel("\uC0C8 \uBE44\uBC00\uBC88\uD638 :");
+		ppwLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		ppwLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		ppwLbl.setBounds(22, 226, 118, 38);
+		getContentPane().add(ppwLbl);
 		
-		pMail.add(emailLbl);
-		pMail.add(emailTxt);
+		JLabel pwcfLbl = new JLabel("\uBE44\uBC00\uBC88\uD638 \uD655\uC778 : ");
+		pwcfLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		pwcfLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		pwcfLbl.setBounds(12, 287, 130, 33);
+		getContentPane().add(pwcfLbl);
 		
-		gblAdd(pMail, 0, 7, 4, 1);
+		JLabel nameLbl = new JLabel("\uC774\uB984 :");
+		nameLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		nameLbl.setBounds(67, 338, 85, 38);
+		getContentPane().add(nameLbl);
 		
-		// 버튼
-		JPanel pButton = new JPanel();
-		joinBtn = new JButton("정보수정");
-		cancelBtn = new JButton("입력취소");
+		JLabel emailLbl = new JLabel("\uC774\uBA54\uC77C :");
+		emailLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		emailLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		emailLbl.setBounds(55, 397, 85, 38);
+		getContentPane().add(emailLbl);
 		
-		pButton.add(joinBtn);
-		pButton.add(cancelBtn);
+		JButton joinBtn = new JButton("\uC815\uBCF4 \uC218\uC815");
+		joinBtn.setBounds(108, 482, 97, 23);
+		getContentPane().add(joinBtn);
 		
-		gblAdd(pButton, 0, 8, 4, 1);
+		JButton cancelBtn = new JButton("\uC785\uB825 \uCDE8\uC18C");
+		cancelBtn.setBounds(234, 482, 97, 23);
+		getContentPane().add(cancelBtn);
 	}
 
-	private void gblAdd(JComponent c, int x, int y, int w, int h) {
-		gbc.gridx      = x;
-		gbc.gridy      = y;
-		gbc.gridwidth  = w;
-		gbc.gridheight = h;
-		gbl.setConstraints(c, gbc);
-		gbc.insets     = new Insets(5, 5, 5, 5);
-		this.add(c, gbc);
-	}
+
 
 	public static void main(String[] args) {
 		new AdminEdit();
