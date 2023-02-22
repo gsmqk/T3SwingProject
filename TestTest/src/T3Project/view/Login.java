@@ -1,4 +1,4 @@
-package Test;
+package T3Project.view;
 
 import java.awt.BorderLayout;
 import java.awt.Font;

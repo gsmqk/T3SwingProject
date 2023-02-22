@@ -1,4 +1,4 @@
-package Test;
+package T3Project.view;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;

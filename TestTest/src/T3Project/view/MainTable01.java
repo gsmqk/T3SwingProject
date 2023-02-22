@@ -1,13 +1,14 @@
-package Test;
+package T3Project.view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,39 +16,38 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import T3Project.model.ListDao;
 
-public class MainTable01 {
+
+public class MainTable01 implements MouseListener {
 	
 	// 필요한 부품준비
-	JPanel            p; 
-	JFrame            f;
-	JTextField        txtId,  txtName,  txtIndate;
-	JTextArea         taIntro;
+	private JPanel            p; 
+	private JFrame            f ;
 			
-	JButton           btnInput, btnIngredient, btnRecipe, btnStorage, btnAhb, btnSet, btnManager, btnLogout;
+	private JButton           btnInput, btnIngredient, btnRecipe, btnStorage, btnAhb, btnSet, btnManager, btnLogout;
+	
+	JScrollPane pane;
+	private JTextField textField;
+	private JTable table;
 	
 	FindName  mProc = null; 
 	Category  mCate = null;
 	Login     mLog  = null;
 	MainTable01 mT01 = null;
-	MainTable02 mT02 = null;
+	StorageList mSt01 = null;
 	admin     madmin = null;
 	FindRecipe mFr   = null;
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
 
-	private JFrame frame;
-	private JTextField textField;
-	private JTable table;
 
-	public static void main(String[] args) {
-		new MainTable01();
-	}
+	
+
 
 	public MainTable01() {
 		initialize();
@@ -55,6 +55,7 @@ public class MainTable01 {
 
 	private void initialize() {
 		f = new JFrame();
+		
 		f.setTitle("메인 화면");
 		f.setBounds(100, 100, 1200, 800);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -166,7 +167,7 @@ public class MainTable01 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
-				mT02 = new MainTable02();
+				mSt01 = new StorageList();
 			}
 		}); 
 		btnAhb.addActionListener(new ActionListener() {
@@ -234,37 +235,102 @@ public class MainTable01 {
 		p.add(textField);
 		textField.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		
+		
+		
+		table      = new JTable();
+		table.setModel(
+			new DefaultTableModel( getDataList(), getColumnList() )	{
+
+				// 기본 option 설정 - 각 cell 에 대한 편집가능여부 : isCellEditable
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					//int currLine = jTable.getSelectedRow(); // 선택한 줄만 수정
+					//if(row == currLine)
+					//	return true;
+					//if(column == 0)
+					//	return true;
+					return false; // 모든 cell 편집불가능
+				}
 			}
-		});
+		);
+		
+		
+		JScrollPane scrollPane = new JScrollPane();
+//		scrollPane.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				table.addMouseListener(this);
+//				
+//				pane = new JScrollPane(table);
+//				table.add(pane);
+//			}
+//		});
+		table.addMouseListener(this);
 		scrollPane.setBounds(236, 140, 830, 479);
 		p.add(scrollPane);
-		
-		
-		
-		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"\uC774\uB984", "\uBCF4\uAD00\uC7A5\uC18C", "\uC218\uB7C9", "\uC785\uACE0\uC77C", "\uC18C\uBE44\uAE30\uD55C", "\uB9CC\uAE30\uC77C"
-			}
-		));
 		
+
+
+		
+	}
+	private Vector<Vector> getDataList() {
+		ListDao        dao   = new ListDao();
+		Vector<Vector> list  = dao.getList();
+		return list;
+	}
+	
+	private Vector<String> getColumnList(){
+		Vector<String>   cols = new Vector<>(); // 문자배열
+		cols.add("상품명");
+		cols.add("보관장소");
+		cols.add("수량");
+		cols.add("입고일");
+		cols.add("소비기한");
+		cols.add("만기일");
+		
+		return cols;
+	}
+	
+	public static void main(String[] args) {
+		new MainTable01();
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// 마우스를 클릭 하면
+			// button=1 : 왼쪽, button=2 : 가운데, button=3 : 오른쪽
+			int    row = table.getSelectedRow();
+			//int    col = jTable.getSelectedColumn();
+			String id  = (String) table.getValueAt(row, 0);
+			System.out.println(e);
+			if(mGi != null)
+				mGi.dispose();
+			mGi = new GroceryInput();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
