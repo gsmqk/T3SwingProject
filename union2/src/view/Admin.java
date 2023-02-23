@@ -103,7 +103,7 @@ public class Admin extends JFrame implements MouseListener {
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
-	}
+	}//ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
