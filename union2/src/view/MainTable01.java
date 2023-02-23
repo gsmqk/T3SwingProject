@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Collections;
 import java.util.Vector;
 
@@ -22,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import model.U_Dao;
 
 
-public class MainTable01 {
+public class MainTable01 implements MouseListener {
 	
 	// 필요한 부품준비
 	JPanel            p; 
@@ -43,6 +45,7 @@ public class MainTable01 {
 	GrocerySearch mGs = null;
 	String id;
 	Edit e1 = null;
+	GroceryInfo info = null;
 
 	private JFrame frame;
 	private JTextField textField;
@@ -250,6 +253,8 @@ public class MainTable01 {
 		table.setModel(
 				new DefaultTableModel(getDataList(), getColumnList())
 				);
+		
+		table.addMouseListener(this);
 	}
 
 	private Vector<String> getColumnList() {
@@ -269,5 +274,46 @@ public class MainTable01 {
 		U_Dao uao = new U_Dao();
 		Vector<Vector> list = uao.getUserList(); 
 		return list;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// 마우스를 클릭하면
+		// 마우스버튼 누르고 있는 동안
+		// button = 1 : 왼쪽
+		// button = 2 : 가운데
+		// button = 3 : 오른쪽
+		int row = table.getSelectedRow();
+		int col = table.getSelectedColumn();
+		String id = (String) table.getValueAt(row, 0);
+		System.out.println(e);
+		
+		info = new GroceryInfo(this);
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

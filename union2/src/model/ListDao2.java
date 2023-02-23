@@ -178,11 +178,11 @@ private Connection  conn = null;
 		Vector<Vector> list = new Vector<Vector>(); // 조회된 결과전체 대응 : rs
 		
 		String  sql = "";
-		sql += "SELECT LARGE_CLASSIFIC,  MEDIUM_CLASSIFIC, SMALL_CLASSIFIC, STORAGE_PLACE, GROCERY_NAME,  \r\n"
-				+ "		UNIT,  STORE_ID, INPUT_DATE, EXPIRE_DATE,  \r\n"
-				+ "		TO_CHAR(EXPIRE_DATE - SYSDATE) DUE_DATE \r\n"
-				+ "		FROM     GROCERIES \r\n"
-				+ "        ORDER BY GROCERY_NAME ASC";
+		sql += "SELECT LARGE_CLASSIFIC,  MEDIUM_CLASSIFIC, SMALL_CLASSIFIC, STORAGE_PLACE, GROCERY_NAME, "
+				+ "		UNIT,  STORE_ID, INPUT_DATE, EXPIRE_DATE, "
+				+ "		TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE "
+				+ "		FROM     GROCERIES "
+				+ "     ORDER BY GROCERY_NAME ASC";
 		
 		
 		PreparedStatement pstmt = null;

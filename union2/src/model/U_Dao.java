@@ -108,7 +108,7 @@ public class U_Dao {
 
 	// 로그인 확인
 	public boolean login(String id, String pw) {
-		String sql = "SELECT USER_PASSWORD "
+		String sql = "SELECT USER_PASSWORD, USER_GRADE "
 				+ "FROM USERS "
 				+ "WHERE USER_ID = ? "
 				+ "AND   USER_PASSWORD = ? ";
@@ -126,8 +126,15 @@ public class U_Dao {
 				String pwd = rs.getString("USER_PASSWORD");
 				System.out.println("password:" + pwd);
 				if (pw.equals(pwd)) {
-					JOptionPane.showMessageDialog(null, "로그인되었습니다.");
-					flag = true;
+					String grade = rs.getString("USER_GRADE");
+					switch (grade) {
+					case "0" : JOptionPane.showMessageDialog(null, "탈퇴한회원의 정보입니다. 다시 가입해주세요.");
+						flag = false;
+						break;
+						default : JOptionPane.showMessageDialog(null, "로그인되었습니다.");
+						flag = true; 
+							break;
+					};
 				} 
 			} else {
 				JOptionPane.showMessageDialog(null, "잘못된 정보입니다. 다시 확인해주세요.");

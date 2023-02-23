@@ -173,6 +173,7 @@ public class Edit extends JFrame implements ActionListener {
 
 		editBtn.addActionListener(this);
 		exitBtn.addActionListener(this);
+		cancelBtn.addActionListener(this);
 		
 	}
 

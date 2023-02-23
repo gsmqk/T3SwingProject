@@ -192,7 +192,7 @@ public class Join extends JFrame implements ActionListener{
 		U_DTO uto = getViewData();
 		int aftcnt = uao.insertUser(uto);
 		
-		JOptionPane.showMessageDialog(null, aftcnt + "건 저장되었습니다");
+		JOptionPane.showMessageDialog(null, "가입되었습니다. 환영합니다 !");
 		
 		this.dispose();
 	}
