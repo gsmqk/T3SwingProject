@@ -1,110 +1,193 @@
 package model;
 
 public class F_DTO {
+	
 	// Fields
-	private String F_name;
-	private String F_major;
-	private String F_minor;
-	private String F_place;
-	private String F_Quantity;
-	private String F_unit;
-	private String F_price;
-	private String F_store;
-	private String F_inDate;
-	private String F_sobi;
-	private String F_uid;
-	
-	//Constructor
-	public F_DTO() {}
-	public F_DTO(String f_name, String f_major, String f_minor, String f_place, String f_Quantity, String f_unit,
-			String f_price, String f_store, String f_inDate, String f_sobi, String f_uid) {
-		F_name = f_name;
-		F_major = f_major;
-		F_minor = f_minor;
-		F_place = f_place;
-		F_Quantity = f_Quantity;
-		F_unit = f_unit;
-		F_price = f_price;
-		F_store = f_store;
-		F_inDate = f_inDate;
-		F_sobi = f_sobi;
-		F_uid = f_uid;
+	private String grocery_id;
+	private String grocery_name;
+	private String large_classific;
+	private String medium_classific;
+	private String small_classific;
+	private String storage_place;
+	private String store_id;
+	private String quantity;
+	private String unit;
+	private String price;
+	private String store_name;
+	private String input_date;
+	private String expire_date;
+	private String user_id;
+	private String due_date;
+
+	// Constructor
+	public F_DTO() {
 	}
-	
+
+	public F_DTO(String grocery_id, String grocery_name, String large_classific, String medium_classific,
+			String small_classific, String storage_place, String store_id, String quantity, String unit, String price,
+			String store_name, String input_date, String expire_date, String user_id) {
+		this.grocery_id = grocery_id;
+		this.grocery_name = grocery_name;
+		this.large_classific = large_classific;
+		this.medium_classific = medium_classific;
+		this.small_classific = small_classific;
+		this.storage_place = storage_place;
+		this.store_id = store_id;
+		this.quantity = quantity;
+		this.unit = unit;
+		this.price = price;
+		this.store_name = store_name;
+		this.input_date = input_date;
+		this.expire_date = expire_date;
+		this.user_id = user_id;
+	}
+
+	public F_DTO(String gname, String large, String medium, String small, String place, String quantity2, String unit2,
+			String price2, String store_name2, String input_date2, String expire_date2, String due_date2) {
+		this.grocery_name = gname;
+		this.large_classific = large;
+		this.medium_classific = medium;
+		this.small_classific = small;
+		this.storage_place = place;
+		this.quantity = quantity2;
+		this.unit = unit2;
+		this.price = price2;
+		this.store_name = store_name2;
+		this.input_date = input_date2;
+		this.expire_date = expire_date2;
+		this.due_date = due_date2;
+	}
+
 	// Getter / Setter
-	public String getF_name() {
-		return F_name;
+	public String getGrocery_id() {
+		return grocery_id;
 	}
-	public void setF_name(String f_name) {
-		F_name = f_name;
+
+	public void setGrocery_id(String grocery_id) {
+		this.grocery_id = grocery_id;
 	}
-	public String getF_major() {
-		return F_major;
+
+	public String getGrocery_name() {
+		return grocery_name;
 	}
-	public void setF_major(String f_major) {
-		F_major = f_major;
+
+	public void setGrocery_name(String grocery_name) {
+		this.grocery_name = grocery_name;
 	}
-	public String getF_minor() {
-		return F_minor;
+
+	public String getLarge_classific() {
+		return large_classific;
 	}
-	public void setF_minor(String f_minor) {
-		F_minor = f_minor;
+
+	public void setLarge_classific(String large_classific) {
+		this.large_classific = large_classific;
 	}
-	public String getF_place() {
-		return F_place;
+
+	public String getMedium_classific() {
+		return medium_classific;
 	}
-	public void setF_place(String f_place) {
-		F_place = f_place;
+
+	public void setMedium_classific(String medium_classific) {
+		this.medium_classific = medium_classific;
 	}
-	public String getF_Quantity() {
-		return F_Quantity;
+
+	public String getSmall_classific() {
+		return small_classific;
 	}
-	public void setF_Quantity(String f_Quantity) {
-		F_Quantity = f_Quantity;
+
+	public void setSmall_classific(String small_classific) {
+		this.small_classific = small_classific;
 	}
-	public String getF_unit() {
-		return F_unit;
+
+	public String getStorage_place() {
+		return storage_place;
 	}
-	public void setF_unit(String f_unit) {
-		F_unit = f_unit;
+
+	public void setStorage_place(String storage_place) {
+		this.storage_place = storage_place;
 	}
-	public String getF_price() {
-		return F_price;
+
+	public String getStore_id() {
+		return store_id;
 	}
-	public void setF_price(String f_price) {
-		F_price = f_price;
+
+	public void setStore_id(String store_id) {
+		this.store_id = store_id;
 	}
-	public String getF_store() {
-		return F_store;
+
+	public String getQuantity() {
+		return quantity;
 	}
-	public void setF_store(String f_store) {
-		F_store = f_store;
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
 	}
-	public String getF_inDate() {
-		return F_inDate;
+
+	public String getUnit() {
+		return unit;
 	}
-	public void setF_inDate(String f_inDate) {
-		F_inDate = f_inDate;
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
-	public String getF_sobi() {
-		return F_sobi;
+
+	public String getPrice() {
+		return price;
 	}
-	public void setF_sobi(String f_sobi) {
-		F_sobi = f_sobi;
+
+	public void setPrice(String price) {
+		this.price = price;
 	}
-	public String getF_uid() {
-		return F_uid;
+
+	public String getStore_name() {
+		return store_name;
 	}
-	public void setF_uid(String f_uid) {
-		F_uid = f_uid;
+
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
 	}
+
+	public String getInput_date() {
+		return input_date;
+	}
+
+	public void setInput_date(String input_date) {
+		this.input_date = input_date;
+	}
+
+	public String getExpire_date() {
+		return expire_date;
+	}
+
+	public void setExpire_date(String expire_date) {
+		this.expire_date = expire_date;
+	}
+
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	
+	public String getDue_date() {
+		return due_date;
+	}
+
+	public void setDue_date(String due_date) {
+		this.due_date = due_date;
+	}
+
 	// toString
 	@Override
 	public String toString() {
-		return "F_DTO [F_name=" + F_name + ", F_major=" + F_major + ", F_minor=" + F_minor + ", F_place=" + F_place
-				+ ", F_Quantity=" + F_Quantity + ", F_unit=" + F_unit + ", F_price=" + F_price + ", F_store=" + F_store
-				+ ", F_inDate=" + F_inDate + ", F_sobi=" + F_sobi + "]";
-	}	
+		return "F_DTO [grocery_id=" + grocery_id + ", grocery_name=" + grocery_name + ", large_classific="
+				+ large_classific + ", medium_classific=" + medium_classific + ", small_classific=" + small_classific
+				+ ", storage_place=" + storage_place + ", store_id=" + store_id + ", quantity=" + quantity + ", unit="
+				+ unit + ", price=" + price + ", store_name=" + store_name + ", input_date=" + input_date
+				+ ", expire_date=" + expire_date + ", user_id=" + user_id + "]";
+	}
 	
 	
 }

@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Collections;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -21,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
+import model.F_Dao;
 import model.U_Dao;
 
 
@@ -288,8 +288,10 @@ public class MainTable01 implements MouseListener {
 		String id = (String) table.getValueAt(row, 0);
 		System.out.println(e);
 		
-		info = new GroceryInfo(this);
+		System.out.println(id);
 		
+		F_Dao fao = new F_Dao();
+		fao.goInfo(id);
 		
 	}
 
