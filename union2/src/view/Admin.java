@@ -8,19 +8,22 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import model.U_Dao;
+
 import java.awt.BorderLayout;
 import java.util.Vector;
 
 import javax.swing.JLabel;
 
-public class admin extends JFrame {
+public class Admin extends JFrame {
         
 	JTable       jTable;
 	JScrollPane  pane;
 	JButton      btnRefresh, btnCategory;
 	JPanel       topPane;
 	
-	public admin() {
+	static Admin list = null;
+	public Admin() {
 		
 		initComponent();
 		
@@ -34,31 +37,36 @@ public class admin extends JFrame {
 	private void initComponent() {
 		topPane = new JPanel();
 		btnRefresh  = new JButton("새로고침");
-		btnCategory = new JButton("카테고리");
 		topPane.add(btnRefresh);
+		btnCategory = new JButton("카테고리");
 		topPane.add(btnCategory);
 		
-		this.add(topPane, BorderLayout.NORTH);
+		getContentPane().add(topPane, BorderLayout.NORTH);
 		
 		jTable = new JTable();
 		jTable.setModel(new DefaultTableModel(getDataList(),getColumnList()));
 		pane = new JScrollPane(jTable);
-		this.add(pane);
+		getContentPane().add(pane);
 		
 	}
 	
 
-	private Vector<? extends Vector> getDataList() {
-		// TODO Auto-generated method stub
-		return null;
+	private Vector<Vector> getDataList() {
+		U_Dao dao  = new U_Dao();
+		Vector<Vector>  list = dao.getMemberList();
+		
+		return list;
 	}
 
 	private Vector<String> getColumnList() {
 		Vector<String> cols = new Vector<>();
 		cols.add("아이디");
-		cols.add("비밀번호");
 		cols.add("이름");
+		cols.add("비밀번호");
 		cols.add("이메일");
+		cols.add("등급");
+		cols.add("유저상태");
+		
 		
 		return cols;
 	}
@@ -67,8 +75,9 @@ public class admin extends JFrame {
 	
 
 	public static void main(String[] args) {
-		new admin();
+		list = new Admin();
 
 	}
 
 }
+

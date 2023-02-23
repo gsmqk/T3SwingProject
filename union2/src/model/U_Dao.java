@@ -33,6 +33,52 @@ public class U_Dao {
 		}
 	}
 
+	public Vector<Vector> getMemberList() {
+		Vector<Vector> list = new Vector<Vector>();
+		
+		String sql = "";
+		sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
+		sql += " FROM USERS ";
+		
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rs    = pstmt.executeQuery();
+		    while( rs.next() ) { // --------------------- 와일문 안에 백터만들기
+		    	String user_id       = rs.getString("USER_ID");
+		    	String user_name     = rs.getString("USER_NAME");
+		    	String user_password = rs.getString("USER_PASSWORD");
+		    	String user_email    = rs.getString("USER_EMAIL");
+		    	String user_grade    = rs.getString("USER_GRADE");
+		    	String user_status   = rs.getString("USER_STATUS");
+		    	
+		    	Vector v = new Vector();
+		    	v.add(user_id);
+		    	v.add(user_name);
+		    	v.add(user_password);
+		    	v.add(user_email);
+		    	v.add(user_grade);
+		    	v.add(user_status);
+		    	
+		    	list.add(v);
+		    }
+		} catch (SQLException e) {
+			System.out.println("삐빅-에러입니다");
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs    != null )rs.close();
+				if(pstmt != null )pstmt.close();
+			} catch (SQLException e) {
+				
+			}
+		}
+		
+		return list;
+	} 
+	
 	// 회원가입에 정보주기
 	public int insertUser(U_DTO uto) {
 		

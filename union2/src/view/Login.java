@@ -165,7 +165,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		
 		if (flag == true) {
 			JOptionPane.showMessageDialog(null, "관리자로 로그인하셨습니다.");
-			admin ad = new admin();
+			Admin ad = new Admin();
 			this.dispose();
 		} else {
 			JOptionPane.showMessageDialog(null, "잘못된 정보입니다. 다시 확인해주세요.");
