@@ -32,8 +32,8 @@ public class MainTable01 implements MouseListener {
 	private JButton           btnInput, btnIngredient, btnRecipe, btnStorage, btnAhb, btnSet, btnManager, btnLogout;
 	
 	JScrollPane pane;
-	private JTextField textField;
-	private JTable table;
+	JTextField textField;
+	JTable table;
 	
 	FindName  mProc = null; 
 	Category  mCate = null;
@@ -205,9 +205,7 @@ public class MainTable01 implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LogoutBtn();
-				
-				if(mLog != null)
-					mLog.dispose();
+	
 				mLog = new Login();
 				f.setVisible(false);
 				

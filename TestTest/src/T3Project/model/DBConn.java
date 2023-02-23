@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class DBConn {
 	
 	private static String driver = "oracle.jdbc.OracleDriver";
-	private static String dburl  = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static String dbuid  = "study";
-	private static String dbpwd  = "1234";
+	private static String dburl  = "jdbc:oracle:thin:@team3_medium?TNS_ADMIN=D:/Wallet/Wallet_team3";
+	private static String dbuid  = "admin";
+	private static String dbpwd  = "Swingproject1234";
 	
 	private static Connection conn = null;
 	
