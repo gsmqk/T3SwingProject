@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 
+import model.F_DTO;
+import model.F_Dao;
+
 public class GroceryInfo extends JFrame {
 	
 	MainTable01 mt01 = null;
@@ -20,6 +23,9 @@ public class GroceryInfo extends JFrame {
 	public GroceryInfo(MainTable01 mainTable01) {
 		this();
 		this.mt01 = mainTable01;
+		
+//		F_DTO fto = new F_DTO(mt01);
+		
 		init();
 	}
 
@@ -31,7 +37,7 @@ public class GroceryInfo extends JFrame {
 		
 		JTextPane groName = new JTextPane();
 		groName.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		groName.setText(mt01.txtName.toString());
+		groName.setText("");
 		groName.setBounds(12, 30, 320, 40);
 		getContentPane().add(groName);
 		

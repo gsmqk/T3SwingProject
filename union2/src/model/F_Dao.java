@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import view.Login;
+import view.MainTable01;
 
 public class F_Dao {
 	
@@ -86,5 +87,6 @@ public class F_Dao {
 		}
 		return aftcnt;
 	}
+
 
 }
