@@ -199,6 +199,7 @@ public class U_Dao {
 		return flag;
 	}
 
+	//아이디찾기
 	public void findId(String email) {
 		String sql = "SELECT USER_ID, USER_EMAIL "
 				+ "FROM USERS "
@@ -233,6 +234,7 @@ public class U_Dao {
 		
 	}
 
+	//비번찾기
 	public void findPw(String id, String email) {
 		String sql = "SELECT USER_ID, USER_EMAIL, USER_PASSWORD "
 				+ "FROM USERS "
@@ -271,6 +273,7 @@ public class U_Dao {
 		
 	}
 
+	//?????????????????????????????????????이거먼가용
 	public void eXit(String id, String pw) {
 		String sql = "SELECT USER_ID, USER_PASSWORD "
 				+ "FROM USERS "
@@ -477,8 +480,68 @@ public class U_Dao {
 		return flag;
 	}
 
+	// 어드민창에서 회원정보 수정할때 쓰는창! 
+	public U_DTO getMember(String u_id) {
+		U_DTO dto = null;
+		
+		String sql = "";
+		sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
+		sql += " FROM USERS ";
+		sql += " WHERE USER_ID = ? ";
+		
+		PreparedStatement pstmt = null;
+		ResultSet         rs    = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, u_id);
+		
+			rs    = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String id       = rs.getString(1);
+				String user_name     = rs.getString("USER_NAME");
+		    	String user_password = rs.getString("USER_PASSWORD");
+		    	String user_email    = rs.getString("USER_EMAIL");
+		    	String user_grade    = rs.getString("USER_GRADE");
+		    	String user_status   = rs.getString("USER_STATUS");
+		    	
+		    	dto = new U_DTO(u_id, user_name, user_password, user_email, user_grade, user_status);
+		    	System.out.println("트라이는함!!!");
+			}
+		} catch (SQLException e) {
+			System.out.println("안ㅁㄱ고곰곰곡몸곡목모목");
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs    != null) rs.close();
+				if(pstmt != null) pstmt.close();
+		} catch (SQLException e) {
+		
+		}
+		
+		}
+		return dto;
+	}
+
 
 	// 로그인
 	
 	
-}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

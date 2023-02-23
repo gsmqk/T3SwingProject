@@ -8,21 +8,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+
 import model.U_Dao;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JLabel;
 
-public class Admin extends JFrame {
+public class Admin extends JFrame implements MouseListener {
         
 	JTable       jTable;
 	JScrollPane  pane;
 	JButton      btnRefresh, btnCategory;
 	JPanel       topPane;
 	
+	AdminEdit aEdit = null;
 	static Admin list = null;
+	
 	public Admin() {
 		
 		initComponent();
@@ -45,6 +50,8 @@ public class Admin extends JFrame {
 		
 		jTable = new JTable();
 		jTable.setModel(new DefaultTableModel(getDataList(),getColumnList()));
+		jTable.addMouseListener(this);
+		
 		pane = new JScrollPane(jTable);
 		getContentPane().add(pane);
 		
@@ -77,6 +84,43 @@ public class Admin extends JFrame {
 	public static void main(String[] args) {
 		list = new Admin();
 
+	}
+
+	// jTable 에 마우스 리스너 연결해서 클릭효과만들기
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		int row = jTable.getSelectedRow();
+		int col = jTable.getSelectedColumn();
+		String id = (String)jTable.getValueAt(row, 0);
+		System.out.println( e );
+		if(aEdit != null)
+			aEdit.dispose();
+		aEdit = new AdminEdit(id, this);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
