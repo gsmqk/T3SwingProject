@@ -36,7 +36,7 @@ public class MainTable01 {
 	Category  mCate = null;
 	Login     mLog  = null;
 	MainTable01 mT01 = null;
-	MainTable02 mT02 = null;
+	StorageList mT02 = null;
 	FindRecipe mFr   = null;
 	GroceryInput mGi = null;
 	public MainTable01 mt01 = null;
@@ -177,7 +177,7 @@ public class MainTable01 {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
-				mT02 = new MainTable02();
+				mT02 = new StorageList();
 			}
 		}); 
 		btnAhb.addActionListener(new ActionListener() {
