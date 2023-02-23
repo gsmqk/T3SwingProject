@@ -134,8 +134,12 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		switch(e.getActionCommand()) {
 		case "로그인" : 
 			System.out.println("로그인 클릭");
-			
-			login();
+			String aid = idTxt.getText();
+			if(aid.equals("admin")) {
+				adminLogin();
+			} else {
+				login();
+			}
 			
 			break;
 		case "회원가입" : 
@@ -154,6 +158,21 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		
 	}
 
+	private void adminLogin() {
+		String pw = pwTxt.getText();
+		U_Dao uao = new U_Dao();
+		boolean flag = uao.adminLogin(pw);
+		
+		if (flag == true) {
+			JOptionPane.showMessageDialog(null, "관리자로 로그인하셨습니다.");
+			admin ad = new admin();
+			this.dispose();
+		} else {
+			JOptionPane.showMessageDialog(null, "잘못된 정보입니다. 다시 확인해주세요.");
+		}
+		
+	}
+
 	private void login() {
 		String id = idTxt.getText();
 		String pw = pwTxt.getText();
@@ -162,8 +181,6 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		boolean flag = uao.login(id,pw);
 		
 		if (flag == true) {
-//			mt01 = new MainTable01(this);
-//			System.out.println("Login창 값 :" + id);
 			this.dispose();
 			MainTable01 mt1 = new MainTable01(this);
 		}

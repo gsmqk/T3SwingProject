@@ -386,6 +386,40 @@ public class U_Dao {
 		return list;
 	}
 
+	public boolean adminLogin(String pw) {
+		String sql = "SELECT USER_ID, USER_PASSWORD "
+				+ "FROM USERS "
+				+ "WHERE USER_ID = ? "
+				+ "AND USER_PASSWORD = ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		boolean flag = false;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "admin");
+			pstmt.setString(2, pw);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				flag = true;
+			} else {
+				flag = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return flag;
+	}
+
 
 	// 로그인
 	
