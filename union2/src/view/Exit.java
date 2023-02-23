@@ -27,6 +27,8 @@ public class Exit extends JFrame implements ActionListener {
 	JTextField idTxt;
 	JButton exitBtn, cancelBtn;
 	Font f1, f2, f3, f4;
+	String id;
+	ExitCf ecf1 = null;
 	
 	public Exit() {
 		setTitle("회원 탈퇴");
@@ -36,8 +38,24 @@ public class Exit extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(500,700);
 		setVisible(true);
+		
+		
 	}
 	
+	
+	public Exit(Edit edit) {
+		this.id = edit.id;
+		
+		setTitle("회원 탈퇴");
+		
+		init();
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setSize(500,700);
+		setVisible(true);
+	}
+
+
 	private void init() {
 		
 		gbl = new GridBagLayout();
@@ -63,6 +81,7 @@ public class Exit extends JFrame implements ActionListener {
 		idLbl = new JLabel("아이디");
 		idLbl.setFont(f3);
 		idTxt = new JTextField(20);
+		idTxt.setText(id);
 		idTxt.setEditable(false);
 
 //		pId.add(idLbl);
@@ -142,15 +161,18 @@ public class Exit extends JFrame implements ActionListener {
 	}
 
 	public void exit() {
+		String id = idTxt.getText();
 		String pw = pwTxt.getText();
 		String cfpw = pwcfTxt.getText();
 		U_Dao uao = new U_Dao();
 		if (pw.equals(cfpw)) {
-			uao.eXit(pw,cfpw);
+			uao.eXit(id,pw);
 		} else { 
 			JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요.");
 		}
 		
 	}
+
+	
 
 }

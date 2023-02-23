@@ -21,6 +21,7 @@ public class ExitCf extends JFrame implements ActionListener {
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 	Font f1;
+	String id;
 	
 	public ExitCf() {
 		setTitle("회원탈퇴 확인");
@@ -32,6 +33,19 @@ public class ExitCf extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 	
+	public ExitCf(String id) {
+		this.id = id;
+		
+		setTitle("회원탈퇴 확인");
+		
+		init();
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setSize(500,700);
+		setVisible(true);
+		
+	}
+
 	private void init() {
 		
 		gbl = new GridBagLayout();
@@ -55,6 +69,7 @@ public class ExitCf extends JFrame implements ActionListener {
 		gblAdd(no, 2, 1, 2, 1);
 		
 		no.addActionListener(this);
+		yes.addActionListener(this);
 		
 	}
 	
@@ -83,6 +98,7 @@ public class ExitCf extends JFrame implements ActionListener {
 			System.out.println("탈퇴 확인");
 			deleteUser();
 			JOptionPane.showMessageDialog(null, "탈퇴되었습니다. 이용해주셔서 감사합니다.");
+			System.exit(1);;
 			break;
 		}
 		
@@ -90,9 +106,8 @@ public class ExitCf extends JFrame implements ActionListener {
 
 	private void deleteUser() {
 		U_Dao uao = new U_Dao();
-		U_DTO uto = new U_DTO(); 
 		int aftcnt = 0;
-		String id = uto.getU_id(); // 아이디 어디서 가져올지 바야함
+		String id = this.id; 
 		aftcnt = uao.removeUser(id);
 	}
 

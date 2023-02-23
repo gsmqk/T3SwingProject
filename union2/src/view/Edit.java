@@ -29,6 +29,7 @@ public class Edit extends JFrame implements ActionListener {
 	JButton editBtn, cancelBtn, exitBtn;
 	JLabel title, idLbl, pwLbl, ppwLbl, pwcfLbl, nameLbl, emailLbl;
 	String id;
+	Exit e1 = null;
 	
 	public Edit() {
 		setTitle("회원정보수정");
@@ -172,6 +173,7 @@ public class Edit extends JFrame implements ActionListener {
 
 		editBtn.addActionListener(this);
 		exitBtn.addActionListener(this);
+		
 	}
 
 	private void gblAdd(JComponent c, int x, int y, int w, int h) {
@@ -193,8 +195,7 @@ public class Edit extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 		case "회원탈퇴" : 
-			Exit e1 = new Exit();
-			e1.exit();
+			e1 = new Exit(this);
 			break;
 		case "입력취소" :
 			JOptionPane.showMessageDialog(null, "취소하셨습니다.");

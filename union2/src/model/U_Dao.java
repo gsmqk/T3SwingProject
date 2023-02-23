@@ -130,7 +130,7 @@ public class U_Dao {
 					flag = true;
 				} 
 			} else {
-				JOptionPane.showMessageDialog(null, "틀린 정보를 입력하셨습니다.");
+				JOptionPane.showMessageDialog(null, "잘못된 정보입니다. 다시 확인해주세요.");
 				flag = false;
 			}
 		} catch (SQLException e) {
@@ -218,22 +218,24 @@ public class U_Dao {
 		
 	}
 
-	public void eXit(String pw, String cfpw) {
-		String sql = "SELECT USER_PASSWORD "
+	public void eXit(String id, String pw) {
+		String sql = "SELECT USER_ID, USER_PASSWORD "
 				+ "FROM USERS "
-				+ "WHERE USER_PASSWORD = ?";
+				+ "WHERE USER_PASSWORD = ? "
+				+ "AND   USER_ID = ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
 			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				String pw1 = rs.getString("USER_PASSWORD");
 				if(pw.equals(pw1)) {
-					ExitCf ecf = new ExitCf(); 
+					ExitCf ecf = new ExitCf(id); 
 				} else {
 					JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요", "탈퇴확인", 
 							JOptionPane.OK_OPTION);
@@ -253,7 +255,9 @@ public class U_Dao {
 	}
 
 	public int removeUser(String id) {
-		String sql = "DELETE FROM USERS "
+		String sql = "UPDATE USERS "
+				+ "SET USER_GRADE = 0, "
+				+ "    USER_STATUS = '전회원' "
 				+ "WHERE USER_ID = ?";
 		
 		PreparedStatement pstmt = null;
