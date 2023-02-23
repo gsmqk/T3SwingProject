@@ -36,7 +36,7 @@ public class Admin extends JFrame implements MouseListener {
 		setSize(600,500);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	
+	//22222222222222222222222222222222222222222222222222222222222
 	}
 
 	private void initComponent() {
