@@ -154,7 +154,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		jTable.repaint();
 	}
 
-
+// 최종수정~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 }
 
