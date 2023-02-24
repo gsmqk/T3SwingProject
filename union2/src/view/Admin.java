@@ -12,18 +12,20 @@ import javax.swing.table.TableModel;
 import model.U_Dao;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JLabel;
 
-public class Admin extends JFrame implements MouseListener {
+public class Admin extends JFrame implements MouseListener, ActionListener {
         
 	JTable       jTable;
 	JScrollPane  pane;
 	JButton      btnRefresh, btnCategory;
-	JPanel       topPane;
+	JPanel       topPane, ta;
 	
 	AdminEdit aEdit = null;
 	static Admin list = null;
@@ -50,11 +52,14 @@ public class Admin extends JFrame implements MouseListener {
 		
 		jTable = new JTable();
 		jTable.setModel(new DefaultTableModel(getDataList(),getColumnList()));
+		
 		jTable.addMouseListener(this);
 		
 		pane = new JScrollPane(jTable);
 		getContentPane().add(pane);
 		
+		btnRefresh.addActionListener(this);
+		btnCategory.addActionListener(this);
 	}
 	
 
@@ -71,7 +76,6 @@ public class Admin extends JFrame implements MouseListener {
 		cols.add("이름");
 		cols.add("비밀번호");
 		cols.add("이메일");
-		cols.add("등급");
 		cols.add("유저상태");
 		
 		
@@ -123,5 +127,50 @@ public class Admin extends JFrame implements MouseListener {
 		
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		switch(e.getActionCommand()) {
+		case "새로고침":
+			System.out.println("새로고침 클릭");
+			JTableRefresh();
+			break;
+		}
+		
+	}
+
+	public void JTableRefresh() {
+		jTable.setModel(
+				new DefaultTableModel( getDataList(), getColumnList()) {
+
+					@Override
+					public boolean isCellEditable(int row, int column) {
+						
+						return false;
+					}
+					
+				});
+		
+		jTable.repaint();
+	}
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

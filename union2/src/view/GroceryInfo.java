@@ -89,7 +89,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		System.out.println(gFto);
 		
 		switch (gFto.getUnit().toString()) {
-		case "KG" : 
+		case "KG" :
 		case "G" : 
 			JTextPane jtpUnit3 = new JTextPane();
 			jtpUnit3.setText("100g");
@@ -134,7 +134,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		case "KG" :
 		case "L" :
 			
-			int perPrice2 = (price1 / (quan1 * 100)) * 100;
+			int perPrice2 = (price1 / quan1) / 10;
 			String pph2 = String.valueOf(perPrice2);
 
 			JTextPane jtpUcost2 = new JTextPane();

@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -13,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -27,7 +30,7 @@ public class AdminEdit extends JFrame  {
 	GridBagConstraints gbc;
 
 	JTextField idTxt, pwTxt, nameTxt, emailTxt, gradeTxt, statusTxt;
-	JButton intoBtn, joinBtn, cancelBtn;
+	JButton intoBtn, updateBtn, cancelBtn;
 	JLabel title, idLbl, pwLbl, nameLbl, emailLbl, gradeLbl, statusLbl;
 	
 	
@@ -68,10 +71,10 @@ public class AdminEdit extends JFrame  {
 		title.setBounds(12, 10, 410, 57);
 		getContentPane().add(title);
 		
-	
+		gradeTxt = new JTextField();
 		
 		idTxt = new JTextField();
-		idTxt.setBounds(124, 116, 185, 38);
+		idTxt.setBounds(124, 127, 185, 38);
 		getContentPane().add(idTxt);
 		idTxt.setColumns(10);
 		
@@ -90,62 +93,79 @@ public class AdminEdit extends JFrame  {
 		emailTxt.setBounds(124, 290, 185, 38);
 		getContentPane().add(emailTxt);
 		
-		gradeTxt = new JTextField();
-		gradeTxt.setColumns(10);
-		gradeTxt.setBounds(124, 338, 185, 38);
-		getContentPane().add(gradeTxt);
 		
 		statusTxt = new JTextField();
 		statusTxt.setColumns(10);
-		statusTxt.setBounds(124, 398, 185, 38);
+		statusTxt.setBounds(124, 356, 185, 38);
 		getContentPane().add(statusTxt);
+		
+		idTxt.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
+					intoBtn.doClick();
+				}	
+			}
+			
+		});
+		
 		
 		idLbl = new JLabel("\uC544\uC774\uB514 :");
 		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		idLbl.setBounds(45, 115, 67, 38);
+		idLbl.setBounds(35, 126, 77, 38);
 		getContentPane().add(idLbl);
 		
 		pwLbl = new JLabel("\uBE44\uBC00\uBC88\uD638 :");
 		pwLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		pwLbl.setBounds(12, 171, 123, 46);
+		pwLbl.setBounds(2, 174, 123, 46);
 		getContentPane().add(pwLbl);
 		
 		nameLbl = new JLabel("\uC774\uB984 :");
 		nameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		nameLbl.setBounds(55, 223, 61, 44);
+		nameLbl.setBounds(51, 230, 61, 44);
 		getContentPane().add(nameLbl);
 		
 		emailLbl = new JLabel("\uC774\uBA54\uC77C :");
 		emailLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		emailLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		emailLbl.setBounds(34, 281, 85, 38);
+		emailLbl.setBounds(27, 289, 90, 38);
 		getContentPane().add(emailLbl);
 		
-		gradeLbl = new JLabel("\uB4F1\uAE09 :");
-		gradeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		gradeLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		gradeLbl.setBounds(45, 337, 77, 38);
-		getContentPane().add(gradeLbl);
+		
 		
 		statusLbl = new JLabel("\uC720\uC800\uC0C1\uD0DC :");
 		statusLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		statusLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		statusLbl.setBounds(12, 393, 113, 46);
+		statusLbl.setBounds(12, 351, 113, 46);
 		getContentPane().add(statusLbl);
 		
 		intoBtn = new JButton("조회");
-		intoBtn.setBounds(323, 115, 65, 38);
+		intoBtn.setBounds(325, 126, 65, 38);
 		getContentPane().add(intoBtn);
 
-		joinBtn = new JButton("\uC815\uBCF4 \uC218\uC815");
-		joinBtn.setBounds(108, 482, 97, 23);
-		getContentPane().add(joinBtn);
+		updateBtn = new JButton("수정하기");
+		updateBtn.setBounds(103, 437, 97, 23);
+		getContentPane().add(updateBtn);
 		
-		cancelBtn = new JButton("\uC785\uB825 \uCDE8\uC18C");
-		cancelBtn.setBounds(234, 482, 97, 23);
+		cancelBtn = new JButton("취소");
+		cancelBtn.setBounds(225, 437, 97, 23);
 		getContentPane().add(cancelBtn);
 		
 		
@@ -155,14 +175,93 @@ public class AdminEdit extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("조회버튼 클릭...");
 				findMember();
+			}			
+		 }
+		);
+		updateBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("수정버튼 클릭...");
+				editMember();
+			}
+		});
+		
+		cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("취소버튼 클릭...");
+				cancleMember();
+				
 			}
 
-			
-		}
-		);
+		});
+		
+	}//-----------이까지 ----------------------생성자
+	
+	protected void cancleMember() {
+		clearViewData();
+		
 	}
 	
+	private void clearViewData() {
+		
+		this.idTxt.setText("");
+		this.pwTxt.setText("");
+		this.nameTxt.setText("");
+		this.emailTxt.setText("");
+		this.statusTxt.setText("");
+		
+		
+	}
+	//맴버 조회
+	protected void editMember() {
+		
+		String u_id = this.idTxt.getText();
+		U_Dao  dao  = new U_Dao();
+		
+		int choice = JOptionPane.showConfirmDialog(null,
+				u_id + "를 수정하시겠습니까?",
+				"수정확인",
+				JOptionPane.OK_CANCEL_OPTION);
+		int aftcnt = 0;
+		String msg = "";
+		if (choice == 0 ) {
+			U_DTO dto = getViewData();
+			aftcnt    = dao.update(dto);
+			if(aftcnt > 0)
+				msg = u_id + "수정되었습니다";
+			else
+				msg = u_id + "수정되지 않았습니다";
+		} else {
+			msg = "취소를 선택하였습니다";
+		}
+		JOptionPane.showMessageDialog(null, 
+				msg,
+				"수정",
+				 JOptionPane.OK_OPTION);
+		
+		 Admin.JTableRefresh();
+		 
+		 this.dispose();
+		}
+		
 
+	private U_DTO getViewData() {
+		String u_id = this.idTxt.getText();
+		String username  = this.nameTxt.getText();
+		String passwd    = this.pwTxt.getText();
+		String useremail  = this.emailTxt.getText();
+		String status  = this.statusTxt.getText();
+		String grade = this.gradeTxt.getText();
+		
+		U_DTO dto = new U_DTO(u_id, username, passwd, useremail, status, grade);
+		System.out.println("getViewData"+dto);
+		return dto;
+	}
+	
+	//조회!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	protected void findMember() {
 		String u_id = this.idTxt.getText();
 
@@ -172,7 +271,7 @@ public class AdminEdit extends JFrame  {
 		U_Dao dao = new U_Dao();
 		U_DTO dto = dao.getMember(u_id);
 		setViewData(dto);
-		
+		System.out.println(dto);
 	}
 
 
@@ -181,15 +280,16 @@ public class AdminEdit extends JFrame  {
 		String passwd    = dto.getU_password();
 		String username  = dto.getU_name();
 		String useremail  = dto.getU_email();
-		String usergrade  = dto.getU_grade();
 		String status  = dto.getU_status();
+		String grade  = dto.getU_grade();
 		
 		this.idTxt.setText(u_id);
 		this.pwTxt.setText(passwd);
 		this.nameTxt.setText(username);
 		this.emailTxt.setText(useremail);
-		this.gradeTxt.setText(usergrade);
 		this.statusTxt.setText(status);
+		this.gradeTxt.setText(grade);
+		System.out.println("setView" + dto);
 	}
 
 	public static void main(String[] args) {

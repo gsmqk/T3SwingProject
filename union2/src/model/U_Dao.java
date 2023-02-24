@@ -34,51 +34,52 @@ public class U_Dao {
 		}
 	}
 
-	public Vector<Vector> getMemberList() {
-		Vector<Vector> list = new Vector<Vector>();
-		
-		String sql = "";
-		sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
-		sql += " FROM USERS ";
-		
-		PreparedStatement pstmt = null;
-		ResultSet         rs    = null;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			rs    = pstmt.executeQuery();
-		    while( rs.next() ) { // --------------------- 와일문 안에 백터만들기
-		    	String user_id       = rs.getString("USER_ID");
-		    	String user_name     = rs.getString("USER_NAME");
-		    	String user_password = rs.getString("USER_PASSWORD");
-		    	String user_email    = rs.getString("USER_EMAIL");
-		    	String user_grade    = rs.getString("USER_GRADE");
-		    	String user_status   = rs.getString("USER_STATUS");
-		    	
-		    	Vector v = new Vector();
-		    	v.add(user_id);
-		    	v.add(user_name);
-		    	v.add(user_password);
-		    	v.add(user_email);
-		    	v.add(user_grade);
-		    	v.add(user_status);
-		    	
-		    	list.add(v);
-		    }
-		} catch (SQLException e) {
-			System.out.println("삐빅-에러입니다");
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs    != null )rs.close();
-				if(pstmt != null )pstmt.close();
-			} catch (SQLException e) {
-				
-			}
-		}
-		
-		return list;
-	} 
+	  public Vector<Vector> getMemberList() {
+	      Vector<Vector> list = new Vector<Vector>();
+	      
+	      String sql = "";
+	      sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
+	      sql += " FROM USERS ";
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet         rs    = null;
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         
+	         rs    = pstmt.executeQuery();
+	          while( rs.next() ) { // --------------------- 와일문 안에 백터만들기
+	             String user_id       = rs.getString("USER_ID");
+	             String user_name     = rs.getString("USER_NAME");
+	             String user_password = rs.getString("USER_PASSWORD");
+	             String user_email    = rs.getString("USER_EMAIL");
+	             String user_grade    = rs.getString("USER_GRADE");
+	             String user_status   = rs.getString("USER_STATUS");
+	             
+	             Vector v = new Vector();
+	             v.add(user_id);
+	             v.add(user_name);
+	             v.add(user_password);
+	             v.add(user_email);
+	             v.add(user_grade);
+	             v.add(user_status);
+	             
+	             list.add(v);
+	          }
+	      } catch (SQLException e) {
+	         System.out.println("삐빅-에러입니다");
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            if(rs    != null )rs.close();
+	            if(pstmt != null )pstmt.close();
+	         } catch (SQLException e) {
+	            
+	         }
+	      }
+	      
+	      return list;
+	   } 
+
 	
 	// 회원가입에 정보주기
 	public int insertUser(U_DTO uto) {
@@ -489,49 +490,97 @@ public class U_Dao {
 		return flag;
 	}
 
-	// 어드민창에서 회원정보 수정할때 쓰는창! 
-	public U_DTO getMember(String u_id) {
-		U_DTO dto = null;
-		
+	   // 어드민창에서 회원정보 수정할때 쓰는창! 
+	   public U_DTO getMember(String u_id) {
+	      U_DTO dto = null;
+	      
+	      String sql = "";
+	      sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
+	      sql += " FROM USERS ";
+	      sql += " WHERE USER_ID = ? ";
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet         rs    = null;
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setString(1, u_id);
+	      
+	         rs    = pstmt.executeQuery();
+	         
+	         if(rs.next()) {
+	            String id       = rs.getString(1);
+	            String user_name     = rs.getString("USER_NAME");
+	             String user_password = rs.getString("USER_PASSWORD");
+	             String user_email    = rs.getString("USER_EMAIL");
+	             String user_grade    = rs.getString("USER_GRADE");
+	             String user_status   = rs.getString("USER_STATUS");
+	             
+	             dto = new U_DTO(u_id, user_name, user_password, user_email, user_grade, user_status);
+	             System.out.println("트라이는함!!!");
+	         }
+	      } catch (SQLException e) {
+	         System.out.println("안ㅁㄱ고곰곰곡몸곡목모목");
+	         e.printStackTrace();
+	      } finally {
+	         try {
+	            if(rs    != null) rs.close();
+	            if(pstmt != null) pstmt.close();
+	      } catch (SQLException e) {
+	      
+	      }
+	      
+	      }
+	      return dto;
+	   }
+
+
+	   // 로그인
+	   
+	   
+	   
+
+
+	//  민경 회원정보수정!!
+	public int update(U_DTO dto) {
 		String sql = "";
-		sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
-		sql += " FROM USERS ";
+		sql += "UPDATE USERS";
+		sql += " SET USER_NAME = ?, ";
+		sql += "     USER_PASSWORD = ?, ";
+		sql += "     USER_EMAIL = ?, ";
+		sql += "     USER_STATUS = ?, ";
+		sql += "     USER_GRADE = ? ";
 		sql += " WHERE USER_ID = ? ";
 		
+		int aftcnt = 0;
 		PreparedStatement pstmt = null;
-		ResultSet         rs    = null;
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, u_id);
-		
-			rs    = pstmt.executeQuery();
+			pstmt.setString(1, dto.getU_name());
+			pstmt.setString(2, dto.getU_password());
+			pstmt.setString(3, dto.getU_email());
+			pstmt.setString(4, dto.getU_grade());
+			pstmt.setString(5, dto.getU_status());
+			pstmt.setString(6, dto.getU_id());
 			
-			if(rs.next()) {
-				String id       = rs.getString(1);
-				String user_name     = rs.getString("USER_NAME");
-		    	String user_password = rs.getString("USER_PASSWORD");
-		    	String user_email    = rs.getString("USER_EMAIL");
-		    	String user_grade    = rs.getString("USER_GRADE");
-		    	String user_status   = rs.getString("USER_STATUS");
-		    	
-		    	dto = new U_DTO(u_id, user_name, user_password, user_email, user_grade, user_status);
-		    	System.out.println("트라이는함!!!");
-			}
+			System.out.println("update" + dto);
+			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println("안ㅁㄱ고곰곰곡몸곡목모목");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				if(rs    != null) rs.close();
-				if(pstmt != null) pstmt.close();
-		} catch (SQLException e) {
-		
+				if (pstmt != null ) pstmt.close();
+			} catch (SQLException e) {
+				
+			}
 		}
-		
-		}
-		return dto;
+		return aftcnt;
 	}
+
+
+
+	
 
 
 	// 로그인
