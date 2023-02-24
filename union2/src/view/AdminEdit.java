@@ -72,7 +72,7 @@ public class AdminEdit extends JFrame  {
 	
 		
 		idTxt = new JTextField();
-		idTxt.setBounds(124, 116, 185, 38);
+		idTxt.setBounds(124, 127, 185, 38);
 		getContentPane().add(idTxt);
 		idTxt.setColumns(10);
 		
@@ -91,62 +91,55 @@ public class AdminEdit extends JFrame  {
 		emailTxt.setBounds(124, 290, 185, 38);
 		getContentPane().add(emailTxt);
 		
-		gradeTxt = new JTextField();
-		gradeTxt.setColumns(10);
-		gradeTxt.setBounds(124, 338, 185, 38);
-		getContentPane().add(gradeTxt);
+	
 		
 		statusTxt = new JTextField();
 		statusTxt.setColumns(10);
-		statusTxt.setBounds(124, 398, 185, 38);
+		statusTxt.setBounds(124, 356, 185, 38);
 		getContentPane().add(statusTxt);
 		
 		idLbl = new JLabel("\uC544\uC774\uB514 :");
 		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		idLbl.setBounds(45, 115, 67, 38);
+		idLbl.setBounds(35, 126, 77, 38);
 		getContentPane().add(idLbl);
 		
 		pwLbl = new JLabel("\uBE44\uBC00\uBC88\uD638 :");
 		pwLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		pwLbl.setBounds(12, 171, 123, 46);
+		pwLbl.setBounds(2, 174, 123, 46);
 		getContentPane().add(pwLbl);
 		
 		nameLbl = new JLabel("\uC774\uB984 :");
 		nameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		nameLbl.setBounds(55, 223, 61, 44);
+		nameLbl.setBounds(51, 230, 61, 44);
 		getContentPane().add(nameLbl);
 		
 		emailLbl = new JLabel("\uC774\uBA54\uC77C :");
 		emailLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		emailLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		emailLbl.setBounds(34, 281, 85, 38);
+		emailLbl.setBounds(27, 289, 90, 38);
 		getContentPane().add(emailLbl);
 		
-		statusLbl = new JLabel("유저상태 :");
-		statusLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		statusLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		statusLbl.setBounds(45, 337, 77, 38);
-		getContentPane().add(statusLbl);
+		
 		
 		statusLbl = new JLabel("\uC720\uC800\uC0C1\uD0DC :");
 		statusLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		statusLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		statusLbl.setBounds(12, 393, 113, 46);
+		statusLbl.setBounds(12, 351, 113, 46);
 		getContentPane().add(statusLbl);
 		
 		intoBtn = new JButton("조회");
-		intoBtn.setBounds(323, 115, 65, 38);
+		intoBtn.setBounds(325, 126, 65, 38);
 		getContentPane().add(intoBtn);
 
 		updateBtn = new JButton("수정하기");
-		updateBtn.setBounds(108, 482, 97, 23);
+		updateBtn.setBounds(103, 437, 97, 23);
 		getContentPane().add(updateBtn);
 		
-		cancelBtn = new JButton("\uC785\uB825 \uCDE8\uC18C");
-		cancelBtn.setBounds(234, 482, 97, 23);
+		cancelBtn = new JButton("취소");
+		cancelBtn.setBounds(225, 437, 97, 23);
 		getContentPane().add(cancelBtn);
 		
 		
@@ -166,10 +159,36 @@ public class AdminEdit extends JFrame  {
 				System.out.println("수정버튼 클릭...");
 				editMember();
 			}
+		});
+		
+		cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("취소버튼 클릭...");
+				cancleMember();
+				
+			}
 
 		});
-	}//ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ수정
+		
+	}//-----------이까지 ----------------------생성자
 	
+	protected void cancleMember() {
+		clearViewData();
+		
+	}
+	
+	private void clearViewData() {
+		
+		this.idTxt.setText("");
+		this.pwTxt.setText("");
+		this.nameTxt.setText("");
+		this.emailTxt.setText("");
+		this.statusTxt.setText("");
+		
+	}
+	//맴버 조회
 	protected void editMember() {
 		
 		String u_id = this.idTxt.getText();
