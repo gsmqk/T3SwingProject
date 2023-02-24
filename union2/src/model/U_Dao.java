@@ -524,6 +524,45 @@ public class U_Dao {
 		return dto;
 	}
 
+	public int update(U_DTO dto) {
+		String sql = "";
+		sql += "UPDATE USERS";
+		sql += " SET USER_NAME = ?, ";
+		sql += "     USER_PASSWORD = ?, ";
+		sql += "     USER_EMAIL = ?, ";
+		sql += "     USER_GRADE = ?, ";
+		sql += "     USER_STATUS = ? ";
+		sql += " WHERE USER_ID = ? ";
+		
+		int aftcnt = 0;
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getU_name());
+			pstmt.setString(2, dto.getU_password());
+			pstmt.setString(3, dto.getU_email());
+			pstmt.setString(4, dto.getU_grade());
+			pstmt.setString(5, dto.getU_status());
+			pstmt.setString(6, dto.getU_id());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null ) pstmt.close();
+			} catch (SQLException e) {
+				
+			}
+		}
+		return aftcnt;
+	}
+
+
+
+	
+
 
 	// 로그인
 	

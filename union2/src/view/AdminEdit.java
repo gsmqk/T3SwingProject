@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -27,7 +28,7 @@ public class AdminEdit extends JFrame  {
 	GridBagConstraints gbc;
 
 	JTextField idTxt, pwTxt, nameTxt, emailTxt, gradeTxt, statusTxt;
-	JButton intoBtn, joinBtn, cancelBtn;
+	JButton intoBtn, updateBtn, cancelBtn;
 	JLabel title, idLbl, pwLbl, nameLbl, emailLbl, gradeLbl, statusLbl;
 	
 	
@@ -124,11 +125,11 @@ public class AdminEdit extends JFrame  {
 		emailLbl.setBounds(34, 281, 85, 38);
 		getContentPane().add(emailLbl);
 		
-		gradeLbl = new JLabel("\uB4F1\uAE09 :");
-		gradeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		gradeLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		gradeLbl.setBounds(45, 337, 77, 38);
-		getContentPane().add(gradeLbl);
+		statusLbl = new JLabel("유저상태 :");
+		statusLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		statusLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		statusLbl.setBounds(45, 337, 77, 38);
+		getContentPane().add(statusLbl);
 		
 		statusLbl = new JLabel("\uC720\uC800\uC0C1\uD0DC :");
 		statusLbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -140,9 +141,9 @@ public class AdminEdit extends JFrame  {
 		intoBtn.setBounds(323, 115, 65, 38);
 		getContentPane().add(intoBtn);
 
-		joinBtn = new JButton("\uC815\uBCF4 \uC218\uC815");
-		joinBtn.setBounds(108, 482, 97, 23);
-		getContentPane().add(joinBtn);
+		updateBtn = new JButton("수정하기");
+		updateBtn.setBounds(108, 482, 97, 23);
+		getContentPane().add(updateBtn);
 		
 		cancelBtn = new JButton("\uC785\uB825 \uCDE8\uC18C");
 		cancelBtn.setBounds(234, 482, 97, 23);
@@ -155,14 +156,67 @@ public class AdminEdit extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("조회버튼 클릭...");
 				findMember();
+			}			
+		 }
+		);
+		updateBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("수정버튼 클릭...");
+				editMember();
 			}
 
-			
-		}
-		);
+		});
 	}
 	
+	protected void editMember() {
+		
+		String u_id = this.idTxt.getText();
+		U_Dao  dao  = new U_Dao();
+		
+		int choice = JOptionPane.showConfirmDialog(null,
+				u_id + "를 수정하시겠습니까?",
+				"수정확인",
+				JOptionPane.OK_CANCEL_OPTION);
+		int aftcnt = 0;
+		String msg = "";
+		if (choice == 0 ) {
+			U_DTO dto = getViewData();
+			aftcnt    = dao.update(dto);
+			if(aftcnt > 0)
+				msg = u_id + "수정되었습니다";
+			else
+				msg = u_id + "수정되지 않았습니다";
+		} else {
+			msg = "취소를 선택하였습니다";
+		}
+		JOptionPane.showMessageDialog(null, 
+				msg,
+				"수정",
+				 JOptionPane.OK_OPTION);
+		
+		 Admin.JTableRefresh();
+		 
+		 this.dispose();
+		}
+		
 
+	private U_DTO getViewData() {
+		String u_id = this.idTxt.getText();
+		
+		
+		String username  = this.nameTxt.getText();
+		String passwd    = this.pwTxt.getText();
+		String useremail  = this.emailTxt.getText();
+		String status  = this.statusTxt.getText();
+		
+		U_DTO dto = new U_DTO(u_id, username,passwd, useremail, status );
+		
+		return dto;
+	}
+	
+	
 	protected void findMember() {
 		String u_id = this.idTxt.getText();
 
@@ -181,14 +235,12 @@ public class AdminEdit extends JFrame  {
 		String passwd    = dto.getU_password();
 		String username  = dto.getU_name();
 		String useremail  = dto.getU_email();
-		String usergrade  = dto.getU_grade();
 		String status  = dto.getU_status();
 		
 		this.idTxt.setText(u_id);
 		this.pwTxt.setText(passwd);
 		this.nameTxt.setText(username);
 		this.emailTxt.setText(useremail);
-		this.gradeTxt.setText(usergrade);
 		this.statusTxt.setText(status);
 	}
 
