@@ -1,5 +1,8 @@
 package view;
 
+import static com.teamdev.jxbrowser.engine.RenderingMode.HARDWARE_ACCELERATED;
+
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,16 +18,25 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;//
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+import com.teamdev.jxbrowser.browser.Browser;
+import com.teamdev.jxbrowser.engine.Engine;
+import com.teamdev.jxbrowser.engine.EngineOptions;
+import com.teamdev.jxbrowser.view.swing.BrowserView;
 
 public class FindRecipe extends JFrame implements ActionListener {
 
    JLabel lbl;
-   JTextField food , foodList ; 
+   JTextField food ;
+   static JTextField foodList; 
    JButton    btnAdd, btnSmall, btnFind , btnCancel;
    
    GridBagLayout      gb;
    GridBagConstraints gbc;
    StringBuffer b1 = new StringBuffer();
+private RecipeConn jwtest;
+
    
    public FindRecipe(){
 
@@ -37,6 +49,14 @@ public class FindRecipe extends JFrame implements ActionListener {
       
       
    }
+   
+   //수정
+   public FindRecipe(RecipeConn jwtest) {
+	   this();
+	   this.jwtest = jwtest;
+   }
+   
+   //수정
    
    private void initComponent() {
       gb = new GridBagLayout();
@@ -73,42 +93,65 @@ public class FindRecipe extends JFrame implements ActionListener {
       foodList = new JTextField(20);
       gbAdd(foodList, 0, 3, 4, 1);
   
-      // 버튼
+      // 아래 버튼
       JPanel p = new JPanel();
       btnFind    = new JButton("검색");
       btnCancel  = new JButton("취소");
+      
+      
+      // 버튼들을 panel에 추가
       p.add(btnFind);
       p.add(btnCancel);
       gbAdd(p, 0, 4, 0, 0);
+     
+      //-----------------------------------------------
+      // 기능 추가 : event 연결
       
+      // 추가 버튼
       btnAdd.addActionListener(this);
-      btnCancel.addActionListener(this);
       food.addKeyListener(new KeyListener() {
+  		
+  		@Override
+  		public void keyTyped(KeyEvent e) {
+  			// TODO Auto-generated method stub
+  			
+  		}
+  		
+  		@Override
+  		public void keyReleased(KeyEvent e) {
+  			if(e.getKeyCode() == 10) {
+  				btnAdd.doClick();
+  			}
+  			
+  		}
+  		
+  		@Override
+  		public void keyPressed(KeyEvent e) {
+  			// TODO Auto-generated method stub
+  			
+  		}
+  	});
+      
+      // 검색 버튼
+      btnFind.addActionListener(this);
+      btnFind.addActionListener( new ActionListener() {
 		
 		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
+		public void actionPerformed(ActionEvent e) {
+			RecipeConn.findrecipe();
 			
-		}
-		
-		@Override
-		public void keyReleased(KeyEvent e) {
-			if(e.getKeyCode() == 10) {
-				btnAdd.doClick();
-			}
-			
-		}
-		
-		@Override
-		public void keyPressed(KeyEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 	});
       
+      
+      // 취소 버튼
+      btnCancel.addActionListener(this);
+     
+      
    }
    
-   // 컴포넌트를 받아서 위치 넓이 지정!!!  
+   // 컴포넌트를 받아서 위치 넓이 지정
    
    private void gbAdd(JComponent c, int x, int y, int w, int h) {
       gbc.gridx      = x;
@@ -138,7 +181,8 @@ public void actionPerformed(ActionEvent e) {
 		this.dispose();
 		break;
 	case "검색" :
-		// api로 네이버연결
+		this.dispose();
+		break;
 	}
 	
 }

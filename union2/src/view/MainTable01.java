@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 
 import model.F_Dao;
+import model.Renderer;
 import model.U_Dao;
 
 
@@ -43,7 +44,7 @@ public class MainTable01 implements MouseListener {
 	GroceryInput mGi = null;
 	public MainTable01 mt01 = null;
 	GrocerySearch mGs = null;
-	String id;
+	public String id;
 	Edit e1 = null;
 	GroceryInfo info = null;
 
@@ -56,16 +57,16 @@ public class MainTable01 implements MouseListener {
 	}
 
 	public MainTable01() {
-		initialize();
+//		initialize();
 	}
 
 	public MainTable01(Login login) {
 		this.id = login.idTxt.getText();
 		System.out.println("메인테이블" + id);
-		initialize();
+		initialize(id);
 	}
 
-	private void initialize() {
+	private void initialize(String id) {
 		f = new JFrame();
 		f.setTitle("메인 화면");
 		f.setBounds(100, 100, 1200, 800);
@@ -114,13 +115,6 @@ public class MainTable01 implements MouseListener {
 		btnAhb.setBounds(30, 450, 120, 50);
 		p.add(btnAhb);
 		
-//		btnSet = new JButton("템플릿 설정");
-//		btnSet.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-//		btnSet.setBackground(new Color(135, 206, 250));
-//		btnSet.setForeground(Color.WHITE);
-//		btnSet.setBounds(30, 530, 120, 50);
-//		p.add(btnSet);
-		
 		btnEdit = new JButton("개인정보수정");
 		btnEdit.setForeground(Color.WHITE);
 		btnEdit.setFont(new Font("맑은 고딕", Font.BOLD, 13));
@@ -145,7 +139,6 @@ public class MainTable01 implements MouseListener {
 		
 				if(mGi != null)
 					mGi.dispose();
-//				gi = new GroceryInput();
 				mGi = new GroceryInput(mt01);
 			}
 		}); 
@@ -248,13 +241,19 @@ public class MainTable01 implements MouseListener {
 		
 		
 		
+		Renderer ren = new Renderer(); // 색깔바꾸는거 나중에
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(
 				new DefaultTableModel(getDataList(), getColumnList())
+				
 				);
 		
+		
+		
 		table.addMouseListener(this);
+		
+
 	}
 
 	private Vector<String> getColumnList() {
@@ -272,7 +271,8 @@ public class MainTable01 implements MouseListener {
 
 	private Vector<Vector> getDataList() {
 		U_Dao uao = new U_Dao();
-		Vector<Vector> list = uao.getUserList(); 
+		Vector<Vector> list = uao.getUserList(id); 
+		System.out.println(id);
 		return list;
 	}
 
