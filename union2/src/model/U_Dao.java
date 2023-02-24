@@ -404,10 +404,12 @@ public class U_Dao {
 		
 		Vector<Vector> list = new Vector<>();
 		
-		String sql = "SELECT GROCERY_NAME, STORAGE_PLACE, QUANTITY, UNIT, INPUT_DATE, EXPIRE_DATE, "
-				+ "TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUEDATE "
-				+ "FROM GROCERIES "
-				+ "WHERE USER_ID = ?";
+		String sql = "SELECT G.GROCERY_NAME, ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, G.INPUT_DATE, G.EXPIRE_DATE, "
+				+ "TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUEDATE "
+				+ "FROM   GROCERIES G "
+				+ "JOIN   STORAGES ST "
+				+ "ON     G.STORAGE_ID = ST.STORAGE_ID "
+				+ "WHERE  G.USER_ID = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -418,24 +420,27 @@ public class U_Dao {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				String grocery_name = rs.getString("GROCERY_NAME");
-				String storage_place = rs.getString("STORAGE_PLACE");
-				String quantity = rs.getString("QUANTITY");
-				String unit = rs.getString("UNIT");
-				String input_date = rs.getString("INPUT_DATE");
-				String expire_date = rs.getString("EXPIRE_DATE");
+				String grocery_name = rs.getString(1);
+				String storage_place = rs.getString(2);
+				String quantity = rs.getString(3);
+				String unit = rs.getString(4);
+				String input_date = rs.getString(5);
+				String expire_date = rs.getString(6);
 				String duedate = rs.getString("DUEDATE");
 				
 				Vector v = new Vector();
-				v.add(grocery_name);
-				v.add(storage_place);
-				v.add(quantity);
-				v.add(unit);
-				v.add(input_date);
-				v.add(expire_date);
-				v.add(duedate);
+				int dDate = Integer.parseInt(duedate);
+				if (dDate <= 7) {
+					v.add(grocery_name);
+					v.add(storage_place);
+					v.add(quantity);
+					v.add(unit);
+					v.add(input_date);
+					v.add(expire_date);
+					v.add(dDate);
+					list.add(v);
+				}
 				
-				list.add(v);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

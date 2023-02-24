@@ -47,6 +47,7 @@ public class MainTable01 implements MouseListener {
 	public String id;
 	Edit e1 = null;
 	GroceryInfo info = null;
+	StorageList slist = null;
 
 	private JFrame frame;
 	private JTextField textField;
@@ -173,7 +174,7 @@ public class MainTable01 implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
-				mT02 = new StorageList();
+				mT02 = new StorageList(mt01);
 			}
 		}); 
 		btnAhb.addActionListener(new ActionListener() {
@@ -186,16 +187,7 @@ public class MainTable01 implements MouseListener {
 				
 			}
 		}); 
-//		btnSet.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				if(mCate != null)
-//					mCate.dispose();
-//				mCate = new Category();
-//				
-//			}
-//		}); 
+
 		btnEdit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -249,11 +241,7 @@ public class MainTable01 implements MouseListener {
 				
 				);
 		
-		
-		
 		table.addMouseListener(this);
-		
-
 	}
 
 	private Vector<String> getColumnList() {
@@ -272,10 +260,12 @@ public class MainTable01 implements MouseListener {
 	private Vector<Vector> getDataList() {
 		U_Dao uao = new U_Dao();
 		Vector<Vector> list = uao.getUserList(id); 
+		System.out.println(list);
 		System.out.println(id);
 		return list;
 	}
 
+	// 이거부터해야함.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// 마우스를 클릭하면
