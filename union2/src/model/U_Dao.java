@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.xml.crypto.Data;
 
 import view.ExitCf;
+import view.MainTable01;
 
 public class U_Dao {
 	
@@ -399,18 +400,21 @@ public class U_Dao {
 		return aftcnt;
 	}
 
-	public Vector<Vector> getUserList() {
-
+	public Vector<Vector> getUserList(String id) {
+		
 		Vector<Vector> list = new Vector<>();
 		
 		String sql = "SELECT GROCERY_NAME, STORAGE_PLACE, QUANTITY, UNIT, INPUT_DATE, EXPIRE_DATE, "
 				+ "TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUEDATE "
-				+ "FROM GROCERIES ";
+				+ "FROM GROCERIES "
+				+ "WHERE USER_ID = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
