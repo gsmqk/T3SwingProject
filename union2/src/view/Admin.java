@@ -25,7 +25,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 	JTable       jTable;
 	JScrollPane  pane;
 	JButton      btnRefresh, btnCategory;
-	JPanel       topPane;
+	JPanel       topPane, ta;
 	
 	AdminEdit aEdit = null;
 	static Admin list = null;
