@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -69,7 +71,7 @@ public class AdminEdit extends JFrame  {
 		title.setBounds(12, 10, 410, 57);
 		getContentPane().add(title);
 		
-	
+		gradeTxt = new JTextField();
 		
 		idTxt = new JTextField();
 		idTxt.setBounds(124, 127, 185, 38);
@@ -91,12 +93,36 @@ public class AdminEdit extends JFrame  {
 		emailTxt.setBounds(124, 290, 185, 38);
 		getContentPane().add(emailTxt);
 		
-	
 		
 		statusTxt = new JTextField();
 		statusTxt.setColumns(10);
 		statusTxt.setBounds(124, 356, 185, 38);
 		getContentPane().add(statusTxt);
+		
+		idTxt.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == KeyEvent.VK_ENTER ) {
+					intoBtn.doClick();
+				}	
+			}
+			
+		});
+		
 		
 		idLbl = new JLabel("\uC544\uC774\uB514 :");
 		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -187,6 +213,7 @@ public class AdminEdit extends JFrame  {
 		this.emailTxt.setText("");
 		this.statusTxt.setText("");
 		
+		
 	}
 	//맴버 조회
 	protected void editMember() {
@@ -223,19 +250,18 @@ public class AdminEdit extends JFrame  {
 
 	private U_DTO getViewData() {
 		String u_id = this.idTxt.getText();
-		
-		
 		String username  = this.nameTxt.getText();
 		String passwd    = this.pwTxt.getText();
 		String useremail  = this.emailTxt.getText();
 		String status  = this.statusTxt.getText();
+		String grade = this.gradeTxt.getText();
 		
-		U_DTO dto = new U_DTO(u_id, username,passwd, useremail, status );
-		
+		U_DTO dto = new U_DTO(u_id, username, passwd, useremail, status, grade);
+		System.out.println("getViewData"+dto);
 		return dto;
 	}
 	
-	
+	//조회!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	protected void findMember() {
 		String u_id = this.idTxt.getText();
 
@@ -245,7 +271,7 @@ public class AdminEdit extends JFrame  {
 		U_Dao dao = new U_Dao();
 		U_DTO dto = dao.getMember(u_id);
 		setViewData(dto);
-		
+		System.out.println(dto);
 	}
 
 
@@ -255,12 +281,15 @@ public class AdminEdit extends JFrame  {
 		String username  = dto.getU_name();
 		String useremail  = dto.getU_email();
 		String status  = dto.getU_status();
+		String grade  = dto.getU_grade();
 		
 		this.idTxt.setText(u_id);
 		this.pwTxt.setText(passwd);
 		this.nameTxt.setText(username);
 		this.emailTxt.setText(useremail);
 		this.statusTxt.setText(status);
+		this.gradeTxt.setText(grade);
+		System.out.println("setView" + dto);
 	}
 
 	public static void main(String[] args) {

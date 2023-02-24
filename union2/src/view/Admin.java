@@ -45,13 +45,14 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		topPane = new JPanel();
 		btnRefresh  = new JButton("새로고침");
 		topPane.add(btnRefresh);
-		btnCategory = new JButton("카테고리수정");
+		btnCategory = new JButton("카테고리");
 		topPane.add(btnCategory);
 		
 		getContentPane().add(topPane, BorderLayout.NORTH);
 		
 		jTable = new JTable();
 		jTable.setModel(new DefaultTableModel(getDataList(),getColumnList()));
+		
 		jTable.addMouseListener(this);
 		
 		pane = new JScrollPane(jTable);
@@ -140,7 +141,15 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 
 	public void JTableRefresh() {
 		jTable.setModel(
-				new DefaultTableModel( getDataList(), getColumnList()));
+				new DefaultTableModel( getDataList(), getColumnList()) {
+
+					@Override
+					public boolean isCellEditable(int row, int column) {
+						
+						return false;
+					}
+					
+				});
 		
 		jTable.repaint();
 	}
