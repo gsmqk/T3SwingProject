@@ -11,5 +11,9 @@
 	<classpathentry kind="lib" path="lib/oraclepki.jar"/>
 	<classpathentry kind="lib" path="lib/osdt_cert.jar"/>
 	<classpathentry kind="lib" path="lib/osdt_core.jar"/>
+	<classpathentry kind="lib" path="lib/jxbrowser-7.30.2.jar"/>
+	<classpathentry kind="lib" path="lib/jxbrowser-swing-7.30.2.jar"/>
+	<classpathentry kind="lib" path="lib/jxbrowser-win32-7.30.2.jar"/>
+	<classpathentry kind="lib" path="lib/jxbrowser-win64-7.30.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
