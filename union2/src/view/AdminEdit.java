@@ -168,7 +168,7 @@ public class AdminEdit extends JFrame  {
 			}
 
 		});
-	}
+	}//ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ수정
 	
 	protected void editMember() {
 		
