@@ -1,18 +1,23 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 
 import model.F_DTO;
 import model.F_Dao;
 
-public class GroceryInfo extends JFrame {
+public class GroceryInfo extends JFrame implements ActionListener {
 	
 	String name;
+	JTextPane groName, majorCla, moderCla, minorCla, storPlace, groQuan, jtpUnit1
+	          ,jtpPrice ;
 
 	
 	public GroceryInfo() {
@@ -27,50 +32,50 @@ public class GroceryInfo extends JFrame {
 
 		
 		
-		JTextPane groName = new JTextPane();
+		groName = new JTextPane();
 		groName.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		groName.setText(gFto.getGrocery_name());
 		groName.setBounds(12, 30, 320, 40);
 		getContentPane().add(groName);
 		
 		
-		JTextPane majorCla = new JTextPane();
+		majorCla = new JTextPane();
 		majorCla.setText(gFto.getLarge_classific());
 		majorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		majorCla.setBounds(12, 80, 155, 40);
 		getContentPane().add(majorCla);
 		
-		JTextPane moderCla = new JTextPane();
+		moderCla = new JTextPane();
 		moderCla.setText(gFto.getMedium_classific());
 		moderCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		moderCla.setBounds(177, 80, 155, 40);
 		getContentPane().add(moderCla);
 		
-		JTextPane minorCla = new JTextPane();
+		minorCla = new JTextPane();
 		minorCla.setText(gFto.getSmall_classific());
 		minorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		minorCla.setBounds(12, 130, 155, 40);
 		getContentPane().add(minorCla);
 		
-		JTextPane storPlace = new JTextPane();
+		storPlace = new JTextPane();
 		storPlace.setText(gFto.getStorage_place());
 		storPlace.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		storPlace.setBounds(177, 130, 155, 40);
 		getContentPane().add(storPlace);
 		
-		JTextPane groQuan= new JTextPane();
+		groQuan = new JTextPane();
 		groQuan.setText(gFto.getQuantity());
 		groQuan.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		groQuan.setBounds(12, 180, 240, 40);
 		getContentPane().add(groQuan);
 		
-		JTextPane jtpUnit1 = new JTextPane();
+		jtpUnit1 = new JTextPane();
 		jtpUnit1.setText(gFto.getUnit());
 		jtpUnit1.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jtpUnit1.setBounds(262, 180, 70, 40);
 		getContentPane().add(jtpUnit1);
 		
-		JTextPane jtpPrice = new JTextPane();
+		jtpPrice = new JTextPane();
 		jtpPrice.setText(gFto.getPrice());
 		jtpPrice.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jtpPrice.setBounds(12, 230, 260, 40);
@@ -83,29 +88,17 @@ public class GroceryInfo extends JFrame {
 		
 		switch (gFto.getUnit().toString()) {
 		case "KG" : 
-			JTextPane jtpUnit2 = new JTextPane();
-			jtpUnit2.setText("1" + gFto.getUnit());
-			jtpUnit2.setFont(new Font("D2Coding", Font.PLAIN, 18));
-			jtpUnit2.setBounds(12, 280, 70, 40);
-			getContentPane().add(jtpUnit2);
-			break;
 		case "G" : 
 			JTextPane jtpUnit3 = new JTextPane();
-			jtpUnit3.setText("100" + gFto.getUnit());
+			jtpUnit3.setText("100g");
 			jtpUnit3.setFont(new Font("D2Coding", Font.PLAIN, 18));
 			jtpUnit3.setBounds(12, 280, 70, 40);
 			getContentPane().add(jtpUnit3);
 			break;
 		case "L" : 
-			JTextPane jtpUnit4 = new JTextPane();
-			jtpUnit4.setText("1" + gFto.getUnit());
-			jtpUnit4.setFont(new Font("D2Coding", Font.PLAIN, 18));
-			jtpUnit4.setBounds(12, 280, 70, 40);
-			getContentPane().add(jtpUnit4);
-			break;
-		case "ml" : 
+		case "ML" : 
 			JTextPane jtpUnit5 = new JTextPane();
-			jtpUnit5.setText("100" + gFto.getUnit());
+			jtpUnit5.setText("100ml");
 			jtpUnit5.setFont(new Font("D2Coding", Font.PLAIN, 18));
 			jtpUnit5.setBounds(12, 280, 70, 40);
 			getContentPane().add(jtpUnit5);
@@ -128,23 +121,43 @@ public class GroceryInfo extends JFrame {
 		
 		int price1 = Integer.parseInt(gFto.getPrice());
 		int quan1 = Integer.parseInt(gFto.getQuantity());
-		
-		int totPrice1 = price1 * quan1;
-//		int perPrice1 = 
-		
-		JTextPane jtpUcost = new JTextPane();
-		jtpUcost.setText(gFto.getPrice());
-		jtpUcost.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpUcost.setBounds(122, 280, 150, 40);
-		getContentPane().add(jtpUcost);
+
+		switch (gFto.getUnit()) {
+		case "ML" :
+		case "G" : 
+			
+			int perPrice1 = (price1 / quan1) * 100;
+			String pph = String.valueOf(perPrice1);
+
+			JTextPane jtpUcost = new JTextPane();
+			jtpUcost.setText(pph);
+			jtpUcost.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost.setBounds(122, 280, 150, 40);
+			getContentPane().add(jtpUcost);
+			break;
+			
+		case "KG" :
+		case "L" :
+			
+			int perPrice2 = (price1 / (quan1 * 100)) * 100;
+			String pph2 = String.valueOf(perPrice2);
+
+			JTextPane jtpUcost2 = new JTextPane();
+			jtpUcost2.setText(pph2);
+			jtpUcost2.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost2.setBounds(122, 280, 150, 40);
+			getContentPane().add(jtpUcost2);
+			
+			break;
+		}
 		
 		JLabel jlbWon2 = new JLabel("원");
 		jlbWon2.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jlbWon2.setBounds(292, 280, 40, 40);
 		getContentPane().add(jlbWon2);
 		
-		JTextPane jtpPdate = new JTextPane();
-		jtpPdate.setText("제조년월일");
+		JLabel jtpPdate = new JLabel();
+		jtpPdate.setText("입고일");
 		jtpPdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jtpPdate.setBounds(12, 340, 155, 40);
 		getContentPane().add(jtpPdate);
@@ -158,13 +171,13 @@ public class GroceryInfo extends JFrame {
 		JTextPane jtpIndate = new JTextPane();
 		jtpIndate.setText(gFto.getInput_date());
 		jtpIndate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpIndate.setBounds(12, 390, 155, 40);
+		jtpIndate.setBounds(177, 390, 155, 40);
 		getContentPane().add(jtpIndate);
 		
-		JTextPane jtpDdate = new JTextPane();
-		jtpDdate.setText(gFto.getDue_date());
+		JLabel jtpDdate = new JLabel();
+		jtpDdate.setText("소비기한");
 		jtpDdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpDdate.setBounds(177, 390, 155, 40);
+		jtpDdate.setBounds(12, 390, 155, 40);
 		getContentPane().add(jtpDdate);
 		
 		JButton btnConfirm = new JButton("수정완료");
@@ -327,6 +340,32 @@ public class GroceryInfo extends JFrame {
 	public static void main(String[] args) {
 		new GroceryInfo();
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		switch(e.getActionCommand()) {
+		case "수정완료" :
+			
+			F_Dao fao = new F_Dao();
+			
+			int choice = JOptionPane.showConfirmDialog(null, "수정하시겠습니까?",
+					"수정확인",
+					JOptionPane.OK_CANCEL_OPTION);
+			int aftcnt = 0;
+			
+			String msg = "";
+			if(choice == 0) {
+				F_DTO fto = getViewData();
+			}
+			break;
+		}
+		
+	}
+
+	private F_DTO getViewData() {
+//		String groName = this
+		return null;
 	}
 
 }
