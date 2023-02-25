@@ -24,7 +24,7 @@ private Connection  conn = null;
 		}
 	}
 	
-	// 회원 추가
+	// 회원 추가 
 	public int insertMember( String grocery_name, String storage_place, String quantity, 
 			String input_date, String expire_date, String  due_date  ) {
 		String            sql    = "";
