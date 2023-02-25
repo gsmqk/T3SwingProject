@@ -178,11 +178,20 @@ private Connection  conn = null;
 		Vector<Vector> list = new Vector<Vector>(); // 조회된 결과전체 대응 : rs
 		
 		String  sql = "";
-		sql += "SELECT LARGE_CLASSIFIC,  MEDIUM_CLASSIFIC, SMALL_CLASSIFIC, STORAGE_PLACE, GROCERY_NAME, "
-				+ "		UNIT,  STORE_ID, INPUT_DATE, EXPIRE_DATE, "
-				+ "		TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE "
-				+ "		FROM     GROCERIES "
-				+ "     ORDER BY GROCERY_NAME ASC";
+		sql += "SELECT LC.LARGE_CLASSIFIC, MC.MEDIUM_CLASSIFIC, ";
+	    sql += "	   SC.SMALL_CLASSIFIC, SP.STORAGE_PLACE,  ";
+	    sql += "       G.GROCERY_NAME, G.QUANTITY, G.UNIT, ";
+	    sql += "       S.STORE_NAME, G.INPUT_DATE, G.EXPIRE_DATE, ";
+	    sql += "	   TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE ";
+	    sql += " FROM  LARGE_CLASSIFIC LC, MEDIUM_CLASSIFIC MC, ";
+	    sql += "       SMALL_CLASSIFIC SC, GROCERIES G, ";
+	    sql += "       STORES S, STORAGES SP ";
+	    sql += " WHERE LC.LARGE_ID  = G.LARGE_ID";
+	    sql += " AND   MC.MEDIUM_ID = G.MEDIUM_ID";
+	    sql += " AND   SC.SMALL_ID  = G.SMALL_ID";
+	    sql += " AND   G.STORAGE_ID = SP.STORAGE_ID";
+	    sql += " AND   G.STORE_ID   = S.STORE_ID";
+	    sql += " ORDER BY GROCERY_NAME ASC";
 		
 		
 		PreparedStatement pstmt = null;
@@ -194,16 +203,17 @@ private Connection  conn = null;
 			while(rs.next()) {
 				
 
-				String large_classific = rs.getString(1);   // 1: 칼럼번호(1~)
+				String large_classific  = rs.getString(1);   // 1: 칼럼번호(1~)
 				String medium_classific = rs.getString(2); // 2
-				String small_classific      = rs.getString(3); // 3
-				String storage_place   = rs.getString(4); // 4
-				String grocery_name   = rs.getString(5); // 5
-				String unit   = rs.getString(6); // 6
-				String store_id   = rs.getString(7); // 7
-				String input_date   = rs.getString(8); // 8
-				String expire_date   = rs.getString(9); // 9
-				String due_date   = rs.getString(10); // 10
+				String small_classific  = rs.getString(3); // 3
+				String storage_place    = rs.getString(4); // 4
+				String grocery_name     = rs.getString(5); // 5
+				String quantity         = rs.getString(6); // 5
+				String unit             = rs.getString(7); // 6
+				String store_name       = rs.getString(8); // 7
+				String input_date       = rs.getString(9); // 8
+				String expire_date      = rs.getString(10); // 9
+				String due_date         = rs.getString(11); // 10
 				
 				Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미
 				v.add(large_classific);
@@ -211,8 +221,9 @@ private Connection  conn = null;
 				v.add(small_classific);
 				v.add(storage_place);
 				v.add(grocery_name);
+				v.add(quantity);
 				v.add(unit);
-				v.add(store_id);
+				v.add(store_name);
 				v.add(input_date);
 				v.add(expire_date);
 				v.add(due_date);
@@ -228,14 +239,8 @@ private Connection  conn = null;
 			}			
 		}
 		
-		
 		return list;
+		
 	}
 	
 }
-
-
-
-
-
-

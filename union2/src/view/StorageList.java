@@ -212,7 +212,8 @@ public class StorageList implements MouseListener {
 			cols.add("소분류");
 			cols.add("보관장소");
 			cols.add("상품명");
-			cols.add("수량/단위");
+			cols.add("수량");
+			cols.add("단위");
 			cols.add("구매처");
 			cols.add("입고일");
 			cols.add("소비기한");
