@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
-
+import java.sql.Date;
 
 
 public class ListDao2 {
@@ -56,12 +56,12 @@ private Connection  conn = null;
 	}
 	public int insertMember(G_DTO vo) {
 		
-		String   grocery_name   = vo.getGrocery_name();
+		String   grocery_name    = vo.getGrocery_name();
 		String   storage_place   = vo.getStorage_place();
-		String   quantity = vo.getQuantity();
+		String   quantity        = vo.getQuantity();
 		String   input_date      = vo.getInput_date();
-		String   expire_date   = vo.getExpire_date();
-		String   due_date    = vo.getDue_date();
+		String   expire_date     = vo.getExpire_date();
+		String   due_date        = vo.getDue_date();
 		
 		int aftcnt = insertMember(grocery_name, storage_place, quantity, input_date, expire_date, due_date);
 		return aftcnt;
@@ -180,8 +180,9 @@ private Connection  conn = null;
 		String  sql = "";
 		sql += "SELECT LC.LARGE_CLASSIFIC, MC.MEDIUM_CLASSIFIC, ";
 	    sql += "	   SC.SMALL_CLASSIFIC, SP.STORAGE_PLACE,  ";
-	    sql += "       G.GROCERY_NAME, G.QUANTITY, G.UNIT, ";
-	    sql += "       S.STORE_NAME, G.INPUT_DATE, G.EXPIRE_DATE, ";
+	    sql += "       G.GROCERY_NAME, G.QUANTITY, G.UNIT, S.STORE_NAME, ";
+	    sql += "       TO_CHAR(G.INPUT_DATE, 'YYYY-MM-DD') INPUT_DATE, ";
+	    sql += "       TO_CHAR(G.EXPIRE_DATE, 'YYYY-MM-DD') EXPIRE_DATE, ";
 	    sql += "	   TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE ";
 	    sql += " FROM  LARGE_CLASSIFIC LC, MEDIUM_CLASSIFIC MC, ";
 	    sql += "       SMALL_CLASSIFIC SC, GROCERIES G, ";
@@ -203,17 +204,17 @@ private Connection  conn = null;
 			while(rs.next()) {
 				
 
-				String large_classific  = rs.getString(1);   // 1: 칼럼번호(1~)
-				String medium_classific = rs.getString(2); // 2
-				String small_classific  = rs.getString(3); // 3
-				String storage_place    = rs.getString(4); // 4
-				String grocery_name     = rs.getString(5); // 5
-				String quantity         = rs.getString(6); // 5
-				String unit             = rs.getString(7); // 6
-				String store_name       = rs.getString(8); // 7
-				String input_date       = rs.getString(9); // 8
-				String expire_date      = rs.getString(10); // 9
-				String due_date         = rs.getString(11); // 10
+				String large_classific  = rs.getString(1);  // 1: 칼럼번호(1~)
+				String medium_classific = rs.getString(2);  // 2
+				String small_classific  = rs.getString(3);  // 3
+				String storage_place    = rs.getString(4);  // 4
+				String grocery_name     = rs.getString(5);  // 5
+				String quantity         = rs.getString(6);  // 6
+				String unit             = rs.getString(7);  // 7
+				String store_name       = rs.getString(8);  // 8
+				Date   input_date       = rs.getDate  (9);  // 9
+				Date   expire_date      = rs.getDate  (10); // 10
+				String due_date         = rs.getString(11); // 11
 				
 				Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미
 				v.add(large_classific);
