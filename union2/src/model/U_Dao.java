@@ -490,7 +490,7 @@ public class U_Dao {
 		return flag;
 	}
 
-	   // 어드민창에서 회원정보 수정할때 쓰는창! 
+	   // 어드민창에서 회원조회! 
 	   public U_DTO getMember(String u_id) {
 	      U_DTO dto = null;
 	      
