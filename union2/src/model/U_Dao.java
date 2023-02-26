@@ -405,8 +405,10 @@ public class U_Dao {
 		
 		Vector<Vector> list = new Vector<>();
 		
-		String sql = "SELECT G.GROCERY_NAME, ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, G.INPUT_DATE, G.EXPIRE_DATE, "
-				+ "TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUEDATE "
+		String sql = "SELECT G.GROCERY_NAME, ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, "
+				+ "TO_CHAR(G.INPUT_DATE, 'YYYY-MM-DD') INPUT_DATE, " 
+				+ "TO_CHAR(G.EXPIRE_DATE, 'YYYY-MM-DD') EXPIRE_DATE, " 
+				+ "TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUE_DATE "
 				+ "FROM   GROCERIES G "
 				+ "JOIN   STORAGES ST "
 				+ "ON     G.STORAGE_ID = ST.STORAGE_ID "
@@ -418,20 +420,20 @@ public class U_Dao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
-			rs = pstmt.executeQuery();
+			rs    = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				String grocery_name = rs.getString(1);
+				String grocery_name  = rs.getString(1);
 				String storage_place = rs.getString(2);
-				String quantity = rs.getString(3);
-				String unit = rs.getString(4);
-				String input_date = rs.getString(5);
-				String expire_date = rs.getString(6);
-				String duedate = rs.getString("DUEDATE");
+				String quantity      = rs.getString(3);
+				String unit          = rs.getString(4);
+				Date   input_date    = rs.getDate  (5);
+				Date   expire_date   = rs.getDate  (6);
+				String due_date      = rs.getString(7);
 				
 				Vector v = new Vector();
-				int dDate = Integer.parseInt(duedate);
-				if (dDate <= 7) {
+				int dDate = Integer.parseInt(due_date);
+				if (dDate>=0 && dDate <= 7) {
 					v.add(grocery_name);
 					v.add(storage_place);
 					v.add(quantity);
@@ -509,8 +511,8 @@ public class U_Dao {
 	         rs    = pstmt.executeQuery();
 	         
 	         if(rs.next()) {
-	            String id       = rs.getString(1);
-	            String user_name     = rs.getString("USER_NAME");
+	             String id            = rs.getString(1);
+	             String user_name     = rs.getString("USER_NAME");
 	             String user_password = rs.getString("USER_PASSWORD");
 	             String user_email    = rs.getString("USER_EMAIL");
 	             String user_grade    = rs.getString("USER_GRADE");

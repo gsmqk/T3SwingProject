@@ -201,7 +201,7 @@ public class StorageList implements MouseListener {
 		}
 		private Vector<Vector> getDataList() {
 			ListDao2        dao   = new ListDao2();
-			Vector<Vector> list  = dao.getList();
+			Vector<Vector> list  = dao.getList(id);
 			return list;
 		}
 		

@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -175,11 +176,12 @@ private Connection  conn = null;
 		Vector<Vector> list = new Vector<Vector>(); // 조회된 결과전체 대응 : rs
 		
 		String  sql = "";		
-		sql += "SELECT GROCERY_NAME, STORAGE_PLACE, QUANTITY, UNIT, ";
-		sql += " INPUT_DATE, EXPIRE_DATE, "; 
-		sql += " TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE ";
-		sql += " FROM   GROCERIES G, STORAGES S ";
-		sql += " WHERE  G.STORAGE_ID = S.STORAGE_ID "; 
+		sql += "SELECT    GROCERY_NAME, STORAGE_PLACE, QUANTITY, UNIT, ";
+		sql += "          TO_CHAR(G.INPUT_DATE, 'YYYY-MM-DD') INPUT_DATE, ";
+		sql += "          TO_CHAR(G.EXPIRE_DATE, 'YYYY-MM-DD') EXPIRE_DATE, ";
+		sql += "          TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE ";
+		sql += " FROM     GROCERIES G, STORAGES S ";
+		sql += " WHERE    G.STORAGE_ID = S.STORAGE_ID "; 
 		sql += " ORDER BY GROCERY_NAME ASC ";
 					
 		
@@ -195,8 +197,8 @@ private Connection  conn = null;
 				String storage_place = rs.getString(2); // 2
 				String quantity      = rs.getString(3); // 3
 				String unit          = rs.getString(4); // 4
-				String input_date    = rs.getString(5); // 5
-				String expire_date   = rs.getString(6); // 6
+				Date   input_date    = rs.getDate  (5); // 5
+				Date   expire_date   = rs.getDate  (6); // 6
 				String due_date      = rs.getString(7); // 7
 				
 				Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미

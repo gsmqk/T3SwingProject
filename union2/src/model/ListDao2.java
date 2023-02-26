@@ -173,9 +173,9 @@ private Connection  conn = null;
 	//SMALL_CLASSIFIC, STORAGE_PLACE, STORE_ID, QUANTITY, 
 	//UNIT, PRICE, STORE_NAME, INPUT_DATE, EXPIRE_DATE, USER_ID, DUE_DATE
 	// Jtable 에 보여줄 data 목록
-	public Vector<Vector> getList(){
+	public Vector<Vector> getList(String id){
 		
-		Vector<Vector> list = new Vector<Vector>(); // 조회된 결과전체 대응 : rs
+		Vector<Vector> list = new Vector<>(); // 조회된 결과전체 대응 : rs
 		
 		String  sql = "";
 		sql += "SELECT LC.LARGE_CLASSIFIC, MC.MEDIUM_CLASSIFIC, ";
@@ -192,13 +192,13 @@ private Connection  conn = null;
 	    sql += " AND   SC.SMALL_ID  = G.SMALL_ID";
 	    sql += " AND   G.STORAGE_ID = SP.STORAGE_ID";
 	    sql += " AND   G.STORE_ID   = S.STORE_ID";
-	    sql += " ORDER BY GROCERY_NAME ASC";
-		
+	    sql += " AND   G.USER_ID = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 			
 			rs    = pstmt.executeQuery();
 			while(rs.next()) {
@@ -217,18 +217,21 @@ private Connection  conn = null;
 				String due_date         = rs.getString(11); // 11
 				
 				Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미
-				v.add(large_classific);
-				v.add(medium_classific);
-				v.add(small_classific);
-				v.add(storage_place);
-				v.add(grocery_name);
-				v.add(quantity);
-				v.add(unit);
-				v.add(store_name);
-				v.add(input_date);
-				v.add(expire_date);
-				v.add(due_date);
-				list.add(v); // 전체 목록에 추가
+				int dDate = Integer.parseInt(due_date);
+				if (dDate>=0) {
+					v.add(large_classific);
+					v.add(medium_classific);
+					v.add(small_classific);
+					v.add(storage_place);
+					v.add(grocery_name);
+					v.add(quantity);
+					v.add(unit);
+					v.add(store_name);
+					v.add(input_date);
+					v.add(expire_date);
+					v.add(dDate);
+					list.add(v); // 전체 목록에 추가
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
