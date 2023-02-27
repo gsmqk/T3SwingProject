@@ -1,21 +1,28 @@
 package view;
 
 import java.awt.Color;
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 import java.util.Vector;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
+import model.F_DTO;
 import model.F_Dao;
 import model.ListDao2;
 
@@ -23,17 +30,23 @@ public class StorageList implements MouseListener {
 
 	// 필요한 부품준비
 	JPanel            p; 
+	JPanel            p2; 
 	JFrame            f;
 				
 	JButton           btnInput, btnIngredient, btnRecipe, btnmain, btnAhb;
+	
+	JButton           classficInput;
+	JComboBox         large_classific, middle_classific, small_classific;
+	
+	
 	
 	MainTable01 mT01 = null;
 	StorageList mSt01 = null;
 	FindRecipe mFr   = null;
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
-	String id;
-	private JTable table;
+	String id, large1, medium1, small1;
+	JTable table, table2;
 	StorageList slist = null;
 	
 	FindName  mProc = null; 
@@ -52,8 +65,11 @@ public class StorageList implements MouseListener {
 		this.id = mt012.id;
 		initialize();
 	}
-	
+
+
 	private void initialize() {
+		
+		this.id = id;
 		
 		f = new JFrame();
 		f.setTitle("보관목록");
@@ -166,14 +182,8 @@ public class StorageList implements MouseListener {
 		table.setModel(
 				new DefaultTableModel( getDataList(), getColumnList() )	{
 
-					// 기본 option 설정 - 각 cell 에 대한 편집가능여부 : isCellEditable
 					@Override
 					public boolean isCellEditable(int row, int column) {
-						//int currLine = jTable.getSelectedRow(); // 선택한 줄만 수정
-						//if(row == currLine)
-						//	return true;
-						//if(column == 0)
-						//	return true;
 						return false; // 모든 cell 편집불가능
 					}
 				}
@@ -182,29 +192,110 @@ public class StorageList implements MouseListener {
 		table.addMouseListener(this);
 			
 			JScrollPane scrollPane1 = new JScrollPane();
-//			scrollPane.addMouseListener(new MouseAdapter() {
-//				@Override
-//				public void mouseClicked(MouseEvent e) {
-//					table.addMouseListener(this);
-//					
-//					pane = new JScrollPane(table);
-//					table.add(pane);
-//				}
-//			});
 			scrollPane1.setBounds(236, 140, 830, 479);
 			p.add(scrollPane1);
 			scrollPane1.setViewportView(table);
+			
+			p2 = new JPanel();
+			p2.setBounds(236, 62, 830, 68);
+			p.add(p2);
+			p2.setLayout(null);
+			p2.setBorder(new TitledBorder(null, "\uC2DD\uC790\uC7AC \uAC80\uC0C9", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			
+			F_Dao fao = new F_Dao();
+			Vector<String> large = fao.getLarge();
+			
+			large_classific = new JComboBox(large);
+			large_classific.setToolTipText("대분류");
+			large_classific.setBounds(40, 25, 150, 33);
+			p2.add(large_classific);
+			
+			middle_classific = new JComboBox(new String [] {"중분류"});
+			middle_classific.setToolTipText("중분류");
+			middle_classific.setBounds(240, 25, 150, 33);
+			p2.add(middle_classific);
+			
+			small_classific = new JComboBox(new String [] {"소분류"});
+			small_classific.setToolTipText("소분류");
+			small_classific.setBounds(440, 25, 150, 33);
+			p2.add(small_classific);
+			
+			classficInput = new JButton("확인");	
+			
+			classficInput.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					table.setModel(
+							new DefaultTableModel( getFilterList(), getColumnList() )	{
+
+								@Override
+								public boolean isCellEditable(int row, int column) {
+									return false; // 모든 cell 편집불가능
+								}
+							}
+						);
+					
+				}
+			});
+			
+			
+			classficInput.setToolTipText("확인");
+			classficInput.setBounds(630, 25, 150, 33);
+			p2.add(classficInput);
 			table.addMouseListener(this);
 			
-
-
+			large_classific.addItemListener(new ItemListener() {
+				
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					String selectedItem = (String) large_classific.getSelectedItem();
+					Vector<String> mList1 = new Vector<String>();
+					
+					if (selectedItem != null) {
+						mList1 = fao.getMiddle(selectedItem);
+						System.out.println(mList1);
+						middle_classific.setModel(new DefaultComboBoxModel<>(mList1));
+					}
+				}
+					
+			});
+			
+			middle_classific.addItemListener(new ItemListener() {
+				
+				@Override
+				public void itemStateChanged(ItemEvent e) {
+					String selectedItem = (String) middle_classific.getSelectedItem();
+					Vector<String> sList1 = new Vector<String>();
+					
+					if (selectedItem != null) {
+						sList1 = fao.getSmall(selectedItem);
+						System.out.println(sList1);
+						small_classific.setModel(new DefaultComboBoxModel<>(sList1));
+					}
+					
+				}
+			});
 			
 		}
+
+		protected Vector<Vector> getFilterList() {
+			F_Dao fao = new F_Dao();
+			large1 = (String) large_classific.getSelectedItem();
+			medium1 = (String) middle_classific.getSelectedItem();
+			small1 = (String) small_classific.getSelectedItem();
+			Vector<Vector> list = fao.getFilter(large1, medium1, small1, id);
+			System.out.println(large1 + medium1 + small1 + id);
+			return list;
+		}
+
+
 		private Vector<Vector> getDataList() {
 			ListDao2        dao   = new ListDao2();
 			Vector<Vector> list  = dao.getList(id);
 			return list;
 		}
+		
 		
 		private Vector<String> getColumnList(){
 			Vector<String>   cols = new Vector<>(); // 문자배열
@@ -264,8 +355,24 @@ public class StorageList implements MouseListener {
 			// TODO Auto-generated method stub
 			
 		}
+		
+		
+		
+		
+		
+		private F_DTO getGroceryData(String id) {
+			String large = (String) this.large_classific.getSelectedItem();
+			String middle = (String) this.middle_classific.getSelectedItem();
+			String small = (String) this.small_classific.getSelectedItem();
+			String uid = this.id;
+			System.out.println(uid);
+			int f = 1;
 
+			F_DTO fto = new F_DTO();
 
+			return fto;
+		}
+		
 		public void jTableRefresh() {
 			table.setModel(
 					new DefaultTableModel( getDataList(), getColumnList() )	{
@@ -285,5 +392,5 @@ public class StorageList implements MouseListener {
 			table.repaint();
 		}
 		
-		
-	}
+
+}
