@@ -272,7 +272,6 @@ public class MainTable01 implements MouseListener {
 		return list;
 	}
 
-	// 이거부터해야함.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// 마우스를 클릭하면
