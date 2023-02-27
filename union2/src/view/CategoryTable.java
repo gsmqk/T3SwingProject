@@ -56,7 +56,7 @@ public class CategoryTable extends JFrame implements ActionListener {
 		mediumAdd.addActionListener(this);
 		smallAdd.addActionListener(this);
 		cleanBtn.addActionListener(this);
-		//완성
+		//완성ㅇㅇ
 	}
 	private Vector<String> getColumnList() {
 		Vector<String> cols = new Vector<>();
