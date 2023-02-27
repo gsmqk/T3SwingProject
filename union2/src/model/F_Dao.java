@@ -295,7 +295,7 @@ Vector<String> list = new Vector<String>();
 
 	public int updateGrocery(F_DTO fto) {
 		String sql = "UPDATE GROCERIES "
-				+ "SET GROCERY_NAME = ?, "
+				+ "SET "
 				+ "    LARGE_ID = "
 				+ "     (SELECT LARGE_ID FROM LARGE_CLASSIFIC WHERE LARGE_CLASSIFIC = ?), "
 				+ "    MEDIUM_ID = "
@@ -308,8 +308,35 @@ Vector<String> list = new Vector<String>();
 				+ "    UNIT = ?, "
 				+ "    PRICE = ?, "
 				+ "    INPUT_DATE = ?, "
-				+ "    EXPIRE_DATE = ? ";
+				+ "    EXPIRE_DATE = ? "
+				+ "WHERE GROCERY_ID = (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ?)";
+
+		PreparedStatement pstmt = null;
 		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fto.getLarge_classific());
+			pstmt.setString(2, fto.getMedium_classific());
+			pstmt.setString(3, fto.getSmall_classific());
+			pstmt.setString(4, fto.getStorage_place());
+			pstmt.setString(5, fto.getQuantity());
+			pstmt.setString(6, fto.getUnit());
+			pstmt.setString(7, fto.getPrice());
+			pstmt.setString(8, fto.getInput_date());
+			pstmt.setString(9, fto.getExpire_date());
+			pstmt.setString(10, fto.getGrocery_name());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(aftcnt);
 		return aftcnt;
 	}
 

@@ -198,6 +198,8 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
+		btnConfirm.addActionListener(this);
+		
 	}
 
 //	private void init() {
@@ -353,7 +355,18 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			if(choice == 0) {
 				F_DTO fto = getViewData();
 				aftcnt = fao.updateGrocery(fto);
+				if (aftcnt > 0)
+					msg = "수정되었습니다.";
+				else 
+					msg = "수정되지 않았습니다.";
+			} else {
+				msg = "취소하셨습니다.";
 			}
+			JOptionPane.showMessageDialog(null, 
+					msg, 
+					"수정",
+					JOptionPane.OK_OPTION);
+			this.dispose();
 			break;
 		}
 		

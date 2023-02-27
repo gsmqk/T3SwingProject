@@ -219,17 +219,23 @@ public class Edit extends JFrame implements ActionListener {
 
 		U_Dao uao = new U_Dao();
 		boolean flag = uao.checkPw(id, pw);
-		if (flag = true) {
-			if (npw.equals(cfnpw)) {
-			U_DTO dto = new U_DTO(id, name, npw ,email);
-			uao.updateUser(dto);
-			JOptionPane.showMessageDialog(null, "수정되었습니다 !");
-			this.dispose();
-			} else {
-				JOptionPane.showMessageDialog(null, "비밀번호를 다시 확인해주세요.");
-			}
+		
+		if (pw.equals("") || email.equals("")) {
+			JOptionPane.showMessageDialog(null, "비밀번호와 이메일은 필수 입력사항입니다 !");
+			ppwTxt.grabFocus();
 		} else {
-			JOptionPane.showMessageDialog(null, "이전 비밀번호가 맞지않습니다.");
+			if (flag == true) {
+				if (npw.equals(cfnpw)) {
+					U_DTO dto = new U_DTO(id, name, npw, email);
+					uao.updateUser(dto);
+					JOptionPane.showMessageDialog(null, "수정되었습니다 !");
+					this.dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "새 비밀번호를 다시 확인해주세요.");
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "이전 비밀번호가 맞지않습니다.");
+			}
 		}
 		
 	}

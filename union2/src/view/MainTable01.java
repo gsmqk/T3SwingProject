@@ -218,7 +218,7 @@ public class MainTable01 implements MouseListener {
 			private void LogoutBtn() {
 				
 				JOptionPane.showMessageDialog(null, 
-						 "님 로그아웃 하시겠습니까?",
+						id + "님 로그아웃 하시겠습니까?",
 						"로그아웃",
 						JOptionPane.OK_OPTION);
 			}

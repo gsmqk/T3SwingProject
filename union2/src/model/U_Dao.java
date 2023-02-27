@@ -218,10 +218,11 @@ public class U_Dao {
 			if(rs.next()) {
 				String id = rs.getString("USER_ID");
 				if(email.equals(rs.getString("USER_EMAIL")))
-					JOptionPane.showMessageDialog(null, "당신의 아이디는 " + id + "입니다.", "아이디찾기",
-							JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "당신의 아이디는 " + id + "입니다."
+							);
 			} else {
-				JOptionPane.showMessageDialog(null, "이메일 정보가 없습니다.");
+				JOptionPane.showMessageDialog(null, "이메일 정보가 없습니다.", "실패", 
+						JOptionPane.OK_OPTION);
 			}
 			
 		} catch (SQLException e) {
@@ -256,8 +257,8 @@ public class U_Dao {
 				String email1 = rs.getString("USER_EMAIL");
 				String pw = rs.getString("USER_PASSWORD");
 				if(id.equals(id1) && email.equals(email1)) {
-					JOptionPane.showMessageDialog(null, "당신의 비밀번호는 " + pw + "입니다.",
-							"비밀번호 찾기", JOptionPane.OK_OPTION);
+					JOptionPane.showMessageDialog(null, "당신의 비밀번호는 " + pw + "입니다."
+							);
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "정보를 다시 확인해주세요", "비밀번호 찾기",
@@ -368,6 +369,7 @@ public class U_Dao {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(flag);
 		return flag;
 	}
 
