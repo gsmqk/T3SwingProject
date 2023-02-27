@@ -25,7 +25,6 @@ public class GroceryInput extends JFrame {
 		
 	}
 	
-	
 
 	private void init() {
 		setFont(new Font("D2Coding", Font.PLAIN, 14));

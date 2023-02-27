@@ -87,13 +87,20 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		getContentPane().add(jlbWon1);
 		
 		switch (gFto.getUnit().toString()) {
-		case "KG" : 
-		case "G" : 
+		case "EA" : 
 			JTextPane jtpUnit3 = new JTextPane();
-			jtpUnit3.setText("100g");
+			jtpUnit3.setText("개");
 			jtpUnit3.setFont(new Font("D2Coding", Font.PLAIN, 18));
 			jtpUnit3.setBounds(12, 280, 70, 40);
 			getContentPane().add(jtpUnit3);
+			break;
+		case "KG" : 
+		case "G" : 
+			JTextPane jtpUnit4 = new JTextPane();
+			jtpUnit4.setText("100g");
+			jtpUnit4.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit4.setBounds(12, 280, 70, 40);
+			getContentPane().add(jtpUnit4);
 			break;
 		case "L" : 
 		case "ML" : 
