@@ -26,7 +26,8 @@ public class GroceryInput extends JFrame implements ActionListener {
 	//component
 	MainTable01 mainTable01 = null;
 	JTextField  groName, inQuan, price;
-	JButton btnInput,btnCancel;
+	JButton btnInput, btnCancel;
+	
 	
 	
 	JComboBox large_classific, middle_classific, small_classific, storage_place, unit,
@@ -200,7 +201,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 		datePicker1.setBounds(82, 440, 250, 40);
 		
 		//입력/취소버튼
-		JButton	btnInput  = new JButton("입력");
+		btnInput  = new JButton("입력");
 		btnInput.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		btnInput.setBounds(70, 488, 90, 40);
 		getContentPane().add(btnInput);
@@ -219,14 +220,14 @@ public class GroceryInput extends JFrame implements ActionListener {
 		
 		btnInput.addActionListener(this);
 		
-		
 	}
 		
 
 
 
 	public GroceryInput(StorageList slist) {
-		// 보관목록에서 데이터 보내기만함, 아이디 받아야함
+		
+		init(slist.id);
 	}
 
 

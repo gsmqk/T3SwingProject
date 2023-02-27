@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import model.F_Dao;
 import model.ListDao2;
 
 public class StorageList implements MouseListener {
@@ -49,12 +50,11 @@ public class StorageList implements MouseListener {
 	
 	public StorageList(MainTable01 mt012) {
 		this.id = mt012.id;
-		
 		initialize();
 	}
-
-
+	
 	private void initialize() {
+		
 		f = new JFrame();
 		f.setTitle("보관목록");
 		f.setBounds(100, 100, 1200, 800);
@@ -148,7 +148,7 @@ public class StorageList implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				f.setVisible(false);
-				mT01 = new MainTable01();
+				mT01 = new MainTable01(slist);
 				
 			}
 		}); 
@@ -179,6 +179,7 @@ public class StorageList implements MouseListener {
 				}
 			);
 			
+		table.addMouseListener(this);
 			
 			JScrollPane scrollPane1 = new JScrollPane();
 //			scrollPane.addMouseListener(new MouseAdapter() {
@@ -190,10 +191,10 @@ public class StorageList implements MouseListener {
 //					table.add(pane);
 //				}
 //			});
-			table.addMouseListener(this);
 			scrollPane1.setBounds(236, 140, 830, 479);
 			p.add(scrollPane1);
 			scrollPane1.setViewportView(table);
+			table.addMouseListener(this);
 			
 
 
@@ -227,7 +228,17 @@ public class StorageList implements MouseListener {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-		
+			
+			int row = table.getSelectedRow();
+			int col = table.getSelectedColumn();
+			String id = (String) table.getValueAt(row, 4);
+			System.out.println(e);
+			
+			System.out.println(id);
+			
+			F_Dao fao = new F_Dao();
+			fao.goInfo(id);
+			
 		}
 
 		@Override

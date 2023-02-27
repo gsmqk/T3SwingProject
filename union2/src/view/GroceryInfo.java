@@ -86,16 +86,21 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jlbWon1.setBounds(292, 230, 40, 40);
 		getContentPane().add(jlbWon1);
 		
-		System.out.println(gFto);
-		
 		switch (gFto.getUnit().toString()) {
-		case "KG" :
-		case "G" : 
+		case "EA" : 
 			JTextPane jtpUnit3 = new JTextPane();
-			jtpUnit3.setText("100g");
+			jtpUnit3.setText("개");
 			jtpUnit3.setFont(new Font("D2Coding", Font.PLAIN, 18));
 			jtpUnit3.setBounds(12, 280, 70, 40);
 			getContentPane().add(jtpUnit3);
+			break;
+		case "KG" : 
+		case "G" : 
+			JTextPane jtpUnit4 = new JTextPane();
+			jtpUnit4.setText("100g");
+			jtpUnit4.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit4.setBounds(12, 280, 70, 40);
+			getContentPane().add(jtpUnit4);
 			break;
 		case "L" : 
 		case "ML" : 
@@ -107,34 +112,40 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			break;
 		}
 		
+//		JTextPane jtpUnit2 = new JTextPane();
+//		jtpUnit2.setText("100" + gFto.getUnit());
+//		jtpUnit2.setFont(new Font("D2Coding", Font.PLAIN, 18));
+//		jtpUnit2.setBounds(12, 280, 70, 40);
+//		getContentPane().add(jtpUnit2);
 		
 		JLabel jlbPer = new JLabel("당");
 		jlbPer.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jlbPer.setBounds(83, 280, 40, 40);
 		getContentPane().add(jlbPer);
 		
+//		String quan1 = gFto.getQuantity();
+//		String price1 = gFto.getPrice();
 		
 		int price1 = Integer.parseInt(gFto.getPrice());
 		int quan1 = Integer.parseInt(gFto.getQuantity());
 
 		switch (gFto.getUnit()) {
+		case "EA" : 
+
+			int perPrice1 = (price1 / quan1);
+			String pph1 = String.valueOf(perPrice1);
+
+			JTextPane jtpUcost1 = new JTextPane();
+			jtpUcost1.setText(pph1);
+			jtpUcost1.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost1.setBounds(122, 280, 150, 40);
+			getContentPane().add(jtpUcost1);
+			break;
+
 		case "ML" :
 		case "G" : 
 			
-			int perPrice1 = (price1 / quan1) * 100;
-			String pph = String.valueOf(perPrice1);
-
-			JTextPane jtpUcost = new JTextPane();
-			jtpUcost.setText(pph);
-			jtpUcost.setFont(new Font("D2Coding", Font.PLAIN, 18));
-			jtpUcost.setBounds(122, 280, 150, 40);
-			getContentPane().add(jtpUcost);
-			break;
-			
-		case "KG" :
-		case "L" :
-			
-			int perPrice2 = (price1 / quan1) / 10;
+			int perPrice2 = (price1 / quan1) * 100;
 			String pph2 = String.valueOf(perPrice2);
 
 			JTextPane jtpUcost2 = new JTextPane();
@@ -142,6 +153,19 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			jtpUcost2.setFont(new Font("D2Coding", Font.PLAIN, 18));
 			jtpUcost2.setBounds(122, 280, 150, 40);
 			getContentPane().add(jtpUcost2);
+			break;
+			
+		case "KG" :
+		case "L" :
+			
+			int perPrice3 = (price1 / (quan1 * 100)) * 100;
+			String pph3 = String.valueOf(perPrice3);
+
+			JTextPane jtpUcost3 = new JTextPane();
+			jtpUcost3.setText(pph3);
+			jtpUcost3.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost3.setBounds(122, 280, 150, 40);
+			getContentPane().add(jtpUcost3);
 			
 			break;
 		}
@@ -282,12 +306,6 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jlbWon2.setBounds(292, 280, 40, 40);
 		getContentPane().add(jlbWon2);
 		
-		JTextPane jtpPdate = new JTextPane();
-		jtpPdate.setText("제조년월일");
-		jtpPdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpPdate.setBounds(12, 340, 155, 40);
-		getContentPane().add(jtpPdate);
-		
 		JTextPane jtpEdate = new JTextPane();
 		jtpEdate.setText("유통기한");
 		jtpEdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
@@ -297,32 +315,32 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		JTextPane jtpIndate = new JTextPane();
 		jtpIndate.setText("입고일");
 		jtpIndate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpIndate.setBounds(12, 390, 155, 40);
+		jtpIndate.setBounds(12, 340, 155, 40);
 		getContentPane().add(jtpIndate);
 		
 		JTextPane jtpDdate = new JTextPane();
-		jtpDdate.setText("만기일");
+		jtpDdate.setText("메모");
 		jtpDdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpDdate.setBounds(177, 390, 155, 40);
+		jtpDdate.setBounds(12, 400, 320, 80);
 		getContentPane().add(jtpDdate);
 		
 		JButton btnConfirm = new JButton("수정완료");
 		btnConfirm.setFont(new Font("D2Coding", Font.PLAIN, 14));
-		btnConfirm.setBounds(12, 453, 100, 40);
+		btnConfirm.setBounds(12, 500, 100, 40);
 		getContentPane().add(btnConfirm);
 		
 		JButton btnOutDis = new JButton("출고/폐기");
 		btnOutDis.setFont(new Font("D2Coding", Font.PLAIN, 14));
-		btnOutDis.setBounds(122, 453, 100, 40);
+		btnOutDis.setBounds(122, 500, 100, 40);
 		getContentPane().add(btnOutDis);
 		
 		JButton btnCancel = new JButton("취소");
 		btnCancel.setFont(new Font("D2Coding", Font.PLAIN, 14));
-		btnCancel.setBounds(232, 453, 100, 40);
+		btnCancel.setBounds(232, 500, 100, 40);
 		getContentPane().add(btnCancel);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(360, 560);
+		setSize(360, 620);
 		setLocation(200, 200);
 		getContentPane().setLayout(null);
 		

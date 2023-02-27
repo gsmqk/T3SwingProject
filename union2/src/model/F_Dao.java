@@ -105,7 +105,9 @@ public class F_Dao {
 		F_DTO fto = null;
 		
 		String sql = "SELECT G.GROCERY_NAME, L.LARGE_CLASSIFIC, M.MEDIUM_CLASSIFIC, S.SMALL_CLASSIFIC, "
-				+ "       ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, G.PRICE, RE.STORE_NAME, G.INPUT_DATE, G.EXPIRE_DATE, "
+				+ "       ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, G.PRICE, RE.STORE_NAME, "
+				+ "       TO_CHAR(G.INPUT_DATE,'YYYY-MM-DD'), "
+				+ "       TO_CHAR(G.EXPIRE_DATE,'YYYY-MM-DD'), "
 				+ "       TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUE_DATE "
 				+ "FROM   GROCERIES G "
 				+ "JOIN  LARGE_CLASSIFIC L ON G.LARGE_ID = L.LARGE_ID "
@@ -148,6 +150,7 @@ public class F_Dao {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -292,53 +295,54 @@ Vector<String> list = new Vector<String>();
 		return list;
 	}
 
-//	public F_DTO findGroseryInfo(String name) {
-//		
-//		F_DTO fto = null;
-//		String sql = "SELECT GROCERY_NAME, LARGE_CLASSIFIC, MEDIUM_CLASSIFIC, SMALL_CLASSIFIC, "
-//				+ "STORAGE_PLACE, QUANTITY, UNIT, PRICE, STORE_NAME, INPUT_DATE, EXPIRE_DATE "
-//				+ "FROM GROCERIES "
-//				+ "WHERE GROCERY_NAME = ?";
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, name);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				String gname = rs.getString("GROCERY_NAME");
-//				String large = rs.getString("LARGE_CLASSIFIC");
-//				String medium = rs.getString("MEDIUM_CLASSIFIC");
-//				String small = rs.getString("SMALL_CLASSIFIC");
-//				String place = rs.getString("STORAGE_PLACE");
-//				String quantity = rs.getString("QUANTITY");
-//				String unit = rs.getString("UNIT");
-//				String price = rs.getString("PRICE");
-//				String store_name = rs.getString("STORE_NAME");
-//				String input_date = rs.getString("INPUT_DATE");
-//				String expire_date = rs.getString("EXPIRE_DATE");
-//				
-//				fto = new F_DTO(gname, large, medium, small, place, quantity,
-//						unit, price, store_name, input_date, expire_date);
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if(rs != null) rs.close();
-//				if(pstmt != null) pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		return fto;
-//	}
+	public int updateGrocery(F_DTO fto) {
+		String sql = "UPDATE GROCERIES "
+				+ "SET "
+				+ "    LARGE_ID = "
+				+ "     (SELECT LARGE_ID FROM LARGE_CLASSIFIC WHERE LARGE_CLASSIFIC = ?), "
+				+ "    MEDIUM_ID = "
+				+ "     (SELECT MEDIUM_ID FROM MEDIUM_CLASSIFIC WHERE MEDIUM_CLASSIFIC = ?), "
+				+ "    SMALL_ID = "
+				+ "     (SELECT SMALL_ID FROM SMALL_CLASSIFIC WHERE SMALL_CLASSIFIC = ?), "
+				+ "    STORAGE_ID = "
+				+ "     (SELECT STORAGE_ID FROM STORAGES WHERE STORAGE_PLACE = ?), "
+				+ "    QUANTITY = ?, "
+				+ "    UNIT = ?, "
+				+ "    PRICE = ?, "
+				+ "    INPUT_DATE = ?, "
+				+ "    EXPIRE_DATE = ? "
+				+ "WHERE GROCERY_ID = (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ?)";
+
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fto.getLarge_classific());
+			pstmt.setString(2, fto.getMedium_classific());
+			pstmt.setString(3, fto.getSmall_classific());
+			pstmt.setString(4, fto.getStorage_place());
+			pstmt.setString(5, fto.getQuantity());
+			pstmt.setString(6, fto.getUnit());
+			pstmt.setString(7, fto.getPrice());
+			pstmt.setString(8, fto.getInput_date());
+			pstmt.setString(9, fto.getExpire_date());
+			pstmt.setString(10, fto.getGrocery_name());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(aftcnt);
+		return aftcnt;
+	}
+
+
 
 
 }
