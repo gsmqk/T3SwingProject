@@ -25,6 +25,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 	
 	//component
 	MainTable01 mainTable01 = null;
+	StorageList storeageList = null;
 	JTextField  groName, inQuan, price;
 	JButton btnInput, btnCancel;
 	
@@ -243,6 +244,11 @@ public class GroceryInput extends JFrame implements ActionListener {
 			
 			if (aftcnt == 1) {
 				JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
+				if (mainTable01 == null) 
+					storeageList.jTableRefresh();
+				if (storeageList == null) 
+					mainTable01.jTableRefresh();
+				
 				this.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "다시 확인해주세요 !");
