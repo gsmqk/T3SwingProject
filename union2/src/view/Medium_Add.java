@@ -1,20 +1,27 @@
 package view;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.Vector;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
-import java.awt.Font;
+import javax.swing.JTextField;
+
+import model.G_Dao;
 
 public class Medium_Add extends JFrame {
 
 	JComboBox  largeBox;
-	JLabel     large, medium, mediumId;
+	JLabel     large, medium ;
 	JTextField MediumText, MediumidText;
 	JButton    add, cancle;  
-	private JTextField textField;
-	private JTextField textField_1;
+	
 	
 	public Medium_Add() {
 		init();
@@ -27,7 +34,10 @@ public class Medium_Add extends JFrame {
 	private void init() {
 		getContentPane().setLayout(null);
 		
-		largeBox = new JComboBox();
+		G_Dao dao = new G_Dao();
+		Vector<String> largecategory = dao.getLargeCategory();
+		
+		largeBox = new JComboBox(largecategory);
 		largeBox.setBounds(139, 34, 172, 36);
 		getContentPane().add(largeBox);
 		
@@ -36,25 +46,17 @@ public class Medium_Add extends JFrame {
 		large.setBounds(35, 34, 86, 46);
 		getContentPane().add(large);
 		
-		medium = new JLabel("\uC911\uBD84\uB958id\uC785\uB825 :");
-		medium.setFont(new Font("굴림", Font.PLAIN, 14));
-		medium.setBounds(25, 90, 102, 45);
-		getContentPane().add(medium);
 		
-		mediumId = new JLabel("\uC911\uBD84\uB958 \uC785\uB825 :");
-		mediumId.setFont(new Font("굴림", Font.PLAIN, 14));
-		mediumId.setBounds(35, 145, 102, 36);
-		getContentPane().add(mediumId);
+		medium = new JLabel("중분류 입력 :");
+		medium.setFont(new Font("굴림", Font.PLAIN, 14));
+		medium.setBounds(35, 145, 102, 36);
+		getContentPane().add(medium);
 		
 		MediumText = new JTextField();
 		MediumText.setBounds(139, 91, 172, 36);
 		getContentPane().add(MediumText);
 		MediumText.setColumns(10);
-		
-		MediumidText = new JTextField();
-		MediumidText.setColumns(10);
-		MediumidText.setBounds(139, 145, 172, 36);
-		getContentPane().add(MediumidText);
+	
 		
 		add = new JButton("\uCD94\uAC00\uD558\uAE30");
 		add.setBounds(77, 208, 97, 23);
@@ -64,6 +66,30 @@ public class Medium_Add extends JFrame {
 		cancle.setBounds(206, 208, 97, 23);
 		getContentPane().add(cancle);
 		
+	
+		add.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+               G_Dao dao = new G_Dao();
+               String large1 = (String) largeBox.getSelectedItem();
+               String medium1 = MediumText.getText();
+               
+               int aftcnt = dao.insertMedium(large1, medium1);
+               MediumText.setText("");
+			}
+		});
+		
+	   cancle.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("취소하기클릭");
+				MediumText.setText("");
+				
+			}
+
+		});
 		
 	}
 	public static void main(String[] args) {

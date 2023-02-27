@@ -40,7 +40,7 @@ public class CategoryTable extends JFrame implements ActionListener {
 		topPane.add(mediumAdd);
 		smallAdd = new JButton("소분류추가");
 		topPane.add(smallAdd);
-		cleanBtn = new JButton("      취소      ");
+		cleanBtn = new JButton("닫기");
 		topPane.add(cleanBtn);
 		
 		getContentPane().add(topPane, BorderLayout.NORTH);
@@ -95,7 +95,20 @@ public class CategoryTable extends JFrame implements ActionListener {
 		switch(e.getActionCommand()) {
 		case "대분류추가":
 			new Large_Add();
+			break;
+		case "중분류추가":
+			new Medium_Add();
+			break;
+		case "소분류추가":
+			new Small_Add();
+			break;
+		case "닫기":
+			dispose();
+			break;
+			
 		}
 		
 	}
+	
+	
 }

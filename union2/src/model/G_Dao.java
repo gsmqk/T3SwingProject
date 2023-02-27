@@ -104,6 +104,108 @@ public class G_Dao {
 	}
 
 
+	public Vector<String> getLargeCategory() {
+		
+		Vector<String> list = new Vector<String>();
+		
+		String sql = "SELECT DISTINCT LARGE_CLASSIFIC "
+		       + " FROM LARGE_CLASSIFIC";
+		       
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rs    = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String getLargeCategory = rs.getString("LARGE_CLASSIFIC");
+				
+				list.add(getLargeCategory);
+			}
+			System.out.println(list);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}      
+		return list;
+	}
+
+	public int insertMedium(String large1, String medium1) {
+		
+		PreparedStatement pstmt = null;
+		int               aftcnt = 0;
+		try {
+		
+			String sql = " INSERT INTO medium_classific ( large_id, medium_classific, medium_id )\r\n"
+					+ " VALUES ((SELECT DISTINCT L.LARGE_ID \r\n"
+					+ "         FROM LARGE_CLASSIFIC L JOIN MEDIUM_CLASSIFIC M \r\n"
+					+ "         ON L.LARGE_ID = M.LARGE_ID \r\n"
+					+ "       WHERE L.LARGE_CLASSIFIC = ? ), ?, (SELECT NVL(MAX(medium_id)+1,0) FROM medium_classific ) )";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, large1);
+			pstmt.setString(2, medium1);
+			
+			aftcnt = pstmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "추가에 성공하였습니다");
+		} catch (SQLException e) {
+			System.out.println("insertGrocery 시도");
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "추가에 실패하였습니다");
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch(SQLException e) {
+				
+			}
+		}
+		
+		return aftcnt;
+	
+		
+	}
+
+	public int insertSmall(String mediumbox, String smalltext) {
+		
+		PreparedStatement pstmt = null;
+		int               aftcnt = 0;
+		try {
+		String	sql = "INSERT INTO SMALL_CLASSIFIC ( MEDIUM_ID, SMALL_CLASSIFIC, SMALL_ID )\r\n"
+				+ " VALUES ((SELECT DISTINCT M.MEDIUM_ID \r\n"
+				+ "         FROM MEDIUM_CLASSIFIC M JOIN SMALL_CLASSIFIC S\r\n"
+				+ "         ON S.MEDIUM_ID = M.MEDIUM_ID \r\n"
+				+ "       WHERE M.MEDIUM_CLASSIFIC = ? ), ? , (SELECT NVL(MAX(SMALL_ID)+1,0) FROM SMALL_CLASSIFIC ) ) ";
+		
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, mediumbox);
+		pstmt.setString(2, smalltext);
+		
+		aftcnt = pstmt.executeUpdate();
+		JOptionPane.showMessageDialog(null, "추가에 성공하였습니다");
+	} catch (SQLException e) {
+		System.out.println("insertGrocery 시도");
+		e.printStackTrace();
+		JOptionPane.showMessageDialog(null, "추가에 실패하였습니다");
+	} finally {
+		try {
+			if(pstmt != null) pstmt.close();
+		} catch(SQLException e) {
+			
+		}
+	}
+	
+	return aftcnt;
+		
+	}
+
+
 
 	
 

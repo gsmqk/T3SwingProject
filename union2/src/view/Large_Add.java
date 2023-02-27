@@ -16,14 +16,11 @@ import java.awt.FlowLayout;
 
 public class Large_Add extends JFrame {
 
-	JLabel     large, largeid;
+	JLabel     large;
 	JTextField largeText, largeidText;
 	JButton    add, cancle;  
 	
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	
 	
 	public Large_Add() {
 		init();
@@ -38,26 +35,20 @@ public class Large_Add extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		
-		large = new JLabel("\uB300\uBD84\uB958id\uC785\uB825 :");
-		large.setFont(new Font("굴림", Font.PLAIN, 15));
-		large.setBounds(39, 52, 91, 45);
-		getContentPane().add(large);
-		
 /*		largeText = new JTextField(20);
 		largeText.setBounds(142, 52, 176, 40);
 		getContentPane().add(largeText);
 		largeText.setColumns(10); */
 		
-		largeid = new JLabel(" \uB300\uBD84\uB958 \uC785\uB825 :");
-		largeid.setFont(new Font("굴림", Font.PLAIN, 15));
-		largeid.setBounds(39, 106, 91, 40);
-		getContentPane().add(largeid);
+		large = new JLabel(" 대분류 입력 :");
+		large.setFont(new Font("굴림", Font.PLAIN, 15));
+		large.setBounds(39, 80, 91, 40);
+		getContentPane().add(large);
 		
-		largeidText = new JTextField(20);
-		largeidText.setBounds(142, 106, 176, 40);
-		getContentPane().add(largeidText);
-		largeidText.setColumns(10);
+		largeText = new JTextField(20);
+		largeText.setBounds(142, 80, 176, 41);
+		getContentPane().add(largeText);
+		largeText.setColumns(10);
 		
 		add = new JButton("추가하기");
 		add.setBounds(70, 200, 97, 23);
@@ -75,9 +66,16 @@ public class Large_Add extends JFrame {
 				addGrocery();	
 				largeidText.setText("");
 			}
-
-	
+		});
+		
+		cancle.addActionListener(new ActionListener() {
 			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("취소하기클릭");
+				largeidText.setText("");
+				
+			}
 		});
 		
 	}
@@ -89,7 +87,7 @@ public class Large_Add extends JFrame {
 	
 	private void addGrocery() {
 		G_Dao gdao = new G_Dao();
-		String search = largeidText.getText();
+		String search = largeText.getText();
 		
 		int   aftcnt = gdao.insertGrocery(search);
 	}
