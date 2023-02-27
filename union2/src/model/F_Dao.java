@@ -148,6 +148,7 @@ public class F_Dao {
 			e.printStackTrace();
 		} finally {
 			try {
+				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -292,53 +293,27 @@ Vector<String> list = new Vector<String>();
 		return list;
 	}
 
-//	public F_DTO findGroseryInfo(String name) {
-//		
-//		F_DTO fto = null;
-//		String sql = "SELECT GROCERY_NAME, LARGE_CLASSIFIC, MEDIUM_CLASSIFIC, SMALL_CLASSIFIC, "
-//				+ "STORAGE_PLACE, QUANTITY, UNIT, PRICE, STORE_NAME, INPUT_DATE, EXPIRE_DATE "
-//				+ "FROM GROCERIES "
-//				+ "WHERE GROCERY_NAME = ?";
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			pstmt.setString(1, name);
-//			
-//			rs = pstmt.executeQuery();
-//			
-//			if(rs.next()) {
-//				String gname = rs.getString("GROCERY_NAME");
-//				String large = rs.getString("LARGE_CLASSIFIC");
-//				String medium = rs.getString("MEDIUM_CLASSIFIC");
-//				String small = rs.getString("SMALL_CLASSIFIC");
-//				String place = rs.getString("STORAGE_PLACE");
-//				String quantity = rs.getString("QUANTITY");
-//				String unit = rs.getString("UNIT");
-//				String price = rs.getString("PRICE");
-//				String store_name = rs.getString("STORE_NAME");
-//				String input_date = rs.getString("INPUT_DATE");
-//				String expire_date = rs.getString("EXPIRE_DATE");
-//				
-//				fto = new F_DTO(gname, large, medium, small, place, quantity,
-//						unit, price, store_name, input_date, expire_date);
-//			}
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if(rs != null) rs.close();
-//				if(pstmt != null) pstmt.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		return fto;
-//	}
+	public int updateGrocery(F_DTO fto) {
+		String sql = "UPDATE GROCERIES "
+				+ "SET GROCERY_NAME = ?, "
+				+ "    LARGE_ID = "
+				+ "     (SELECT LARGE_ID FROM LARGE_CLASSIFIC WHERE LARGE_CLASSIFIC = ?), "
+				+ "    MEDIUM_ID = "
+				+ "     (SELECT MEDIUM_ID FROM MEDIUM_CLASSIFIC WHERE MEDIUM_CLASSIFIC = ?), "
+				+ "    SMALL_ID = "
+				+ "     (SELECT SMALL_ID FROM SMALL_CLASSIFIC WHERE SMALL_CLASSIFIC = ?), "
+				+ "    STORAGE_ID = "
+				+ "     (SELECT STORAGE_ID FROM STORAGES WHERE STORAGE_PLACE = ?), "
+				+ "    QUANTITY = ?, "
+				+ "    UNIT = ?, "
+				+ "    PRICE = ?, "
+				+ "    INPUT_DATE = ?, "
+				+ "    EXPIRE_DATE = ? ";
+		int aftcnt = 0;
+		return aftcnt;
+	}
+
+
 
 
 }

@@ -67,6 +67,13 @@ public class MainTable01 implements MouseListener {
 		initialize(id);
 	}
 
+
+	public MainTable01(StorageList slist2) {
+		this.id = slist2.id;
+		System.out.println("보관목록에서온 아이디" + id);
+		initialize(id);
+	}
+
 	private void initialize(String id) {
 		f = new JFrame();
 		f.setTitle("메인 화면");
