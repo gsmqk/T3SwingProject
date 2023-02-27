@@ -19,7 +19,16 @@ public class G_Vo {
 		this.small_id = small_id;
 		this.small_classific = small_classific;
 	 }
-	G_Vo(){	 }
+	public G_Vo() {
+		
+	}
+	
+	
+/*	public G_Vo(String large_id, String large_classific) {
+
+		this.large_id = large_id;
+		this.large_classific = large_classific;
+	} */
 	
 	public String getLarge_id() {
 		return large_id;

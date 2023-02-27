@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class G_Dao {
 
 	private Connection conn = null;
@@ -69,6 +71,36 @@ public class G_Dao {
 		}
 		
 		return glist;
+	}
+
+
+
+	public int insertGrocery( String search) {
+		String       sql = "INSERT INTO LARGE_CLASSIFIC ( LARGE_ID, LARGE_CLASSIFIC )\r\n"
+				+ " VALUES ( (SELECT NVL(MAX(LARGE_ID)+1,0) FROM LARGE_CLASSIFIC ), ? ) ";
+		
+		PreparedStatement pstmt = null;
+		int               aftcnt = 0;
+		try {
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, search);
+			
+			aftcnt = pstmt.executeUpdate();
+			JOptionPane.showMessageDialog(null, "추가에 성공하였습니다");
+		} catch (SQLException e) {
+			System.out.println("insertGrocery 시도");
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "추가에 실패하였습니다");
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch(SQLException e) {
+				
+			}
+		}
+		
+		return aftcnt;
 	}
 
 

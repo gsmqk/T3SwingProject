@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -12,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 
 import model.G_Dao;
 
-public class CategoryTable extends JFrame {
+public class CategoryTable extends JFrame implements ActionListener {
 
 	
-	JButton      addBtn, cleanBtn;
+	JButton      largeAdd, mediumAdd, smallAdd, cleanBtn;
 	JPanel       topPane;
 	JTable       jTable;
 	JScrollPane  pane;
@@ -24,7 +26,7 @@ public class CategoryTable extends JFrame {
 		initComponent();
 
 		setTitle("카테고리");
-		setSize(600,500);
+		setSize(800,700);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
@@ -32,9 +34,13 @@ public class CategoryTable extends JFrame {
 	
 	private void initComponent() {
 		topPane = new JPanel();
-		addBtn = new JButton("추가");
-		topPane.add(addBtn);
-		cleanBtn = new JButton("취소");
+		largeAdd = new JButton("대분류추가");
+		topPane.add(largeAdd);
+		mediumAdd = new JButton("중분류추가");
+		topPane.add(mediumAdd);
+		smallAdd = new JButton("소분류추가");
+		topPane.add(smallAdd);
+		cleanBtn = new JButton("      취소      ");
 		topPane.add(cleanBtn);
 		
 		getContentPane().add(topPane, BorderLayout.NORTH);
@@ -45,6 +51,11 @@ public class CategoryTable extends JFrame {
 		
 		pane = new JScrollPane(jTable);
 		getContentPane().add(pane);
+		
+		largeAdd.addActionListener(this);
+		mediumAdd.addActionListener(this);
+		smallAdd.addActionListener(this);
+		cleanBtn.addActionListener(this);
 		
 	}
 	private Vector<String> getColumnList() {
@@ -74,6 +85,17 @@ public class CategoryTable extends JFrame {
 	}
 
 	public void JTableRefresh() {
+		
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		switch(e.getActionCommand()) {
+		case "대분류추가":
+			new Large_Add();
+		}
 		
 	}
 }

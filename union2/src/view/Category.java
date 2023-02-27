@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,9 +18,11 @@ public class Category extends JFrame {
 	JLabel lbl;
 	JTextField large ,medium, small ; 
 	JButton    btnLarge, btnMedium, btnSmall, btnOk , btnBack;
+	JComboBox  largecom ,mediumcom, smallcom ;
 	
 	GridBagLayout      gb;
 	GridBagConstraints gbc;
+	
 	
 	public Category(){
 
@@ -54,19 +57,19 @@ public class Category extends JFrame {
 		//	Bigp.add(btnlarge);
 
 		// 대분류
-		large = new JTextField(20);
+		largecom = new JComboBox();
 		btnLarge = new JButton("추가");
 		gbAdd(large,0,1,3,1);
 		gbAdd(btnLarge,3,1,1,1);
 		
 		// 중분류 
-		medium = new JTextField(20);
+		mediumcom = new JComboBox();
 		btnMedium = new JButton("추가");
 		gbAdd(medium,0,2,3,1);
 		gbAdd(btnMedium,3,2,1,1);
 		
 		// 소분류 
-		small = new JTextField(20);
+		smallcom = new JComboBox();
 		btnSmall = new JButton("추가");
 		gbAdd(small, 0, 3, 3, 1);
 		gbAdd(btnSmall, 3, 3, 1, 1);
