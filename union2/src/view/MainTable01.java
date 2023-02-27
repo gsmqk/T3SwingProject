@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,9 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import model.F_Dao;
 import model.Renderer;
@@ -61,6 +64,9 @@ public class MainTable01 implements MouseListener {
 //		initialize();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	public MainTable01(Login login) {
 		this.id = login.idTxt.getText();
 		System.out.println("메인테이블" + id);
@@ -218,7 +224,7 @@ public class MainTable01 implements MouseListener {
 			private void LogoutBtn() {
 				
 				JOptionPane.showMessageDialog(null, 
-						id + "님 로그아웃 하시겠습니까?",
+						 "님 로그아웃 하시겠습니까?",
 						"로그아웃",
 						JOptionPane.OK_OPTION);
 			}
@@ -240,56 +246,86 @@ public class MainTable01 implements MouseListener {
 		
 		
 		
-		Renderer ren = new Renderer(); // 색깔바꾸는거 나중에
+		Renderer ren = new Renderer(); 
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(
-				new DefaultTableModel(getDataList(), getColumnList())
-				
-				);
-		
+		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
+
+		// 7번째 컬럼에 대한 색상 설정
+		TableColumn column = table.getColumnModel().getColumn(6);
+		column.setCellRenderer(new ColorRenderer());
+
 		table.addMouseListener(this);
+		}
+
+		private Vector<String> getColumnList() {
+		    Vector<String> cols = new Vector<>();
+		    cols.add("재료이름");
+		    cols.add("보관");
+		    cols.add("수량");
+		    cols.add("단위");
+		    cols.add("입고일");
+		    cols.add("소비기한");
+		    cols.add("D-Day");
+		    return cols;
+		}
+
+		private Vector<Vector> getDataList() {
+		    U_Dao uao = new U_Dao();
+		    Vector<Vector> list = uao.getUserList(id); 
+		    System.out.println(list);
+		    System.out.println(id);
+		    return list;
+		}
+
+		// TableCellRenderer 클래스 작성
+		class ColorRenderer extends DefaultTableCellRenderer {
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+		Component renderer = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		if (column == 6) { // 7번째 컬럼에 대해서만 적용
+		int dday = Integer.parseInt(value.toString());
+		if (dday <= 0) {
+		renderer.setForeground(Color.BLACK);
+		renderer.setBackground(Color.RED);
+		} else if (dday <= 3) {
+		renderer.setForeground(Color.BLACK);
+		renderer.setBackground(Color.YELLOW);
+		} else if (dday <= 7) {
+		renderer.setForeground(Color.BLACK);
+		renderer.setBackground(Color.GREEN);
+		} else {
+		renderer.setForeground(table.getForeground());
+		renderer.setBackground(table.getBackground());
+		}
+		} else {
+		renderer.setForeground(table.getForeground());
+		renderer.setBackground(table.getBackground());
+		}
+		return renderer;
+		}
+		
 	}
 
-	private Vector<String> getColumnList() {
-		Vector<String> cols = new Vector<>();
-		cols.add("재료이름");
-		cols.add("보관");
-		cols.add("수량");
-		cols.add("단위");
-		cols.add("입고일");
-		cols.add("소비기한");
-		cols.add("D-Day");
 		
-		return cols;
-	}
-
-	private Vector<Vector> getDataList() {
-		U_Dao uao = new U_Dao();
-		Vector<Vector> list = uao.getUserList(id); 
-		System.out.println(list);
-		System.out.println(id);
-		return list;
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// 마우스를 클릭하면
-		// 마우스버튼 누르고 있는 동안
-		// button = 1 : 왼쪽
-		// button = 2 : 가운데
-		// button = 3 : 오른쪽
-		int row = table.getSelectedRow();
-		int col = table.getSelectedColumn();
-		String id = (String) table.getValueAt(row, 0);
-		System.out.println(e);
-		
-		System.out.println(id);
-		
-		F_Dao fao = new F_Dao();
-		fao.goInfo(id);
-		
-	}
+		// 이거부터해야함.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// 마우스를 클릭하면
+			// 마우스버튼 누르고 있는 동안
+			// button = 1 : 왼쪽
+			// button = 2 : 가운데
+			// button = 3 : 오른쪽
+			int row = table.getSelectedRow();
+			int col = table.getSelectedColumn();
+			String id = (String) table.getValueAt(row, 0);
+			System.out.println(e);
+			
+			System.out.println(id);
+			
+			F_Dao fao = new F_Dao();
+			fao.goInfo(id);
+			
+		}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
