@@ -405,10 +405,14 @@ public class U_Dao {
 		
 		Vector<Vector> list = new Vector<>();
 		
-		String sql = "SELECT GROCERY_NAME, STORAGE_PLACE, QUANTITY, UNIT, INPUT_DATE, EXPIRE_DATE, "
-				+ "TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUEDATE "
-				+ "FROM GROCERIES "
-				+ "WHERE USER_ID = ?";
+		String sql = "SELECT G.GROCERY_NAME, ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, "
+				+ "TO_CHAR(G.INPUT_DATE, 'YYYY-MM-DD') INPUT_DATE, " 
+				+ "TO_CHAR(G.EXPIRE_DATE, 'YYYY-MM-DD') EXPIRE_DATE, " 
+				+ "TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUE_DATE "
+				+ "FROM   GROCERIES G "
+				+ "JOIN   STORAGES ST "
+				+ "ON     G.STORAGE_ID = ST.STORAGE_ID "
+				+ "WHERE  G.USER_ID = ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -416,27 +420,30 @@ public class U_Dao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			
-			rs = pstmt.executeQuery();
+			rs    = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				String grocery_name = rs.getString("GROCERY_NAME");
-				String storage_place = rs.getString("STORAGE_PLACE");
-				String quantity = rs.getString("QUANTITY");
-				String unit = rs.getString("UNIT");
-				String input_date = rs.getString("INPUT_DATE");
-				String expire_date = rs.getString("EXPIRE_DATE");
-				String duedate = rs.getString("DUEDATE");
+				String grocery_name  = rs.getString(1);
+				String storage_place = rs.getString(2);
+				String quantity      = rs.getString(3);
+				String unit          = rs.getString(4);
+				Date   input_date    = rs.getDate  (5);
+				Date   expire_date   = rs.getDate  (6);
+				String due_date      = rs.getString(7);
 				
 				Vector v = new Vector();
-				v.add(grocery_name);
-				v.add(storage_place);
-				v.add(quantity);
-				v.add(unit);
-				v.add(input_date);
-				v.add(expire_date);
-				v.add(duedate);
+				int dDate = Integer.parseInt(due_date);
+				if (dDate>=0 && dDate <= 7) {
+					v.add(grocery_name);
+					v.add(storage_place);
+					v.add(quantity);
+					v.add(unit);
+					v.add(input_date);
+					v.add(expire_date);
+					v.add(dDate);
+					list.add(v);
+				}
 				
-				list.add(v);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -485,7 +492,7 @@ public class U_Dao {
 		return flag;
 	}
 
-	   // 어드민창에서 회원정보 수정할때 쓰는창! 
+	   // 어드민창에서 회원조회! 
 	   public U_DTO getMember(String u_id) {
 	      U_DTO dto = null;
 	      
@@ -504,8 +511,8 @@ public class U_Dao {
 	         rs    = pstmt.executeQuery();
 	         
 	         if(rs.next()) {
-	            String id       = rs.getString(1);
-	            String user_name     = rs.getString("USER_NAME");
+	             String id            = rs.getString(1);
+	             String user_name     = rs.getString("USER_NAME");
 	             String user_password = rs.getString("USER_PASSWORD");
 	             String user_email    = rs.getString("USER_EMAIL");
 	             String user_grade    = rs.getString("USER_GRADE");

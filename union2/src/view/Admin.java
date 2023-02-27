@@ -61,7 +61,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		btnRefresh.addActionListener(this);
 		btnCategory.addActionListener(this);
 	}
-	
+	///수정함!!! 
 
 	private Vector<Vector> getDataList() {
 		U_Dao dao  = new U_Dao();
@@ -135,6 +135,9 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 			System.out.println("새로고침 클릭");
 			JTableRefresh();
 			break;
+		case "카테고리":
+			System.out.println("카테고리 클릭");
+			new CategoryTable();
 		}
 		
 	}

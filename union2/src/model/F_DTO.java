@@ -58,6 +58,38 @@ public class F_DTO {
 		this.due_date = due_date2;
 	}
 
+	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
+			String store, String indate, String exdate, String unit) { // GroceryInput에서 사용
+		this.large_classific = large;
+		this.medium_classific = middle;
+		this.small_classific = small;
+		this.storage_place = place;
+		this.unit = unit;
+		this.grocery_name = name;
+		this.quantity = quan;
+		this.price = price2;
+		this.store_name = store;
+		this.input_date = indate;
+		this.expire_date = exdate;
+	}
+	
+	
+	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
+			String store, String indate, String exdate, String unit2, String id, int f) {
+		this.large_classific = large;
+		this.medium_classific = middle;
+		this.small_classific = small;
+		this.storage_place = place;
+		this.unit = unit2;
+		this.grocery_name = name;
+		this.quantity = quan;
+		this.price = price2;
+		this.store_name = store;
+		this.input_date = indate;
+		this.expire_date = exdate;
+		this.user_id = id;
+	}
+
 	// Getter / Setter
 	public String getGrocery_id() {
 		return grocery_id;

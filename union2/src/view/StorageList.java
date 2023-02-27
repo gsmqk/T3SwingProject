@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +18,6 @@ import javax.swing.table.DefaultTableModel;
 
 import model.ListDao2;
 
-
-
-
-
 public class StorageList implements MouseListener {
 
 	// 필요한 부품준비
@@ -34,8 +31,9 @@ public class StorageList implements MouseListener {
 	FindRecipe mFr   = null;
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
-	
+	String id;
 	private JTable table;
+	StorageList slist = null;
 	
 	FindName  mProc = null; 
 	static StorageList  mSt = null;
@@ -49,6 +47,13 @@ public class StorageList implements MouseListener {
 	}
 
 	
+	public StorageList(MainTable01 mt012) {
+		this.id = mt012.id;
+		
+		initialize();
+	}
+
+
 	private void initialize() {
 		f = new JFrame();
 		f.setTitle("보관목록");
@@ -104,13 +109,15 @@ public class StorageList implements MouseListener {
 		btnAhb.setBounds(30, 630, 120, 50);
 		p.add(btnAhb);
 		
+		slist = this;
+		
 		btnInput.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(mGi != null)
 					mGi.dispose();
-				mGi = new GroceryInput();
+				mGi = new GroceryInput(slist);
 				
 			}
 		}); 
@@ -194,7 +201,7 @@ public class StorageList implements MouseListener {
 		}
 		private Vector<Vector> getDataList() {
 			ListDao2        dao   = new ListDao2();
-			Vector<Vector> list  = dao.getList();
+			Vector<Vector> list  = dao.getList(id);
 			return list;
 		}
 		
@@ -205,7 +212,8 @@ public class StorageList implements MouseListener {
 			cols.add("소분류");
 			cols.add("보관장소");
 			cols.add("상품명");
-			cols.add("수량/단위");
+			cols.add("수량");
+			cols.add("단위");
 			cols.add("구매처");
 			cols.add("입고일");
 			cols.add("소비기한");

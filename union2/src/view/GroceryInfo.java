@@ -86,6 +86,8 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jlbWon1.setBounds(292, 230, 40, 40);
 		getContentPane().add(jlbWon1);
 		
+		System.out.println(gFto);
+		
 		switch (gFto.getUnit().toString()) {
 		case "KG" :
 		case "G" : 
@@ -105,19 +107,12 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			break;
 		}
 		
-//		JTextPane jtpUnit2 = new JTextPane();
-//		jtpUnit2.setText("100" + gFto.getUnit());
-//		jtpUnit2.setFont(new Font("D2Coding", Font.PLAIN, 18));
-//		jtpUnit2.setBounds(12, 280, 70, 40);
-//		getContentPane().add(jtpUnit2);
 		
 		JLabel jlbPer = new JLabel("당");
 		jlbPer.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jlbPer.setBounds(83, 280, 40, 40);
 		getContentPane().add(jlbPer);
 		
-//		String quan1 = gFto.getQuantity();
-//		String price1 = gFto.getPrice();
 		
 		int price1 = Integer.parseInt(gFto.getPrice());
 		int quan1 = Integer.parseInt(gFto.getQuantity());
