@@ -143,7 +143,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 		inQuan.setBounds(82, 234, 195, 40);
 		getContentPane().add(inQuan);
 		
-		String [] units = {"g", "Kg", "ml", "L"};
+		String [] units = {"G", "KG", "ML", "L", "EA"};
 		unit = new JComboBox(units);
 		unit.setBounds(282, 234, 50, 39);
 		getContentPane().add(unit);
