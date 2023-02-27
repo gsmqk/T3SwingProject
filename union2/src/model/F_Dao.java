@@ -58,17 +58,25 @@ public class F_Dao {
 	private int insertGrosery(String large, String middle, String small, String place, String fname,
 			String quan, String price, String store, String indate, String exdate, String unit, String uid) {
 		String sql = "INSERT INTO GROCERIES "
-				+ "(GROCERY_ID, GROCERY_NAME, LARGE_ID, MEDIUM_ID, SMALL_ID, "
-				+ "STORAGE_ID, QUANTITY, UNIT, PRICE, STORE_ID, EXPIRE_DATE, USER_ID) "
+				+ "(GROCERY_ID, GROCERY_NAME, "
+				+ "LARGE_ID, "
+				+ "MEDIUM_ID, "
+				+ "SMALL_ID, "
+				+ "STORAGE_ID, "
+				+ "QUANTITY, UNIT, PRICE, "
+				+ "STORE_ID, "
+				+ "INPUT_DATE, EXPIRE_DATE, "
+				+ "USER_ID) "
 				+ "VALUES "
 				+ "(GROCERY_ID1.NEXTVAL, ?, "
 				+ "(SELECT LARGE_ID FROM LARGE_CLASSIFIC WHERE LARGE_CLASSIFIC = ?), "
 				+ "(SELECT MEDIUM_ID FROM MEDIUM_CLASSIFIC WHERE MEDIUM_CLASSIFIC = ?), "
-				+ "(SELECT SMALL_ID FROM SMALL_CLASSIFIC WHERE SMALL_CLASSIFIC = ?), "
+				+ "(SELECT SMALL_ID FROM SMALL_CLASSIFIC S JOIN MEDIUM_CLASSIFIC M ON M.MEDIUM_ID = S.MEDIUM_ID WHERE SMALL_CLASSIFIC = ? AND MEDIUM_CLASSIFIC = ?), "
 				+ "(SELECT STORAGE_ID FROM STORAGES WHERE STORAGE_PLACE = ?), "
 				+ "?, ?, ?, "
 				+ "(SELECT STORE_ID FROM STORES WHERE STORE_NAME = ?), "
-				+ "?, ?)" ;
+				+ "?, ?, "
+				+ "?)" ;
 		
 		PreparedStatement pstmt = null;
 		int aftcnt = 0;
@@ -79,13 +87,15 @@ public class F_Dao {
 			pstmt.setString(2, large);
 			pstmt.setString(3, middle);
 			pstmt.setString(4, small);
-			pstmt.setString(5, place);
-			pstmt.setString(6, quan);
-			pstmt.setString(7, unit);
-			pstmt.setString(8, price);
-			pstmt.setString(9, store);
-			pstmt.setString(10, exdate);
-			pstmt.setString(11, uid);
+			pstmt.setString(5, middle);
+			pstmt.setString(6, place);
+			pstmt.setString(7, quan);
+			pstmt.setString(8, unit);
+			pstmt.setString(9, price);
+			pstmt.setString(10, store);
+			pstmt.setString(11, indate);
+			pstmt.setString(12, exdate);
+			pstmt.setString(13, uid);
 			
 			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {

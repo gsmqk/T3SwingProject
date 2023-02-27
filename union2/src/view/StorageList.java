@@ -264,6 +264,26 @@ public class StorageList implements MouseListener {
 			// TODO Auto-generated method stub
 			
 		}
+
+
+		public void jTableRefresh() {
+			table.setModel(
+					new DefaultTableModel( getDataList(), getColumnList() )	{
+
+						// 기본 option 설정 - 각 cell 에 대한 편집가능여부 : isCellEditable
+						@Override
+						public boolean isCellEditable(int row, int column) {
+							//int currLine = jTable.getSelectedRow(); // 선택한 줄만 수정
+							//if(row == currLine)
+							//	return true;
+							//if(column == 0)
+							//	return true;
+							return false; // 모든 cell 편집불가능
+						}
+					}
+				);
+			table.repaint();
+		}
 		
 		
 	}

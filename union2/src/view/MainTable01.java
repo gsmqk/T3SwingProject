@@ -224,7 +224,7 @@ public class MainTable01 implements MouseListener {
 			private void LogoutBtn() {
 				
 				JOptionPane.showMessageDialog(null, 
-						 "님 로그아웃 하시겠습니까?",
+						id + "님 로그아웃 하시겠습니까?",
 						"로그아웃",
 						JOptionPane.OK_OPTION);
 			}
@@ -348,6 +348,16 @@ public class MainTable01 implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void jTableRefresh() {
+		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
+
+		TableColumn column = table.getColumnModel().getColumn(6);
+		column.setCellRenderer(new ColorRenderer());
+		
+		table.repaint();
 		
 	}
 }

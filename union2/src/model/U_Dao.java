@@ -414,7 +414,8 @@ public class U_Dao {
 				+ "FROM   GROCERIES G "
 				+ "JOIN   STORAGES ST "
 				+ "ON     G.STORAGE_ID = ST.STORAGE_ID "
-				+ "WHERE  G.USER_ID = ?";
+				+ "WHERE  G.USER_ID = ? "
+				+ "ORDER BY DUE_DATE ASC";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
