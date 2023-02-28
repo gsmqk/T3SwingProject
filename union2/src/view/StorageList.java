@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import model.F_DTO;
 import model.F_Dao;
 import model.ListDao2;
+import javax.swing.ImageIcon;
 
 public class StorageList implements MouseListener {
 
@@ -241,8 +242,28 @@ public class StorageList implements MouseListener {
 			
 			
 			classficInput.setToolTipText("확인");
-			classficInput.setBounds(630, 25, 150, 33);
+			classficInput.setBounds(630, 25, 118, 33);
 			p2.add(classficInput);
+			
+			JButton resetInput = new JButton("");
+			resetInput.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					table.setModel(
+							new DefaultTableModel( getDataList(), getColumnList() )	{
+
+								@Override
+								public boolean isCellEditable(int row, int column) {
+									return false; // 모든 cell 편집불가능
+								}
+							}
+						);
+				}
+			});
+			resetInput.setIcon(new ImageIcon("file:///C:/Users/GGG/git/T3SwingProject4/union2/src/image/free-icon-reset-5307970%20(1).png"));
+			resetInput.setToolTipText("리셋");
+			resetInput.setBounds(764, 25, 33, 33);
+			p2.add(resetInput);
 			table.addMouseListener(this);
 			
 			large_classific.addItemListener(new ItemListener() {
@@ -391,6 +412,4 @@ public class StorageList implements MouseListener {
 				);
 			table.repaint();
 		}
-		
-
 }

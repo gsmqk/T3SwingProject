@@ -179,11 +179,13 @@ public class F_Dao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			rs = pstmt.executeQuery();
 			
+			list.add("대분류");
 			while(rs.next()) {
 				String large = rs.getString("LARGE_CLASSIFIC");
 				
