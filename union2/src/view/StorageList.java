@@ -260,7 +260,7 @@ public class StorageList implements MouseListener {
 						);
 				}
 			});
-			resetInput.setIcon(new ImageIcon("file:///C:/Users/GGG/git/T3SwingProject4/union2/src/image/free-icon-reset-5307970%20(1).png"));
+			resetInput.setIcon(new ImageIcon(StorageList.class.getResource("/image/free-icon-reset-5307970 (1).png")));
 			resetInput.setToolTipText("리셋");
 			resetInput.setBounds(764, 25, 33, 33);
 			p2.add(resetInput);
