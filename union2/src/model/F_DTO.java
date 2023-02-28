@@ -136,6 +136,7 @@ public class F_DTO {
 
 	public F_DTO(String fname, String large, String middle, String small, String place, String quan, String unit2,
 			String price2, String indate, String exdate, String memo1) {
+		// edit으로 보내는 생성자
 		this.grocery_name = fname;
 		this.large_classific = large;
 		this.medium_classific = middle;
@@ -278,6 +279,7 @@ public class F_DTO {
 		this.memo = memo;
 	}
 
+
 	// toString
 	@Override
 	public String toString() {
@@ -285,8 +287,10 @@ public class F_DTO {
 				+ large_classific + ", medium_classific=" + medium_classific + ", small_classific=" + small_classific
 				+ ", storage_place=" + storage_place + ", store_id=" + store_id + ", quantity=" + quantity + ", unit="
 				+ unit + ", price=" + price + ", store_name=" + store_name + ", input_date=" + input_date
-				+ ", expire_date=" + expire_date + ", user_id=" + user_id + "]";
+				+ ", expire_date=" + expire_date + ", user_id=" + user_id + ", due_date=" + due_date + ", memo=" + memo
+				+ "]";
 	}
+
 	
 	
 }

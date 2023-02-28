@@ -1,10 +1,13 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
 
+import javax.swing.AbstractButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,7 +21,7 @@ import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
-public class Grocery_Edit extends JFrame {
+public class Grocery_Edit extends JFrame implements ActionListener {
 	
 	JTextField  groName, inQuan, price, memo;
 	JButton btnInput, btnCancel;
@@ -52,9 +55,11 @@ public class Grocery_Edit extends JFrame {
 		Vector<String> large = fao.getLarge();
 		
 		large_classific = new JComboBox (large);
-		large_classific.setToolTipText("대분류");
+		large_classific.setToolTipText("대분류만 정해주세요");
+		large_classific.setSelectedItem(fto.getLarge_classific());
 		large_classific.setBounds(12, 44, 155, 40);
 		getContentPane().add(large_classific);
+		
 		
 		middle_classific = new JComboBox(new String [] {"중분류"});
 		middle_classific.setToolTipText("중분류");
@@ -77,6 +82,7 @@ public class Grocery_Edit extends JFrame {
 					mList1 = fao.getMiddle(selectedItem);
 					System.out.println(mList1);
 					middle_classific.setModel(new DefaultComboBoxModel<>(mList1));
+					middle_classific.setSelectedItem(fto.getMedium_classific());
 				}
 			}
 				
@@ -93,6 +99,7 @@ public class Grocery_Edit extends JFrame {
 					sList1 = fao.getSmall(selectedItem);
 					System.out.println(sList1);
 					small_classific.setModel(new DefaultComboBoxModel<>(sList1));
+					small_classific.setSelectedItem(fto.getSmall_classific());
 				}
 				
 			}
@@ -102,6 +109,7 @@ public class Grocery_Edit extends JFrame {
 		
 		storage_place = new JComboBox(new String [] {"실온", "냉장", "냉동"});
 		storage_place.setToolTipText("보관장소");
+		storage_place.setSelectedItem(fto.getStorage_place());
 		storage_place.setBounds(177, 94, 155, 40);
 		getContentPane().add(storage_place);
 
@@ -120,6 +128,7 @@ public class Grocery_Edit extends JFrame {
 		groName        = new JTextField(20);
 		groName.setBounds(82, 183, 250, 40);
 		groName.setText(fto.getGrocery_name());
+		System.out.println(fto.getGrocery_name());
 		getContentPane().add(groName);
 		groName.setColumns(10);
 
@@ -137,6 +146,7 @@ public class Grocery_Edit extends JFrame {
 		
 		String [] units = {"G", "KG", "ML", "L", "EA"};
 		unit = new JComboBox(units);
+		unit.setSelectedItem(fto.getUnit());
 		unit.setBounds(282, 234, 50, 39);
 		getContentPane().add(unit);
 
@@ -167,6 +177,9 @@ public class Grocery_Edit extends JFrame {
 		storename = fao.getStore();
 		
 		store = new JComboBox(storename);
+		store.setSelectedItem(fto.getStorage_place());
+		// info에서 구매처 표시하게 만들어야함 
+		///////////////////////////////////////////////////
 		store.setBounds(82, 334, 250, 40);
 		getContentPane().add(store);
 
@@ -179,7 +192,12 @@ public class Grocery_Edit extends JFrame {
 		model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-		model.setDay(Integer.parseInt(fto.getInput_date()));
+		int dateY1 = Integer.parseInt(fto.getInput_date().substring(0, 4));
+		int dateM1 = Integer.parseInt(fto.getInput_date().substring(5, 7));
+		int dateD1 = Integer.parseInt(fto.getInput_date().substring(8));
+		model.setDate(dateY1, dateM1, dateD1);
+		model.setSelected(true);
+		
 		getContentPane().add(datePicker);
 		datePicker.setBounds(82, 390, 250, 40);
 
@@ -192,7 +210,12 @@ public class Grocery_Edit extends JFrame {
 		model1 = new UtilDateModel();
 		JDatePanelImpl datePanel1 = new JDatePanelImpl(model1);
 		JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
-		model1.setDay(Integer.parseInt(fto.getExpire_date()));
+		int dateY2 = Integer.parseInt(fto.getExpire_date().substring(0, 4));
+		int dateM2 = Integer.parseInt(fto.getExpire_date().substring(5, 7));
+		int dateD2 = Integer.parseInt(fto.getExpire_date().substring(8));
+		model1.setDate(dateY2, dateM2, dateD2);
+		model1.setSelected(true);
+		
 		getContentPane().add(datePicker1);
 		datePicker1.setBounds(82, 440, 250, 40);
 		
@@ -213,6 +236,7 @@ public class Grocery_Edit extends JFrame {
 		getContentPane().add(jlbExpD_1);
 		
 		memo = new JTextField(10);
+		memo.setText(fto.getMemo());
 		memo.setBounds(82, 490, 250, 106);
 		getContentPane().add(memo);
 
@@ -224,6 +248,14 @@ public class Grocery_Edit extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 	}
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	switch(e.getActionCommand()) {
+		
+	}
+		
+}
 
 //	public static void main(String[] args) {
 //		new Grocery_Edit();

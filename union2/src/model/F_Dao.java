@@ -159,6 +159,8 @@ public class F_Dao {
 				fto = new F_DTO(gname, large, medium, small, place, quantity,
 						unit, price, store_name, input_date, expire_date, due_date, memo, f);
 				
+				System.out.println(fto);
+				
 				gif = new GroceryInfo(fto);
 				
 			}

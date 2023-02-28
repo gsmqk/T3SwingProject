@@ -22,12 +22,12 @@ import javax.swing.SwingConstants;
 
 public class GroceryInfo extends JFrame implements ActionListener {
 	
-	String name;
 	JTextPane groName, storPlace, groQuan, jtpUnit1
 	          , jtpPrice, jtpIndate, jtpExdate, memo,
 	          majorCla, moderCla, minorCla;
 	MainTable01 mt01;
 	JTextArea memoTa;
+	Grocery_Edit gEdit = null;
 
 	
 //	public GroceryInfo() {
@@ -214,7 +214,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		btnOutDis.setBounds(122, 600, 100, 40);
 		getContentPane().add(btnOutDis);
 		
-		JButton btnCancel = new JButton("취소");
+		JButton btnCancel = new JButton("닫기");
 		btnCancel.setFont(new Font("D2Coding", Font.PLAIN, 14));
 		btnCancel.setBounds(232, 600, 100, 40);
 		getContentPane().add(btnCancel);
@@ -458,8 +458,15 @@ public class GroceryInfo extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 		case "수정하기" :
+			
 			F_DTO fto = getViewData();
-			Grocery_Edit gEdit = new Grocery_Edit(fto);
+			System.out.println("edit" + fto);
+			if(gEdit != null)
+				gEdit.dispose();
+			
+			gEdit = new Grocery_Edit(fto);
+			this.dispose();
+			
 			
 			// 여기 추가해야함 진호
 			break;
@@ -471,7 +478,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 	}
 
 	private F_DTO getViewData() {
-		String fname = this.name;
+		String fname = this.groName.getText();
 		String large = this.majorCla.getText();
 		String middle = this.moderCla.getText();
 		String small = this.minorCla.getText();
@@ -481,7 +488,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		String price = this.jtpPrice.getText();
 		String indate = this.jtpIndate.getText();
 		String exdate = this.jtpExdate.getText();
-		String memo1 = this.memo.getText();
+		String memo1 = this.memoTa.getText();
 		
 		
 		
