@@ -156,6 +156,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 			if(mLog != null)
 				mLog.dispose();
 			mLog = new Login();
+			
 			setVisible(false);
 			break;
 		
@@ -166,7 +167,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 	private void LogoutBtn() {
 		JOptionPane.showMessageDialog(null, 
 				 "로그아웃 하시겠습니까?",
-				 
+				
 				"로그아웃",
 				JOptionPane.OK_OPTION);
 		
