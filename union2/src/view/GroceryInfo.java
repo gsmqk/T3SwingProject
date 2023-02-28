@@ -458,9 +458,10 @@ public class GroceryInfo extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 		case "수정하기" :
+			F_DTO fto = getViewData();
+			Grocery_Edit gEdit = new Grocery_Edit(fto);
 			
-			
-			
+			// 여기 추가해야함 진호
 			break;
 		case "닫기" : 
 			this.dispose();
@@ -480,7 +481,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		String price = this.jtpPrice.getText();
 		String indate = this.jtpIndate.getText();
 		String exdate = this.jtpExdate.getText();
-		String memo1 = memo.getText();
+		String memo1 = this.memo.getText();
 		
 		
 		

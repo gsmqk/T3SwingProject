@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import model.F_DTO;
 import model.F_Dao;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
@@ -27,11 +28,16 @@ public class Grocery_Edit extends JFrame {
 	UtilDateModel model, model1;
 	String id;
 	
-	public Grocery_Edit() {
-		init();
+	public Grocery_Edit(F_DTO fto) {
+		F_DTO ffto = fto;
+		init(ffto);
 	}
 	
-	private void init() {
+//	public Grocery_Edit() {
+//		init();
+//	}
+	
+	private void init(F_DTO fto) {
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
 		setTitle("식자재 수정");
 		getContentPane().setLayout(null);
@@ -113,6 +119,7 @@ public class Grocery_Edit extends JFrame {
 		
 		groName        = new JTextField(20);
 		groName.setBounds(82, 183, 250, 40);
+		groName.setText(fto.getGrocery_name());
 		getContentPane().add(groName);
 		groName.setColumns(10);
 
@@ -124,6 +131,7 @@ public class Grocery_Edit extends JFrame {
 
 		inQuan         = new JTextField(20);
 		inQuan.setColumns(10);
+		inQuan.setText(fto.getQuantity());
 		inQuan.setBounds(82, 234, 195, 40);
 		getContentPane().add(inQuan);
 		
@@ -140,6 +148,7 @@ public class Grocery_Edit extends JFrame {
 
 		price          = new JTextField(20);
 		price.setColumns(10);
+		price.setText(fto.getPrice());
 		price.setBounds(82, 284, 195, 40);
 		getContentPane().add(price);
 
@@ -170,6 +179,7 @@ public class Grocery_Edit extends JFrame {
 		model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+		model.setDay(Integer.parseInt(fto.getInput_date()));
 		getContentPane().add(datePicker);
 		datePicker.setBounds(82, 390, 250, 40);
 
@@ -182,11 +192,12 @@ public class Grocery_Edit extends JFrame {
 		model1 = new UtilDateModel();
 		JDatePanelImpl datePanel1 = new JDatePanelImpl(model1);
 		JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
+		model1.setDay(Integer.parseInt(fto.getExpire_date()));
 		getContentPane().add(datePicker1);
 		datePicker1.setBounds(82, 440, 250, 40);
 		
 		//입력/취소버튼
-		btnInput  = new JButton("수정완료");
+		btnInput  = new JButton("수정");
 		btnInput.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		btnInput.setBounds(70, 610, 90, 40);
 		getContentPane().add(btnInput);
@@ -214,7 +225,7 @@ public class Grocery_Edit extends JFrame {
 		
 	}
 
-	public static void main(String[] args) {
-		new Grocery_Edit();
-	}
+//	public static void main(String[] args) {
+//		new Grocery_Edit();
+//	}
 }

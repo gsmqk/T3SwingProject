@@ -46,6 +46,7 @@ public class F_DTO {
 	public F_DTO(String gname, String large, String medium, String small, String place, String quantity2, String unit2,
 			String price2, String store_name2, String input_date2, String expire_date2, String due_date2, String memo2
 			, int f) {
+			
 		// GroceryInfo 사용
 		// F_Dao goInfo()
 		this.grocery_name = gname;
@@ -63,25 +64,29 @@ public class F_DTO {
 		this.memo = memo2;
 	}
 
-	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
-			String store, String indate, String exdate, String unit) { // GroceryInput에서 사용
-		this.large_classific = large;
-		this.medium_classific = middle;
-		this.small_classific = small;
-		this.storage_place = place;
-		this.unit = unit;
-		this.grocery_name = name;
-		this.quantity = quan;
-		this.price = price2;
-		this.store_name = store;
-		this.input_date = indate;
-		this.expire_date = exdate;
-	}
 	
+//	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
+//			String store, String indate) {
+//		
+////		fname, large, middle, small, place, quan, unit,
+////    price, indate, exdate, memo1
+//		this.large_classific = large;
+//		this.medium_classific = middle;
+//		this.small_classific = small;
+//		this.storage_place = place;
+//		this.unit = unit;
+//		this.grocery_name = name;
+//		this.quantity = quan;
+//		this.price = price2;
+//		this.store_name = store;
+//		this.input_date = indate;
+//		this.expire_date = exdate;
+//	}
+//	
 	
 	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
 			String store, String indate, String exdate, String unit2, String memo, String uid) {
-		//
+		// 이게 input에서 사용하는거
 		this.large_classific = large;
 		this.medium_classific = middle;
 		this.small_classific = small;
@@ -121,6 +126,21 @@ public class F_DTO {
 		this.small_classific = small2;
 		this.storage_place = place2;
 		this.store_name = store2;
+		this.quantity = quan;
+		this.unit = unit2;
+		this.price = price2;
+		this.input_date = indate;
+		this.expire_date = exdate;
+		this.memo = memo1;
+	}
+
+	public F_DTO(String fname, String large, String middle, String small, String place, String quan, String unit2,
+			String price2, String indate, String exdate, String memo1) {
+		this.grocery_name = fname;
+		this.large_classific = large;
+		this.medium_classific = middle;
+		this.small_classific = small;
+		this.storage_place = place;
 		this.quantity = quan;
 		this.unit = unit2;
 		this.price = price2;
