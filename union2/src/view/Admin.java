@@ -19,16 +19,19 @@ import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Admin extends JFrame implements MouseListener, ActionListener {
         
+	JFrame       f;
 	JTable       jTable;
 	JScrollPane  pane;
-	JButton      btnRefresh, btnCategory;
-	JPanel       topPane, ta;
+	JButton      btnRefresh, btnCategory, btnOut;
+	JPanel       topPane, logPane;
 	
 	AdminEdit aEdit = null;
 	static Admin list = null;
+	Login     mLog  = null;
 	
 	public Admin() {
 		
@@ -58,8 +61,16 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		pane = new JScrollPane(jTable);
 		getContentPane().add(pane);
 		
+		logPane = new JPanel();
+		btnOut = new JButton("로그아웃");
+		logPane.add(btnOut);
+		
+		getContentPane().add(logPane, BorderLayout.SOUTH);
+		
+		
 		btnRefresh.addActionListener(this);
 		btnCategory.addActionListener(this);
+		btnOut.addActionListener(this);
 	}
 	///수정함!!! 
 
@@ -138,7 +149,24 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		case "카테고리":
 			System.out.println("카테고리 클릭");
 			new CategoryTable();
+			break;
+		case "로그아웃":
+			System.out.println("로그아웃");
+			LogoutBtn();
+			if(mLog != null)
+				mLog.dispose();
+			mLog = new Login();
+			setVisible(false);
+		
 		}
+		
+	}
+
+	private void LogoutBtn() {
+		JOptionPane.showMessageDialog(null, 
+				 "로그아웃 하시겠습니까?",
+				"로그아웃",
+				JOptionPane.OK_OPTION);
 		
 	}
 
