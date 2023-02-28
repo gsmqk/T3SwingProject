@@ -26,7 +26,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 	//component
 	MainTable01 mainTable01 = null;
 	StorageList storeageList = null;
-	JTextField  groName, inQuan, price;
+	JTextField  groName, inQuan, price, memo;
 	JButton btnInput, btnCancel;
 	
 	
@@ -36,6 +36,9 @@ public class GroceryInput extends JFrame implements ActionListener {
 	UtilDateModel model, model1;
 	String id;
 
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public GroceryInput(MainTable01 mainTable) {
 		this.mainTable01 = mainTable;
 		String id = mainTable01.id;
@@ -186,7 +189,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 		model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
-		this.add(datePicker);
+		getContentPane().add(datePicker);
 		datePicker.setBounds(82, 390, 250, 40);
 
 		//소비기한
@@ -198,28 +201,38 @@ public class GroceryInput extends JFrame implements ActionListener {
 		model1 = new UtilDateModel();
 		JDatePanelImpl datePanel1 = new JDatePanelImpl(model1);
 		JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
-		this.add(datePicker1);
+		getContentPane().add(datePicker1);
 		datePicker1.setBounds(82, 440, 250, 40);
 		
 		//입력/취소버튼
 		btnInput  = new JButton("입력");
 		btnInput.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		btnInput.setBounds(70, 488, 90, 40);
+		btnInput.setBounds(70, 610, 90, 40);
 		getContentPane().add(btnInput);
 
 		JButton btnCancel = new JButton("취소");
 		btnCancel.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		btnCancel.setBounds(182, 488, 90, 40);
+		btnCancel.setBounds(182, 610, 90, 40);
 		getContentPane().add(btnCancel);
+		
+		JLabel jlbExpD_1 = new JLabel("메모");
+		jlbExpD_1.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbExpD_1.setBounds(12, 484, 64, 40);
+		getContentPane().add(jlbExpD_1);
+		
+		memo = new JTextField(10);
+		memo.setBounds(82, 490, 250, 106);
+		getContentPane().add(memo);
 
 		
 
-		setSize(360, 600);
+		setSize(370, 710);
 		setLocation(200, 200);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		btnInput.addActionListener(this);
+		btnCancel.addActionListener(this);
 		
 	}
 		
@@ -278,13 +291,12 @@ public class GroceryInput extends JFrame implements ActionListener {
 		String indate = this.model.getYear() + "/" + (this.model.getMonth() + 1) + "/" + this.model.getDay();
 		String exdate = this.model1.getYear() + "/" + (this.model1.getMonth() + 1) + "/" + this.model1.getDay();
 		String uid = this.id;
+		String memo = this.memo.getText();
 		System.out.println(uid);
-		int f = 1;
 		
 		F_DTO fto = new F_DTO(large, middle, small, place, name, quan, price, store,
-				              indate, exdate, unit, uid, f);
+				              indate, exdate, unit, memo, uid);
 		
 		return fto;
 	}
-
 }

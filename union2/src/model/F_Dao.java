@@ -47,16 +47,17 @@ public class F_Dao {
 		String store = fto.getStore_name(); 
 		String indate = fto.getInput_date(); 
 		String exdate = fto.getExpire_date(); 
+		String memo = fto.getMemo();
 		String uid = fto.getUser_id();
 		
 		System.out.println(uid);
 		
-		int aftcnt = insertGrosery(large, middle, small, place, fname, quan, price, store, indate, exdate, unit, uid);
+		int aftcnt = insertGrosery(large, middle, small, place, fname, quan, price, store, indate, exdate, unit, memo, uid);
 		return aftcnt;
 	}
 
 	private int insertGrosery(String large, String middle, String small, String place, String fname,
-			String quan, String price, String store, String indate, String exdate, String unit, String uid) {
+			String quan, String price, String store, String indate, String exdate, String unit, String memo, String uid) {
 		String sql = "INSERT INTO GROCERIES "
 				+ "(GROCERY_ID, GROCERY_NAME, "
 				+ "LARGE_ID, "
@@ -66,6 +67,7 @@ public class F_Dao {
 				+ "QUANTITY, UNIT, PRICE, "
 				+ "STORE_ID, "
 				+ "INPUT_DATE, EXPIRE_DATE, "
+				+ "MEMO, "
 				+ "USER_ID) "
 				+ "VALUES "
 				+ "(GROCERY_ID1.NEXTVAL, ?, "
@@ -76,6 +78,7 @@ public class F_Dao {
 				+ "?, ?, ?, "
 				+ "(SELECT STORE_ID FROM STORES WHERE STORE_NAME = ?), "
 				+ "?, ?, "
+				+ "?, "
 				+ "?)" ;
 		
 		PreparedStatement pstmt = null;
@@ -95,7 +98,8 @@ public class F_Dao {
 			pstmt.setString(10, store);
 			pstmt.setString(11, indate);
 			pstmt.setString(12, exdate);
-			pstmt.setString(13, uid);
+			pstmt.setString(13, memo);
+			pstmt.setString(14, uid);
 			
 			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -118,7 +122,8 @@ public class F_Dao {
 				+ "       ST.STORAGE_PLACE, G.QUANTITY, G.UNIT, G.PRICE, RE.STORE_NAME, "
 				+ "       TO_CHAR(G.INPUT_DATE,'YYYY-MM-DD'), "
 				+ "       TO_CHAR(G.EXPIRE_DATE,'YYYY-MM-DD'), "
-				+ "       TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUE_DATE "
+				+ "       TO_CHAR(TRUNC(G.EXPIRE_DATE - SYSDATE)) DUE_DATE, "
+				+ "	      G.MEMO MEMO "
 				+ "FROM   GROCERIES G "
 				+ "JOIN  LARGE_CLASSIFIC L ON G.LARGE_ID = L.LARGE_ID "
 				+ "JOIN  MEDIUM_CLASSIFIC M ON G.MEDIUM_ID = M.MEDIUM_ID "
@@ -148,9 +153,11 @@ public class F_Dao {
 				String input_date = rs.getString(10);
 				String expire_date = rs.getString(11);
 				String due_date = rs.getString("DUE_DATE");
+				String memo = rs.getString("MEMO");
+				int f = 0;
 				
 				fto = new F_DTO(gname, large, medium, small, place, quantity,
-						unit, price, store_name, input_date, expire_date, due_date);
+						unit, price, store_name, input_date, expire_date, due_date, memo, f);
 				
 				gif = new GroceryInfo(fto);
 				
