@@ -32,7 +32,9 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 	AdminEdit aEdit = null;
 	static Admin list = null;
 	Login     mLog  = null;
+	CategoryTable ctable ;
 	
+
 	public Admin() {
 		
 		initComponent();
@@ -41,7 +43,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		setSize(600,500);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	//22222222222222222222222222222222222222222222222222222222222
+	
 	}
 
 	private void initComponent() {
@@ -148,16 +150,12 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 			break;
 		case "카테고리":
 			System.out.println("카테고리 클릭");
-			new CategoryTable();
+			this.ctable = new CategoryTable();
 			break;
 		case "로그아웃":
 			System.out.println("로그아웃");
 			LogoutBtn();
-			if(mLog != null)
-				mLog.dispose();
-			mLog = new Login();
-			
-			setVisible(false);
+			ctable.dispose();
 			break;
 		
 		}
@@ -165,11 +163,25 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 	}
 
 	private void LogoutBtn() {
-		JOptionPane.showMessageDialog(null, 
+		int result = JOptionPane.showConfirmDialog(null, 
 				 "로그아웃 하시겠습니까?",
 				
 				"로그아웃",
-				JOptionPane.OK_OPTION);
+				JOptionPane.YES_NO_OPTION);
+
+		if(result == JOptionPane.YES_OPTION) {
+			if(mLog != null)
+				mLog.dispose();
+		mLog = new Login();
+			setVisible(false);
+			
+		} 
+		else 
+		if(result == JOptionPane.NO_OPTION){
+			
+		}
+		
+			
 		
 	}
 

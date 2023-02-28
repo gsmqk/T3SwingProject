@@ -215,18 +215,35 @@ public class MainTable01 implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 				LogoutBtn();
 				
-				if(mLog != null)
+		/*		if(mLog != null)
 					mLog.dispose();
 				mLog = new Login();
-				f.setVisible(false);
+				f.setVisible(false);    */
 			}
 
 			private void LogoutBtn() {
 				
-				JOptionPane.showMessageDialog(null, 
+	/*			JOptionPane.showMessageDialog(null, 
 						id + "님 로그아웃 하시겠습니까?",
 						"로그아웃",
-						JOptionPane.OK_OPTION);
+						JOptionPane.OK_OPTION); */
+				
+				int result = JOptionPane.showConfirmDialog(null, 
+						 "로그아웃 하시겠습니까?",
+						
+						"로그아웃",
+						JOptionPane.YES_NO_OPTION);
+
+				if(result == JOptionPane.YES_OPTION) {
+					if(mLog != null)
+						mLog.dispose();
+					mLog = new Login();
+					f.setVisible(false);
+				} 
+				else 
+				if(result == JOptionPane.NO_OPTION){
+					
+				}
 			}
 		}); 
 		
