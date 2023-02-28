@@ -1,181 +1,153 @@
 package view;
 
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.U_DTO;
 import model.U_Dao;
 
-public class Join extends JFrame implements ActionListener{
-
-	GridBagLayout gbl;
-	GridBagConstraints gbc;
-	JTextField idTxt, nameTxt, emailTxt;
-	JPasswordField pwTxt, pwcfTxt;
-	JButton cfBtn, joinBtn, cancelBtn;
-	JLabel title, idLbl, pwLbl, pwcfLbl, nameLbl, emailLbl; 
-	Font f1, f2, f3;
+public class Join extends JFrame implements ActionListener {
+	
+	private JTextField idTxt;
+	private JTextField nameTxt;
+	private JTextField emailTxt;
+	private JPasswordField pwTxt;
+	private JPasswordField pwcfTxt;
 	
 	public Join() {
-		
+
+		getContentPane().setLayout(null);
+
+		setFont(new Font("D2Coding", Font.PLAIN, 14));
 		setTitle("회원가입");
-		
+
 		init();
-		
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,700);
+		setSize(360,440);
+		setLocation(800, 200);
 		setVisible(true);
-		
 		
 	}
 	
 	private void init() {
+
+
+		JLabel idLbl = new JLabel("아이디");
+		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		idLbl.setBounds(20, 20, 50, 20);
+		getContentPane().add(idLbl);
+
+		idTxt = new JTextField();
+		idTxt.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		idTxt.setBounds(20, 40, 210, 40);
+		getContentPane().add(idTxt);
+		idTxt.setColumns(10);
 		
-		gbl = new GridBagLayout();
-		this.setLayout(gbl);
-		gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+		JButton cfBtn = new JButton("중복확인");
+		cfBtn.setFont(new Font("D2Coding", Font.PLAIN, 12));
+		cfBtn.setBounds(240, 40, 85, 40);
+		getContentPane().add(cfBtn);
 		
-		f1 = new Font("HY견고딕", Font.BOLD, 40);
-		f2 = new Font("HY견고딕", Font.BOLD, 20);
-		f3 = new Font("HY견고딕", Font.BOLD, 15);
+		JLabel pwLbl = new JLabel("비밀번호");
+		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		pwLbl.setBounds(20, 80, 100, 20);
+		getContentPane().add(pwLbl);
 		
-		// 제목
-		title = new JLabel("회원가입");
-		title.setFont(f1);
-		title.setHorizontalAlignment(JLabel.CENTER);
-		gblAdd(title, 0, 0, 4, 1);
+		pwTxt = new JPasswordField();
+		pwTxt.setBounds(20, 100, 305, 40);
+		getContentPane().add(pwTxt);
 		
-		// 아이디
-//		JPanel pId = new JPanel();
-		idLbl = new JLabel("아이디 :");
-		idLbl.setFont(f2);
-		idTxt = new JTextField(15);
-		cfBtn = new JButton("중복확인");
-		cfBtn.setFont(f3);
+		JLabel pwcfLbl = new JLabel("비밀번호 확인");
+		pwcfLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		pwcfLbl.setBounds(20, 140, 100, 20);
+		getContentPane().add(pwcfLbl);
 		
-//		pId.add(idLbl);
-//		pId.add(idTxt);
-//		pId.add(cfBtn);
+		pwcfTxt = new JPasswordField();
+		pwcfTxt.setBounds(20, 160, 305, 40);
+		getContentPane().add(pwcfTxt);
 		
-		gblAdd(idLbl,0,1,1,1);
-		gblAdd(idTxt,1,1,2,1);
-		gblAdd(cfBtn,3,1,1,1);
+		JLabel nameLbl = new JLabel("이름");
+		nameLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		nameLbl.setBounds(20, 200, 100, 20);
+		getContentPane().add(nameLbl);
 		
-		// 비밀번호
-//		JPanel pPw = new JPanel();
-		pwLbl = new JLabel("비밀번호 :");
-		pwLbl.setFont(f2);
-		pwTxt = new JPasswordField(20);
+		nameTxt = new JTextField();
+		nameTxt.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		nameTxt.setColumns(10);
+		nameTxt.setBounds(20, 220, 305, 40);
+		getContentPane().add(nameTxt);
 		
-//		pPw.add(pwLbl);
-//		pPw.add(pwTxt);
+		JLabel emailLbl = new JLabel("이메일");
+		emailLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		emailLbl.setBounds(20, 260, 100, 20);
+		getContentPane().add(emailLbl);
 		
-		gblAdd(pwLbl, 0, 2, 1, 1);
-		gblAdd(pwTxt, 1, 2, 3, 1);
+		emailTxt = new JTextField();
+		emailTxt.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		emailTxt.setColumns(10);
+		emailTxt.setBounds(20, 280, 305, 40);
+		getContentPane().add(emailTxt);
 		
-		// 비밀번호 확인
-//		JPanel pCF = new JPanel();
-		pwcfLbl = new JLabel("비밀번호 확인:");
-		pwcfLbl.setFont(f2);
-		pwcfTxt = new JPasswordField(20);
+		JButton joinBtn = new JButton("회원가입");
+		joinBtn.setFont(new Font("D2Coding", Font.PLAIN, 12));
+		joinBtn.setBounds(80, 340, 85, 40);
+		getContentPane().add(joinBtn);
 		
-//		pCF.add(pwcfLbl);
-//		pCF.add(pwcfTxt);
-		
-		gblAdd(pwcfLbl, 0, 3, 1, 1);
-		gblAdd(pwcfTxt, 1, 3, 3, 1);
-		
-		// 이름
-//		JPanel pName = new JPanel();
-		nameLbl = new JLabel("이름 :");
-		nameLbl.setFont(f2);
-		nameTxt = new JTextField(20);
-		
-//		pName.add(nameLbl);
-//		pName.add(nameTxt);
-		
-		gblAdd(nameLbl, 0, 4, 1, 1);
-		gblAdd(nameTxt, 1, 4, 3, 1);
-		
-		// 이메일
-//		JPanel pMail = new JPanel();
-		emailLbl = new JLabel("이메일 :");
-		emailLbl.setFont(f2);
-		emailTxt = new JTextField(20);
-		
-//		pMail.add(emailLbl);
-//		pMail.add(emailTxt);
-		
-		gblAdd(emailLbl, 0, 5, 1, 1);
-		gblAdd(emailTxt, 1, 5, 3, 1);
-		
-		// 버튼
-		JPanel pButton = new JPanel();
-		joinBtn = new JButton("회원가입");
-		cancelBtn = new JButton("취소");
-		joinBtn.setFont(f2);
-		cancelBtn.setFont(f2);
-		
-		pButton.add(joinBtn);
-		pButton.add(cancelBtn);
-		
-		gblAdd(pButton, 0, 6, 4, 1);
-		
-		// 기능
+		JButton cancelBtn = new JButton("취소");
+		cancelBtn.setFont(new Font("D2Coding", Font.PLAIN, 12));
+		cancelBtn.setBounds(175, 340, 85, 40);
+		getContentPane().add(cancelBtn);
 		
 		cfBtn.addActionListener(this);
 		joinBtn.addActionListener(this);
 		cancelBtn.addActionListener(this);
+	
+	
 	}
 
-	public void gblAdd(JComponent c, int x, int y, int w, int h) {
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = w;
-		gbc.gridheight = h;
-		gbl.setConstraints(c, gbc);
-		gbc.insets = new Insets(5,5,5,5);
-		this.add(c,gbc);
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (e.getActionCommand()) {
-		case "회원가입" :
-			String pw = pwTxt.getText().trim();
-			String cfpw = pwcfTxt.getText().trim();
-			if (pw.equals(cfpw)) {
-				join();
-			} else {
-				JOptionPane.showMessageDialog(null, "비밀번호를 확인해주세요", "확인",
-						JOptionPane.OK_OPTION);
-			}
-			break;
-		case "취소" : 
-			System.out.println("취소 클릭");
-			this.dispose();
-			break;
-		case "중복확인" :
-			exist();
-			break;
+			case "회원가입" :
+				String pw = pwTxt.getText().trim();
+				String cfpw = pwcfTxt.getText().trim();
+				if (pw.equals(cfpw)) {
+					join();
+				} else {
+					JOptionPane.showMessageDialog(
+				    null,  "비밀번호를 확인해주세요.", "확인", JOptionPane.OK_OPTION);
+				}
+				break;
+			case "취소" :
+				System.out.println("취소 클릭");
+				this.dispose();
+				break;
+			case "중복확인" :
+				exist();
+				break;
 		}
+		
+		
+	}
+
+	private void join() {
+		U_Dao uao = new U_Dao();
+		U_DTO uto = getViewData();
+		int aftcnt = uao.insertUser(uto);
+		
+		JOptionPane.showMessageDialog(null, "가입되셨습니다. 환영합니다!");
+		
+		this.dispose();
 		
 	}
 
@@ -185,18 +157,9 @@ public class Join extends JFrame implements ActionListener{
 		
 		String msg = uao.checkExist(id);
 		JOptionPane.showMessageDialog(null, msg);
-	}	
-
-	private void join() {
-		U_Dao uao = new U_Dao();
-		U_DTO uto = getViewData();
-		int aftcnt = uao.insertUser(uto);
 		
-		JOptionPane.showMessageDialog(null, "가입되었습니다. 환영합니다 !");
-		
-		this.dispose();
 	}
-
+	
 	private U_DTO getViewData() {
 		String uid = this.idTxt.getText();
 		String upw = this.pwTxt.getText();
@@ -206,10 +169,10 @@ public class Join extends JFrame implements ActionListener{
 		U_DTO uto = new U_DTO(uid, upw, uname, umail);
 		return uto;
 	}
-	
 
 //	public static void main(String[] args) {
 //		new Join();
+	
 //	}
 
 }
