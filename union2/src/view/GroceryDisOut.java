@@ -9,17 +9,21 @@ import javax.swing.JButton;
 public class GroceryDisOut extends JFrame {
 
 	private JTextField output_quantity, discard_quantity;
-
+	String id;
+	
 	public GroceryDisOut() {
-
+			
 		init();
 	}
 
 
 	private void init() {
+		
+		
 		setTitle("식자재 출고/폐기");
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
 		getContentPane().setLayout(null);
+		
 
 		//상품명부터 재고량+단위까지는 DB의 자료를 출력하는 TEXTPANE
 		JTextPane grocery_name = new JTextPane();
