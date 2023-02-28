@@ -47,7 +47,7 @@ public class StorageList implements MouseListener {
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
 	String id, large1, medium1, small1;
-	JTable table, table2;
+	JTable table, table2,table3;
 	StorageList slist = null;
 	
 	FindName  mProc = null; 
@@ -57,9 +57,9 @@ public class StorageList implements MouseListener {
 	
 
 	
-	public StorageList() {
-		initialize();
-	}
+//	public StorageList() {
+//		initialize();
+//	}
 
 	
 	public StorageList(MainTable01 mt012) {
@@ -87,10 +87,7 @@ public class StorageList implements MouseListener {
 		
 		
 		btnInput = new JButton("신규 입력");
-		btnInput.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		btnInput.setForeground(Color.WHITE);
 		btnInput.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnInput.setBackground(new Color(135, 206, 250));
@@ -264,7 +261,7 @@ public class StorageList implements MouseListener {
 			resetInput.setToolTipText("리셋");
 			resetInput.setBounds(764, 25, 33, 33);
 			p2.add(resetInput);
-			table.addMouseListener(this);
+		
 			
 			large_classific.addItemListener(new ItemListener() {
 				
@@ -334,9 +331,9 @@ public class StorageList implements MouseListener {
 			
 			return cols;
 		}
-		public static void main(String[] args) {
-			new StorageList();
-		}
+//		public static void main(String[] args) {
+//			new StorageList();
+//		}
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
