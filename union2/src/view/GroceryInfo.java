@@ -17,14 +17,14 @@ public class GroceryInfo extends JFrame implements ActionListener {
 	
 	String name;
 	JTextPane groName, majorCla, moderCla, minorCla, storPlace, groQuan, jtpUnit1
-	          , jtpPrice, jtpIndate, jtpExdate ;
+	          , jtpPrice, jtpIndate, jtpExdate, memo ;
 
 	
 	public GroceryInfo() {
 		init();
 	}
 
-	public GroceryInfo(F_DTO fto) {
+		public GroceryInfo(F_DTO fto) {
 		F_DTO gFto = fto;
 		
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
@@ -176,11 +176,11 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jtpExdate.setBounds(47, 403, 155, 40);
 		getContentPane().add(jtpExdate);
 		
-		JTextPane jtpDdate = new JTextPane();
-		jtpDdate.setText("");
-		jtpDdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpDdate.setBounds(47, 465, 340, 80);
-		getContentPane().add(jtpDdate);
+		memo = new JTextPane();
+		memo.setText(gFto.getMemo());
+		memo.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		memo.setBounds(47, 465, 340, 80);
+		getContentPane().add(memo);
 		
 		JButton btnConfirm = new JButton("수정완료");
 		btnConfirm.setFont(new Font("D2Coding", Font.PLAIN, 14));

@@ -18,6 +18,7 @@ public class F_DTO {
 	private String expire_date;
 	private String user_id;
 	private String due_date;
+	private String memo;
 
 	// Constructor
 	public F_DTO() {
@@ -43,7 +44,10 @@ public class F_DTO {
 	}
 
 	public F_DTO(String gname, String large, String medium, String small, String place, String quantity2, String unit2,
-			String price2, String store_name2, String input_date2, String expire_date2, String due_date2) {
+			String price2, String store_name2, String input_date2, String expire_date2, String due_date2, String memo2
+			, int f) {
+		// GroceryInfo 사용
+		// F_Dao goInfo()
 		this.grocery_name = gname;
 		this.large_classific = large;
 		this.medium_classific = medium;
@@ -56,6 +60,7 @@ public class F_DTO {
 		this.input_date = input_date2;
 		this.expire_date = expire_date2;
 		this.due_date = due_date2;
+		this.memo = memo2;
 	}
 
 	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
@@ -75,7 +80,8 @@ public class F_DTO {
 	
 	
 	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
-			String store, String indate, String exdate, String unit2, String id, int f) {
+			String store, String indate, String exdate, String unit2, String memo, String uid) {
+		//
 		this.large_classific = large;
 		this.medium_classific = middle;
 		this.small_classific = small;
@@ -87,7 +93,8 @@ public class F_DTO {
 		this.store_name = store;
 		this.input_date = indate;
 		this.expire_date = exdate;
-		this.user_id = id;
+		this.memo = memo;
+		this.user_id = uid;
 	}
 
 	public F_DTO(String fname, String large, String middle, String small, String place, String quan, String unit2,
@@ -225,6 +232,14 @@ public class F_DTO {
 
 	public void setDue_date(String due_date) {
 		this.due_date = due_date;
+	}
+	
+	public String getMemo() {
+		return memo;
+	}
+
+	public void setMemo(String memo) {
+		this.memo = memo;
 	}
 
 	// toString
