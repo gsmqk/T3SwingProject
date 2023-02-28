@@ -38,7 +38,7 @@ public class U_Dao {
 	      Vector<Vector> list = new Vector<Vector>();
 	      
 	      String sql = "";
-	      sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_GRADE, USER_STATUS ";
+	      sql += "SELECT USER_ID, USER_NAME, USER_PASSWORD, USER_EMAIL, USER_STATUS ";
 	      sql += " FROM USERS ";
 	      
 	      PreparedStatement pstmt = null;
@@ -52,16 +52,16 @@ public class U_Dao {
 	             String user_name     = rs.getString("USER_NAME");
 	             String user_password = rs.getString("USER_PASSWORD");
 	             String user_email    = rs.getString("USER_EMAIL");
-	             String user_grade    = rs.getString("USER_GRADE");
-	             String user_status   = rs.getString("USER_STATUS");
+	             String user_status    = rs.getString("USER_STATUS");
+	            // String user_grade   = rs.getString("USER_GRADE");
 	             
 	             Vector v = new Vector();
 	             v.add(user_id);
 	             v.add(user_name);
 	             v.add(user_password);
 	             v.add(user_email);
-	             v.add(user_grade);
 	             v.add(user_status);
+	           //  v.add(user_grade);
 	             
 	             list.add(v);
 	          }

@@ -62,7 +62,7 @@ public class Medium_Add extends JFrame {
 		add.setBounds(77, 208, 97, 23);
 		getContentPane().add(add);
 		
-		cancle = new JButton("\uCDE8\uC18C\uD558\uAE30");
+		cancle = new JButton("새로고침");
 		cancle.setBounds(206, 208, 97, 23);
 		getContentPane().add(cancle);
 		
@@ -84,7 +84,7 @@ public class Medium_Add extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("취소하기클릭");
+				System.out.println("새로고침클릭");
 				MediumText.setText("");
 				
 			}

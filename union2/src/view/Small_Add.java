@@ -72,7 +72,7 @@ public class Small_Add extends JFrame{
 		add.setBounds(73, 209, 97, 23);
 		getContentPane().add(add);
 		
-		cancle = new JButton("취소하기");
+		cancle = new JButton("새로고침");
 		cancle.setBounds(207, 209, 97, 23);
 		getContentPane().add(cancle);
 		
@@ -110,7 +110,7 @@ public class Small_Add extends JFrame{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("취소하기클릭");
+					System.out.println("새로고침클릭");
 					SmallText.setText("");
 					
 				}
