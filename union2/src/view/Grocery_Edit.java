@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
@@ -12,44 +10,30 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import model.F_DTO;
 import model.F_Dao;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
-public class GroceryInput extends JFrame implements ActionListener {
+public class Grocery_Edit extends JFrame {
 	
-	//component
-	MainTable01 mainTable01 = null;
-	StorageList storeageList = null;
 	JTextField  groName, inQuan, price, memo;
 	JButton btnInput, btnCancel;
-	
-	
 	
 	JComboBox large_classific, middle_classific, small_classific, storage_place, unit,
 	          store;
 	UtilDateModel model, model1;
 	String id;
-
-	public GroceryInput(MainTable01 mainTable) {
-		this.mainTable01 = mainTable;
-		String id = mainTable01.id;
-		System.out.println(id);
-		
-		init(id);
+	
+	public Grocery_Edit() {
+		init();
 	}
-
-	private void init(String id) {
-		
-		this.id = id;
-		
+	
+	private void init() {
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
-		setTitle("신규 식자재 입력");
+		setTitle("식자재 수정");
 		getContentPane().setLayout(null);
 
 		//카테고리
@@ -202,12 +186,12 @@ public class GroceryInput extends JFrame implements ActionListener {
 		datePicker1.setBounds(82, 440, 250, 40);
 		
 		//입력/취소버튼
-		btnInput  = new JButton("입력");
+		btnInput  = new JButton("수정완료");
 		btnInput.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		btnInput.setBounds(70, 610, 90, 40);
 		getContentPane().add(btnInput);
 
-		JButton btnCancel = new JButton("취소");
+		JButton btnCancel = new JButton("닫기");
 		btnCancel.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		btnCancel.setBounds(182, 610, 90, 40);
 		getContentPane().add(btnCancel);
@@ -228,72 +212,9 @@ public class GroceryInput extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		btnInput.addActionListener(this);
-		btnCancel.addActionListener(this);
-		
-	}
-		
-
-
-
-	public GroceryInput(StorageList slist) {
-		
-		init(slist.id);
 	}
 
-
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()) {
-		case "입력" :
-			F_Dao fao = new F_Dao();
-			F_DTO fto = getGroceryData(this.id);
-			
-			int aftcnt = fao.insertGrosery(fto);
-			
-			if (aftcnt == 1) {
-				JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
-				if (mainTable01 == null) 
-					storeageList.jTableRefresh();
-				if (storeageList == null) 
-					mainTable01.jTableRefresh();
-				
-				this.dispose();
-			} else {
-				JOptionPane.showMessageDialog(null, "다시 확인해주세요 !");
-			}
-		
-			break;
-		case "취소" :
-			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
-			this.dispose();
-			break;
-		}
-		
-	}
-
-
-
-	private F_DTO getGroceryData(String id) {
-		String large = (String) this.large_classific.getSelectedItem();
-		String middle = (String) this.middle_classific.getSelectedItem();
-		String small = (String) this.small_classific.getSelectedItem();
-		String place = (String) this.storage_place.getSelectedItem();
-		String name = this.groName.getText();
-		String quan = this.inQuan.getText();
-		String price = this.price.getText();
-		String unit = (String) this.unit.getSelectedItem();
-		String store = (String) this.store.getSelectedItem();
-		String indate = this.model.getYear() + "/" + (this.model.getMonth() + 1) + "/" + this.model.getDay();
-		String exdate = this.model1.getYear() + "/" + (this.model1.getMonth() + 1) + "/" + this.model1.getDay();
-		String uid = this.id;
-		String memo = this.memo.getText();
-		System.out.println(uid);
-		
-		F_DTO fto = new F_DTO(large, middle, small, place, name, quan, price, store,
-				              indate, exdate, unit, memo, uid);
-		
-		return fto;
+	public static void main(String[] args) {
+		new Grocery_Edit();
 	}
 }
