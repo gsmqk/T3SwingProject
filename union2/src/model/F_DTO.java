@@ -113,6 +113,22 @@ public class F_DTO {
 		
 	}
 
+	public F_DTO(String fname, String large2, String medium2, String small2, String place2, String store2, String quan,
+			String unit2, String price2, String indate, String exdate, String memo1) {
+		this.grocery_name = fname;
+		this.large_classific = large2;
+		this.medium_classific = medium2;
+		this.small_classific = small2;
+		this.storage_place = place2;
+		this.store_name = store2;
+		this.quantity = quan;
+		this.unit = unit2;
+		this.price = price2;
+		this.input_date = indate;
+		this.expire_date = exdate;
+		this.memo = memo1;
+	}
+
 	// Getter / Setter
 	public String getGrocery_id() {
 		return grocery_id;

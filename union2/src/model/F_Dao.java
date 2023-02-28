@@ -322,14 +322,15 @@ Vector<String> list = new Vector<String>();
 				+ "    MEDIUM_ID = "
 				+ "     (SELECT MEDIUM_ID FROM MEDIUM_CLASSIFIC WHERE MEDIUM_CLASSIFIC = ?), "
 				+ "    SMALL_ID = "
-				+ "     (SELECT SMALL_ID FROM SMALL_CLASSIFIC WHERE SMALL_CLASSIFIC = ?), "
+				+ "     (SELECT SMALL_ID FROM SMALL_CLASSIFIC S JOIN MEDIUM_CLASSIFIC M ON M.MEDIUM_ID = S.MEDIUM_ID WHERE SMALL_CLASSIFIC = ? AND MEDIUM_CLASSIFIC = ?), "
 				+ "    STORAGE_ID = "
 				+ "     (SELECT STORAGE_ID FROM STORAGES WHERE STORAGE_PLACE = ?), "
 				+ "    QUANTITY = ?, "
 				+ "    UNIT = ?, "
 				+ "    PRICE = ?, "
 				+ "    INPUT_DATE = ?, "
-				+ "    EXPIRE_DATE = ? "
+				+ "    EXPIRE_DATE = ?, "
+				+ "    MEMO = ? "
 				+ "WHERE GROCERY_ID = (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ?)";
 
 		PreparedStatement pstmt = null;
@@ -338,14 +339,16 @@ Vector<String> list = new Vector<String>();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fto.getLarge_classific());
 			pstmt.setString(2, fto.getMedium_classific());
-			pstmt.setString(3, fto.getSmall_classific());
-			pstmt.setString(4, fto.getStorage_place());
-			pstmt.setString(5, fto.getQuantity());
-			pstmt.setString(6, fto.getUnit());
-			pstmt.setString(7, fto.getPrice());
-			pstmt.setString(8, fto.getInput_date());
-			pstmt.setString(9, fto.getExpire_date());
-			pstmt.setString(10, fto.getGrocery_name());
+			pstmt.setString(3, fto.getMedium_classific());
+			pstmt.setString(4, fto.getSmall_classific());
+			pstmt.setString(5, fto.getStorage_place());
+			pstmt.setString(6, fto.getQuantity());
+			pstmt.setString(7, fto.getUnit());
+			pstmt.setString(8, fto.getPrice());
+			pstmt.setString(9, fto.getInput_date());
+			pstmt.setString(10, fto.getExpire_date());
+			pstmt.setString(11, fto.getMemo());
+			pstmt.setString(12, fto.getGrocery_name());
 			
 			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
