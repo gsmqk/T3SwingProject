@@ -220,6 +220,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		btnInput.addActionListener(this);
+		btnCancel.addActionListener(this);
 		
 	}
 		
