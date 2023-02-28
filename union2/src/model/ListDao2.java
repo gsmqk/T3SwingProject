@@ -247,4 +247,118 @@ private Connection  conn = null;
 		
 	}
 	
+
+public Vector<Vector> getGoList(String id){
+	
+	System.out.println(id);
+	Vector<Vector> list = new Vector<>(); // 조회된 결과전체 대응 : rs
+	
+	String  sql = "";
+	sql += "SELECT G.GROCERY_NAME, SC.SMALL_CLASSIFIC, ";
+	sql += "	   GO.OUTPUT_QUANTITY, GO.UNIT, GO.OUTPUT_DATE  ";
+	sql += " FROM   GROCERIES G JOIN GROCERY_OUTPUT GO  ON G.GROCERY_ID = GO.GROCERY_ID ";
+	sql += "        JOIN SMALL_CLASSIFIC SC ON G.SMALL_ID = SC.SMALL_ID ";
+	sql += " WHERE  G.USER_ID = ?";
+	sql += " ORDER BY OUTPUT_DATE ASC ";
+	
+	PreparedStatement pstmt = null;
+	ResultSet         rs    = null;
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		
+		rs    = pstmt.executeQuery();
+		while(rs.next()) {
+			
+			
+			String grocery_name     = rs.getString(1);  // 1: 칼럼번호(1~)
+			String small_classific  = rs.getString(2);  // 2
+			String output_quantity  = rs.getString(3);  // 3
+			String unit             = rs.getString(4);  // 4
+			Date output_date        = rs.getDate(5);  // 5
+
+			
+			Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미
+			
+				v.add(grocery_name);
+				v.add(small_classific);
+				v.add(output_quantity);
+				v.add(unit);
+				v.add(output_date);
+
+				list.add(v); // 전체 목록에 추가
+			
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if(rs    != null) rs.close();
+			if(pstmt != null) pstmt.close();
+		} catch (SQLException e) {
+		}			
+	}
+	
+	System.out.println(list);
+	return list;
+	
+}
+public Vector<Vector> getGeList(String id){
+	
+	System.out.println(id);
+	Vector<Vector> list = new Vector<>(); // 조회된 결과전체 대응 : rs
+	
+	String  sql = "";
+	sql += "SELECT G.GROCERY_NAME, SC.SMALL_CLASSIFIC, ";
+	sql += "	   GE.DISCARD_QUANTITY, GE.UNIT,  GE.DISCARD_REASON, GE.DISCARD_DATE  ";
+	sql += " FROM   GROCERIES G JOIN GROCERY_EXPIRE GE  ON G.GROCERY_ID = GE.GROCERY_ID ";
+	sql += "        JOIN SMALL_CLASSIFIC SC ON G.SMALL_ID = SC.SMALL_ID ";
+	sql += " WHERE  G.USER_ID = ?";
+	sql += " ORDER BY DISCARD_DATE ASC ";
+	
+	PreparedStatement pstmt = null;
+	ResultSet         rs    = null;
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		
+		rs    = pstmt.executeQuery();
+		while(rs.next()) {
+			
+			
+			String grocery_name     = rs.getString(1);  // 1: 칼럼번호(1~)
+			String small_classific  = rs.getString(2);  // 2
+			String discard_quantity = rs.getString(3);  // 3
+			String unit             = rs.getString(4);  // 4
+			String discard_reason   = rs.getString(5);  // 5
+			Date discard_date        = rs.getDate(6);  // 6
+			
+			
+			Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미
+			
+			v.add(grocery_name);
+			v.add(small_classific);
+			v.add(discard_quantity);
+			v.add(unit);
+			v.add(discard_reason);
+			v.add(discard_date);
+			
+			list.add(v); // 전체 목록에 추가
+			
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if(rs    != null) rs.close();
+			if(pstmt != null) pstmt.close();
+		} catch (SQLException e) {
+		}			
+	}
+	
+	System.out.println(list);
+	return list;
+	
+}
+
 }
