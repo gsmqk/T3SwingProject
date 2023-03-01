@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import org.jfree.ui.RefineryUtilities;
+
 import model.F_Dao;
 import model.Renderer;
 import model.U_Dao;
@@ -39,7 +41,8 @@ public class MainTable01 implements MouseListener {
 			
 	JButton           btnInput, btnIngredient, btnRecipe, btnStorage, btnAhb, btnSet, btnEdit, btnLogout, btnRefresh;
 	
-	FindName  mProc = null; 
+	RealChart mchart = null;
+	FindName  mProc = null;
 	Category  mCate = null;
 	Login     mLog  = null;
 	MainTable01 mT01 = null;
@@ -123,7 +126,7 @@ public class MainTable01 implements MouseListener {
 		btnStorage.setBounds(30, 530, 150, 50);
 		p.add(btnStorage);
 		
-		btnAhb = new JButton("가계부");
+		btnAhb = new JButton("연간 그래프");
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(135, 206, 250));
 		btnAhb.setForeground(Color.WHITE);
@@ -193,9 +196,10 @@ public class MainTable01 implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
+				RealChart chart = new RealChart();		
+				chart.pack();
+				RefineryUtilities.centerFrameOnScreen(chart);
+				chart.setVisible(true);
 				
 			}
 		}); 

@@ -22,6 +22,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.ui.RefineryUtilities;
+
 import model.F_DTO;
 import model.F_Dao;
 import model.ListDao2;
@@ -116,7 +118,7 @@ public class StorageList implements MouseListener {
 		btnmain.setBounds(30, 550, 120, 50);
 		p.add(btnmain);
 		
-		btnAhb = new JButton("가계부");
+		btnAhb = new JButton("연간 그래프");
 		btnAhb.setForeground(Color.WHITE);
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(135, 206, 250));
@@ -170,7 +172,10 @@ public class StorageList implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				RealChart chart = new RealChart();		
+				chart.pack();
+				RefineryUtilities.centerFrameOnScreen(chart);
+				chart.setVisible(true);
 				
 			}
 		}); 
