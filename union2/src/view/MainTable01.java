@@ -336,10 +336,12 @@ public class MainTable01 implements MouseListener {
 			String id = (String) table.getValueAt(row, 0);
 			System.out.println(e);
 			
-			System.out.println(id);
+			System.out.println(id + this.id);
 			
 			F_Dao fao = new F_Dao();
-			fao.goInfo(id);
+			fao.goInfo(id, this.id);
+			
+			jTableRefresh();
 			
 		}
 

@@ -29,7 +29,7 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 	JComboBox large_classific, middle_classific, small_classific, storage_place, unit,
 	          store;
 	UtilDateModel model, model1;
-	String id;
+	String id, preGroName;
 	
 	public Grocery_Edit(F_DTO fto) {
 		F_DTO ffto = fto;
@@ -41,6 +41,9 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 //	}
 	
 	private void init(F_DTO fto) {
+		
+		id = fto.getUser_id();
+		
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
 		setTitle("식자재 수정");
 		getContentPane().setLayout(null);
@@ -54,22 +57,24 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		F_Dao fao = new F_Dao();
 		Vector<String> large = fao.getLarge();
 		
-		large_classific = new JComboBox (large);
-		large_classific.setToolTipText("대분류만 정해주세요");
+		String[] arrayLarge = large.toArray(new String[large.size()]);
+		
+		large_classific = new JComboBox (arrayLarge);
+		large_classific.setToolTipText("대분류");
 		large_classific.setSelectedItem(fto.getLarge_classific());
 		large_classific.setBounds(12, 44, 155, 40);
 		getContentPane().add(large_classific);
 		
+		String selectedItem = (String) large_classific.getSelectedItem();
+		Vector<String> mList1 = new Vector<String>();
+		mList1 = fao.getMiddle(selectedItem);
+		String[] arrayMedium = mList1.toArray(new String[mList1.size()]);
 		
-		middle_classific = new JComboBox(new String [] {"중분류"});
+		middle_classific = new JComboBox(arrayMedium);
 		middle_classific.setToolTipText("중분류");
+		middle_classific.setSelectedItem(fto.getMedium_classific());
 		middle_classific.setBounds(177, 44, 155, 40);
 		getContentPane().add(middle_classific);
-
-		small_classific = new JComboBox(new String [] {"소분류"});
-		small_classific.setToolTipText("소분류");
-		small_classific.setBounds(12, 94, 155, 40);
-		getContentPane().add(small_classific);
 
 		large_classific.addItemListener(new ItemListener() {
 			
@@ -81,12 +86,25 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 				if (selectedItem != null) {
 					mList1 = fao.getMiddle(selectedItem);
 					System.out.println(mList1);
-					middle_classific.setModel(new DefaultComboBoxModel<>(mList1));
+					String[] arrayMedium = mList1.toArray(new String[mList1.size()]);
+					middle_classific.setModel(new DefaultComboBoxModel<>(arrayMedium));
 					middle_classific.setSelectedItem(fto.getMedium_classific());
 				}
 			}
 				
 		});
+		
+		String selectedItem2 = (String) middle_classific.getSelectedItem();
+		Vector<String> sList1 = new Vector<String>();
+		sList1 = fao.getSmall(selectedItem);
+		String[] arraySmall = sList1.toArray(new String[sList1.size()]);
+		
+		small_classific = new JComboBox(arraySmall);
+		small_classific.setToolTipText("소분류");
+		small_classific.setSelectedItem(fto.getSmall_classific());
+		small_classific.setBounds(12, 94, 155, 40);
+		getContentPane().add(small_classific);
+
 		
 		middle_classific.addItemListener(new ItemListener() {
 			
@@ -98,7 +116,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 				if (selectedItem != null) {
 					sList1 = fao.getSmall(selectedItem);
 					System.out.println(sList1);
-					small_classific.setModel(new DefaultComboBoxModel<>(sList1));
+					String[] arraySmall = sList1.toArray(new String[sList1.size()]);
+					small_classific.setModel(new DefaultComboBoxModel<>(arraySmall));
 					small_classific.setSelectedItem(fto.getSmall_classific());
 				}
 				
@@ -128,6 +147,7 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		groName        = new JTextField(20);
 		groName.setBounds(82, 183, 250, 40);
 		groName.setText(fto.getGrocery_name());
+		preGroName = fto.getGrocery_name();
 		System.out.println(fto.getGrocery_name());
 		getContentPane().add(groName);
 		groName.setColumns(10);
@@ -177,9 +197,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		storename = fao.getStore();
 		
 		store = new JComboBox(storename);
-		store.setSelectedItem(fto.getStorage_place());
-		// info에서 구매처 표시하게 만들어야함 
-		///////////////////////////////////////////////////
+		store.setSelectedItem(fto.getStore_name());
+		System.out.println(fto.getStore_name());
 		store.setBounds(82, 334, 250, 40);
 		getContentPane().add(store);
 
@@ -193,7 +212,7 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
 		int dateY1 = Integer.parseInt(fto.getInput_date().substring(0, 4));
-		int dateM1 = Integer.parseInt(fto.getInput_date().substring(5, 7));
+		int dateM1 = Integer.parseInt(fto.getInput_date().substring(5, 7)) - 1;
 		int dateD1 = Integer.parseInt(fto.getInput_date().substring(8));
 		model.setDate(dateY1, dateM1, dateD1);
 		model.setSelected(true);
@@ -211,7 +230,7 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		JDatePanelImpl datePanel1 = new JDatePanelImpl(model1);
 		JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
 		int dateY2 = Integer.parseInt(fto.getExpire_date().substring(0, 4));
-		int dateM2 = Integer.parseInt(fto.getExpire_date().substring(5, 7));
+		int dateM2 = Integer.parseInt(fto.getExpire_date().substring(5, 7)) - 1;
 		int dateD2 = Integer.parseInt(fto.getExpire_date().substring(8));
 		model1.setDate(dateY2, dateM2, dateD2);
 		model1.setSelected(true);
@@ -240,7 +259,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		memo.setBounds(82, 490, 250, 106);
 		getContentPane().add(memo);
 
-		
+		btnCancel.addActionListener(this);
+		btnInput.addActionListener(this);
 
 		setSize(370, 710);
 		setLocation(200, 200);
@@ -252,12 +272,46 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 @Override
 public void actionPerformed(ActionEvent e) {
 	switch(e.getActionCommand()) {
-		
+	case "수정" :
+		System.out.println("수정버튼 클릭");
+		updateGrocery();
+		break;
+	case "닫기" :
+		this.dispose();
+		break;
 	}
 		
 }
 
-//	public static void main(String[] args) {
-//		new Grocery_Edit();
-//	}
+private void updateGrocery() {
+	F_Dao fao = new F_Dao();
+	F_DTO fto = getGroceryData();
+	String preGroName = this.preGroName;
+	int aftcnt = fao.updateGrocery(fto, preGroName);
+	
+	this.dispose();
+	
+	
+}
+
+private F_DTO getGroceryData() {
+	String fname = this.groName.getText();
+	String large = (String) this.large_classific.getSelectedItem();
+	String medium = (String) this.middle_classific.getSelectedItem();
+	String small = (String) this.small_classific.getSelectedItem();
+	String place = (String) this.storage_place.getSelectedItem();
+	String quan = this.inQuan.getText();
+	String unit = (String) this.unit.getSelectedItem();
+	String price = this.price.getText();
+	String indate = this.model.getYear() + "/" + (this.model.getMonth() + 1) + "/" + this.model.getDay();
+	String exdate = this.model1.getYear() + "/" + (this.model1.getMonth() + 1) + "/" + this.model1.getDay();
+	String memo = this.memo.getText();
+	String uid = this.id;
+	String store = (String) this.store.getSelectedItem();
+
+	
+	F_DTO fto = new F_DTO(fname, large, medium, small, place, quan, unit,
+            price, indate, exdate, memo, uid, store);
+	return fto;
+}
 }

@@ -36,23 +36,25 @@ public class F_Dao {
 	// 식자재 입력
 	public int insertGrosery(F_DTO fto) { 
 		
+		
+		String fname = fto.getGrocery_name();
 		String large = fto.getLarge_classific();
 		String middle = fto.getMedium_classific();
 		String small = fto.getSmall_classific();
 		String place = fto.getStorage_place();
-		String fname = fto.getGrocery_name();
 		String quan = fto.getQuantity();
-		String price = fto.getPrice();
 		String unit = fto.getUnit();
-		String store = fto.getStore_name(); 
+		String price = fto.getPrice();
 		String indate = fto.getInput_date(); 
 		String exdate = fto.getExpire_date(); 
 		String memo = fto.getMemo();
 		String uid = fto.getUser_id();
+		String store = fto.getStore_name(); 
 		
 		System.out.println(uid);
 		
-		int aftcnt = insertGrosery(large, middle, small, place, fname, quan, price, store, indate, exdate, unit, memo, uid);
+		int aftcnt = insertGrosery(fname, large, middle, small, place, quan, unit,
+		        price, indate, exdate, memo, uid, store);
 		return aftcnt;
 	}
 
@@ -114,7 +116,7 @@ public class F_Dao {
 		return aftcnt;
 	}
 
-	public void goInfo(String id2) {
+	public void goInfo(String value, String id) {
 		
 		F_DTO fto = null;
 		
@@ -136,7 +138,7 @@ public class F_Dao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id2);
+			pstmt.setString(1, value);
 			
 			rs = pstmt.executeQuery();
 			
@@ -154,10 +156,11 @@ public class F_Dao {
 				String expire_date = rs.getString(11);
 				String due_date = rs.getString("DUE_DATE");
 				String memo = rs.getString("MEMO");
+				String uid = id;
 				int f = 0;
 				
 				fto = new F_DTO(gname, large, medium, small, place, quantity,
-						unit, price, store_name, input_date, expire_date, due_date, memo, f);
+						unit, price, store_name, input_date, expire_date, due_date, memo, uid, f);
 				
 				System.out.println(fto);
 				
@@ -316,9 +319,12 @@ Vector<String> list = new Vector<String>();
 		return list;
 	}
 
-	public int updateGrocery(F_DTO fto) {
+	public int updateGrocery(F_DTO fto, String preGroName) {
+		
+		
 		String sql = "UPDATE GROCERIES "
 				+ "SET "
+				+ "    GROCERY_NAME = ?, "
 				+ "    LARGE_ID = "
 				+ "     (SELECT LARGE_ID FROM LARGE_CLASSIFIC WHERE LARGE_CLASSIFIC = ?), "
 				+ "    MEDIUM_ID = "
@@ -339,18 +345,19 @@ Vector<String> list = new Vector<String>();
 		int aftcnt = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, fto.getLarge_classific());
-			pstmt.setString(2, fto.getMedium_classific());
+			pstmt.setString(1, fto.getGrocery_name());
+			pstmt.setString(2, fto.getLarge_classific());
 			pstmt.setString(3, fto.getMedium_classific());
-			pstmt.setString(4, fto.getSmall_classific());
-			pstmt.setString(5, fto.getStorage_place());
-			pstmt.setString(6, fto.getQuantity());
-			pstmt.setString(7, fto.getUnit());
-			pstmt.setString(8, fto.getPrice());
-			pstmt.setString(9, fto.getInput_date());
-			pstmt.setString(10, fto.getExpire_date());
-			pstmt.setString(11, fto.getMemo());
-			pstmt.setString(12, fto.getGrocery_name());
+			pstmt.setString(4, fto.getMedium_classific());
+			pstmt.setString(5, fto.getSmall_classific());
+			pstmt.setString(6, fto.getStorage_place());
+			pstmt.setString(7, fto.getQuantity());
+			pstmt.setString(8, fto.getUnit());
+			pstmt.setString(9, fto.getPrice());
+			pstmt.setString(10, fto.getInput_date());
+			pstmt.setString(11, fto.getExpire_date());
+			pstmt.setString(12, fto.getMemo());
+			pstmt.setString(13, preGroName);
 			
 			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {

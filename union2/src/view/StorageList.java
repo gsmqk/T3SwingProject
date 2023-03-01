@@ -344,9 +344,10 @@ public class StorageList implements MouseListener {
 			System.out.println(e);
 			
 			System.out.println(id);
+			System.out.println(this.id);
 			
 			F_Dao fao = new F_Dao();
-			fao.goInfo(id);
+			fao.goInfo(id, this.id);
 			
 		}
 
