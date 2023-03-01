@@ -36,6 +36,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 //	}
 
 	public GroceryInfo(F_DTO fto) {
+		
 		F_DTO gFto = fto;
 		
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
@@ -46,6 +47,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		groName = new JTextPane();
 		groName.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		groName.setText(gFto.getGrocery_name());
+		groName.setEditable(false);
 		groName.setBounds(25, 30, 307, 40);
 		getContentPane().add(groName);
 		
@@ -53,42 +55,49 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		majorCla = new JTextPane();
 		majorCla.setText(gFto.getLarge_classific());
 		majorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		majorCla.setEditable(false);
 		majorCla.setBounds(25, 100, 142, 40);
 		getContentPane().add(majorCla);
 		
 		moderCla = new JTextPane();
 		moderCla.setText(gFto.getMedium_classific());
 		moderCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		moderCla.setEditable(false);
 		moderCla.setBounds(190, 100, 142, 40);
 		getContentPane().add(moderCla);
 		
 		minorCla = new JTextPane();
 		minorCla.setText(gFto.getSmall_classific());
 		minorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		minorCla.setEditable(false);
 		minorCla.setBounds(25, 155, 142, 40);
 		getContentPane().add(minorCla);
 		
 		storPlace = new JTextPane();
 		storPlace.setText(gFto.getStorage_place());
 		storPlace.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		storPlace.setEditable(false);
 		storPlace.setBounds(190, 155, 142, 40);
 		getContentPane().add(storPlace);
 		
 		groQuan = new JTextPane();
 		groQuan.setText(gFto.getQuantity());
 		groQuan.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		groQuan.setEditable(false);
 		groQuan.setBounds(23, 265, 227, 40);
 		getContentPane().add(groQuan);
 		
 		jtpUnit1 = new JTextPane();
 		jtpUnit1.setText(gFto.getUnit());
 		jtpUnit1.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpUnit1.setEditable(false);
 		jtpUnit1.setBounds(262, 265, 70, 40);
 		getContentPane().add(jtpUnit1);
 		
 		jtpPrice = new JTextPane();
 		jtpPrice.setText(gFto.getPrice());
 		jtpPrice.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpPrice.setEditable(false);
 		jtpPrice.setBounds(22, 320, 270, 40);
 		getContentPane().add(jtpPrice);
 		
@@ -104,6 +113,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			JTextPane jtpUnit3 = new JTextPane();
 			jtpUnit3.setText("개");
 			jtpUnit3.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit3.setEditable(false);
 			jtpUnit3.setBounds(23, 375, 63, 40);
 			getContentPane().add(jtpUnit3);
 			break;
@@ -112,6 +122,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			JTextPane jtpUnit4 = new JTextPane();
 			jtpUnit4.setText("100g");
 			jtpUnit4.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit4.setEditable(false);
 			jtpUnit4.setBounds(23, 375, 63, 40);
 			getContentPane().add(jtpUnit4);
 			break;
@@ -120,6 +131,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			JTextPane jtpUnit5 = new JTextPane();
 			jtpUnit5.setText("100ml");
 			jtpUnit5.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit5.setEditable(false);
 			jtpUnit5.setBounds(23, 375, 63, 40);
 			getContentPane().add(jtpUnit5);
 			break;
@@ -138,12 +150,16 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		switch (gFto.getUnit()) {
 		case "EA" : 
 
+			System.out.println(price1);
+			System.out.println(quan1);
+			
 			int perPrice1 = (price1 / quan1);
 			String pph1 = String.valueOf(perPrice1);
 
 			JTextPane jtpUcost1 = new JTextPane();
 			jtpUcost1.setText(pph1);
 			jtpUcost1.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost1.setEditable(false);
 			jtpUcost1.setBounds(150, 375, 142, 40);
 			getContentPane().add(jtpUcost1);
 			break;
@@ -151,12 +167,16 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		case "ML" :
 		case "G" : 
 			
+			System.out.println(price1);
+			System.out.println(quan1);
+			
 			int perPrice2 = (price1 / quan1) * 100;
 			String pph2 = String.valueOf(perPrice2);
 
 			JTextPane jtpUcost2 = new JTextPane();
 			jtpUcost2.setText(pph2);
 			jtpUcost2.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost2.setEditable(false);
 			jtpUcost2.setBounds(150, 375, 142, 40);
 			getContentPane().add(jtpUcost2);
 			break;
@@ -164,12 +184,16 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		case "KG" :
 		case "L" :
 			
+			System.out.println(price1);
+			System.out.println(quan1);
+			
 			int perPrice3 = (price1 / (quan1 * 100)) * 100;
 			String pph3 = String.valueOf(perPrice3);
 
 			JTextPane jtpUcost3 = new JTextPane();
 			jtpUcost3.setText(pph3);
 			jtpUcost3.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost3.setEditable(false);
 			jtpUcost3.setBounds(150, 375, 142, 40);
 			getContentPane().add(jtpUcost3);
 			
@@ -190,12 +214,14 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jtpIndate = new JTextPane();
 		jtpIndate.setText(gFto.getInput_date());
 		jtpIndate.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpIndate.setEditable(false);
 		jtpIndate.setBounds(130, 430, 202, 40);
 		getContentPane().add(jtpIndate);
 		
 		jtpExdate = new JTextPane();
 		jtpExdate.setText(gFto.getExpire_date());
 		jtpExdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpExdate.setEditable(false);
 		jtpExdate.setBounds(130, 485, 202, 40);
 		getContentPane().add(jtpExdate);
 		
@@ -222,6 +248,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		
 		memoTa = new JTextArea();
 		memoTa.setText(gFto.getMemo());
+		memoTa.setEditable(false);
 		memoTa.setBounds(12, 571, 320, 89);
 		getContentPane().add(memoTa);
 		
@@ -235,6 +262,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jtpstore = new JTextPane();
 		jtpstore.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		jtpstore.setText(gFto.getStore_name());
+		jtpstore.setEditable(false);
 		jtpstore.setBounds(25, 210, 142, 40);
 		getContentPane().add(jtpstore);
 		
@@ -491,6 +519,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 				gEdit.dispose();
 			
 			gEdit = new Grocery_Edit(fto);
+			
 			this.dispose();
 			
 			

@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import model.F_DTO;
@@ -30,6 +31,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 	          store;
 	UtilDateModel model, model1;
 	String id, preGroName;
+	MainTable01 mt01 = null;
+	StorageList slist = null;
 	
 	public Grocery_Edit(F_DTO fto) {
 		F_DTO ffto = fto;
@@ -65,7 +68,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		large_classific.setBounds(12, 44, 155, 40);
 		getContentPane().add(large_classific);
 		
-		String selectedItem = (String) large_classific.getSelectedItem();
+//		String selectedItem = (String) large_classific.getSelectedItem();
+		String selectedItem = fto.getLarge_classific();
 		Vector<String> mList1 = new Vector<String>();
 		mList1 = fao.getMiddle(selectedItem);
 		String[] arrayMedium = mList1.toArray(new String[mList1.size()]);
@@ -75,6 +79,18 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		middle_classific.setSelectedItem(fto.getMedium_classific());
 		middle_classific.setBounds(177, 44, 155, 40);
 		getContentPane().add(middle_classific);
+
+		String selectedItem2 = fto.getMedium_classific();
+		Vector<String> sList1 = new Vector<String>();
+		System.out.println(fto.getMedium_classific());
+		sList1 = fao.getSmall(fto.getMedium_classific());
+		String[] arraySmall = sList1.toArray(new String[sList1.size()]);
+		
+		small_classific = new JComboBox(arraySmall);
+		small_classific.setToolTipText("소분류");
+		small_classific.setSelectedItem(fto.getSmall_classific());
+		small_classific.setBounds(12, 94, 155, 40);
+		getContentPane().add(small_classific);
 
 		large_classific.addItemListener(new ItemListener() {
 			
@@ -94,18 +110,6 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 				
 		});
 		
-		String selectedItem2 = (String) middle_classific.getSelectedItem();
-		Vector<String> sList1 = new Vector<String>();
-		sList1 = fao.getSmall(selectedItem);
-		String[] arraySmall = sList1.toArray(new String[sList1.size()]);
-		
-		small_classific = new JComboBox(arraySmall);
-		small_classific.setToolTipText("소분류");
-		small_classific.setSelectedItem(fto.getSmall_classific());
-		small_classific.setBounds(12, 94, 155, 40);
-		getContentPane().add(small_classific);
-
-		
 		middle_classific.addItemListener(new ItemListener() {
 			
 			@Override
@@ -116,8 +120,7 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 				if (selectedItem != null) {
 					sList1 = fao.getSmall(selectedItem);
 					System.out.println(sList1);
-					String[] arraySmall = sList1.toArray(new String[sList1.size()]);
-					small_classific.setModel(new DefaultComboBoxModel<>(arraySmall));
+					small_classific.setModel(new DefaultComboBoxModel<>(sList1));
 					small_classific.setSelectedItem(fto.getSmall_classific());
 				}
 				
@@ -275,6 +278,7 @@ public void actionPerformed(ActionEvent e) {
 	case "수정" :
 		System.out.println("수정버튼 클릭");
 		updateGrocery();
+		
 		break;
 	case "닫기" :
 		this.dispose();

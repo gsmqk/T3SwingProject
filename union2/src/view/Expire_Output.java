@@ -21,10 +21,6 @@ public class Expire_Output {
 	JTable table;
 	String id;
 	
-
-
-	
-	
 	public Expire_Output(String id) {
 		this.id = id;
 		

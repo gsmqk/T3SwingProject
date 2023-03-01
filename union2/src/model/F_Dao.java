@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import view.GroceryInfo;
 import view.Login;
 import view.MainTable01;
@@ -163,7 +165,7 @@ public class F_Dao {
 						unit, price, store_name, input_date, expire_date, due_date, memo, uid, f);
 				
 				System.out.println(fto);
-				
+
 				gif = new GroceryInfo(fto);
 				
 			}
@@ -248,6 +250,7 @@ public class F_Dao {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(mList);
 		return mList;
 	}
 
@@ -281,6 +284,7 @@ public class F_Dao {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(sList);
 		return sList;
 	}
 
@@ -348,8 +352,8 @@ Vector<String> list = new Vector<String>();
 			pstmt.setString(1, fto.getGrocery_name());
 			pstmt.setString(2, fto.getLarge_classific());
 			pstmt.setString(3, fto.getMedium_classific());
-			pstmt.setString(4, fto.getMedium_classific());
-			pstmt.setString(5, fto.getSmall_classific());
+			pstmt.setString(4, fto.getSmall_classific());
+			pstmt.setString(5, fto.getMedium_classific());
 			pstmt.setString(6, fto.getStorage_place());
 			pstmt.setString(7, fto.getQuantity());
 			pstmt.setString(8, fto.getUnit());
@@ -360,6 +364,14 @@ Vector<String> list = new Vector<String>();
 			pstmt.setString(13, preGroName);
 			
 			aftcnt = pstmt.executeUpdate();
+			
+			if (aftcnt == 0) {
+				System.out.println("수정안됨");
+				JOptionPane.showMessageDialog(null, "수정되지않았습니다. 값을 확인해주세요.", "수정 실패",JOptionPane.OK_OPTION);
+			} else {
+				System.out.println("수정됨");
+				JOptionPane.showMessageDialog(null, "수정되었습니다 !");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
