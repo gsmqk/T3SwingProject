@@ -140,15 +140,17 @@ public class G_Dao {
 
 	public int insertMedium(String large1, String medium1) {
 		
+		System.out.println("라지" + large1);
+		System.out.println("미디움" + medium1);
+		
 		PreparedStatement pstmt = null;
 		int               aftcnt = 0;
 		try {
 		
 			String sql = " INSERT INTO medium_classific ( large_id, medium_classific, medium_id )\r\n"
-					+ " VALUES ((SELECT DISTINCT L.LARGE_ID \r\n"
-					+ "         FROM LARGE_CLASSIFIC L JOIN MEDIUM_CLASSIFIC M \r\n"
-					+ "         ON L.LARGE_ID = M.LARGE_ID \r\n"
-					+ "       WHERE L.LARGE_CLASSIFIC = ? ), ?, (SELECT NVL(MAX(medium_id)+1,0) FROM medium_classific ) )";
+					+ " VALUES ((SELECT LARGE_ID " 
+					+ " FROM LARGE_CLASSIFIC "
+					+ " WHERE LARGE_CLASSIFIC = ? ), ?, (SELECT NVL(MAX(medium_id)+1,0) FROM medium_classific ) )";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, large1);
 			pstmt.setString(2, medium1);
@@ -177,11 +179,10 @@ public class G_Dao {
 		PreparedStatement pstmt = null;
 		int               aftcnt = 0;
 		try {
-		String	sql = "INSERT INTO SMALL_CLASSIFIC ( MEDIUM_ID, SMALL_CLASSIFIC, SMALL_ID )\r\n"
-				+ " VALUES ((SELECT DISTINCT M.MEDIUM_ID \r\n"
-				+ "         FROM MEDIUM_CLASSIFIC M JOIN SMALL_CLASSIFIC S\r\n"
-				+ "         ON S.MEDIUM_ID = M.MEDIUM_ID \r\n"
-				+ "       WHERE M.MEDIUM_CLASSIFIC = ? ), ? , (SELECT NVL(MAX(SMALL_ID)+1,0) FROM SMALL_CLASSIFIC ) ) ";
+		String	sql = "INSERT INTO SMALL_CLASSIFIC ( MEDIUM_ID, SMALL_CLASSIFIC, SMALL_ID ) "
+				+ " VALUES ((SELECT MEDIUM_ID "
+				+ " FROM MEDIUM_CLASSIFIC "
+				+ " WHERE MEDIUM_CLASSIFIC = ? ), ? , (SELECT NVL(MAX(SMALL_ID)+1,0) FROM SMALL_CLASSIFIC ) ) ";
 		
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, mediumbox);

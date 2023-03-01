@@ -75,6 +75,9 @@ public class Medium_Add extends JFrame {
                String large1 = (String) largeBox.getSelectedItem();
                String medium1 = MediumText.getText();
                
+               System.out.println("라지" + large1);
+               System.out.println("미디움" + medium1);
+               
                int aftcnt = dao.insertMedium(large1, medium1);
                MediumText.setText("");
 			}
