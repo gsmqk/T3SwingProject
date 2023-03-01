@@ -42,7 +42,7 @@ public class ExpireChart_Dao {
 				+ " AND       DISCARD_DATE LIKE '22/%' "
 				+ " AND       G.USER_ID = ? "
 				+ " GROUP BY  TO_CHAR(GE.DISCARD_DATE, 'MM') "
-				+ " ORDER BY  TO_CHAR(GE.DISCARD_DATE, 'MM') ASC; ";
+				+ " ORDER BY  TO_CHAR(GE.DISCARD_DATE, 'MM') ASC ";
 		
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null; 
