@@ -24,6 +24,7 @@ import com.teamdev.jxbrowser.browser.Browser;
 import com.teamdev.jxbrowser.engine.Engine;
 import com.teamdev.jxbrowser.engine.EngineOptions;
 import com.teamdev.jxbrowser.view.swing.BrowserView;
+import java.awt.Color;
 
 public class FindRecipe extends JFrame implements ActionListener {
 
@@ -39,6 +40,7 @@ private RecipeConn jwtest;
 
    
    public FindRecipe(){
+   	getContentPane().setBackground(new Color(255, 255, 255));
 
       initComponent();
       
@@ -60,7 +62,7 @@ private RecipeConn jwtest;
    
    private void initComponent() {
       gb = new GridBagLayout();
-      this.setLayout(gb);
+      getContentPane().setLayout(gb);
       
       // 카테고리 
       
@@ -69,9 +71,10 @@ private RecipeConn jwtest;
       gbc.weightx = 1.0; // 기본넓이.. x,y 1:1로정함.
       gbc.weighty = 1.0;
       
-      lbl = new JLabel("다음의 식자재를 포함한 레시피 검색");
+      lbl = new JLabel("\uB2E4\uC74C\uC758 \uC2DD\uC790\uC7AC\uB97C \uD3EC\uD568\uD55C \uB808\uC2DC\uD53C \uAC80\uC0C9");
+      lbl.setBackground(new Color(255, 255, 255));
       lbl.setHorizontalAlignment(JLabel.LEFT);
-      lbl.setFont(new Font("D2Coding", Font.PLAIN, 20));
+      lbl.setFont(new Font("한컴산뜻돋움", Font.BOLD, 18));
       gbAdd(lbl, 0, 0, 4, 1);
       
       
@@ -81,13 +84,15 @@ private RecipeConn jwtest;
       // 레시피 검색
       food = new JTextField(20);
       btnAdd = new JButton("추가");
+      btnAdd.setBackground(new Color(238, 251, 255));
+      btnAdd.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
       gbAdd(food,0,1,3,1);
       gbAdd(btnAdd,3,1,1,1);
       
       // 검색 대상 식자재 목록
       lbl = new JLabel("검색 대상 식자재 목록");
       lbl.setHorizontalAlignment(JLabel.LEFT);
-      lbl.setFont(new Font("D2Coding", Font.PLAIN, 20));
+      lbl.setFont(new Font("한컴산뜻돋움", Font.BOLD, 18));
       gbAdd(lbl, 0, 2, 4, 1);
             
       foodList = new JTextField(20);
@@ -95,9 +100,13 @@ private RecipeConn jwtest;
   
       // 아래 버튼
       JPanel p = new JPanel();
-      btnFind    = new JButton("검색");
-      btnCancel  = new JButton("취소");
-      
+      p.setBackground(Color.white);
+      btnFind    = new JButton(" 검색 ");
+      btnCancel  = new JButton(" 취소 ");
+      btnFind.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+      btnFind.setBackground(new Color(238, 251, 255));
+      btnCancel.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+      btnCancel.setBackground(new Color(238, 251, 255));
       
       // 버튼들을 panel에 추가
       p.add(btnFind);
@@ -161,7 +170,7 @@ private RecipeConn jwtest;
       
       gb.setConstraints(c, gbc);
       gbc.insets     = new Insets(5, 7, 5, 7);
-      this.add(c , gbc );
+      getContentPane().add(c , gbc );
       
    }
    public static void main(String[] args) {
@@ -177,7 +186,7 @@ public void actionPerformed(ActionEvent e) {
 		foodList.setText(b1.toString());
 		food.setText("");
 		break;
-	case "취소" :
+	case " 취소 " :
 		this.dispose();
 		break;
 	case "검색" :

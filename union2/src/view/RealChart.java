@@ -30,12 +30,12 @@ import model.DBConn;
 				PlotOrientation.VERTICAL, true, true, false);
 		
 		// 차트 배경색 지정
-		barChart.setBackgroundPaint(Color.PINK);
+		barChart.setBackgroundPaint(Color.WHITE);
 
 		 
 		//한글 인코딩
 		// 그래프 제목, 범례에 한글 적용
-		Font f = new Font("맑은 고딕", Font.BOLD, 18);
+		Font f = new Font("한컴산뜻돋움", Font.BOLD, 18);
 				
 		barChart.getTitle().setFont(f);
 		barChart.getLegend().setItemFont(f);
@@ -47,7 +47,8 @@ import model.DBConn;
 		plot1.getRangeAxis().setLabelFont(f);      // y축 서브제목
 		plot1.getRangeAxis().setTickLabelFont(f);  // y축
 		
-		plot1.setBackgroundPaint(Color.WHITE);
+		//plot1.setBackgroundPaint(new Color(240, 240, 240));
+		plot1.setBackgroundPaint(new Color(238, 251, 255));
 		//plot1.setBackgroundPaint(Color.CYAN);
 		
 		
@@ -55,16 +56,20 @@ import model.DBConn;
 				
 		
 		ChartPanel chartPanel = new ChartPanel(barChart);
+		chartPanel.setBackground(new Color(250, 250, 250));
 		chartPanel.setPreferredSize(new java.awt.Dimension(800, 500)); // 크기 설정
 		setContentPane(chartPanel);
 	}
 	
 
-	public CategoryDataset createDataset() {
+//	public CategoryDataset createDataset(String id) {
+		
+		public CategoryDataset createDataset() {
+			
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		
 		try {
-			
+
 			conn = DBConn.getInstance();
 			/*
 			String driver = "oracle.jdbc.OracleDriver";
@@ -86,7 +91,7 @@ import model.DBConn;
 					+ " AND       G.GROCERY_ID = GE.GROCERY_ID "
 					+ " AND       INPUT_DATE LIKE '22/%' "
 					+ " AND       G.USER_ID = 'sky' "
-		//			+ " AND       G.USER_ID = ? "
+//					+ " AND       G.USER_ID = ? "
 					+ " GROUP BY  TO_CHAR(G.INPUT_DATE, 'MM') "
 					+ " ORDER BY  TO_CHAR(G.INPUT_DATE, 'MM') ASC ";
 			
@@ -100,11 +105,15 @@ import model.DBConn;
 					+ " AND       EXPENSE_CATEGORY = '폐기' "
 					+ " AND       G.USER_ID = 'sky'"
 					+ " AND       GE.DISCARD_DATE LIKE '22/%' "
+//					+ " AND       G.USER_ID = ? "
 					+ " GROUP BY  TO_CHAR(GE.DISCARD_DATE, 'MM') "
 					+ " ORDER BY  TO_CHAR(GE.DISCARD_DATE, 'MM') ASC ";
 			
 			PreparedStatement pstmt  = conn.prepareStatement(sql1);
 			PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+			
+//			pstmt.setString(1, id);
+//			pstmt2.setString(1, id);
 			
 			ResultSet         rs     = pstmt.executeQuery();
 			ResultSet         rs2    = pstmt2.executeQuery(); 
