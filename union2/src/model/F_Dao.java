@@ -530,12 +530,13 @@ Vector<String> list = new Vector<String>();
 		String sql = "INSERT INTO GROCERY_OUTPUT ( "
 				+ "    OUTPUT_ID, "
 				+ "    GROCERY_ID, "
+				+ "    GROCERY_NAME, "
 				+ "    OUTPUT_QUANTITY, "
 				+ "    UNIT, "
-				+ "    DISCARD_DATE, "
+				+ "    OUTPUT_DATE, "
 				+ "    USER_ID "
 				+ ") VALUES ( "
-				+ "    ((SELECT NVL(MAX(EXPIRED_ID)+1,0) FROM GROCERY_EXPIRE )), "
+				+ "    ((SELECT NVL(MAX(OUTPUT_ID)+1,0) FROM GROCERY_OUTPUT )), "
 				+ "    (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ? ), "
 				+ "    ?, "
 				+ "    ?, "
@@ -548,9 +549,9 @@ Vector<String> list = new Vector<String>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fto.getGrocery_name());
-			pstmt.setString(2, fto.getQuantity());
-			pstmt.setString(3, fto.getUnit());
-			pstmt.setString(4, fto.getMemo());
+			pstmt.setString(2, fto.getGrocery_name());
+			pstmt.setString(3, fto.getQuantity());
+			pstmt.setString(4, fto.getUnit());
 			pstmt.setString(5, fto.getUser_id());
 			
 			aftcnt = pstmt.executeUpdate();
@@ -565,8 +566,6 @@ Vector<String> list = new Vector<String>();
 		}
 		return aftcnt;
 	}
-
-
 
 
 }

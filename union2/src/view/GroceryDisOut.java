@@ -276,7 +276,19 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 			System.out.println("출고버튼 클릭");
 			F_Dao ofao = new F_Dao();
 			F_DTO ofto = getOutputData();
-			int aftcnt = ofao.insertOutput(ofto);
+			int oaftcnt = ofao.insertOutput(ofto);
+			System.out.println(oaftcnt);
+			if (oaftcnt == 1) {
+				int oaftcnt1 = ofao.minusQuan(ofto);
+				System.out.println(oaftcnt1);
+				if (oaftcnt1 == 1) {
+					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
+				} else {
+					JOptionPane.showMessageDialog(null, "오류");
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "출고 데이터를 다시 확인해주세요.");
+			}
 			
 			
 //			groceryOutput();
@@ -296,7 +308,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(null, "오류");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "폐기데이터를 다시 확인해주세요.");
+				JOptionPane.showMessageDialog(null, "폐기 데이터를 다시 확인해주세요.");
 			}
 			break;
 		}
