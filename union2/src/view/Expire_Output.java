@@ -13,6 +13,9 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.ListDao2;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Expire_Output {
 
@@ -20,6 +23,7 @@ public class Expire_Output {
 	JPanel p;
 	JTable table;
 	String id;
+	private JLabel lblNewLabel;
 	
 	public Expire_Output(String id) {
 		this.id = id;
@@ -40,8 +44,10 @@ public class Expire_Output {
 		f.getContentPane().add(p);
 		p.setLayout(null);
 		
-		JButton btnNewButton = new JButton("폐기");
-		btnNewButton.setBounds(183, 75, 110, 40);
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(Expire_Output.class.getResource("/image/storageList/10.png")));
+		btnNewButton.setBackground(new Color(73, 153, 221));
+		btnNewButton.setBounds(181, 63, 150, 50);
 		btnNewButton.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -59,8 +65,10 @@ public class Expire_Output {
 		});
 		p.add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("출고");
-		btnNewButton_1.setBounds(496, 75, 110, 40);
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon(Expire_Output.class.getResource("/image/storageList/11.png")));
+		btnNewButton_1.setBackground(new Color(73, 153, 221));
+		btnNewButton_1.setBounds(494, 63, 150, 50);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
 			@Override
@@ -94,6 +102,11 @@ public class Expire_Output {
 				}
 			);
 		scrollPane.setViewportView(table);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(Expire_Output.class.getResource("/image/흰배경.png")));
+		lblNewLabel.setBounds(0, 0, 784, 761);
+		p.add(lblNewLabel);
 	}
 
 	private Vector<String> getColumnListEO() {

@@ -61,6 +61,7 @@ public class MainTable01 implements MouseListener {
 	private JFrame frame;
 	private JLabel textField;
 	private JTable table;
+	private JLabel lblNewLabel;
 
 	public static void main(String[] args) {
 		new MainTable01();
@@ -291,6 +292,11 @@ public class MainTable01 implements MouseListener {
 		btnRefresh.setBackground(new Color(73, 153, 221));
 		btnRefresh.setBounds(963, 100, 103, 27);
 		p.add(btnRefresh);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(MainTable01.class.getResource("/image/흰배경.png")));
+		lblNewLabel.setBounds(0, 0, 1184, 761);
+		p.add(lblNewLabel);
 		
 		btnRefresh.addActionListener(new ActionListener() {
 			

@@ -226,17 +226,22 @@ public class StorageList implements MouseListener {
 			Vector<String> large = fao.getLarge();
 			
 			large_classific = new JComboBox(large);
-			large_classific.setBackground(UIManager.getColor("Button.background"));
+			large_classific.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+			large_classific.setBackground(new Color(250, 250, 250));
 			large_classific.setToolTipText("대분류");
 			large_classific.setBounds(40, 25, 150, 33);
 			p2.add(large_classific);
 			
 			middle_classific = new JComboBox(new String [] {"중분류"});
+			middle_classific.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+			middle_classific.setBackground(new Color(250, 250, 250));
 			middle_classific.setToolTipText("중분류");
 			middle_classific.setBounds(240, 25, 150, 33);
 			p2.add(middle_classific);
 			
 			small_classific = new JComboBox(new String [] {"소분류"});
+			small_classific.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+			small_classific.setBackground(new Color(250, 250, 250));
 			small_classific.setToolTipText("소분류");
 			small_classific.setBounds(440, 25, 150, 33);
 			p2.add(small_classific);
