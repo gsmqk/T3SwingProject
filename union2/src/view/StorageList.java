@@ -51,6 +51,7 @@ public class StorageList implements MouseListener {
 	String id, large1, medium1, small1;
 	JTable table, table2,table3;
 	StorageList slist = null;
+	Expire_Output mEo = null;
 	
 	FindName  mProc = null; 
 	static StorageList  mSt = null;
@@ -66,11 +67,11 @@ public class StorageList implements MouseListener {
 	
 	public StorageList(MainTable01 mt012) {
 		this.id = mt012.id;
-		initialize();
+		initialize(id);
 	}
 
 
-	private void initialize() {
+	private void initialize(String id) {
 		
 		this.id = id;
 		
@@ -93,21 +94,21 @@ public class StorageList implements MouseListener {
 		btnInput.setForeground(Color.WHITE);
 		btnInput.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnInput.setBackground(new Color(135, 206, 250));
-		btnInput.setBounds(30, 50, 120, 50);
+		btnInput.setBounds(30, 50, 150, 50);
 		p.add(btnInput);
 		
-		btnIngredient = new JButton("식자재 검색");
+		btnIngredient = new JButton("폐기/출고 목록");
 		btnIngredient.setForeground(Color.WHITE);
 		btnIngredient.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnIngredient.setBackground(new Color(135, 206, 250));
-		btnIngredient.setBounds(30, 130, 120, 50);
+		btnIngredient.setBounds(30, 130, 150, 50);
 		p.add(btnIngredient);
 		
 		btnRecipe = new JButton("레시피 검색");
 		btnRecipe.setForeground(Color.WHITE);
 		btnRecipe.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnRecipe.setBackground(new Color(135, 206, 250));
-		btnRecipe.setBounds(30, 210, 120, 50);
+		btnRecipe.setBounds(30, 210, 150, 50);
 		p.add(btnRecipe);
 		
 		
@@ -115,14 +116,14 @@ public class StorageList implements MouseListener {
 		btnmain.setForeground(Color.WHITE);
 		btnmain.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnmain.setBackground(new Color(135, 206, 250));
-		btnmain.setBounds(30, 550, 120, 50);
+		btnmain.setBounds(30, 550, 150, 50);
 		p.add(btnmain);
 		
 		btnAhb = new JButton("연간 그래프");
 		btnAhb.setForeground(Color.WHITE);
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(135, 206, 250));
-		btnAhb.setBounds(30, 630, 120, 50);
+		btnAhb.setBounds(30, 630, 150, 50);
 		p.add(btnAhb);
 		
 		slist = this;
@@ -143,9 +144,7 @@ public class StorageList implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mGs != null)
-					mGs.dispose();
-				mGs = new GrocerySearch();
+				mEo = new Expire_Output(id);
 				
 			}
 		}); 
