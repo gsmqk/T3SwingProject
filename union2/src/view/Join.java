@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import model.U_DTO;
 import model.U_Dao;
+import java.awt.Color;
 
 public class Join extends JFrame implements ActionListener {
 	
@@ -23,6 +24,7 @@ public class Join extends JFrame implements ActionListener {
 	private JPasswordField pwcfTxt;
 	
 	public Join() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 
 		getContentPane().setLayout(null);
 
@@ -42,7 +44,7 @@ public class Join extends JFrame implements ActionListener {
 
 
 		JLabel idLbl = new JLabel("아이디");
-		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		idLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		idLbl.setBounds(20, 20, 50, 20);
 		getContentPane().add(idLbl);
 
@@ -58,7 +60,7 @@ public class Join extends JFrame implements ActionListener {
 		getContentPane().add(cfBtn);
 		
 		JLabel pwLbl = new JLabel("비밀번호");
-		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		pwLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		pwLbl.setBounds(20, 80, 100, 20);
 		getContentPane().add(pwLbl);
 		
@@ -67,7 +69,7 @@ public class Join extends JFrame implements ActionListener {
 		getContentPane().add(pwTxt);
 		
 		JLabel pwcfLbl = new JLabel("비밀번호 확인");
-		pwcfLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		pwcfLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		pwcfLbl.setBounds(20, 140, 100, 20);
 		getContentPane().add(pwcfLbl);
 		
@@ -76,7 +78,7 @@ public class Join extends JFrame implements ActionListener {
 		getContentPane().add(pwcfTxt);
 		
 		JLabel nameLbl = new JLabel("이름");
-		nameLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		nameLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		nameLbl.setBounds(20, 200, 100, 20);
 		getContentPane().add(nameLbl);
 		
@@ -87,7 +89,7 @@ public class Join extends JFrame implements ActionListener {
 		getContentPane().add(nameTxt);
 		
 		JLabel emailLbl = new JLabel("이메일");
-		emailLbl.setFont(new Font("D2Coding", Font.PLAIN, 13));
+		emailLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		emailLbl.setBounds(20, 260, 100, 20);
 		getContentPane().add(emailLbl);
 		

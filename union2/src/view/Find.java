@@ -1,114 +1,122 @@
 package view;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+
 
 import model.U_Dao;
 
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+
 public class Find extends JFrame implements ActionListener {
 
-	GridBagLayout gbl;
-	GridBagConstraints gbc;
-	Font f1, f2, f3, f4;
-	JTextField emailTxt, idTxt, emailTxt2;
 	
+	
+	
+	
+	JTextField emailTxt, idTxt, emailTxt2;
+
 	public Find() {
-		setTitle("회원가입");
-		
+		getContentPane().setBackground(new Color(255, 255, 255));
 		init();
-		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,700);
+		setSize(400,560);
 		setVisible(true);
 	}
-	
-	private void init() {
 
-		gbl = new GridBagLayout();
-		this.setLayout(gbl);
-		gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+	private void init() {
+		setTitle("아이디/비밀번호 찾기");
+		getContentPane().setLayout(null);
 		
-		f1 = new Font("HY견고딕", Font.BOLD, 40);
-		f2 = new Font("HY견고딕", Font.BOLD, 20);
-		f3 = new Font("HY견고딕", Font.PLAIN, 15);
-		f4 = new Font("HY견고딕", Font.BOLD, 15);
-		
-		// 제목
 		JLabel title = new JLabel("아이디/비밀번호 찾기");
-		title.setFont(f1);
-		title.setHorizontalAlignment(JLabel.CENTER);
-		gblAdd(title, 0, 0, 4, 1);
+		title.setHorizontalAlignment(SwingConstants.CENTER);
+		title.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 29));
+		title.setBounds(44, 10, 297, 63);
+		getContentPane().add(title);
 		
-		// 아이디 찾기
-		JLabel findIdLbl = new JLabel("아이디 찾기");
-		findIdLbl.setFont(f2);
-		findIdLbl.setHorizontalAlignment(JLabel.LEFT);
-		gblAdd(findIdLbl, 0, 1, 4, 1);
+		//아이디 찾기
+		JLabel findIdLbl = new JLabel("\uC544\uC774\uB514 \uCC3E\uAE30");
+		findIdLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		findIdLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 18));
+		findIdLbl.setBounds(107, 93, 175, 31);
+		getContentPane().add(findIdLbl);
 		
-		// 아이디찾기 입력칸
-		JLabel emailLbl = new JLabel("가입시 사용한 이메일");
-		emailLbl.setFont(f3);
-		emailTxt = new JTextField(20);
+		//사용한 이메일
+		JLabel emailLbl = new JLabel("\uBE44\uBC00\uBC88\uD638 \uCC3E\uAE30");
+		emailLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		emailLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 18));
+		emailLbl.setBounds(107, 257, 175, 31);
+		getContentPane().add(emailLbl);
 		
-		gblAdd(emailLbl, 0, 2, 1, 1);
-		gblAdd(emailTxt, 1, 2, 3, 1);
+		//비밀번호 찾기
+		JLabel pwFindLbl = new JLabel("\uAC00\uC785\uC2DC \uC0AC\uC6A9\uD55C \uC774\uBA54\uC77C");
+		pwFindLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 14));
+		pwFindLbl.setBounds(12, 141, 131, 38);
+		getContentPane().add(pwFindLbl);
 		
-		// 버튼
-		JPanel pBtn = new JPanel();
-		JButton idFindBtn = new JButton("아이디 찾기");
-		JButton cancelBtn1 = new JButton("취소");
-		idFindBtn.setFont(f4);
-		cancelBtn1.setFont(f4);
+		//비밀번호찾을때 아이디 입력
+		JLabel idLbl = new JLabel("\uC544\uC774\uB514");
+		idLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 14));
+		idLbl.setHorizontalAlignment(SwingConstants.TRAILING);
+		idLbl.setBounds(12, 308, 116, 38);
+		getContentPane().add(idLbl);
+		//이메일입력
+		JLabel emailLbl2 = new JLabel("\uAC00\uC785\uC2DC \uC0AC\uC6A9\uD55C \uC774\uBA54\uC77C");
+		emailLbl2.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 14));
+		emailLbl2.setBounds(12, 364, 131, 38);
+		getContentPane().add(emailLbl2);
 		
-		pBtn.add(idFindBtn);
-		pBtn.add(cancelBtn1);
+		emailTxt = new JTextField();
+		emailTxt.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		emailTxt.setBounds(155, 141, 208, 38);
+		getContentPane().add(emailTxt);
+		emailTxt.setColumns(10);
 		
-		gblAdd(pBtn, 0, 3, 10, 1);
-		
-		// 비밀번호 찾기
-		JLabel pwFindLbl = new JLabel("비밀번호 찾기");
-		pwFindLbl.setFont(f2);
-		findIdLbl.setHorizontalAlignment(JLabel.LEFT);
-		gblAdd(pwFindLbl, 0, 4, 10, 1);
-		
-		// 비밀번호 입력창
-		JLabel idLbl = new JLabel("아이디");
 		idTxt = new JTextField();
-		idLbl.setFont(f3);
-		gblAdd(idLbl, 0, 5, 2, 1);
-		gblAdd(idTxt, 1, 5, 8, 1);
+		idTxt.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		idTxt.setColumns(10);
+		idTxt.setBounds(155, 310, 208, 38);
+		getContentPane().add(idTxt);
 		
-		JLabel emailLbl2 = new JLabel("가입시 사용한 이메일");
 		emailTxt2 = new JTextField();
-		emailLbl2.setFont(f3);
-		gblAdd(emailLbl2, 0, 6, 2, 1);
-		gblAdd(emailTxt2, 1, 6, 8, 1);
+		emailTxt2.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		emailTxt2.setColumns(10);
+		emailTxt2.setBounds(155, 364, 208, 38);
+		getContentPane().add(emailTxt2);
 		
-		// 비밀번호 버튼
-		JPanel  pBtn2 = new JPanel();
+		JButton idFindBtn = new JButton("아이디 찾기");
+		idFindBtn.setBackground(new Color(238, 254, 255));
+		idFindBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		idFindBtn.setBounds(75, 206, 109, 23);
+		getContentPane().add(idFindBtn);
+		
+		JButton cancelBtn1 = new JButton("\uCDE8\uC18C");
+		cancelBtn1.setBackground(new Color(238, 254, 255));
+		cancelBtn1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		cancelBtn1.setBounds(209, 206, 109, 23);
+		getContentPane().add(cancelBtn1);
+		
 		JButton pwFindBtn = new JButton("비밀번호 찾기");
-		JButton cancelBtn2 = new JButton("취소");
-		pwFindBtn.setFont(f4);
-		cancelBtn2.setFont(f4);
-		pBtn2.add(pwFindBtn);
-		pBtn2.add(cancelBtn2);
-		gblAdd(pBtn2, 0, 7, 10, 1);
+		pwFindBtn.setBackground(new Color(238, 254, 255));
+		pwFindBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		pwFindBtn.setBounds(75, 425, 109, 23);
+		getContentPane().add(pwFindBtn);
+		
+		JButton cancelBtn2 = new JButton("\uCDE8\uC18C");
+		cancelBtn2.setBackground(new Color(238, 254, 255));
+		cancelBtn2.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		cancelBtn2.setBounds(209, 425, 109, 23);
+		getContentPane().add(cancelBtn2);
 		
 		// 기능
 		cancelBtn1.addActionListener(this);
@@ -118,20 +126,10 @@ public class Find extends JFrame implements ActionListener {
 		
 	}
 	
-	public void gblAdd(JComponent c, int x, int y, int w, int h) {
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = w;
-		gbc.gridheight = h;
-		gbl.setConstraints(c, gbc);
-		gbc.insets = new Insets(5,5,5,5);
-		this.add(c,gbc);
-	}
-
 	public static void main(String[] args) {
 		new Find();
-		
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -144,7 +142,7 @@ public class Find extends JFrame implements ActionListener {
 			System.out.println("비밀번호 찾기 클릭");
 			pwFind();
 			break;
-		case "취소" :
+		case "\\uCDE8\\uC18C" :
 			this.dispose();
 			break;
 		}
