@@ -415,6 +415,7 @@ public class U_Dao {
 				+ "JOIN   STORAGES ST "
 				+ "ON     G.STORAGE_ID = ST.STORAGE_ID "
 				+ "WHERE  G.USER_ID = ? "
+				+ " AND   G.QUANTITY > 0"
 				+ "ORDER BY DUE_DATE ASC";
 		
 		PreparedStatement pstmt = null;

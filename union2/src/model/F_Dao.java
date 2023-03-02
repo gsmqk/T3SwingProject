@@ -459,7 +459,149 @@ Vector<String> list = new Vector<String>();
 		return list;
 	}
 
+	public int insertExpire(F_DTO fto) {
+		String sql = "INSERT INTO GROCERY_EXPIRE ( "
+				+ "    EXPIRED_ID, "
+				+ "    GROCERY_ID, "
+				+ "    DISCARD_QUANTITY, "
+				+ "    UNIT, "
+				+ "    DISCARD_DATE, "
+				+ "    DISCARD_REASON, "
+				+ "    USER_ID "
+				+ ") VALUES ( "
+				+ "    ((SELECT NVL(MAX(EXPIRED_ID)+1,0) FROM GROCERY_EXPIRE )), "
+				+ "    (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ? ), "
+				+ "    ?, "
+				+ "    ?, "
+				+ "    SYSDATE, "
+				+ "    ?, "
+				+ "    ? "
+				+ ")";
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fto.getGrocery_name());
+			pstmt.setString(2, fto.getQuantity());
+			pstmt.setString(3, fto.getUnit());
+			pstmt.setString(4, fto.getMemo());
+			pstmt.setString(5, fto.getUser_id());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return aftcnt;
+	}
 
+	public int minusQuan(F_DTO fto) {
+		String sql = "UPDATE GROCERIES "
+				+ "SET  QUANTITY = (SELECT QUANTITY - ? FROM GROCERIES WHERE GROCERY_NAME = ?) "
+				+ "WHERE GROCERY_NAME = ? ";
+				
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fto.getQuantity());
+			pstmt.setString(2, fto.getGrocery_name());
+			pstmt.setString(3, fto.getGrocery_name());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return aftcnt;
+	}
+
+	public int insertOutput(F_DTO fto) {
+		String sql = "INSERT INTO GROCERY_OUTPUT ( "
+				+ "    OUTPUT_ID, "
+				+ "    GROCERY_ID, "
+				+ "    GROCERY_NAME, "
+				+ "    OUTPUT_QUANTITY, "
+				+ "    UNIT, "
+				+ "    USER_ID "
+				+ ") VALUES ( "
+				+ "    ((SELECT NVL(MAX(OUTPUT_ID)+1,0) FROM GROCERY_OUTPUT )), "
+				+ "    (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ? ), "
+				+ "    ?, "
+				+ "    ?, "
+				+ "    ?, "
+				+ "    ? "
+				+ ")";
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fto.getGrocery_name());
+			pstmt.setString(2, fto.getGrocery_name());
+			pstmt.setString(3, fto.getQuantity());
+			pstmt.setString(4, fto.getUnit());
+			pstmt.setString(5, fto.getUser_id());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return aftcnt;
+	}
+
+	public int insertExpense(F_DTO ofto, String store, String state) {
+		String sql = "INSERT INTO EXPENSES ( "
+				+ "    EXPENSE_ID, "
+				+ "    EXPENSE_CATEGORY, "
+				+ "    AMOUNT, "
+				+ "    STORE_ID, "
+				+ "    USER_ID, "
+				+ "    GROCERY_ID "
+				+ " ) VALUES ( "
+				+ "    ((SELECT NVL(MAX(EXPENSE_ID)+1,0) FROM EXPENSES )), "
+				+ "    ?, "
+				+ "    ?, "
+				+ "    (SELECT STORE_ID FROM STORES WHERE STORE_NAME = ? ), "
+				+ "    ?, "
+				+ "    (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ? )) ";
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, state);
+			pstmt.setString(2, ofto.getQuantity());
+			pstmt.setString(3, store);
+			pstmt.setString(4, ofto.getUser_id());
+			pstmt.setString(5, ofto.getGrocery_name());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					if(pstmt != null) pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		return aftcnt;
+	}
 
 
 }

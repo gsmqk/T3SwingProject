@@ -34,6 +34,7 @@ public class G_Dao {
 		sql += " S.SMALL_ID SMALL_ID, S.SMALL_CLASSIFIC SMALL_CLASSIFIC";		
 		sql += "    FROM LARGE_CLASSIFIC L JOIN MEDIUM_CLASSIFIC M ON L.LARGE_ID = M.LARGE_ID ";
 		sql += "    JOIN SMALL_CLASSIFIC S ON M.MEDIUM_ID = S.MEDIUM_ID "; 
+		sql += " ORDER BY SMALL_ID ASC ";
 		
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;  
@@ -89,7 +90,7 @@ public class G_Dao {
 			aftcnt = pstmt.executeUpdate();
 			JOptionPane.showMessageDialog(null, "추가에 성공하였습니다");
 		} catch (SQLException e) {
-			System.out.println("insertGrocery 시도");
+			System.out.println("insertlarge 시도");
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "추가에 실패하였습니다");
 		} finally {

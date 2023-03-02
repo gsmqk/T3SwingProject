@@ -28,8 +28,8 @@ public class GroceryInfo extends JFrame implements ActionListener {
 	MainTable01 mt01;
 	JTextArea memoTa;
 	Grocery_Edit gEdit = null;
+	GroceryDisOut gdo = null; 
 	String id;
-
 	
 //	public GroceryInfo() {
 //		init();
@@ -144,8 +144,10 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		getContentPane().add(jlbPer);
 		
 		
-		int price1 = Integer.parseInt(gFto.getPrice());
-		int quan1 = Integer.parseInt(gFto.getQuantity());
+//		int price1 = Integer.parseInt(gFto.getPrice());
+//		int quan1 = Integer.parseInt(gFto.getQuantity());
+		double price1 = Double.parseDouble(gFto.getPrice());
+		double quan1 = Double.parseDouble(gFto.getQuantity());
 
 		switch (gFto.getUnit()) {
 		case "EA" : 
@@ -153,8 +155,10 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			System.out.println(price1);
 			System.out.println(quan1);
 			
-			int perPrice1 = (price1 / quan1);
-			String pph1 = String.valueOf(perPrice1);
+//			int perPrice1 = (price1 / quan1);
+			double perPrice1 = (price1 / quan1);
+			double perPrice1Math = Math.round(perPrice1);
+			String pph1 = String.valueOf(perPrice1Math);
 
 			JTextPane jtpUcost1 = new JTextPane();
 			jtpUcost1.setText(pph1);
@@ -170,8 +174,11 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			System.out.println(price1);
 			System.out.println(quan1);
 			
-			int perPrice2 = (price1 / quan1) * 100;
-			String pph2 = String.valueOf(perPrice2);
+			double perPrice2 = ((double)price1 / (double)quan1) * 100;
+			double perPrice2Math = Math.round(perPrice2);
+			String pph2 = String.valueOf(perPrice2Math);
+			
+			
 
 			JTextPane jtpUcost2 = new JTextPane();
 			jtpUcost2.setText(pph2);
@@ -187,8 +194,9 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			System.out.println(price1);
 			System.out.println(quan1);
 			
-			int perPrice3 = (price1 / (quan1 * 100)) * 100;
-			String pph3 = String.valueOf(perPrice3);
+			double perPrice3 = ((double)price1 / ((double)quan1 * 1000)) * 100;
+			double perPrice3Math = Math.round(perPrice3);
+			String pph3 = String.valueOf(perPrice3Math);
 
 			JTextPane jtpUcost3 = new JTextPane();
 			jtpUcost3.setText(pph3);
@@ -275,6 +283,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		btnConfirm.addActionListener(this);
+		btnOutDis.addActionListener(this);
 		btnCancel.addActionListener(this);
 		
 	}
@@ -524,6 +533,18 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			
 			
 			// 여기 추가해야함 진호
+			break;
+		case "출고/폐기" :
+			
+			F_DTO fto1 = getViewData();
+			System.out.println("폐기" + fto1);
+			if(gdo != null)
+				gdo.dispose();
+			
+			gdo = new GroceryDisOut(fto1);
+			
+			this.dispose();
+			
 			break;
 		case "닫기" : 
 			this.dispose();

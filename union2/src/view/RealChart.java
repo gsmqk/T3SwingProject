@@ -26,7 +26,7 @@ import model.DBConn;
 	
 	public RealChart() {
 		//super(applicationTitle);	
-		JFreeChart barChart = ChartFactory.createBarChart("연간 지출액/폐기액 비교 그래프", "월", "금액", createDataset(),
+		JFreeChart barChart = ChartFactory.createBarChart("연간 지출액/폐기액 비교 그래프(22년 기준)", "월", "금액", createDataset(),
 				PlotOrientation.VERTICAL, true, true, false);
 		
 		// 차트 배경색 지정
@@ -78,10 +78,9 @@ import model.DBConn;
 			conn = DriverManager.getConnection(dburl, dbuid, dbpwd);
 			System.out.println("연결성공");
 			*/
-			String  sql = "";
-			sql    += "SELECT     TO_CHAR(G.INPUT_DATE, 'MM') MONTH, "
-					+ "           SUM(G.PRICE) EXPENSE_PRICE, "
-					+ "           SUM(E.AMOUNT) DISCARD_PRICE "
+			String  sql1 = "";
+			sql1    += "SELECT    TO_CHAR(G.INPUT_DATE, 'MM') MONTH, "
+					+ "           SUM(G.PRICE) EXPENSE_PRICE "
 					+ " FROM      EXPENSES E, GROCERIES G, GROCERY_EXPIRE GE "
 					+ " WHERE     E.GROCERY_ID = G.GROCERY_ID "
 					+ " AND       G.GROCERY_ID = GE.GROCERY_ID "
@@ -92,23 +91,39 @@ import model.DBConn;
 					+ " ORDER BY  TO_CHAR(G.INPUT_DATE, 'MM') ASC ";
 			
 			
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet         rs    = pstmt.executeQuery(); 
+			String  sql2 = "";
+			sql2    += "SELECT    TO_CHAR(GE.DISCARD_DATE, 'MM') MONTH, "
+					+ " SUM(E.AMOUNT) DISCARD_PRICE "
+					+ " FROM      EXPENSES E, GROCERIES G, GROCERY_EXPIRE GE "
+					+ " WHERE     E.GROCERY_ID = G.GROCERY_ID "
+					+ " AND       G.GROCERY_ID = GE.GROCERY_ID "
+					+ " AND       EXPENSE_CATEGORY = '폐기' "
+					+ " AND       G.USER_ID = 'sky'"
+					+ " AND       GE.DISCARD_DATE LIKE '22/%' "
+					+ " GROUP BY  TO_CHAR(GE.DISCARD_DATE, 'MM') "
+					+ " ORDER BY  TO_CHAR(GE.DISCARD_DATE, 'MM') ASC ";
 			
-			while(rs.next()) {
+			PreparedStatement pstmt  = conn.prepareStatement(sql1);
+			PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+			
+			ResultSet         rs     = pstmt.executeQuery();
+			ResultSet         rs2    = pstmt2.executeQuery(); 
+			
+			while(rs.next() && rs2.next()) {
 				System.out.println("MONTH : " + rs.getString("MONTH"));
 				System.out.println("EXPENSE_PRICE : " + rs.getString("EXPENSE_PRICE"));
-				System.out.println("DISCARD_PRICE : " + rs.getString("DISCARD_PRICE"));
+				System.out.println("DISCARD_PRICE : " + rs2.getString("DISCARD_PRICE"));
 				
 				// 도표에 지출액 값을 대입, 막대그래프 MONTH, 막대그래프의 값 MONTH
 				dataset.addValue(rs.getInt("EXPENSE_PRICE"), "지출액", rs.getString("MONTH"));
-				dataset.addValue(rs.getInt("DISCARD_PRICE"), "폐기액", rs.getString("MONTH"));
+				dataset.addValue(rs2.getInt("DISCARD_PRICE"), "폐기액", rs2.getString("MONTH"));
 			}
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 			ex.printStackTrace();
 		}
 		return dataset;
+		
 	}
 
 	public static void main(String[] args) {
