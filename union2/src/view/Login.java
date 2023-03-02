@@ -72,18 +72,24 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		pwTxt.setBounds(30, 385, 280, 40);
 		getContentPane().add(pwTxt);
 
-		loginBtn = new JButton("로    그    인");
+		loginBtn = new JButton("");
+		loginBtn.setIcon(new ImageIcon(Login.class.getResource("/image/storageList/12.png")));
+		loginBtn.setBackground(new Color(73, 153, 221));
 		loginBtn.setForeground(new Color(0, 0, 0));
 		loginBtn.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		loginBtn.setBounds(30, 440, 280, 40);
 		getContentPane().add(loginBtn);
 
-		JButton joinBtn = new JButton("회  원  가  입");
+		JButton joinBtn = new JButton("");
+		joinBtn.setIcon(new ImageIcon(Login.class.getResource("/image/storageList/13.png")));
+		joinBtn.setBackground(new Color(73, 153, 221));
 		joinBtn.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		joinBtn.setBounds(30, 490, 280, 40);
 		getContentPane().add(joinBtn);
 
-		JButton findBtn = new JButton("아이디/비밀번호 찾기");
+		JButton findBtn = new JButton("");
+		findBtn.setIcon(new ImageIcon(Login.class.getResource("/image/storageList/14.png")));
+		findBtn.setBackground(new Color(73, 153, 221));
 		findBtn.setFont(new Font("D2Coding", Font.PLAIN, 18));
 		findBtn.setBounds(30, 540, 280, 40);
 		getContentPane().add(findBtn);
