@@ -28,7 +28,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 	JTable       jTable;
 	JScrollPane  pane;
 	JButton      btnRefresh, btnCategory, btnOut;
-	JPanel       topPane, logPane;
+	JPanel       topPane, logPane, est, west;
 	
 	AdminEdit aEdit = null;
 	static Admin list = null;
@@ -69,8 +69,14 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		logPane.setBackground(new Color(255, 255, 255));
 		btnOut = new JButton("로그아웃");
 		logPane.add(btnOut);
-		
+
+		est = new JPanel();
+		est.setBackground(new Color(255, 255, 255));
+		west = new JPanel();
+		west.setBackground(new Color(255, 255, 255));
 		getContentPane().add(logPane, BorderLayout.SOUTH);
+		getContentPane().add(est, BorderLayout.EAST);
+		getContentPane().add(west, BorderLayout.WEST);
 		
 		
 		btnRefresh.addActionListener(this);
