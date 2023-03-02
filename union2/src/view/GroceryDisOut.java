@@ -311,7 +311,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 			int oaftcnt = ofao.insertOutput(ofto);
 			System.out.println(oaftcnt);
 			if (oaftcnt == 1) {
-				int oaftcnt1 = ofao.minusQuan(ofto);
+				int oaftcnt1 = ofao.minusQuan(ofto, price, currQuan);
 				System.out.println(oaftcnt1);
 				if (oaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
@@ -334,7 +334,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 			int eaftcnt = efao.insertExpire(efto);
 			System.out.println(eaftcnt);
 			if (eaftcnt == 1) {
-				int eaftcnt1 = efao.minusQuan(efto);
+				int eaftcnt1 = efao.minusQuan(efto, price, currQuan);
 				System.out.println(eaftcnt1);
 				if (eaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");

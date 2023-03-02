@@ -507,9 +507,43 @@ Vector<String> list = new Vector<String>();
 		return aftcnt;
 	}
 
-	public int minusQuan(F_DTO fto) {
+	public int minusQuan(F_DTO fto, String price, String currQuan) {
+		
+		double price1 = Double.parseDouble(price);
+		double currQuan1 = Double.parseDouble(currQuan);
+		double quan = Double.parseDouble(fto.getQuantity());
+		String sVal = "";
+		
+		
+		switch(fto.getUnit()) {
+		case "EA" :
+			double val = price1 / currQuan1;
+			double perPriceMath = Math.round(val);
+			sVal = String.valueOf(perPriceMath);
+			System.out.println(sVal);
+			
+			break;
+		case "ML" :
+		case "G" :
+			double val1 = (price1 / currQuan1) * quan;
+			double perPriceMath1 = Math.round(val1);
+			sVal = String.valueOf(perPriceMath1);
+			System.out.println(sVal);
+			
+			break;
+		case "KG" :
+		case "L" :
+			double val2 = (price1 / (currQuan1 * 1000)) * quan;
+			double perPriceMath2 = Math.round(val2);
+			sVal = String.valueOf(perPriceMath2);
+			System.out.println(sVal);
+			
+			break;
+		}
+		
 		String sql = "UPDATE GROCERIES "
 				+ "SET  QUANTITY = (SELECT QUANTITY - ? FROM GROCERIES WHERE GROCERY_NAME = ?) "
+				+ "     PRICE = (SELECT PRICE - ? FROM GROCERIES WHERE GROCERY_NAME = ?) "
 				+ "WHERE GROCERY_NAME = ? ";
 				
 		PreparedStatement pstmt = null;
@@ -518,7 +552,9 @@ Vector<String> list = new Vector<String>();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, fto.getQuantity());
 			pstmt.setString(2, fto.getGrocery_name());
-			pstmt.setString(3, fto.getGrocery_name());
+			pstmt.setString(3, sVal);
+			pstmt.setString(2, fto.getGrocery_name());
+			pstmt.setString(5, fto.getGrocery_name());
 			
 			aftcnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
