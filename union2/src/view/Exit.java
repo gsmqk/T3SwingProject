@@ -166,8 +166,9 @@ public class Exit extends JFrame implements ActionListener {
 		String pw = pwTxt.getText();
 		String cfpw = pwcfTxt.getText();
 	
-		if(pw.equals(null)) {
+		if(pw.equals("")) {
 			JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "탈퇴실패", JOptionPane.OK_OPTION);
+			pwTxt.grabFocus();
 		}
 		U_Dao uao = new U_Dao();
 		if (pw.equals(cfpw)) {
