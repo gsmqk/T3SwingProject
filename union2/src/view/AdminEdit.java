@@ -173,7 +173,7 @@ public class AdminEdit extends JFrame  {
 		getContentPane().add(cancelBtn);
 		
 		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\GGG\\Desktop\\\u3147\u3147\u3147\u3147\u3147\u3147.png"));
+		lblNewLabel.setIcon(new ImageIcon(AdminEdit.class.getResource("/image/\u3147\u3147\u3147\u3147\u3147\u3147.png")));
 		lblNewLabel.setBounds(-11, -14, 433, 592);
 		getContentPane().add(lblNewLabel);
 		

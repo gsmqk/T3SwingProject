@@ -13,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.G_Dao;
+import java.awt.Color;
 
 public class CategoryTable extends JFrame implements ActionListener {
 
@@ -34,6 +35,7 @@ public class CategoryTable extends JFrame implements ActionListener {
 	
 	private void initComponent() {
 		topPane = new JPanel();
+		topPane.setBackground(new Color(255, 255, 255));
 		largeAdd = new JButton("대분류추가");
 		topPane.add(largeAdd);
 		mediumAdd = new JButton("중분류추가");
@@ -49,7 +51,7 @@ public class CategoryTable extends JFrame implements ActionListener {
 		
 		jTable = new JTable();
 		jTable.setModel(new DefaultTableModel(getDataList(),getColumnList()));
-		add(jTable);
+		getContentPane().add(jTable);
 		
 		pane = new JScrollPane(jTable);
 		getContentPane().add(pane);
