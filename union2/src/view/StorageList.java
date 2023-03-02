@@ -187,6 +187,8 @@ public class StorageList implements MouseListener {
 
 					@Override
 					public boolean isCellEditable(int row, int column) {
+						
+						
 						return false; // 모든 cell 편집불가능
 					}
 				}

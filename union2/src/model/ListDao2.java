@@ -193,6 +193,7 @@ private Connection  conn = null;
 	    sql += " AND   G.STORAGE_ID = SP.STORAGE_ID";
 	    sql += " AND   G.STORE_ID   = S.STORE_ID";
 	    sql += " AND   G.USER_ID = ?";
+	    sql += " AND   G.QUANTITY > 0";
 		
 		PreparedStatement pstmt = null;
 		ResultSet         rs    = null;
@@ -218,6 +219,7 @@ private Connection  conn = null;
 				
 				Vector v        = new Vector(); // 안쪽 Vector : 한줄 Row를 의미
 				int dDate = Integer.parseInt(due_date);
+			
 				if (dDate>=0) {
 					v.add(large_classific);
 					v.add(medium_classific);
