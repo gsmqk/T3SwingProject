@@ -572,7 +572,45 @@ Vector<String> list = new Vector<String>();
 		return aftcnt;
 	}
 
-	public int insertExpense(F_DTO ofto, String store, String state) {
+	public int insertExpense(F_DTO ofto, String store, String state, String price, String currQuan) {
+		
+		double price1 = Double.parseDouble(price);
+		double currQuan1 = Double.parseDouble(currQuan);
+		double quan = Double.parseDouble(ofto.getQuantity());
+		String sVal = "";
+		
+		
+		switch(ofto.getUnit()) {
+		case "EA" :
+			double val = price1 / currQuan1;
+			double perPriceMath = Math.round(val);
+			sVal = String.valueOf(perPriceMath);
+			System.out.println(sVal);
+			
+			break;
+		case "ML" :
+		case "G" :
+			double val1 = (price1 / currQuan1) * quan;
+			double perPriceMath1 = Math.round(val1);
+			sVal = String.valueOf(perPriceMath1);
+			System.out.println(sVal);
+			
+			break;
+		case "KG" :
+		case "L" :
+			double val2 = (price1 / (currQuan1 * 1000)) * quan;
+			double perPriceMath2 = Math.round(val2);
+			sVal = String.valueOf(perPriceMath2);
+			System.out.println(sVal);
+			
+			break;
+		}
+		
+		
+//		double perPrice2Math = Math.round(val);
+//		String val2 = String.valueOf(perPrice2Math);
+//		System.out.println(val2);
+		
 		String sql = "INSERT INTO EXPENSES ( "
 				+ "    EXPENSE_ID, "
 				+ "    EXPENSE_CATEGORY, "
@@ -592,7 +630,7 @@ Vector<String> list = new Vector<String>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, state);
-			pstmt.setString(2, ofto.getQuantity());
+			pstmt.setString(2, sVal);
 			pstmt.setString(3, store);
 			pstmt.setString(4, ofto.getUser_id());
 			pstmt.setString(5, ofto.getGrocery_name());
