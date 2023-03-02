@@ -96,9 +96,42 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 
 
 		// 기능 넣기
-		loginBtn.addActionListener(this);
-		joinBtn.addActionListener(this);
-		findBtn.addActionListener(this);
+		loginBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("로그인 클릭");
+				String aid = idTxt.getText();
+				if(aid.equals("admin")) {
+					adminLogin();
+				} else {
+					login();
+				}
+				
+			}
+		});
+		joinBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("회원가입 클릭");
+				if(j != null)
+					j.dispose();
+				j = new Join();
+				
+			}
+		});
+		findBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("아이디/비밀번호찾기 클릭");
+				if(f != null)
+					f.dispose();
+				f = new Find();
+				
+			}
+		});
 
 		idTxt.addKeyListener(this);
 		pwTxt.addKeyListener(this);
@@ -111,30 +144,30 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()) {
-		case "로    그    인" : 
-			System.out.println("로그인 클릭");
-			String aid = idTxt.getText();
-			if(aid.equals("admin")) {
-				adminLogin();
-			} else {
-				login();
-			}
-
-			break;
-		case "회  원  가  입" : 
-			System.out.println("회원가입 클릭");
-			if(j != null)
-				j.dispose();
-			j = new Join();
-			break;
-		case "아이디/비밀번호 찾기" :
-			System.out.println("아이디/비밀번호찾기 클릭");
-			if(f != null)
-				f.dispose();
-			f = new Find();
-			break;
-		}
+//		switch(e.getActionCommand()) {
+//		case "로    그    인" : 
+//			System.out.println("로그인 클릭");
+//			String aid = idTxt.getText();
+//			if(aid.equals("admin")) {
+//				adminLogin();
+//			} else {
+//				login();
+//			}
+//
+//			break;
+//		case "회  원  가  입" : 
+//			System.out.println("회원가입 클릭");
+//			if(j != null)
+//				j.dispose();
+//			j = new Join();
+//			break;
+//		case "아이디/비밀번호 찾기" :
+//			System.out.println("아이디/비밀번호찾기 클릭");
+//			if(f != null)
+//				f.dispose();
+//			f = new Find();
+//			break;
+//		}
 
 	}
 
