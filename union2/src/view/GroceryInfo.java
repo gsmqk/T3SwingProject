@@ -28,8 +28,8 @@ public class GroceryInfo extends JFrame implements ActionListener {
 	MainTable01 mt01;
 	JTextArea memoTa;
 	Grocery_Edit gEdit = null;
+	GroceryDisOut gdo = null; 
 	String id;
-
 	
 //	public GroceryInfo() {
 //		init();
@@ -275,6 +275,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		btnConfirm.addActionListener(this);
+		btnOutDis.addActionListener(this);
 		btnCancel.addActionListener(this);
 		
 	}
@@ -524,6 +525,18 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			
 			
 			// 여기 추가해야함 진호
+			break;
+		case "출고/폐기" :
+			
+			F_DTO fto1 = getViewData();
+			System.out.println("폐기" + fto1);
+			if(gdo != null)
+				gdo.dispose();
+			
+			gdo = new GroceryDisOut(fto1);
+			
+			this.dispose();
+			
 			break;
 		case "닫기" : 
 			this.dispose();
