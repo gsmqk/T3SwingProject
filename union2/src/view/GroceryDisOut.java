@@ -20,7 +20,7 @@ import javax.swing.ImageIcon;
 public class GroceryDisOut extends JFrame implements ActionListener {
 
 	private JTextField output_quantity, discard_quantity;
-	String id, store, state;
+	String id, store, state, price, currQuan;
 	JTextField expire_memo;
 	
 	JTextPane expireUnit, outputUnit, grocery_name, large_classific,
@@ -44,6 +44,8 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		
 		id = fto1.getUser_id();
 		store = fto1.getStore_name();
+		price = fto1.getPrice();
+		currQuan = fto1.getQuantity();
 		
 		setTitle("식자재 출고/폐기");
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
@@ -313,7 +315,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				System.out.println(oaftcnt1);
 				if (oaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
-					int expense = ofao.insertExpense(ofto, this.store, state);
+					int expense = ofao.insertExpense(ofto, this.store, state, price, currQuan);
 					this.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
@@ -336,7 +338,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				System.out.println(eaftcnt1);
 				if (eaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
-					int expense = efao.insertExpense(efto, store, state);
+					int expense = efao.insertExpense(efto, store, state, price, currQuan);
 					this.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
