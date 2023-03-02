@@ -31,7 +31,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 	JTextField  groName, inQuan, price, memo;
 	JButton btnInput, btnCancel;
 	
-	
+	//fdddddd
 	
 	JComboBox large_classific, middle_classific, small_classific, storage_place, unit,
 	          store;
