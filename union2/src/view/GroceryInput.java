@@ -22,6 +22,7 @@ import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class GroceryInput extends JFrame implements ActionListener {
 	
@@ -233,14 +234,16 @@ public class GroceryInput extends JFrame implements ActionListener {
 		datePicker1.setBounds(82, 440, 250, 40);
 		
 		//입력/취소버튼
-		btnInput  = new JButton("입력");
-		btnInput.setBackground(new Color(238, 251, 255));
+		btnInput  = new JButton("");
+		btnInput.setIcon(new ImageIcon(GroceryInput.class.getResource("/image/storageList/15.png")));
+		btnInput.setBackground(new Color(73, 153, 221));
 		btnInput.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		btnInput.setBounds(70, 610, 90, 40);
 		getContentPane().add(btnInput);
 
-		JButton btnCancel = new JButton("취소");
-		btnCancel.setBackground(new Color(238, 251, 255));
+		JButton btnCancel = new JButton("");
+		btnCancel.setIcon(new ImageIcon(GroceryInput.class.getResource("/image/storageList/16.png")));
+		btnCancel.setBackground(new Color(73, 153, 221));
 		btnCancel.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		btnCancel.setBounds(182, 610, 90, 40);
 		getContentPane().add(btnCancel);
