@@ -156,7 +156,7 @@ public class LoginTest extends JFrame implements ActionListener, KeyListener {
 
 		if (flag == true) {
 			this.dispose();
-			MainTable01 mt1 = new MainTable01(this);
+			MainTable01 mt1 = new MainTable01();
 		}
 
 	}
