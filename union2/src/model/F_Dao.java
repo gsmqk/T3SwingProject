@@ -542,8 +542,8 @@ Vector<String> list = new Vector<String>();
 		}
 		
 		String sql = "UPDATE GROCERIES "
-				+ "SET  QUANTITY = (SELECT QUANTITY - ? FROM GROCERIES WHERE GROCERY_NAME = ?) "
-				+ "     PRICE = (SELECT PRICE - ? FROM GROCERIES WHERE GROCERY_NAME = ?) "
+				+ "SET  QUANTITY = (SELECT QUANTITY - ? FROM GROCERIES WHERE GROCERY_NAME = ?), "
+				+ "     PRICE    = (SELECT PRICE    - ? FROM GROCERIES WHERE GROCERY_NAME = ?) "
 				+ "WHERE GROCERY_NAME = ? ";
 				
 		PreparedStatement pstmt = null;
@@ -553,7 +553,7 @@ Vector<String> list = new Vector<String>();
 			pstmt.setString(1, fto.getQuantity());
 			pstmt.setString(2, fto.getGrocery_name());
 			pstmt.setString(3, sVal);
-			pstmt.setString(2, fto.getGrocery_name());
+			pstmt.setString(4, fto.getGrocery_name());
 			pstmt.setString(5, fto.getGrocery_name());
 			
 			aftcnt = pstmt.executeUpdate();
