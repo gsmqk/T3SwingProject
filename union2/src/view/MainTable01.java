@@ -44,7 +44,7 @@ public class MainTable01 implements MouseListener {
 	RealChart mchart = null;
 	FindName  mProc = null;
 	Category  mCate = null;
-	Login     mLog  = null;
+	LoginTest     mLog  = null;
 	MainTable01 mT01 = null;
 	StorageList mT02 = null;
 	FindRecipe mFr   = null;
@@ -71,7 +71,7 @@ public class MainTable01 implements MouseListener {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public MainTable01(Login login) {
+	public MainTable01(LoginTest login) {
 		this.id = login.idTxt.getText();
 		System.out.println("메인테이블" + id);
 		initialize(id);
@@ -240,7 +240,7 @@ public class MainTable01 implements MouseListener {
 				if(result == JOptionPane.YES_OPTION) {
 					if(mLog != null)
 						mLog.dispose();
-					mLog = new Login();
+					mLog = new LoginTest();
 					f.setVisible(false);
 				} 
 				else 

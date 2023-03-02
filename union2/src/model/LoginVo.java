@@ -1,6 +1,6 @@
 package model;
 
-import view.Login;
+import view.LoginTest;
 
 public class LoginVo {
 
@@ -13,7 +13,7 @@ public class LoginVo {
 		return this.id;
 	}
 
-	public void setId(Login login) {
+	public void setId(LoginTest login) {
 		this.id = login.idTxt.getText();
 	}
 
