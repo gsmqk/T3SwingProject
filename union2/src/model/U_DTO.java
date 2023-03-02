@@ -1,6 +1,6 @@
 package model;
 
-import view.LoginTest;
+import view.Login;
 
 public class U_DTO {
 	// Fields

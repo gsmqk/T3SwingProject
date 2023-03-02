@@ -31,7 +31,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 	
 	AdminEdit aEdit = null;
 	static Admin list = null;
-	LoginTest     mLog  = null;
+	Login     mLog  = null;
 	CategoryTable ctable ;
 	
 
@@ -172,7 +172,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		if(result == JOptionPane.YES_OPTION) {
 			if(mLog != null)
 				mLog.dispose();
-		mLog = new LoginTest();
+		mLog = new Login();
 			setVisible(false);
 			
 		} 

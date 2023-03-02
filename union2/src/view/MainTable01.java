@@ -44,7 +44,7 @@ public class MainTable01 implements MouseListener {
 	RealChart mchart = null;
 	FindName  mProc = null;
 	Category  mCate = null;
-	LoginTest     mLog  = null;
+	Login     mLog  = null;
 	MainTable01 mT01 = null;
 	StorageList mT02 = null;
 	FindRecipe mFr   = null;
@@ -240,7 +240,7 @@ public class MainTable01 implements MouseListener {
 				if(result == JOptionPane.YES_OPTION) {
 					if(mLog != null)
 						mLog.dispose();
-					mLog = new LoginTest();
+					mLog = new Login();
 					f.setVisible(false);
 				} 
 				else 
