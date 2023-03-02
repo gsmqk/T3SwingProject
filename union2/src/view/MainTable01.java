@@ -71,7 +71,7 @@ public class MainTable01 implements MouseListener {
 	/**
 	 * @wbp.parser.entryPoint
 	 */
-	public MainTable01(LoginTest login) {
+	public MainTable01(Login login) {
 		this.id = login.idTxt.getText();
 		System.out.println("메인테이블" + id);
 		initialize(id);
