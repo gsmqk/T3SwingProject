@@ -29,6 +29,8 @@ import org.jfree.ui.RefineryUtilities;
 import model.F_Dao;
 import model.Renderer;
 import model.U_Dao;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 
 public class MainTable01 implements MouseListener {
@@ -57,7 +59,7 @@ public class MainTable01 implements MouseListener {
 	StorageList slist = null;
 
 	private JFrame frame;
-	private JTextField textField;
+	private JLabel textField;
 	private JTable table;
 
 	public static void main(String[] args) {
@@ -94,58 +96,68 @@ public class MainTable01 implements MouseListener {
 		f.getContentPane().setLayout(null);
 		
 		p = new JPanel();
+		p.setBackground(new Color(255, 255, 255));
+
 		p.setForeground(new Color(255, 255, 255));
 		p.setBackground(SystemColor.menu);
+
 		p.setBounds(0, 0, 1184, 761);
 		f.getContentPane().add(p);
 		p.setLayout(null);
 		
-		btnInput = new JButton("신규 입고");
+		btnInput = new JButton("");
+		btnInput.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/01.png")));
 		btnInput.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnInput.setBackground(new Color(135, 206, 250));
+		btnInput.setBackground(new Color(73, 153, 221));
 		btnInput.setForeground(Color.WHITE);
 		btnInput.setBounds(30, 40, 150, 50);
 		p.add(btnInput);
 		
-		btnIngredient = new JButton("폐기/출고 목록");
+		btnIngredient = new JButton("");
+		btnIngredient.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/02.png")));
 		btnIngredient.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnIngredient.setBackground(new Color(135, 206, 250));
+		btnIngredient.setBackground(new Color(73, 153, 221));
 		btnIngredient.setForeground(Color.WHITE);
 		btnIngredient.setBounds(30, 120, 150, 50);
 		p.add(btnIngredient);
 		
-		btnRecipe = new JButton("레시피 검색");
+		btnRecipe = new JButton("");
+		btnRecipe.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/03.png")));
 		btnRecipe.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnRecipe.setBackground(new Color(135, 206, 250));
+		btnRecipe.setBackground(new Color(73, 153, 221));
 		btnRecipe.setForeground(Color.WHITE);
 		btnRecipe.setBounds(30, 200, 150, 50);
 		p.add(btnRecipe);
 		
-		btnStorage = new JButton("보관 목록");
+		btnStorage = new JButton("");
+		btnStorage.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/05.png")));
 		btnStorage.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnStorage.setBackground(new Color(135, 206, 250));
+		btnStorage.setBackground(new Color(73, 153, 221));
 		btnStorage.setForeground(Color.WHITE);
 		btnStorage.setBounds(30, 530, 150, 50);
 		p.add(btnStorage);
 		
-		btnAhb = new JButton("연간 그래프");
+		btnAhb = new JButton("");
+		btnAhb.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/04.png")));
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnAhb.setBackground(new Color(135, 206, 250));
+		btnAhb.setBackground(new Color(73, 153, 221));
 		btnAhb.setForeground(Color.WHITE);
 		btnAhb.setBounds(30, 450, 150, 50);
 		p.add(btnAhb);
 		
-		btnEdit = new JButton("개인정보수정");
+		btnEdit = new JButton("");
+		btnEdit.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/06.png")));
 		btnEdit.setForeground(Color.WHITE);
 		btnEdit.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnEdit.setBackground(new Color(135, 206, 250));
+		btnEdit.setBackground(new Color(73, 153, 221));
 		btnEdit.setBounds(30, 610, 150, 50);
 		p.add(btnEdit);
 	
 		
-		btnLogout = new JButton("로그아웃");
+		btnLogout = new JButton("");
+		btnLogout.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/07.png")));
 		btnLogout.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnLogout.setBackground(new Color(135, 206, 250));
+		btnLogout.setBackground(new Color(73, 153, 221));
 		btnLogout.setForeground(Color.WHITE);
 		btnLogout.setBounds(30, 690, 150, 50);
 		p.add(btnLogout);
@@ -253,14 +265,14 @@ public class MainTable01 implements MouseListener {
 		}); 
 		
 		
-		textField = new JTextField();
+		textField = new JLabel();
+		textField.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/List-008.png")));
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		textField.setBackground(new Color(255, 218, 185));
-		textField.setText("유통기한임박");
+		
 		textField.setBounds(236, 40, 839, 50);
 		p.add(textField);
-		textField.setColumns(10);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(236, 140, 830, 479);
@@ -276,7 +288,7 @@ public class MainTable01 implements MouseListener {
 		btnRefresh = new JButton("새로고침");
 		btnRefresh.setForeground(Color.WHITE);
 		btnRefresh.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnRefresh.setBackground(new Color(135, 206, 250));
+		btnRefresh.setBackground(new Color(73, 153, 221));
 		btnRefresh.setBounds(963, 100, 103, 27);
 		p.add(btnRefresh);
 		

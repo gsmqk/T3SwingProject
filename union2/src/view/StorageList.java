@@ -29,6 +29,9 @@ import model.F_DTO;
 import model.F_Dao;
 import model.ListDao2;
 import javax.swing.ImageIcon;
+
+import javax.swing.UIManager;
+
 import javax.swing.JLabel;
 
 public class StorageList implements MouseListener {
@@ -86,46 +89,52 @@ public class StorageList implements MouseListener {
 		f.getContentPane().setLayout(null);
 		
 		p = new JPanel();
+		p.setBackground(new Color(255, 255, 255));
 		p.setBounds(0, 0, 1184, 761);
 		f.getContentPane().add(p);
 		p.setLayout(null);
 		
 		
 		
-		btnInput = new JButton("신규 입력");
+		btnInput = new JButton("");
+		btnInput.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/01.png")));
 	
 		btnInput.setForeground(Color.WHITE);
 		btnInput.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnInput.setBackground(new Color(135, 206, 250));
+		btnInput.setBackground(new Color(73, 153, 221));
 		btnInput.setBounds(30, 50, 150, 50);
 		p.add(btnInput);
 		
-		btnIngredient = new JButton("폐기/출고 목록");
+		btnIngredient = new JButton("");
+		btnIngredient.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/02.png")));
 		btnIngredient.setForeground(Color.WHITE);
 		btnIngredient.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnIngredient.setBackground(new Color(135, 206, 250));
+		btnIngredient.setBackground(new Color(73, 153, 221));
 		btnIngredient.setBounds(30, 130, 150, 50);
 		p.add(btnIngredient);
 		
-		btnRecipe = new JButton("레시피 검색");
+		btnRecipe = new JButton("");
+		btnRecipe.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/03.png")));
 		btnRecipe.setForeground(Color.WHITE);
 		btnRecipe.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnRecipe.setBackground(new Color(135, 206, 250));
+		btnRecipe.setBackground(new Color(73, 153, 221));
 		btnRecipe.setBounds(30, 210, 150, 50);
 		p.add(btnRecipe);
 		
 		
-		btnmain = new JButton("메인 화면");
+		btnmain = new JButton("");
+		btnmain.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/08.png")));
 		btnmain.setForeground(Color.WHITE);
 		btnmain.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnmain.setBackground(new Color(135, 206, 250));
+		btnmain.setBackground(new Color(73, 153, 221));
 		btnmain.setBounds(30, 550, 150, 50);
 		p.add(btnmain);
 		
-		btnAhb = new JButton("연간 그래프");
+		btnAhb = new JButton("");
+		btnAhb.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/04.png")));
 		btnAhb.setForeground(Color.WHITE);
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		btnAhb.setBackground(new Color(135, 206, 250));
+		btnAhb.setBackground(new Color(73, 153, 221));
 		btnAhb.setBounds(30, 630, 150, 50);
 		p.add(btnAhb);
 		
@@ -217,6 +226,7 @@ public class StorageList implements MouseListener {
 			Vector<String> large = fao.getLarge();
 			
 			large_classific = new JComboBox(large);
+			large_classific.setBackground(UIManager.getColor("Button.background"));
 			large_classific.setToolTipText("대분류");
 			large_classific.setBounds(40, 25, 150, 33);
 			p2.add(large_classific);
@@ -231,7 +241,9 @@ public class StorageList implements MouseListener {
 			small_classific.setBounds(440, 25, 150, 33);
 			p2.add(small_classific);
 			
-			classficInput = new JButton("확인");	
+			classficInput = new JButton("");
+			classficInput.setBackground(new Color(73, 153, 221));
+			classficInput.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/09.png")));
 			
 			classficInput.addActionListener(new ActionListener() {
 				
@@ -250,12 +262,13 @@ public class StorageList implements MouseListener {
 				}
 			});
 			
-			
+			classficInput.setForeground(new Color(135, 206, 250));
 			classficInput.setToolTipText("확인");
 			classficInput.setBounds(630, 25, 118, 33);
 			p2.add(classficInput);
 			
 			JButton resetInput = new JButton("");
+			resetInput.setBackground(new Color(73, 153, 221));
 			resetInput.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
@@ -275,6 +288,7 @@ public class StorageList implements MouseListener {
 				}
 			});
 			resetInput.setIcon(new ImageIcon(StorageList.class.getResource("/image/free-icon-reset-5307970 (1).png")));
+			resetInput.setForeground(new Color(135, 206, 250));
 			resetInput.setToolTipText("리셋");
 			resetInput.setBounds(764, 25, 33, 33);
 			p2.add(resetInput);
