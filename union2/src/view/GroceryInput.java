@@ -256,7 +256,6 @@ public class GroceryInput extends JFrame implements ActionListener {
 			if (aftcnt == 1) {
 				JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
 				
-				
 				this.dispose();
 				
 			} else {

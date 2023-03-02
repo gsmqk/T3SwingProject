@@ -288,6 +288,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				if (oaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
 					int expense = ofao.insertExpense(ofto, this.store, state);
+					this.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
 				}
@@ -310,6 +311,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				if (eaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
 					int expense = efao.insertExpense(efto, store, state);
+					this.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
 				}

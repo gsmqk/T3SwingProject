@@ -144,8 +144,10 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		getContentPane().add(jlbPer);
 		
 		
-		int price1 = Integer.parseInt(gFto.getPrice());
-		int quan1 = Integer.parseInt(gFto.getQuantity());
+//		int price1 = Integer.parseInt(gFto.getPrice());
+//		int quan1 = Integer.parseInt(gFto.getQuantity());
+		double price1 = Double.parseDouble(gFto.getPrice());
+		double quan1 = Double.parseDouble(gFto.getQuantity());
 
 		switch (gFto.getUnit()) {
 		case "EA" : 
@@ -153,8 +155,10 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			System.out.println(price1);
 			System.out.println(quan1);
 			
-			int perPrice1 = (price1 / quan1);
-			String pph1 = String.valueOf(perPrice1);
+//			int perPrice1 = (price1 / quan1);
+			double perPrice1 = (price1 / quan1);
+			double perPrice1Math = Math.round(perPrice1);
+			String pph1 = String.valueOf(perPrice1Math);
 
 			JTextPane jtpUcost1 = new JTextPane();
 			jtpUcost1.setText(pph1);
