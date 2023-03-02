@@ -24,6 +24,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import org.jfree.ui.RefineryUtilities;
+
 import model.F_Dao;
 import model.Renderer;
 import model.U_Dao;
@@ -37,9 +39,10 @@ public class MainTable01 implements MouseListener {
 	JTextField        txtId,  txtName,  txtIndate;
 	JTextArea         taIntro;
 			
-	JButton           btnInput, btnIngredient, btnRecipe, btnStorage, btnAhb, btnSet, btnEdit, btnLogout;
+	JButton           btnInput, btnIngredient, btnRecipe, btnStorage, btnAhb, btnSet, btnEdit, btnLogout, btnRefresh;
 	
-	FindName  mProc = null; 
+	RealChart mchart = null;
+	FindName  mProc = null;
 	Category  mCate = null;
 	Login     mLog  = null;
 	MainTable01 mT01 = null;
@@ -123,7 +126,7 @@ public class MainTable01 implements MouseListener {
 		btnStorage.setBounds(30, 530, 150, 50);
 		p.add(btnStorage);
 		
-		btnAhb = new JButton("가계부");
+		btnAhb = new JButton("연간 그래프");
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(135, 206, 250));
 		btnAhb.setForeground(Color.WHITE);
@@ -193,9 +196,10 @@ public class MainTable01 implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mProc != null)
-					mProc.dispose();
-				mProc = new FindName();
+				RealChart chart = new RealChart();		
+				chart.pack();
+				RefineryUtilities.centerFrameOnScreen(chart);
+				chart.setVisible(true);
 				
 			}
 		}); 
@@ -266,7 +270,23 @@ public class MainTable01 implements MouseListener {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
-
+		
+		btnRefresh = new JButton("새로고침");
+		btnRefresh.setForeground(Color.WHITE);
+		btnRefresh.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		btnRefresh.setBackground(new Color(135, 206, 250));
+		btnRefresh.setBounds(963, 100, 103, 27);
+		p.add(btnRefresh);
+		
+		btnRefresh.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jTableRefresh();
+				
+			}
+		});
+		
 		// 7번째 컬럼에 대한 색상 설정
 		TableColumn column = table.getColumnModel().getColumn(6);
 		column.setCellRenderer(new ColorRenderer());
@@ -331,15 +351,19 @@ public class MainTable01 implements MouseListener {
 			// button = 1 : 왼쪽
 			// button = 2 : 가운데
 			// button = 3 : 오른쪽
+			
 			int row = table.getSelectedRow();
 			int col = table.getSelectedColumn();
 			String id = (String) table.getValueAt(row, 0);
 			System.out.println(e);
 			
-			System.out.println(id);
+			System.out.println(id + this.id);
+			
 			
 			F_Dao fao = new F_Dao();
-			fao.goInfo(id);
+			fao.goInfo(id, this.id);
+			
+			jTableRefresh();
 			
 		}
 

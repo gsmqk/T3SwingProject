@@ -45,7 +45,8 @@ public class F_DTO {
 
 	public F_DTO(String gname, String large, String medium, String small, String place, String quantity2, String unit2,
 			String price2, String store_name2, String input_date2, String expire_date2, String due_date2, String memo2
-			, int f) {
+			, String uid, int f) {
+			
 		// GroceryInfo 사용
 		// F_Dao goInfo()
 		this.grocery_name = gname;
@@ -61,40 +62,49 @@ public class F_DTO {
 		this.expire_date = expire_date2;
 		this.due_date = due_date2;
 		this.memo = memo2;
+		this.user_id = uid;
 	}
 
-	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
-			String store, String indate, String exdate, String unit) { // GroceryInput에서 사용
-		this.large_classific = large;
-		this.medium_classific = middle;
-		this.small_classific = small;
-		this.storage_place = place;
-		this.unit = unit;
+	
+//	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
+//			String store, String indate) {
+//		
+////		fname, large, middle, small, place, quan, unit,
+////    price, indate, exdate, memo1
+//		this.large_classific = large;
+//		this.medium_classific = middle;
+//		this.small_classific = small;
+//		this.storage_place = place;
+//		this.unit = unit;
+//		this.grocery_name = name;
+//		this.quantity = quan;
+//		this.price = price2;
+//		this.store_name = store;
+//		this.input_date = indate;
+//		this.expire_date = exdate;
+//	}
+//	
+	
+//	fname, large, middle, small, place, quan, unit,
+//    price, indate, exdate, memo1, uid, store
+	
+	public F_DTO( String name, String large, String middle, String small, String place, String quan, String unit2, 
+			String price2, String indate, String exdate, String memo, String uid, String store ) {
+		// input에서 사용하는거
+		// info에서 edit넘김
 		this.grocery_name = name;
-		this.quantity = quan;
-		this.price = price2;
-		this.store_name = store;
-		this.input_date = indate;
-		this.expire_date = exdate;
-	}
-	
-	
-	public F_DTO(String large, String middle, String small, String place, String name, String quan, String price2,
-			String store, String indate, String exdate, String unit2, String memo, String uid) {
-		//
 		this.large_classific = large;
 		this.medium_classific = middle;
 		this.small_classific = small;
 		this.storage_place = place;
+		this.quantity = quan;
 		this.unit = unit2;
-		this.grocery_name = name;
-		this.quantity = quan;
 		this.price = price2;
-		this.store_name = store;
 		this.input_date = indate;
 		this.expire_date = exdate;
 		this.memo = memo;
 		this.user_id = uid;
+		this.store_name = store;
 	}
 
 	public F_DTO(String fname, String large, String middle, String small, String place, String quan, String unit2,
@@ -127,6 +137,23 @@ public class F_DTO {
 		this.input_date = indate;
 		this.expire_date = exdate;
 		this.memo = memo1;
+	}
+
+	public F_DTO(String fname, String large, String middle, String small, String place, String quan, String unit2,
+			String price2, String indate, String exdate, String memo1, String uid, int f) {
+		// edit으로 보내는 생성자
+		this.grocery_name = fname;
+		this.large_classific = large;
+		this.medium_classific = middle;
+		this.small_classific = small;
+		this.storage_place = place;
+		this.quantity = quan;
+		this.unit = unit2;
+		this.price = price2;
+		this.input_date = indate;
+		this.expire_date = exdate;
+		this.memo = memo1;
+		this.user_id = uid;
 	}
 
 	// Getter / Setter
@@ -258,6 +285,7 @@ public class F_DTO {
 		this.memo = memo;
 	}
 
+
 	// toString
 	@Override
 	public String toString() {
@@ -265,8 +293,10 @@ public class F_DTO {
 				+ large_classific + ", medium_classific=" + medium_classific + ", small_classific=" + small_classific
 				+ ", storage_place=" + storage_place + ", store_id=" + store_id + ", quantity=" + quantity + ", unit="
 				+ unit + ", price=" + price + ", store_name=" + store_name + ", input_date=" + input_date
-				+ ", expire_date=" + expire_date + ", user_id=" + user_id + "]";
+				+ ", expire_date=" + expire_date + ", user_id=" + user_id + ", due_date=" + due_date + ", memo=" + memo
+				+ "]";
 	}
+
 	
 	
 }

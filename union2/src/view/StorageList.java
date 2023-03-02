@@ -22,6 +22,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
+import org.jfree.ui.RefineryUtilities;
+
 import model.F_DTO;
 import model.F_Dao;
 import model.ListDao2;
@@ -47,7 +49,7 @@ public class StorageList implements MouseListener {
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
 	String id, large1, medium1, small1;
-	JTable table, table2;
+	JTable table, table2,table3;
 	StorageList slist = null;
 	
 	FindName  mProc = null; 
@@ -57,9 +59,9 @@ public class StorageList implements MouseListener {
 	
 
 	
-	public StorageList() {
-		initialize();
-	}
+//	public StorageList() {
+//		initialize();
+//	}
 
 	
 	public StorageList(MainTable01 mt012) {
@@ -87,10 +89,7 @@ public class StorageList implements MouseListener {
 		
 		
 		btnInput = new JButton("신규 입력");
-		btnInput.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+	
 		btnInput.setForeground(Color.WHITE);
 		btnInput.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnInput.setBackground(new Color(135, 206, 250));
@@ -119,7 +118,7 @@ public class StorageList implements MouseListener {
 		btnmain.setBounds(30, 550, 120, 50);
 		p.add(btnmain);
 		
-		btnAhb = new JButton("가계부");
+		btnAhb = new JButton("연간 그래프");
 		btnAhb.setForeground(Color.WHITE);
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(135, 206, 250));
@@ -173,7 +172,10 @@ public class StorageList implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				RealChart chart = new RealChart();		
+				chart.pack();
+				RefineryUtilities.centerFrameOnScreen(chart);
+				chart.setVisible(true);
 				
 			}
 		}); 
@@ -264,7 +266,7 @@ public class StorageList implements MouseListener {
 			resetInput.setToolTipText("리셋");
 			resetInput.setBounds(764, 25, 33, 33);
 			p2.add(resetInput);
-			table.addMouseListener(this);
+		
 			
 			large_classific.addItemListener(new ItemListener() {
 				
@@ -334,9 +336,9 @@ public class StorageList implements MouseListener {
 			
 			return cols;
 		}
-		public static void main(String[] args) {
-			new StorageList();
-		}
+//		public static void main(String[] args) {
+//			new StorageList();
+//		}
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -347,9 +349,10 @@ public class StorageList implements MouseListener {
 			System.out.println(e);
 			
 			System.out.println(id);
+			System.out.println(this.id);
 			
 			F_Dao fao = new F_Dao();
-			fao.goInfo(id);
+			fao.goInfo(id, this.id);
 			
 		}
 

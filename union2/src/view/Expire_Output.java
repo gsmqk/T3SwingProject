@@ -21,10 +21,6 @@ public class Expire_Output {
 	JTable table;
 	String id;
 	
-
-
-	
-	
 	public Expire_Output(String id) {
 		this.id = id;
 		
@@ -50,7 +46,7 @@ public class Expire_Output {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				table.setModel(
-						new DefaultTableModel( getDataListEO(), getColumnListEO() )	{
+						new DefaultTableModel( getDataListEX(), getColumnListEX())	{
 
 							@Override
 							public boolean isCellEditable(int row, int column) {
@@ -70,7 +66,7 @@ public class Expire_Output {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				table.setModel(
-						new DefaultTableModel( getDataListEX(), getColumnListEX() )	{
+						new DefaultTableModel( getDataListEO(), getColumnListEO() )	{
 
 							@Override
 							public boolean isCellEditable(int row, int column) {
@@ -89,7 +85,7 @@ public class Expire_Output {
 		
 		table = new JTable();
 		table.setModel(
-				new DefaultTableModel( getDataListEO(), getColumnListEO() )	{
+				new DefaultTableModel( getDataListEX(), getColumnListEX() )	{
 
 					@Override
 					public boolean isCellEditable(int row, int column) {
