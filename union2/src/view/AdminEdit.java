@@ -70,9 +70,9 @@ public class AdminEdit extends JFrame  {
         getContentPane().setLayout(null);
 		
 		title = new JLabel("\uD68C\uC6D0 \uC815\uBCF4 \uC218\uC815 ");
-		title.setFont(new Font("D2Coding", Font.PLAIN, 23));
+		title.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 25));
 		title.setHorizontalAlignment(SwingConstants.CENTER);
-		title.setBounds(12, 10, 410, 57);
+		title.setBounds(2, 31, 410, 57);
 		getContentPane().add(title);
 		
 		gradeTxt = new JTextField();
@@ -130,25 +130,25 @@ public class AdminEdit extends JFrame  {
 		
 		idLbl = new JLabel("\uC544\uC774\uB514 :");
 		idLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		idLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		idLbl.setBounds(35, 126, 77, 38);
 		getContentPane().add(idLbl);
 		
 		pwLbl = new JLabel("\uBE44\uBC00\uBC88\uD638 :");
 		pwLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		pwLbl.setBounds(2, 174, 123, 46);
+		pwLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		pwLbl.setBounds(2, 174, 135, 46);
 		getContentPane().add(pwLbl);
 		
 		nameLbl = new JLabel("\uC774\uB984 :");
 		nameLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		nameLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
-		nameLbl.setBounds(51, 230, 61, 44);
+		nameLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		nameLbl.setBounds(35, 229, 90, 44);
 		getContentPane().add(nameLbl);
 		
 		emailLbl = new JLabel("\uC774\uBA54\uC77C :");
 		emailLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		emailLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		emailLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		emailLbl.setBounds(27, 289, 90, 38);
 		getContentPane().add(emailLbl);
 		
@@ -156,19 +156,25 @@ public class AdminEdit extends JFrame  {
 		
 		statusLbl = new JLabel("\uC720\uC800\uC0C1\uD0DC :");
 		statusLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		statusLbl.setFont(new Font("D2Coding", Font.PLAIN, 15));
+		statusLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		statusLbl.setBounds(12, 351, 113, 46);
 		getContentPane().add(statusLbl);
 		
 		intoBtn = new JButton("조회");
+		intoBtn.setBackground(new Color(238, 251, 255));
+		intoBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		intoBtn.setBounds(325, 126, 65, 38);
 		getContentPane().add(intoBtn);
 
 		updateBtn = new JButton("수정하기");
+		updateBtn.setBackground(new Color(238, 251, 255));
+		updateBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		updateBtn.setBounds(103, 437, 97, 23);
 		getContentPane().add(updateBtn);
 		
 		cancelBtn = new JButton("취소");
+		cancelBtn.setBackground(new Color(238, 251, 255));
+		cancelBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		cancelBtn.setBounds(225, 437, 97, 23);
 		getContentPane().add(cancelBtn);
 		

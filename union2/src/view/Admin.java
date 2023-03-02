@@ -21,6 +21,7 @@ import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.Color;
+import java.awt.Font;
 
 public class Admin extends JFrame implements MouseListener, ActionListener {
         
@@ -51,8 +52,12 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		topPane = new JPanel();
 		topPane.setBackground(new Color(255, 255, 255));
 		btnRefresh  = new JButton("새로고침");
+		btnRefresh.setBackground(new Color(238, 251, 255));
+		btnRefresh.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(btnRefresh);
 		btnCategory = new JButton("카테고리");
+		btnCategory.setBackground(new Color(238, 251, 255));
+		btnCategory.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(btnCategory);
 		
 		getContentPane().add(topPane, BorderLayout.NORTH);
@@ -68,6 +73,8 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		logPane = new JPanel();
 		logPane.setBackground(new Color(255, 255, 255));
 		btnOut = new JButton("로그아웃");
+		btnOut.setBackground(new Color(238, 251, 255));
+		btnOut.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		logPane.add(btnOut);
 
 		est = new JPanel();
