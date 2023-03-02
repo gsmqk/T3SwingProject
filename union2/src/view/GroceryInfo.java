@@ -170,8 +170,11 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			System.out.println(price1);
 			System.out.println(quan1);
 			
-			int perPrice2 = (price1 / quan1) * 100;
-			String pph2 = String.valueOf(perPrice2);
+			double perPrice2 = ((double)price1 / (double)quan1) * 100;
+			double perPrice2Math = Math.round(perPrice2);
+			String pph2 = String.valueOf(perPrice2Math);
+			
+			
 
 			JTextPane jtpUcost2 = new JTextPane();
 			jtpUcost2.setText(pph2);
@@ -187,8 +190,9 @@ public class GroceryInfo extends JFrame implements ActionListener {
 			System.out.println(price1);
 			System.out.println(quan1);
 			
-			int perPrice3 = (price1 / (quan1 * 100)) * 100;
-			String pph3 = String.valueOf(perPrice3);
+			double perPrice3 = ((double)price1 / ((double)quan1 * 1000)) * 100;
+			double perPrice3Math = Math.round(perPrice3);
+			String pph3 = String.valueOf(perPrice3Math);
 
 			JTextPane jtpUcost3 = new JTextPane();
 			jtpUcost3.setText(pph3);

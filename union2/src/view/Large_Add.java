@@ -17,7 +17,7 @@ import java.awt.FlowLayout;
 public class Large_Add extends JFrame {
 
 	JLabel     large;
-	JTextField largeText, largeidText;
+	JTextField largeText ;
 	JButton    add, cancle;  
 	
 	
@@ -64,7 +64,7 @@ public class Large_Add extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("추가하기클릭");
 				addGrocery();	
-				largeidText.setText("");
+				largeText.setText("");
 			}
 		});
 		
@@ -90,5 +90,6 @@ public class Large_Add extends JFrame {
 		String search = largeText.getText();
 		
 		int   aftcnt = gdao.insertGrocery(search);
+		largeText.setText("");
 	}
 }

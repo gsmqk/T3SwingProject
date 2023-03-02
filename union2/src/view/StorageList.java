@@ -135,6 +135,7 @@ public class StorageList implements MouseListener {
 					mGi.dispose();
 				mGi = new GroceryInput(slist);
 				
+
 			}
 		}); 
 		

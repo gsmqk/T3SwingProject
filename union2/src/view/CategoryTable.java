@@ -17,7 +17,7 @@ import model.G_Dao;
 public class CategoryTable extends JFrame implements ActionListener {
 
 	
-	JButton      largeAdd, mediumAdd, smallAdd, cleanBtn;
+	JButton      largeAdd, mediumAdd, smallAdd, cleanBtn, refreshBtn;
 	JPanel       topPane;
 	JTable       jTable;
 	JScrollPane  pane;
@@ -40,6 +40,8 @@ public class CategoryTable extends JFrame implements ActionListener {
 		topPane.add(mediumAdd);
 		smallAdd = new JButton("소분류추가");
 		topPane.add(smallAdd);
+		refreshBtn = new JButton("새로고침");
+		topPane.add(refreshBtn);
 		cleanBtn = new JButton("닫기");
 		topPane.add(cleanBtn);
 		
@@ -55,6 +57,7 @@ public class CategoryTable extends JFrame implements ActionListener {
 		largeAdd.addActionListener(this);
 		mediumAdd.addActionListener(this);
 		smallAdd.addActionListener(this);
+		refreshBtn.addActionListener(this);
 		cleanBtn.addActionListener(this);
 		//완성ㅇㅇ
 	}
@@ -84,10 +87,6 @@ public class CategoryTable extends JFrame implements ActionListener {
 
 	}
 
-	public void JTableRefresh() {
-		
-	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -100,15 +99,50 @@ public class CategoryTable extends JFrame implements ActionListener {
 			new Medium_Add();
 			break;
 		case "소분류추가":
+			System.out.println();
 			new Small_Add();
+			System.out.println();
+			break;
+		case "새로고침":	
+			
+			refresh();
+			System.out.println("새로고침클릭");
 			break;
 		case "닫기":
 			dispose();
-			break;
-			
+			break;	
 		}
 		
 	}
+
+	private void refresh() {
+		jTable.setModel(
+				new DefaultTableModel( getDataList(), getColumnList()) {
+					
+					@Override
+					public boolean isCellEditable(int row, int column) {		
+						return false;
+					}	
+				});
+	
+		jTable.repaint();
+		
+	}
+
+
+	public void JTableRefresh() {
+		jTable.setModel(
+				new DefaultTableModel( getDataList(), getColumnList()) {
+					
+					@Override
+					public boolean isCellEditable(int row, int column) {		
+						return false;
+					}	
+				});
+		System.out.println("새로고침클릭");
+		jTable.repaint();
+	}
+	
 	
 	
 }
