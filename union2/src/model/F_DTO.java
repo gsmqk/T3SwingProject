@@ -156,6 +156,35 @@ public class F_DTO {
 		this.user_id = uid;
 	}
 
+	public F_DTO(String fname, String large, String middle, String small, String place, String quan, String unit2,
+			String memo1, String uid) {
+		// 폐기할때 사용
+		
+		this.grocery_name = fname;
+		this.large_classific = large;
+		this.medium_classific = middle;
+		this.small_classific = small;
+		this.storage_place = place;
+		this.quantity = quan; // 이거 폐기수량
+		this.unit = unit2;
+		this.memo = memo1;
+		this.user_id = uid;
+	}
+
+	public F_DTO(String fname, String large, String middle, String small, String place, String outputQuan, String unit2,
+			String uid) {
+		// 출고할때 사용
+		
+		this.grocery_name = fname;
+		this.large_classific = large;
+		this.medium_classific = middle;
+		this.small_classific = small;
+		this.storage_place = place;
+		this.quantity = outputQuan; // 이거 출고수량
+		this.unit = unit2;
+		this.user_id = uid;
+	}
+
 	// Getter / Setter
 	public String getGrocery_id() {
 		return grocery_id;
