@@ -28,6 +28,7 @@ import model.F_DTO;
 import model.F_Dao;
 import model.ListDao2;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class StorageList implements MouseListener {
 
@@ -55,6 +56,7 @@ public class StorageList implements MouseListener {
 	
 	FindName  mProc = null; 
 	static StorageList  mSt = null;
+	private JLabel lblNewLabel;
 
 	
 	
@@ -202,6 +204,8 @@ public class StorageList implements MouseListener {
 			scrollPane1.setViewportView(table);
 			
 			p2 = new JPanel();
+			p2.setBackground(new Color(255, 255, 255));
+			p2.setForeground(new Color(255, 255, 255));
 			p2.setBounds(236, 62, 830, 68);
 			p.add(p2);
 			p2.setLayout(null);
@@ -268,6 +272,11 @@ public class StorageList implements MouseListener {
 			resetInput.setToolTipText("리셋");
 			resetInput.setBounds(764, 25, 33, 33);
 			p2.add(resetInput);
+			
+			lblNewLabel = new JLabel("New label");
+			lblNewLabel.setIcon(new ImageIcon(StorageList.class.getResource("/image/\uD770\uBC30\uACBD.png")));
+			lblNewLabel.setBounds(0, 0, 1196, 774);
+			p.add(lblNewLabel);
 		
 			
 			large_classific.addItemListener(new ItemListener() {
