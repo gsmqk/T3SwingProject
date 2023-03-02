@@ -15,6 +15,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -184,7 +185,8 @@ public class StorageList implements MouseListener {
 		table = new JTable();
 		table.setModel(
 				new DefaultTableModel( getDataList(), getColumnList() )	{
-
+					
+					
 					@Override
 					public boolean isCellEditable(int row, int column) {
 						
@@ -253,6 +255,10 @@ public class StorageList implements MouseListener {
 			resetInput.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
+					large_classific.setSelectedItem("대분류");
+					middle_classific.setSelectedItem("중분류");
+					small_classific.setSelectedItem("소분류");
+					
 					table.setModel(
 							new DefaultTableModel( getDataList(), getColumnList() )	{
 
@@ -305,12 +311,30 @@ public class StorageList implements MouseListener {
 		}
 
 		protected Vector<Vector> getFilterList() {
-			F_Dao fao = new F_Dao();
+
+			Vector<Vector> list = new Vector<Vector>();
+
 			large1 = (String) large_classific.getSelectedItem();
 			medium1 = (String) middle_classific.getSelectedItem();
 			small1 = (String) small_classific.getSelectedItem();
-			Vector<Vector> list = fao.getFilter(large1, medium1, small1, id);
-			System.out.println(large1 + medium1 + small1 + id);
+			
+			if (small1 != "소분류") {
+				F_Dao fao = new F_Dao();
+				list = fao.getSmallFilter(large1, medium1, small1, id);
+				System.out.println(large1 + medium1 + small1 + id);
+			} else if (small1.equals("소분류") && medium1 != "중분류") {
+				F_Dao fao = new F_Dao();
+				list = fao.getMediumFilter(large1, medium1, small1, id);
+				System.out.println(large1 + medium1 + small1 + id);
+			} else if (medium1.equals("중분류") && large1 != "대분류") {
+				F_Dao fao = new F_Dao();
+				list = fao.getLargeFilter(large1, medium1, small1, id);
+				System.out.println(large1 + medium1 + small1 + id);
+			} else {
+				JOptionPane.showMessageDialog(null, "필터를 선택하지 않으셨습니다.");
+				list = getDataList();
+			}
+			System.out.println(list);
 			return list;
 		}
 
