@@ -88,6 +88,7 @@ public class MainTable01 implements MouseListener {
 
 	private void initialize(String id) {
 		f = new JFrame();
+		f.getContentPane().setForeground(new Color(255, 255, 255));
 		f.setTitle("메인 화면");
 		f.setBounds(100, 100, 1200, 800);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,6 +97,10 @@ public class MainTable01 implements MouseListener {
 		
 		p = new JPanel();
 		p.setBackground(new Color(255, 255, 255));
+
+		p.setForeground(new Color(255, 255, 255));
+		p.setBackground(SystemColor.menu);
+
 		p.setBounds(0, 0, 1184, 761);
 		f.getContentPane().add(p);
 		p.setLayout(null);

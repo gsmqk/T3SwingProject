@@ -14,11 +14,13 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class GroceryDisOut extends JFrame implements ActionListener {
 
 	private JTextField output_quantity, discard_quantity;
-	String id, store, state;
+	String id, store, state, price, currQuan;
 	JTextField expire_memo;
 	
 	JTextPane expireUnit, outputUnit, grocery_name, large_classific,
@@ -26,6 +28,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 	          unit;
 	
 	public GroceryDisOut() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 			
 		init();
 	}
@@ -41,6 +44,8 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		
 		id = fto1.getUser_id();
 		store = fto1.getStore_name();
+		price = fto1.getPrice();
+		currQuan = fto1.getQuantity();
 		
 		setTitle("식자재 출고/폐기");
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
@@ -50,6 +55,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		//상품명부터 재고량+단위까지는 DB의 자료를 출력하는 TEXTPANE
 		grocery_name = new JTextPane();
 		grocery_name.setText(fto1.getGrocery_name());
+		grocery_name.setBackground(new Color(250, 250, 250));
 		grocery_name.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		grocery_name.setEditable(false);
 		grocery_name.setBounds(20, 20, 300, 40);
@@ -57,6 +63,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 		large_classific = new JTextPane();
 		large_classific.setText(fto1.getLarge_classific());
+		large_classific.setBackground(new Color(250, 250, 250));
 		large_classific.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		large_classific.setEditable(false);
 		large_classific.setBounds(20, 70, 145, 40);
@@ -64,6 +71,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 		medium_classific = new JTextPane();
 		medium_classific.setText(fto1.getMedium_classific());
+		medium_classific.setBackground(new Color(250, 250, 250));
 		medium_classific.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		medium_classific.setEditable(false);
 		medium_classific.setBounds(175, 70, 145, 40);
@@ -71,6 +79,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 		small_classific = new JTextPane();
 		small_classific.setText(fto1.getSmall_classific());
+		small_classific.setBackground(new Color(250, 250, 250));
 		small_classific.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		small_classific.setEditable(false);
 		small_classific.setBounds(20, 120, 145, 40);
@@ -78,6 +87,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 		storage_place = new JTextPane();
 		storage_place.setText(fto1.getStorage_place());
+		storage_place.setBackground(new Color(250, 250, 250));
 		storage_place.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		storage_place.setEditable(false);
 		storage_place.setBounds(175, 120, 145, 40);
@@ -85,6 +95,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 		quantity = new JTextPane();
 		quantity.setText(fto1.getQuantity());
+		quantity.setBackground(new Color(250, 250, 250));
 		quantity.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		quantity.setEditable(false);
 		quantity.setBounds(20, 170, 230, 40);
@@ -112,11 +123,13 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		getContentPane().add(discard_quantity);
 
 		JButton btnOutput = new JButton("출고");
+		btnOutput.setBackground(new Color(73, 153, 221));
 		btnOutput.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnOutput.setBounds(230, 362, 90, 40);
 		getContentPane().add(btnOutput);
 
 		JButton btnDiscard = new JButton("폐기");
+		btnDiscard.setBackground(new Color(73, 153, 221));
 		btnDiscard.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnDiscard.setBounds(230, 430, 90, 40);
 		getContentPane().add(btnDiscard);
@@ -150,6 +163,11 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		expireUnit.setBounds(171, 431, 49, 40);
 		getContentPane().add(expireUnit);
 		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/\uD770\uBC30\uACBD.png")));
+		lblNewLabel.setBounds(-16, -13, 373, 501);
+		getContentPane().add(lblNewLabel);
+
 		btnDiscard.addActionListener(this);
 		btnOutput.addActionListener(this);
 		
@@ -169,42 +187,49 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 		//상품명부터 재고량+단위까지는 DB의 자료를 출력하는 TEXTPANE
 		JTextPane grocery_name = new JTextPane();
+		grocery_name.setBackground(new Color(238, 251, 255));
 		grocery_name.setText("상품명");
 		grocery_name.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		grocery_name.setBounds(20, 20, 300, 40);
 		getContentPane().add(grocery_name);
 
 		JTextPane large_classific = new JTextPane();
+		large_classific.setBackground(new Color(238, 251, 255));
 		large_classific.setText("대분류");
 		large_classific.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		large_classific.setBounds(20, 70, 145, 40);
 		getContentPane().add(large_classific);
 
 		JTextPane medium_classific = new JTextPane();
+		medium_classific.setBackground(new Color(238, 251, 255));
 		medium_classific.setText("중분류");
 		medium_classific.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		medium_classific.setBounds(175, 70, 145, 40);
 		getContentPane().add(medium_classific);
 
 		JTextPane small_classific = new JTextPane();
+		small_classific.setBackground(new Color(238, 251, 255));
 		small_classific.setText("소분류");
 		small_classific.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		small_classific.setBounds(20, 120, 145, 40);
 		getContentPane().add(small_classific);
 
 		JTextPane storage_place = new JTextPane();
+		storage_place.setBackground(new Color(238, 251, 255));
 		storage_place.setText("보관장소");
 		storage_place.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		storage_place.setBounds(175, 120, 145, 40);
 		getContentPane().add(storage_place);
 
 		JTextPane quantity = new JTextPane();
+		quantity.setBackground(new Color(238, 251, 255));
 		quantity.setText("재고량");
 		quantity.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		quantity.setBounds(20, 170, 230, 40);
 		getContentPane().add(quantity);
 
 		JTextPane unit = new JTextPane();
+		unit.setBackground(new Color(238, 251, 255));
 		unit.setText("단위");
 		unit.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		unit.setBounds(260, 170, 60, 40);
@@ -225,11 +250,13 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		getContentPane().add(discard_quantity);
 
 		JButton btnOutput = new JButton("출고");
+		btnOutput.setBackground(new Color(73, 153, 221));
 		btnOutput.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnOutput.setBounds(230, 362, 90, 40);
 		getContentPane().add(btnOutput);
 
 		JButton btnDiscard = new JButton("폐기");
+		btnDiscard.setBackground(new Color(73, 153, 221));
 		btnDiscard.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnDiscard.setBounds(230, 430, 90, 40);
 		getContentPane().add(btnDiscard);
@@ -261,6 +288,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		expireUnit.setBounds(171, 431, 49, 40);
 		getContentPane().add(expireUnit);
 		
+		
 		setSize(360, 520);
 		setLocation(200, 200);
 		setVisible(true);
@@ -287,7 +315,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				System.out.println(oaftcnt1);
 				if (oaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
-					int expense = ofao.insertExpense(ofto, this.store, state);
+					int expense = ofao.insertExpense(ofto, this.store, state, price, currQuan);
 					this.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
@@ -310,7 +338,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				System.out.println(eaftcnt1);
 				if (eaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
-					int expense = efao.insertExpense(efto, store, state);
+					int expense = efao.insertExpense(efto, store, state, price, currQuan);
 					this.dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");

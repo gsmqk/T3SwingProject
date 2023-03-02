@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import model.G_Dao;
+import java.awt.Color;
 
 public class Medium_Add extends JFrame {
 
@@ -24,6 +25,7 @@ public class Medium_Add extends JFrame {
 	
 	
 	public Medium_Add() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		init();
 		setTitle("중분류추가");
 		setSize(400,300);
@@ -38,6 +40,7 @@ public class Medium_Add extends JFrame {
 		Vector<String> largecategory = dao.getLargeCategory();
 		
 		largeBox = new JComboBox(largecategory);
+		largeBox.setBackground(new Color(250, 250, 250));
 		largeBox.setBounds(139, 34, 172, 36);
 		getContentPane().add(largeBox);
 		
@@ -59,10 +62,12 @@ public class Medium_Add extends JFrame {
 	
 		
 		add = new JButton("\uCD94\uAC00\uD558\uAE30");
+		add.setBackground(new Color(238, 251, 255));
 		add.setBounds(77, 208, 97, 23);
 		getContentPane().add(add);
 		
 		cancle = new JButton("새로고침");
+		cancle.setBackground(new Color(238, 251, 255));
 		cancle.setBounds(206, 208, 97, 23);
 		getContentPane().add(cancle);
 		

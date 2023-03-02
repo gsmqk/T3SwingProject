@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Vector;
+import java.awt.Color;
 
 public class Small_Add extends JFrame{
 	
@@ -26,6 +27,7 @@ public class Small_Add extends JFrame{
 	private JTextField textField;
 
 	public Small_Add() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		init();
 		setTitle("소분류추가");
 		
@@ -38,17 +40,17 @@ public class Small_Add extends JFrame{
 		getContentPane().setLayout(null);
 		
 		largeLbl = new JLabel("\uB300\uBD84\uB958 \uC120\uD0DD : ");
-		largeLbl.setFont(new Font("굴림", Font.PLAIN, 14));
+		largeLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 16));
 		largeLbl.setBounds(60, 49, 99, 39);
 		getContentPane().add(largeLbl);
 		
 		mediumLbl = new JLabel("\uC911\uBD84\uB958 \uC120\uD0DD : ");
-		mediumLbl.setFont(new Font("굴림", Font.PLAIN, 14));
+		mediumLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 16));
 		mediumLbl.setBounds(60, 98, 99, 39);
 		getContentPane().add(mediumLbl);
 		
 		smallLbl = new JLabel("\uC18C\uBD84\uB958 \uC785\uB825 : ");
-		smallLbl.setFont(new Font("굴림", Font.PLAIN, 14));
+		smallLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 16));
 		smallLbl.setBounds(60, 147, 99, 39);
 		getContentPane().add(smallLbl);
 		
@@ -56,10 +58,14 @@ public class Small_Add extends JFrame{
 		Vector<String> large = fao.getLarge();
 		
 		largeBox = new JComboBox(large);
+		largeBox.setBackground(new Color(250, 250, 250));
+		largeBox.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 12));
 		largeBox.setBounds(171, 52, 163, 32);
 		getContentPane().add(largeBox);
 		
 		MediumBox = new JComboBox();
+		MediumBox.setBackground(new Color(250, 250, 250));
+		MediumBox.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 12));
 		MediumBox.setBounds(171, 101, 163, 32);
 		getContentPane().add(MediumBox);
 		
@@ -69,10 +75,14 @@ public class Small_Add extends JFrame{
 		SmallText.setColumns(10);
 		
 		add = new JButton("추가하기");
+		add.setBackground(new Color(238, 251, 255));
+		add.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		add.setBounds(73, 209, 97, 23);
 		getContentPane().add(add);
 		
 		cancle = new JButton("새로고침");
+		cancle.setBackground(new Color(238, 251, 255));
+		cancle.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		cancle.setBounds(207, 209, 97, 23);
 		getContentPane().add(cancle);
 		

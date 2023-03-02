@@ -13,12 +13,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.G_Dao;
+import java.awt.Color;
+import java.awt.Font;
 
 public class CategoryTable extends JFrame implements ActionListener {
 
 	
 	JButton      largeAdd, mediumAdd, smallAdd, cleanBtn, refreshBtn;
-	JPanel       topPane;
+	JPanel       topPane, south, east, west;
 	JTable       jTable;
 	JScrollPane  pane;
 	
@@ -34,22 +36,44 @@ public class CategoryTable extends JFrame implements ActionListener {
 	
 	private void initComponent() {
 		topPane = new JPanel();
+		topPane.setBackground(new Color(255, 255, 255));
 		largeAdd = new JButton("대분류추가");
+		largeAdd.setBackground(new Color(238, 251, 255));
+		largeAdd.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(largeAdd);
 		mediumAdd = new JButton("중분류추가");
+		mediumAdd.setBackground(new Color(238, 251, 255));
+		mediumAdd.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(mediumAdd);
 		smallAdd = new JButton("소분류추가");
+		smallAdd.setBackground(new Color(238, 251, 255));
+		smallAdd.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(smallAdd);
-		refreshBtn = new JButton("새로고침");
+		refreshBtn = new JButton("  새로고침  ");
+		refreshBtn.setBackground(new Color(238, 251, 255));
+		refreshBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(refreshBtn);
-		cleanBtn = new JButton("닫기");
+		cleanBtn = new JButton("      닫기      ");
+		cleanBtn.setBackground(new Color(238, 251, 255));
+		cleanBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		topPane.add(cleanBtn);
+		
+		south = new JPanel();
+		south.setBackground(new Color(255, 255, 255));
+		east = new JPanel();
+		east.setBackground(new Color(255, 255, 255));
+		west = new JPanel();
+		west.setBackground(new Color(255, 255, 255));
+		getContentPane().add(south, BorderLayout.SOUTH);
+		getContentPane().add(east, BorderLayout.EAST);
+		getContentPane().add(west, BorderLayout.WEST);
+		
 		
 		getContentPane().add(topPane, BorderLayout.NORTH);
 		
 		jTable = new JTable();
 		jTable.setModel(new DefaultTableModel(getDataList(),getColumnList()));
-		add(jTable);
+		getContentPane().add(jTable);
 		
 		pane = new JScrollPane(jTable);
 		getContentPane().add(pane);

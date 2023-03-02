@@ -236,6 +236,9 @@ public class F_Dao {
 			pstmt.setString(1, item);
 			
 			rs = pstmt.executeQuery();
+			
+			mList.add("중분류");
+			
 			while (rs.next()) {
 				String middle = rs.getString(1);
 				mList.add(middle);
@@ -268,8 +271,10 @@ public class F_Dao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, item);
-			
 			rs = pstmt.executeQuery();
+			
+			sList.add("소분류");
+			
 			while (rs.next()) {
 				String small = rs.getString(1);
 				sList.add(small);
@@ -385,7 +390,7 @@ Vector<String> list = new Vector<String>();
 		return aftcnt;
 	}
 
-	public Vector<Vector> getFilter(String large1, String medium1, String small1, String id2) {
+	public Vector<Vector> getSmallFilter(String large1, String medium1, String small1, String id2) {
 		
 		System.out.println("필터" + small1);
 		System.out.println("필터" + id2);
@@ -406,7 +411,8 @@ Vector<String> list = new Vector<String>();
 	    sql += " AND   G.STORAGE_ID = SP.STORAGE_ID";
 	    sql += " AND   G.STORE_ID   = S.STORE_ID";
 	    sql += " AND   G.USER_ID = ? "
-	    		+ "AND SC.SMALL_CLASSIFIC = ? ";
+	    		+ "AND SC.SMALL_CLASSIFIC = ? "
+	    		+ "AND MC.MEDIUM_CLASSIFIC = ? ";
 	   
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
@@ -414,6 +420,7 @@ Vector<String> list = new Vector<String>();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id2);
 			pstmt.setString(2, small1);
+			pstmt.setString(3, medium1);
 			
 			rs = pstmt.executeQuery();
 			
@@ -565,7 +572,45 @@ Vector<String> list = new Vector<String>();
 		return aftcnt;
 	}
 
-	public int insertExpense(F_DTO ofto, String store, String state) {
+	public int insertExpense(F_DTO ofto, String store, String state, String price, String currQuan) {
+		
+		double price1 = Double.parseDouble(price);
+		double currQuan1 = Double.parseDouble(currQuan);
+		double quan = Double.parseDouble(ofto.getQuantity());
+		String sVal = "";
+		
+		
+		switch(ofto.getUnit()) {
+		case "EA" :
+			double val = price1 / currQuan1;
+			double perPriceMath = Math.round(val);
+			sVal = String.valueOf(perPriceMath);
+			System.out.println(sVal);
+			
+			break;
+		case "ML" :
+		case "G" :
+			double val1 = (price1 / currQuan1) * quan;
+			double perPriceMath1 = Math.round(val1);
+			sVal = String.valueOf(perPriceMath1);
+			System.out.println(sVal);
+			
+			break;
+		case "KG" :
+		case "L" :
+			double val2 = (price1 / (currQuan1 * 1000)) * quan;
+			double perPriceMath2 = Math.round(val2);
+			sVal = String.valueOf(perPriceMath2);
+			System.out.println(sVal);
+			
+			break;
+		}
+		
+		
+//		double perPrice2Math = Math.round(val);
+//		String val2 = String.valueOf(perPrice2Math);
+//		System.out.println(val2);
+		
 		String sql = "INSERT INTO EXPENSES ( "
 				+ "    EXPENSE_ID, "
 				+ "    EXPENSE_CATEGORY, "
@@ -585,7 +630,7 @@ Vector<String> list = new Vector<String>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, state);
-			pstmt.setString(2, ofto.getQuantity());
+			pstmt.setString(2, sVal);
 			pstmt.setString(3, store);
 			pstmt.setString(4, ofto.getUser_id());
 			pstmt.setString(5, ofto.getGrocery_name());
@@ -601,6 +646,154 @@ Vector<String> list = new Vector<String>();
 				}
 		}
 		return aftcnt;
+	}
+
+	public Vector<Vector> getMediumFilter(String large1, String medium1, String small1, String id2) {
+		
+		System.out.println("필터" + medium1);
+		System.out.println("필터" + id2);
+		Vector<Vector> list = new Vector<Vector>();
+		
+		String sql = "SELECT LC.LARGE_CLASSIFIC, MC.MEDIUM_CLASSIFIC, ";
+	    sql += "	   SC.SMALL_CLASSIFIC, SP.STORAGE_PLACE,  ";
+	    sql += "       G.GROCERY_NAME, G.QUANTITY, G.UNIT, S.STORE_NAME, ";
+	    sql += "       TO_CHAR(G.INPUT_DATE, 'YYYY-MM-DD') INPUT_DATE, ";
+	    sql += "       TO_CHAR(G.EXPIRE_DATE, 'YYYY-MM-DD') EXPIRE_DATE, ";
+	    sql += "	   TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE ";
+	    sql += " FROM  LARGE_CLASSIFIC LC, MEDIUM_CLASSIFIC MC, ";
+	    sql += "       SMALL_CLASSIFIC SC, GROCERIES G, ";
+	    sql += "       STORES S, STORAGES SP ";
+	    sql += " WHERE LC.LARGE_ID  = G.LARGE_ID";
+	    sql += " AND   MC.MEDIUM_ID = G.MEDIUM_ID";
+	    sql += " AND   SC.SMALL_ID  = G.SMALL_ID";
+	    sql += " AND   G.STORAGE_ID = SP.STORAGE_ID";
+	    sql += " AND   G.STORE_ID   = S.STORE_ID";
+	    sql += " AND   G.USER_ID = ? "
+	    	  + "AND   MC.MEDIUM_CLASSIFIC = ? ";
+	   
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id2);
+			pstmt.setString(2, medium1);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String large = rs.getString(1);
+				String medium = rs.getString(2);
+				String small = rs.getString(3);
+				String place = rs.getString(4);
+				String fname = rs.getString(5);
+				String quan = rs.getString(6);
+				String unit = rs.getString(7);
+				String store = rs.getString(8);
+				String indate = rs.getString(9);
+				String exdate = rs.getString(10);
+				String duedate = rs.getString(11);
+				
+				Vector<String> v = new Vector<String>();
+				v.add(large);
+				v.add(medium);
+				v.add(small);
+				v.add(place);
+				v.add(fname);
+				v.add(quan);
+				v.add(unit);
+				v.add(store);
+				v.add(exdate);
+				v.add(exdate);
+				v.add(duedate);
+				
+				list.add(v);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(list);
+		return list;
+	}
+
+	public Vector<Vector> getLargeFilter(String large1, String medium1, String small1, String id2) {
+		
+		System.out.println("필터" + large1);
+		System.out.println("필터" + id2);
+		Vector<Vector> list = new Vector<Vector>();
+		
+		String sql = "SELECT LC.LARGE_CLASSIFIC, MC.MEDIUM_CLASSIFIC, ";
+	    sql += "	   SC.SMALL_CLASSIFIC, SP.STORAGE_PLACE,  ";
+	    sql += "       G.GROCERY_NAME, G.QUANTITY, G.UNIT, S.STORE_NAME, ";
+	    sql += "       TO_CHAR(G.INPUT_DATE, 'YYYY-MM-DD') INPUT_DATE, ";
+	    sql += "       TO_CHAR(G.EXPIRE_DATE, 'YYYY-MM-DD') EXPIRE_DATE, ";
+	    sql += "	   TO_CHAR(TRUNC(EXPIRE_DATE - SYSDATE)) DUE_DATE ";
+	    sql += " FROM  LARGE_CLASSIFIC LC, MEDIUM_CLASSIFIC MC, ";
+	    sql += "       SMALL_CLASSIFIC SC, GROCERIES G, ";
+	    sql += "       STORES S, STORAGES SP ";
+	    sql += " WHERE LC.LARGE_ID  = G.LARGE_ID";
+	    sql += " AND   MC.MEDIUM_ID = G.MEDIUM_ID";
+	    sql += " AND   SC.SMALL_ID  = G.SMALL_ID";
+	    sql += " AND   G.STORAGE_ID = SP.STORAGE_ID";
+	    sql += " AND   G.STORE_ID   = S.STORE_ID";
+	    sql += " AND   G.USER_ID = ? "
+	    	  + "AND   LC.LARGE_CLASSIFIC = ? ";
+	   
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id2);
+			pstmt.setString(2, large1);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String large = rs.getString(1);
+				String medium = rs.getString(2);
+				String small = rs.getString(3);
+				String place = rs.getString(4);
+				String fname = rs.getString(5);
+				String quan = rs.getString(6);
+				String unit = rs.getString(7);
+				String store = rs.getString(8);
+				String indate = rs.getString(9);
+				String exdate = rs.getString(10);
+				String duedate = rs.getString(11);
+				
+				Vector<String> v = new Vector<String>();
+				v.add(large);
+				v.add(medium);
+				v.add(small);
+				v.add(place);
+				v.add(fname);
+				v.add(quan);
+				v.add(unit);
+				v.add(store);
+				v.add(exdate);
+				v.add(exdate);
+				v.add(duedate);
+				
+				list.add(v);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println(list);
+		return list;
 	}
 
 

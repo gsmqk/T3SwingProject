@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
+import java.awt.Color;
 
 public class Large_Add extends JFrame {
 
@@ -23,6 +24,7 @@ public class Large_Add extends JFrame {
 	
 	
 	public Large_Add() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		init();
 		
 		
@@ -51,10 +53,12 @@ public class Large_Add extends JFrame {
 		largeText.setColumns(10);
 		
 		add = new JButton("추가하기");
+		add.setBackground(new Color(238, 251, 255));
 		add.setBounds(70, 200, 97, 23);
 		getContentPane().add(add);
 		
 		cancle = new JButton("새로고침");
+		cancle.setBackground(new Color(238, 251, 255));
 		cancle.setBounds(202, 200, 97, 23);
 		getContentPane().add(cancle);
 		
