@@ -20,6 +20,7 @@ import java.util.Vector;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.awt.Color;
 
 public class Admin extends JFrame implements MouseListener, ActionListener {
         
@@ -48,6 +49,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 
 	private void initComponent() {
 		topPane = new JPanel();
+		topPane.setBackground(new Color(255, 255, 255));
 		btnRefresh  = new JButton("새로고침");
 		topPane.add(btnRefresh);
 		btnCategory = new JButton("카테고리");
@@ -64,6 +66,7 @@ public class Admin extends JFrame implements MouseListener, ActionListener {
 		getContentPane().add(pane);
 		
 		logPane = new JPanel();
+		logPane.setBackground(new Color(255, 255, 255));
 		btnOut = new JButton("로그아웃");
 		logPane.add(btnOut);
 		

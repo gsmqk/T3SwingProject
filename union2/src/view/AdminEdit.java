@@ -23,6 +23,8 @@ import javax.swing.SwingConstants;
 
 import model.U_DTO;
 import model.U_Dao;
+import java.awt.Color;
+import javax.swing.ImageIcon;
 
 public class AdminEdit extends JFrame  {
 // 관리자 수정창!!!
@@ -35,8 +37,10 @@ public class AdminEdit extends JFrame  {
 	
 	
 	Admin Admin = null;
+	private JLabel lblNewLabel;
 	
 	public AdminEdit() {
+		getContentPane().setForeground(new Color(255, 255, 255));
 		
 		setTitle("회원정보수정");
 		
@@ -167,6 +171,11 @@ public class AdminEdit extends JFrame  {
 		cancelBtn = new JButton("취소");
 		cancelBtn.setBounds(225, 437, 97, 23);
 		getContentPane().add(cancelBtn);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\GGG\\Desktop\\\u3147\u3147\u3147\u3147\u3147\u3147.png"));
+		lblNewLabel.setBounds(-11, -14, 433, 592);
+		getContentPane().add(lblNewLabel);
 		
 		
 		intoBtn.addActionListener( new ActionListener() {
