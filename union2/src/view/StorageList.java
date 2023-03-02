@@ -43,7 +43,7 @@ public class StorageList implements MouseListener {
 	JButton           classficInput;
 	JComboBox         large_classific, middle_classific, small_classific;
 	
-	
+	//색상수정함
 	
 	MainTable01 mT01 = null;
 	StorageList mSt01 = null;
