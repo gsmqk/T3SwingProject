@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 public class GroceryDisOut extends JFrame implements ActionListener {
 
 	private JTextField output_quantity, discard_quantity;
-	String id;
+	String id, store, state;
 	JTextField expire_memo;
 	
 	JTextPane expireUnit, outputUnit, grocery_name, large_classific,
@@ -40,6 +40,8 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 	private void init(F_DTO fto1) {
 		
 		id = fto1.getUser_id();
+		store = fto1.getStore_name();
+		
 		setTitle("식자재 출고/폐기");
 		setFont(new Font("D2Coding", Font.PLAIN, 14));
 		getContentPane().setLayout(null);
@@ -149,6 +151,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		getContentPane().add(expireUnit);
 		
 		btnDiscard.addActionListener(this);
+		btnOutput.addActionListener(this);
 		
 		setSize(360, 520);
 		setLocation(200, 200);
@@ -274,6 +277,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		switch(e.getActionCommand()) {
 		case "출고" :
 			System.out.println("출고버튼 클릭");
+			state = "출고";
 			F_Dao ofao = new F_Dao();
 			F_DTO ofto = getOutputData();
 			int oaftcnt = ofao.insertOutput(ofto);
@@ -283,6 +287,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				System.out.println(oaftcnt1);
 				if (oaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
+					int expense = ofao.insertExpense(ofto, this.store, state);
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
 				}
@@ -290,11 +295,11 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "출고 데이터를 다시 확인해주세요.");
 			}
 			
-			
 //			groceryOutput();
 			break;
 		case "폐기" :
 			System.out.println("폐기버튼 클릭");
+			state = "폐기";
 			F_Dao efao = new F_Dao();
 			F_DTO efto = getExpireData();
 			int eaftcnt = efao.insertExpire(efto);
@@ -304,6 +309,7 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 				System.out.println(eaftcnt1);
 				if (eaftcnt1 == 1) {
 					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
+					int expense = efao.insertExpense(efto, store, state);
 				} else {
 					JOptionPane.showMessageDialog(null, "오류");
 				}

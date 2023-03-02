@@ -533,14 +533,12 @@ Vector<String> list = new Vector<String>();
 				+ "    GROCERY_NAME, "
 				+ "    OUTPUT_QUANTITY, "
 				+ "    UNIT, "
-				+ "    OUTPUT_DATE, "
 				+ "    USER_ID "
 				+ ") VALUES ( "
 				+ "    ((SELECT NVL(MAX(OUTPUT_ID)+1,0) FROM GROCERY_OUTPUT )), "
 				+ "    (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ? ), "
 				+ "    ?, "
 				+ "    ?, "
-				+ "    SYSDATE, "
 				+ "    ?, "
 				+ "    ? "
 				+ ")";
@@ -563,6 +561,44 @@ Vector<String> list = new Vector<String>();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+		}
+		return aftcnt;
+	}
+
+	public int insertExpense(F_DTO ofto, String store, String state) {
+		String sql = "INSERT INTO EXPENSES ( "
+				+ "    EXPENSE_ID, "
+				+ "    EXPENSE_CATEGORY, "
+				+ "    AMOUNT, "
+				+ "    STORE_ID, "
+				+ "    USER_ID, "
+				+ "    GROCERY_ID "
+				+ " ) VALUES ( "
+				+ "    ((SELECT NVL(MAX(EXPENSE_ID)+1,0) FROM EXPENSES )), "
+				+ "    ?, "
+				+ "    ?, "
+				+ "    (SELECT STORE_ID FROM STORES WHERE STORE_NAME = ? ), "
+				+ "    ?, "
+				+ "    (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ? )) ";
+		PreparedStatement pstmt = null;
+		int aftcnt = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, state);
+			pstmt.setString(2, ofto.getQuantity());
+			pstmt.setString(3, store);
+			pstmt.setString(4, ofto.getUser_id());
+			pstmt.setString(5, ofto.getGrocery_name());
+			
+			aftcnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					if(pstmt != null) pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 		return aftcnt;
 	}
