@@ -154,6 +154,7 @@ public class Exit extends JFrame implements ActionListener {
 			break;
 		case "회원탈퇴" :
 			System.out.println("탈퇴버튼 클릭");
+			
 			exit();
 			break;
 		}
@@ -164,6 +165,10 @@ public class Exit extends JFrame implements ActionListener {
 		String id = idTxt.getText();
 		String pw = pwTxt.getText();
 		String cfpw = pwcfTxt.getText();
+	
+		if(pw.equals(null)) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요", "탈퇴실패", JOptionPane.OK_OPTION);
+		}
 		U_Dao uao = new U_Dao();
 		if (pw.equals(cfpw)) {
 			uao.eXit(id,pw);

@@ -29,6 +29,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 	//component
 	MainTable01 mainTable01 = null;
 	StorageList storeageList = null;
+	GroceryInput groceryInput = null;
 	JTextField  groName, inQuan, price, memo;
 	JButton btnInput, btnCancel;
 	
@@ -240,13 +241,47 @@ public class GroceryInput extends JFrame implements ActionListener {
 		btnInput.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		btnInput.setBounds(70, 610, 90, 40);
 		getContentPane().add(btnInput);
+		
+		groceryInput = this;
 
+		btnInput.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				F_Dao fao = new F_Dao();
+				F_DTO fto = getGroceryData(groceryInput.id);
+				
+				int aftcnt = fao.insertGrosery(fto);
+			
+				
+				if (aftcnt == 1) {
+					JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
+					
+					groceryInput.dispose();
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "다시 확인해주세요 !");
+				}
+				
+			}
+		});
+		
 		JButton btnCancel = new JButton("");
 		btnCancel.setIcon(new ImageIcon(GroceryInput.class.getResource("/image/storageList/16.png")));
 		btnCancel.setBackground(new Color(73, 153, 221));
 		btnCancel.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		btnCancel.setBounds(182, 610, 90, 40);
 		getContentPane().add(btnCancel);
+		
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+				groceryInput.dispose();
+				
+			}
+		});
 		
 		JLabel jlbExpD_1 = new JLabel("메모");
 		jlbExpD_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -265,7 +300,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		btnInput.addActionListener(this);
+//		btnInput.addActionListener(this);
 		btnCancel.addActionListener(this);
 		
 	}
@@ -282,29 +317,29 @@ public class GroceryInput extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()) {
-		case "입력" :
-			F_Dao fao = new F_Dao();
-			F_DTO fto = getGroceryData(this.id);
-			
-			int aftcnt = fao.insertGrosery(fto);
-		
-			
-			if (aftcnt == 1) {
-				JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
-				
-				this.dispose();
-				
-			} else {
-				JOptionPane.showMessageDialog(null, "다시 확인해주세요 !");
-			}
-		
-			break;
-		case "취소" :
-			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
-			this.dispose();
-			break;
-		}
+//		switch(e.getActionCommand()) {
+//		case "입력" :
+//			F_Dao fao = new F_Dao();
+//			F_DTO fto = getGroceryData(this.id);
+//			
+//			int aftcnt = fao.insertGrosery(fto);
+//		
+//			
+//			if (aftcnt == 1) {
+//				JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
+//				
+//				this.dispose();
+//				
+//			} else {
+//				JOptionPane.showMessageDialog(null, "다시 확인해주세요 !");
+//			}
+//		
+//			break;
+//		case "취소" :
+//			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+//			this.dispose();
+//			break;
+//		}
 		
 	}
 
