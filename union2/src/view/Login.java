@@ -54,7 +54,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 	private void init() {	
 		
 		JLabel idLbl = new JLabel("아이디");
-		idLbl.setFont(new Font("D2Coding", Font.PLAIN, 14));
+		idLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 14));
 		idLbl.setBounds(30, 300, 60, 20);
 		getContentPane().add(idLbl);
 
@@ -64,7 +64,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		idTxt.setColumns(10);
 		
 		JLabel pwLbl = new JLabel("비밀번호");
-		pwLbl.setFont(new Font("D2Coding", Font.PLAIN, 14));
+		pwLbl.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 14));
 		pwLbl.setBounds(30, 365, 60, 20);
 		getContentPane().add(pwLbl);
 

@@ -284,6 +284,8 @@ public class MainTable01 implements MouseListener {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
+//		table.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+//		table.getColumn("")
 		
 		btnRefresh = new JButton("");
 		btnRefresh.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/39.png")));

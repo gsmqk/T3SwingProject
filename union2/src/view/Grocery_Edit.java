@@ -363,6 +363,7 @@ private F_DTO getGroceryData() {
 	String uid = this.id;
 	String store = (String) this.store.getSelectedItem();
 
+	System.out.println(store);
 	
 	F_DTO fto = new F_DTO(fname, large, medium, small, place, quan, unit,
             price, indate, exdate, memo, uid, store);

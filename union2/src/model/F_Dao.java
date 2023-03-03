@@ -355,7 +355,9 @@ Vector<String> list = new Vector<String>();
 				+ "    PRICE = ?, "
 				+ "    INPUT_DATE = ?, "
 				+ "    EXPIRE_DATE = ?, "
-				+ "    MEMO = ? "
+				+ "    MEMO = ?,"
+				+ "    STORE_ID = "
+				+ "    (SELECT STORE_ID FROM STORES WHERE STORE_NAME = ? ) "
 				+ "WHERE GROCERY_ID = (SELECT GROCERY_ID FROM GROCERIES WHERE GROCERY_NAME = ?)";
 
 		PreparedStatement pstmt = null;
@@ -374,7 +376,8 @@ Vector<String> list = new Vector<String>();
 			pstmt.setString(10, fto.getInput_date());
 			pstmt.setString(11, fto.getExpire_date());
 			pstmt.setString(12, fto.getMemo());
-			pstmt.setString(13, preGroName);
+			pstmt.setString(13, fto.getStore_name());
+			pstmt.setString(14, preGroName);
 			
 			aftcnt = pstmt.executeUpdate();
 			

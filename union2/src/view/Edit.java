@@ -70,10 +70,11 @@ public class Edit extends JFrame {
 		gbc.weightx = 1.0;
 		gbc.weighty = 1.0;
 		
-		f1 = new Font("HY견고딕", Font.BOLD, 40);
-		f2 = new Font("HY견고딕", Font.BOLD, 20);
-		f3 = new Font("HY견고딕", Font.PLAIN, 15);
-		f4 = new Font("HY견고딕", Font.BOLD, 15);
+		f1 = new Font("한컴산뜻돋움", Font.BOLD, 40);
+		f2 = new Font("한컴산뜻돋움", Font.BOLD, 20);
+		f3 = new Font("한컴산뜻돋움", Font.PLAIN, 15);
+		f4 = new Font("한컴산뜻돋움", Font.BOLD, 15);
+//		new Font("한컴산뜻돋움", Font.PLAIN, 13)
 		
 		// 제목
 		title = new JLabel("회원 정보 수정");
