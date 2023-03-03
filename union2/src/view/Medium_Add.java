@@ -41,22 +41,22 @@ public class Medium_Add extends JFrame {
 		
 		largeBox = new JComboBox(largecategory);
 		largeBox.setBackground(new Color(250, 250, 250));
-		largeBox.setBounds(139, 34, 172, 36);
+		largeBox.setBounds(164, 39, 172, 36);
 		getContentPane().add(largeBox);
 		
 		large =new JLabel("\uB300\uBD84\uB958\uC120\uD0DD");
 		large.setFont(new Font("굴림", Font.PLAIN, 15));
-		large.setBounds(35, 34, 86, 46);
+		large.setBounds(51, 34, 86, 46);
 		getContentPane().add(large);
 		
 		
 		medium = new JLabel("중분류 입력 :");
 		medium.setFont(new Font("굴림", Font.PLAIN, 14));
-		medium.setBounds(35, 145, 102, 36);
+		medium.setBounds(51, 110, 102, 36);
 		getContentPane().add(medium);
 		
 		MediumText = new JTextField();
-		MediumText.setBounds(139, 91, 172, 36);
+		MediumText.setBounds(164, 111, 172, 36);
 		getContentPane().add(MediumText);
 		MediumText.setColumns(10);
 	

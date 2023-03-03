@@ -127,12 +127,12 @@ public class CategoryTable extends JFrame implements ActionListener {
 			new Small_Add();
 			System.out.println();
 			break;
-		case "새로고침":	
+		case "  새로고침  ":	
 			
 			refresh();
 			System.out.println("새로고침클릭");
 			break;
-		case "닫기":
+		case "      닫기      ":
 			dispose();
 			break;	
 		}

@@ -52,6 +52,12 @@ public class GroceryInput extends JFrame implements ActionListener {
 		init(id);
 	}
 
+	public GroceryInput(StorageList slist) {
+		getContentPane().setBackground(new Color(255, 255, 255));
+		
+		init(slist.id);
+	}
+
 	private void init(String id) {
 		
 		this.id = id;
@@ -308,10 +314,6 @@ public class GroceryInput extends JFrame implements ActionListener {
 
 
 
-	public GroceryInput(StorageList slist) {
-		
-		init(slist.id);
-	}
 
 
 
