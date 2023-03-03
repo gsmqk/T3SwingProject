@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import model.U_Dao;
+import java.awt.Color;
 
 public class Exit extends JFrame implements ActionListener {
 
@@ -31,6 +32,8 @@ public class Exit extends JFrame implements ActionListener {
 	ExitCf ecf1 = null;
 	
 	public Exit() {
+		
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setTitle("회원 탈퇴");
 		
 		init();
@@ -59,7 +62,7 @@ public class Exit extends JFrame implements ActionListener {
 	private void init() {
 		
 		gbl = new GridBagLayout();
-		this.setLayout(gbl);
+		getContentPane().setLayout(gbl);
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1.0;
@@ -83,6 +86,7 @@ public class Exit extends JFrame implements ActionListener {
 		idTxt = new JTextField(20);
 		idTxt.setText(id);
 		idTxt.setEditable(false);
+		idTxt.setBackground(new Color(255, 255, 255));
 
 //		pId.add(idLbl);
 //		pId.add(idTxt);
@@ -95,6 +99,7 @@ public class Exit extends JFrame implements ActionListener {
 		pwLbl = new JLabel("비밀번호");
 		pwLbl.setFont(f3);
 		pwTxt = new JPasswordField(20);
+		pwTxt.setBackground(new Color(255, 255, 255));
 
 //		pPw.add(pwLbl);
 //		pPw.add(pwTxt);
@@ -107,6 +112,7 @@ public class Exit extends JFrame implements ActionListener {
 		pwcfLbl = new JLabel("비밀번호 확인");
 		pwcfLbl.setFont(f3);
 		pwcfTxt = new JPasswordField(20);
+		pwcfTxt.setBackground(new Color(255, 255, 255));
 
 //		pCF.add(pwcfLbl);
 //		pCF.add(pwcfTxt);
@@ -119,12 +125,17 @@ public class Exit extends JFrame implements ActionListener {
 		exitBtn = new JButton("회원탈퇴");
 		cancelBtn = new JButton("취소");
 		
+		exitBtn.setBackground(new Color(238, 251, 255));
+		exitBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		cancelBtn.setBackground(new Color(238, 251, 255));
+		cancelBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		exitBtn.setFont(f4);
 		cancelBtn.setFont(f4);
 
 		pButton.add(exitBtn);
 		pButton.add(cancelBtn);
 		gblAdd(pButton, 0, 4, 4, 1);
+		pButton.setBackground(new Color(255, 255, 255));
 		
 		cancelBtn.addActionListener(this);
 		exitBtn.addActionListener(this);
@@ -138,7 +149,7 @@ public class Exit extends JFrame implements ActionListener {
 		gbc.gridheight = h;
 		gbl.setConstraints(c, gbc);
 		gbc.insets     = new Insets(5, 5, 5, 5);
-		this.add(c, gbc);
+		getContentPane().add(c, gbc);
 	}
 	
 	public static void main(String[] args) {
