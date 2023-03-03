@@ -52,55 +52,53 @@ public class FindRacipeTest {
 		frame.setTitle("레시피 검색");
 		frame.setBounds(100, 100, 400, 600);
 		frame.getContentPane().setLayout(null);
+		frame.setSize(500,700); 
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 384, 561);
+		panel.setBounds(0, 0, 484, 661);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lbl = new JLabel("");
 		lbl.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/24.png")));
-		lbl.setBounds(12, 77, 300, 40);
+		lbl.setBounds(32, 77, 300, 40);
 		panel.add(lbl);
 		
 		food = new JTextField();
-		food.setBounds(12, 127, 250, 100);
+		food.setBounds(32, 127, 307, 100);
 		panel.add(food);
 		food.setColumns(10);
 		
 		JButton btnAdd = new JButton("");
 		btnAdd.setBackground(new Color(73, 153, 221));
 		btnAdd.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/21.png")));
-		btnAdd.setBounds(274, 127, 100, 100);
+		btnAdd.setBounds(351, 127, 100, 100);
 		panel.add(btnAdd);
 		
 		JLabel lbl_1 = new JLabel("");
 		lbl_1.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/25.png")));
-		lbl_1.setBounds(-43, 290, 283, 40);
+		lbl_1.setBounds(-21, 320, 283, 40);
 		panel.add(lbl_1);
 		
 		
 		foodList = new JTextField();
 		foodList.setColumns(10);
-		foodList.setBounds(12, 340, 362, 100);
+		foodList.setBounds(32, 360, 419, 125);
 		panel.add(foodList);
 		
 		JButton btnFind = new JButton("");
 		btnFind.setBackground(new Color(73, 153, 221));
 		btnFind.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/22.png")));
-		btnFind.setBounds(74, 468, 100, 50);
+		btnFind.setBounds(106, 556, 100, 50);
 		panel.add(btnFind);
 		
 		JButton btnCancel = new JButton("");
 		btnCancel.setBackground(new Color(73, 153, 221));
 		btnCancel.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/23.png")));
-		btnCancel.setBounds(218, 468, 100, 50);
+		btnCancel.setBounds(275, 556, 100, 50);
 		panel.add(btnCancel);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/흰배경.png")));
-		lblNewLabel.setBounds(0, 0, 384, 561);
-		panel.add(lblNewLabel);
 		frame.setVisible(true);
 		
 		food.addKeyListener(new KeyListener() {

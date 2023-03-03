@@ -40,7 +40,7 @@ public class Exit extends JFrame  {
 		init();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(400,700);
+		setSize(500,700);
 		setVisible(true);
 		
 		
@@ -58,6 +58,8 @@ public class Exit extends JFrame  {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(500,700);
 		setVisible(true);
+		setResizable(false);
+		setLocationRelativeTo(null);
 	}
 
 
@@ -85,6 +87,7 @@ public class Exit extends JFrame  {
 //		JPanel pId = new JPanel();
 		idLbl = new JLabel("아이디");
 		idLbl.setFont(f3);
+		idLbl.setHorizontalAlignment(JLabel.CENTER);
 		idTxt = new JTextField(20);
 		idTxt.setText(id);
 		idTxt.setEditable(false);
@@ -100,6 +103,7 @@ public class Exit extends JFrame  {
 //		JPanel pPw = new JPanel();
 		pwLbl = new JLabel("비밀번호");
 		pwLbl.setFont(f3);
+		pwLbl.setHorizontalAlignment(JLabel.CENTER);
 		pwTxt = new JPasswordField(20);
 		pwTxt.setBackground(new Color(255, 255, 255));
 
@@ -113,6 +117,7 @@ public class Exit extends JFrame  {
 //		JPanel pCF = new JPanel();
 		pwcfLbl = new JLabel("비밀번호 확인");
 		pwcfLbl.setFont(f3);
+		pwcfLbl.setHorizontalAlignment(JLabel.CENTER);
 		pwcfTxt = new JPasswordField(20);
 		pwcfTxt.setBackground(new Color(255, 255, 255));
 

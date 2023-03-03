@@ -57,6 +57,8 @@ public class Edit extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(500, 700);
 		setVisible(true);
+		setResizable(false);
+		setLocationRelativeTo(null);
 	}
 
 	private void init() {
