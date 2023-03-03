@@ -139,7 +139,7 @@ public class MainTable01 implements MouseListener {
 		p.add(btnStorage);
 		
 		btnAhb = new JButton("");
-		btnAhb.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/04.png")));
+		btnAhb.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/26.png")));
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(73, 153, 221));
 		btnAhb.setForeground(Color.WHITE);
