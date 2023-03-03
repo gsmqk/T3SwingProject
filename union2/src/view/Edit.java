@@ -58,7 +58,7 @@ public class Edit extends JFrame {
 		setSize(500, 700);
 		setVisible(true);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		setLocation(200, 200);
 	}
 
 	private void init() {

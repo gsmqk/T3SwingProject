@@ -59,7 +59,7 @@ public class Exit extends JFrame  {
 		setSize(500,700);
 		setVisible(true);
 		setResizable(false);
-		setLocationRelativeTo(null);
+		setLocation(200, 200);
 	}
 
 

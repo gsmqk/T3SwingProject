@@ -54,7 +54,7 @@ public class FindRacipeTest {
 		frame.getContentPane().setLayout(null);
 		frame.setSize(500,700); 
 		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
+		frame.setLocation(200, 200);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 484, 661);
