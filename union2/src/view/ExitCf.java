@@ -1,100 +1,110 @@
 package view;
 
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+
 import model.U_DTO;
 import model.U_Dao;
 
-public class ExitCf extends JFrame implements ActionListener {
+import javax.swing.JButton;
 
-	GridBagLayout gbl;
-	GridBagConstraints gbc;
-	Font f1;
+public class ExitCf extends JFrame implements ActionListener {
+	
+	
 	String id;
 	
 	public ExitCf() {
-		setTitle("회원탈퇴 확인");
+		getContentPane().setBackground(new Color(255, 255, 255));
+
 		
+		
+		setTitle("회원탈퇴 확인");
+	
 		init();
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,700);
-		setVisible(true);
 	}
 	
+
+	
 	public ExitCf(String id) {
+		getContentPane().setBackground(new Color(255, 255, 255));
+		
 		this.id = id;
 		
 		setTitle("회원탈퇴 확인");
 		
 		init();
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,700);
-		setVisible(true);
-		
-	}
-
-	private void init() {
-		
-		gbl = new GridBagLayout();
-		this.setLayout(gbl);
-		gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
-		
-		f1 = new Font("HY견고딕", Font.BOLD, 40);
-		
-		JLabel title = new JLabel("정말 탈퇴하시겠습니까?");
-		title.setFont(f1);
-		title.setHorizontalAlignment(JLabel.CENTER);
-		gblAdd(title, 0, 0, 4, 1);
-		
-		JButton yes = new JButton("네");
-		JButton no = new JButton("아니오");
-		
-		gblAdd(yes, 0, 1, 2, 1);
-		gblAdd(no, 2, 1, 2, 1);
-		
-		no.addActionListener(this);
-		yes.addActionListener(this);
+	
 		
 	}
 	
-	public void gblAdd(JComponent c, int x, int y, int w, int h) {
-		gbc.gridx = x;
-		gbc.gridy = y;
-		gbc.gridwidth = w;
-		gbc.gridheight = h;
-		gbl.setConstraints(c, gbc);
-		gbc.insets = new Insets(5,5,5,5);
-		this.add(c,gbc);
+	
+	private void init() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setSize(400,500);
+		getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("\uC815\uB9D0");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(255, 0, 0));
+		lblNewLabel.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 38));
+		lblNewLabel.setBounds(12, 67, 360, 73);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("\uD0C8\uD1F4 \uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setForeground(new Color(255, 0, 0));
+		lblNewLabel_1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 38));
+		lblNewLabel_1.setBounds(12, 123, 360, 73);
+		getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("\uD0C8\uD1F4\uC804 \uC8FC\uC758\uC0AC\uD56D\uC744 \uBAA8\uB450 \uC219\uC9C0\uD558\uC168\uB2E4\uBA74 ");
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setBounds(12, 193, 360, 82);
+		getContentPane().add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_2_1 = new JLabel("\uD0C8\uD1F4\uD558\uAE30 \uBC84\uD2BC\uC744 \uB20C\uB7EC\uC8FC\uC138\uC694");
+		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2_1.setBounds(12, 225, 360, 82);
+		getContentPane().add(lblNewLabel_2_1);
+		
+		JButton yes = new JButton("탈퇴하기");
+		yes.setBounds(75, 317, 97, 23);
+		getContentPane().add(yes);
+		
+		JButton no = new JButton("취소하기");
+		no.setBounds(206, 317, 97, 23);
+		getContentPane().add(no);
+		setVisible(true);
+		
+		yes.addActionListener(this);
+		no.addActionListener(this);
+		
+		
 	}
-
 //	public static void main(String[] args) {
-//		new ExitCf();
+//	  
+//
 //	}
+
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
-		case "아니오" : 
+		case "취소하기" : 
 			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
 			this.dispose();
 			break;
-		case "네" :
+		case "탈퇴하기" :
 			System.out.println("탈퇴 확인");
 			deleteUser();
 			JOptionPane.showMessageDialog(null, "탈퇴되었습니다. 이용해주셔서 감사합니다.");
@@ -104,11 +114,12 @@ public class ExitCf extends JFrame implements ActionListener {
 		
 	}
 
+
+
 	private void deleteUser() {
 		U_Dao uao = new U_Dao();
 		int aftcnt = 0;
 		String id = this.id; 
 		aftcnt = uao.removeUser(id);
 	}
-
 }
