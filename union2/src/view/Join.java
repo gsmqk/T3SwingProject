@@ -65,7 +65,7 @@ public class Join {
 		frame = new JFrame();
 		frame.setTitle("회원가입");
 		frame.setBounds(100, 100, 360, 440);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
 		
