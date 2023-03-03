@@ -17,6 +17,8 @@ import model.U_Dao;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class Join {
 
@@ -80,7 +82,9 @@ public class Join {
 		panel.add(idTxt);
 		idTxt.setColumns(10);
 		
-		cfBtn = new JButton("중복확인");
+		cfBtn = new JButton("");
+		cfBtn.setBackground(new Color(73, 153, 221));
+		cfBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/19.png")));
 		cfBtn.setBounds(232, 55, 80, 32);
 		panel.add(cfBtn);
 		
@@ -122,13 +126,22 @@ public class Join {
 		
 		
 		
-		joinBtn = new JButton("회원가입");
+		joinBtn = new JButton("");
+		joinBtn.setBackground(new Color(73, 153, 221));
+		joinBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/17.png")));
 		joinBtn.setBounds(52, 332, 100, 50);
 		panel.add(joinBtn);
 		
-		cancelBtn = new JButton("취소");
+		cancelBtn = new JButton("");
+		cancelBtn.setBackground(new Color(73, 153, 221));
+		cancelBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/18.png")));
 		cancelBtn.setBounds(183, 332, 100, 50);
 		panel.add(cancelBtn);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon(Join.class.getResource("/image/흰배경.png")));
+		lblNewLabel.setBounds(0, 0, 334, 411);
+		panel.add(lblNewLabel);
 		
 		jtest = this;
 		
