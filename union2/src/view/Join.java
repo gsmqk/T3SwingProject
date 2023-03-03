@@ -73,7 +73,7 @@ public class Join {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel idLbl = new JLabel("아이디");
+		JLabel idLbl = new JLabel("* 아이디");
 		idLbl.setBounds(23, 41, 100, 15);
 		panel.add(idLbl);
 		
@@ -88,7 +88,7 @@ public class Join {
 		cfBtn.setBounds(232, 55, 80, 32);
 		panel.add(cfBtn);
 		
-		JLabel pwLbl = new JLabel("비밀번호");
+		JLabel pwLbl = new JLabel("* 비밀번호");
 		pwLbl.setBounds(23, 97, 100, 15);
 		panel.add(pwLbl);
 		
@@ -97,7 +97,7 @@ public class Join {
 		pwTxt.setBounds(22, 112, 290, 30);
 		panel.add(pwTxt);
 		
-		JLabel pwcfLbl = new JLabel("비밀번호 확인");
+		JLabel pwcfLbl = new JLabel("* 비밀번호 확인");
 		pwcfLbl.setBounds(23, 152, 100, 15);
 		panel.add(pwcfLbl);
 		
@@ -106,7 +106,7 @@ public class Join {
 		pwcfTxt.setBounds(22, 167, 290, 30);
 		panel.add(pwcfTxt);
 		
-		JLabel nameLbl = new JLabel("이름");
+		JLabel nameLbl = new JLabel("* 이름");
 		nameLbl.setBounds(24, 207, 100, 15);
 		panel.add(nameLbl);
 		
@@ -115,7 +115,7 @@ public class Join {
 		nameTxt.setBounds(23, 222, 290, 30);
 		panel.add(nameTxt);
 		
-		JLabel emailLbl = new JLabel("이메일");
+		JLabel emailLbl = new JLabel("* 이메일");
 		emailLbl.setBounds(24, 262, 100, 15);
 		panel.add(emailLbl);
 		
@@ -158,15 +158,27 @@ public class Join {
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					String id = idTxt.getText();
+					String name = nameTxt.getText();
+					String email = emailTxt.getText();
 					String pw = pwTxt.getText().trim();
 					String cfpw = pwcfTxt.getText().trim();
-					if (pw.equals(cfpw)) {
-						join();
-					} else {
+					if (id.equals("") && pw.equals("") && cfpw.equals("") && name.equals("") && email.equals("")) {
 						JOptionPane.showMessageDialog(
-					    null,  "비밀번호를 확인해주세요.", "확인", JOptionPane.OK_OPTION);
+								null,  "정보를 입력해주세요 !", "확인", JOptionPane.OK_OPTION);
+					} else {
+						if (name.equals("") || email.equals("")) {
+							JOptionPane.showMessageDialog(
+									null,  "이메일과 이름을 입력해주세요 !", "확인", JOptionPane.OK_OPTION);
+						} else {
+							if (pw.equals(cfpw)) {
+								join();
+							} else {
+								JOptionPane.showMessageDialog(
+										null,  "비밀번호를 확인해주세요.", "확인", JOptionPane.OK_OPTION);
+							}
+						}
 					}
-					
 				}
 			
 		});

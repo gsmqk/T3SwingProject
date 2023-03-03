@@ -100,7 +100,7 @@ public class Find extends JFrame implements ActionListener {
 		idFindBtn.setBounds(75, 206, 109, 23);
 		getContentPane().add(idFindBtn);
 		
-		JButton cancelBtn1 = new JButton("취소");
+		JButton cancelBtn1 = new JButton("닫기");
 		cancelBtn1.setBackground(new Color(238, 254, 255));
 		cancelBtn1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		cancelBtn1.setBounds(209, 206, 109, 23);
@@ -112,7 +112,7 @@ public class Find extends JFrame implements ActionListener {
 		pwFindBtn.setBounds(75, 425, 109, 23);
 		getContentPane().add(pwFindBtn);
 		
-		JButton cancelBtn2 = new JButton("취소");
+		JButton cancelBtn2 = new JButton("닫기");
 		cancelBtn2.setBackground(new Color(238, 254, 255));
 		cancelBtn2.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		cancelBtn2.setBounds(209, 425, 109, 23);
@@ -142,7 +142,7 @@ public class Find extends JFrame implements ActionListener {
 			System.out.println("비밀번호 찾기 클릭");
 			pwFind();
 			break;
-		case "취소" :
+		case "닫기" :
 			this.dispose();
 			break;
 		}

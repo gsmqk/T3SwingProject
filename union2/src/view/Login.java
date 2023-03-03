@@ -47,7 +47,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		logo.setBounds(30, 30, 280, 260);
 		getContentPane().add(logo);
 		setVisible(true);
-
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 
