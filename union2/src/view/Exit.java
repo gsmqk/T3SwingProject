@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -19,7 +20,7 @@ import javax.swing.JTextField;
 import model.U_Dao;
 import java.awt.Color;
 
-public class Exit extends JFrame implements ActionListener {
+public class Exit extends JFrame  {
 //회원탈퇴창
 	GridBagConstraints gbc;
 	GridBagLayout gbl;
@@ -39,7 +40,7 @@ public class Exit extends JFrame implements ActionListener {
 		init();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setSize(500,700);
+		setSize(400,700);
 		setVisible(true);
 		
 		
@@ -49,6 +50,7 @@ public class Exit extends JFrame implements ActionListener {
 	public Exit(Edit edit) {
 		this.id = edit.id;
 		
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setTitle("회원 탈퇴");
 		
 		init();
@@ -122,13 +124,16 @@ public class Exit extends JFrame implements ActionListener {
 		
 		// 버튼
 		JPanel pButton = new JPanel();
-		exitBtn = new JButton("회원탈퇴");
-		cancelBtn = new JButton("취소");
+		exitBtn = new JButton("");
+		cancelBtn = new JButton("");
 		
-		exitBtn.setBackground(new Color(238, 251, 255));
+		
+		exitBtn.setBackground(new Color(73, 153, 221));
 		exitBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
-		cancelBtn.setBackground(new Color(238, 251, 255));
+		exitBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/34.png")));
+		cancelBtn.setBackground(new Color(73, 153, 221));
 		cancelBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		cancelBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/33.png")));
 		exitBtn.setFont(f4);
 		cancelBtn.setFont(f4);
 
@@ -137,8 +142,22 @@ public class Exit extends JFrame implements ActionListener {
 		gblAdd(pButton, 0, 4, 4, 1);
 		pButton.setBackground(new Color(255, 255, 255));
 		
-		cancelBtn.addActionListener(this);
-		exitBtn.addActionListener(this);
+		cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		exitBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				exit();
+				
+			}
+		});
 		
 	}
 
@@ -157,20 +176,20 @@ public class Exit extends JFrame implements ActionListener {
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()) {
-		case "취소" :
-			this.dispose();
-			break;
-		case "회원탈퇴" :
-			System.out.println("탈퇴버튼 클릭");
-			
-			exit();
-			break;
-		}
-		
-	}
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		switch(e.getActionCommand()) {
+//		case "취소" :
+//			this.dispose();
+//			break;
+//		case "회원탈퇴" :
+//			System.out.println("탈퇴버튼 클릭");
+//			
+//			exit();
+//			break;
+//		}
+//		
+//	}
 
 	public void exit() {
 		String id = idTxt.getText();

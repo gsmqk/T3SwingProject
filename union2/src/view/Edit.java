@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -7,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -16,10 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+
 import model.U_DTO;
 import model.U_Dao;
 
-public class Edit extends JFrame implements ActionListener {
+public class Edit extends JFrame {
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
@@ -30,8 +33,10 @@ public class Edit extends JFrame implements ActionListener {
 	JLabel title, idLbl, pwLbl, ppwLbl, pwcfLbl, nameLbl, emailLbl;
 	String id;
 	Exit e1 = null;
+	Edit edi = null;
 	
 	public Edit() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		setTitle("회원정보수정");
 		
 		init();
@@ -45,6 +50,7 @@ public class Edit extends JFrame implements ActionListener {
 		this.id = mt01.id;
 		
 		setTitle("회원정보수정");
+		getContentPane().setBackground(new Color(255, 255, 255));
 
 		init();
 
@@ -56,7 +62,7 @@ public class Edit extends JFrame implements ActionListener {
 	private void init() {
 		
 		gbl = new GridBagLayout();
-		this.setLayout(gbl);
+		getContentPane().setLayout(gbl);
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = 1.0;
@@ -79,6 +85,7 @@ public class Edit extends JFrame implements ActionListener {
 		idLbl.setFont(f3);
 		idLbl.setHorizontalAlignment(JLabel.CENTER);
 		idTxt = new JTextField(20);
+		idTxt.setBackground(new Color(255, 255, 255));		
 		idTxt.setText(this.id);
 		idTxt.setEditable(false);
 		
@@ -157,9 +164,17 @@ public class Edit extends JFrame implements ActionListener {
 		
 		// 버튼
 		JPanel pButton = new JPanel();
-		exitBtn = new JButton("회원탈퇴");
-		editBtn = new JButton("정보수정");
-		cancelBtn = new JButton("입력취소");
+		pButton.setBackground(new Color(255, 255, 255));
+
+		exitBtn = new JButton();
+		exitBtn.setBackground(new Color(73, 153, 221));
+		exitBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/31.png")));
+		editBtn = new JButton();
+		editBtn.setBackground(new Color(73, 153, 221));
+		editBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/32.png")));
+		cancelBtn = new JButton();
+		cancelBtn.setBackground(new Color(73, 153, 221));
+		cancelBtn.setIcon(new ImageIcon(Join.class.getResource("/image/storageList/30.png")));
 		
 		exitBtn.setFont(f4);
 		editBtn.setFont(f4);
@@ -170,10 +185,35 @@ public class Edit extends JFrame implements ActionListener {
 		pButton.add(cancelBtn);
 		
 		gblAdd(pButton, 0, 7, 4, 1);
+		
+		edi = this;
 
-		editBtn.addActionListener(this);
-		exitBtn.addActionListener(this);
-		cancelBtn.addActionListener(this);
+		exitBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				e1 = new Exit(edi);
+
+				
+			}
+		});
+		editBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sujung();
+				
+			}
+		});
+		cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+				dispose();
+				
+			}
+		});
 		
 	}
 
@@ -184,7 +224,7 @@ public class Edit extends JFrame implements ActionListener {
 		gbc.gridheight = h;
 		gbl.setConstraints(c, gbc);
 		gbc.insets     = new Insets(5, 5, 5, 5);
-		this.add(c, gbc);
+		getContentPane().add(c, gbc);
 	}
 
 	public static void main(String[] args) {
@@ -192,22 +232,7 @@ public class Edit extends JFrame implements ActionListener {
 		
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()) {
-		case "회원탈퇴" : 
-			e1 = new Exit(this);
-			break;
-		case "입력취소" :
-			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
-			this.dispose();
-			break;
-		case "정보수정" :
-			sujung();
-			break;
-		}
-		
-	}
+
 
 	private void sujung() {
 		String id = idTxt.getText();
@@ -239,5 +264,21 @@ public class Edit extends JFrame implements ActionListener {
 		}
 		
 	}
+
+//	@Override
+//	public void actionPerformed(ActionEvent e) {
+//		switch(e.getActionCommand()) {
+//		case "/image/storageList/31.png" : 
+//			e1 = new Exit(this);
+//			break;
+//		case "입력취소" :
+//			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+//			this.dispose();
+//			break;
+//		case "정보수정" :
+//			sujung();
+//			break;
+//		}
+//	}
 
 }
