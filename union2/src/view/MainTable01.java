@@ -285,11 +285,12 @@ public class MainTable01 implements MouseListener {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
 		
-		btnRefresh = new JButton("새로고침");
+		btnRefresh = new JButton("");
+		btnRefresh.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/39.png")));
 		btnRefresh.setForeground(Color.WHITE);
 		btnRefresh.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnRefresh.setBackground(new Color(73, 153, 221));
-		btnRefresh.setBounds(963, 100, 103, 27);
+		btnRefresh.setBounds(963, 100, 103, 32);
 		p.add(btnRefresh);
 		
 		lblNewLabel = new JLabel("New label");
