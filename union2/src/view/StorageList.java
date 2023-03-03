@@ -53,7 +53,7 @@ public class StorageList implements MouseListener {
 	
 	MainTable01 mT01 = null;
 	StorageList mSt01 = null;
-	FindRacipeTest mFr   = null;
+	FindRecipe01 mFr   = null;
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
 	String id, large1, medium1, small1;
@@ -169,7 +169,7 @@ public class StorageList implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				mFr = new FindRacipeTest();
+				mFr = new FindRecipe01();
 				
 			}
 		}); 

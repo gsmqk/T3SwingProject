@@ -16,7 +16,7 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class FindRacipeTest {
+public class FindRecipe01 {
 
 	private JFrame frame;
 	private RecipeConn jwtest;
@@ -28,7 +28,7 @@ public class FindRacipeTest {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FindRacipeTest window = new FindRacipeTest();
+					FindRecipe01 window = new FindRecipe01();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,13 +36,13 @@ public class FindRacipeTest {
 			}
 		});
 	}
-	public FindRacipeTest(RecipeConn jwtest) {
+	public FindRecipe01(RecipeConn jwtest) {
 		this();
 		this.jwtest = jwtest;
 	}
 
 	
-	public FindRacipeTest() {
+	public FindRecipe01() {
 		initialize();
 	}
 	
@@ -63,7 +63,7 @@ public class FindRacipeTest {
 		panel.setLayout(null);
 		
 		JLabel lbl = new JLabel("");
-		lbl.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/24.png")));
+		lbl.setIcon(new ImageIcon(FindRecipe01.class.getResource("/image/storageList/24.png")));
 		lbl.setBounds(32, 77, 300, 40);
 		panel.add(lbl);
 		
@@ -74,12 +74,12 @@ public class FindRacipeTest {
 		
 		JButton btnAdd = new JButton("");
 		btnAdd.setBackground(new Color(73, 153, 221));
-		btnAdd.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/21.png")));
+		btnAdd.setIcon(new ImageIcon(FindRecipe01.class.getResource("/image/storageList/21.png")));
 		btnAdd.setBounds(351, 127, 100, 100);
 		panel.add(btnAdd);
 		
 		JLabel lbl_1 = new JLabel("");
-		lbl_1.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/25.png")));
+		lbl_1.setIcon(new ImageIcon(FindRecipe01.class.getResource("/image/storageList/25.png")));
 		lbl_1.setBounds(-21, 320, 283, 40);
 		panel.add(lbl_1);
 		
@@ -91,13 +91,13 @@ public class FindRacipeTest {
 		
 		JButton btnFind = new JButton("");
 		btnFind.setBackground(new Color(73, 153, 221));
-		btnFind.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/22.png")));
+		btnFind.setIcon(new ImageIcon(FindRecipe01.class.getResource("/image/storageList/22.png")));
 		btnFind.setBounds(106, 556, 100, 50);
 		panel.add(btnFind);
 		
 		JButton btnCancel = new JButton("");
 		btnCancel.setBackground(new Color(73, 153, 221));
-		btnCancel.setIcon(new ImageIcon(FindRacipeTest.class.getResource("/image/storageList/23.png")));
+		btnCancel.setIcon(new ImageIcon(FindRecipe01.class.getResource("/image/storageList/23.png")));
 		btnCancel.setBounds(275, 556, 100, 50);
 		panel.add(btnCancel);
 		frame.setVisible(true);

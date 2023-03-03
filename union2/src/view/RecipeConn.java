@@ -12,7 +12,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-public final class RecipeConn extends FindRacipeTest {
+public final class RecipeConn extends FindRecipe01 {
 	private Engine engine;
 	private static Browser browser;
 	private static BrowserView view;

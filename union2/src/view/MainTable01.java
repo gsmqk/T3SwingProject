@@ -51,7 +51,7 @@ public class MainTable01 implements MouseListener {
 	Login     mLog  = null;
 	MainTable01 mT01 = null;
 	StorageList mT02 = null;
-	FindRacipeTest mFr   = null;
+	FindRecipe01 mFr   = null;
 	GroceryInput mGi = null;
 	public MainTable01 mt01 = null;
 	Expire_Output mEo = null;
@@ -194,7 +194,7 @@ public class MainTable01 implements MouseListener {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				mFr = new FindRacipeTest();
+				mFr = new FindRecipe01();
 	
 				
 				
