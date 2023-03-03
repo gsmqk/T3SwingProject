@@ -256,17 +256,29 @@ public class GroceryInput extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				F_Dao fao = new F_Dao();
 				F_DTO fto = getGroceryData(groceryInput.id);
+				String groname = fto.getGrocery_name();
+				String largecla = fto.getLarge_classific();
+				String mediumcla = fto.getMedium_classific();
+				String smallcla = fto.getSmall_classific();
+				
+				System.out.println("값" + largecla + " " + mediumcla + " " + smallcla);
+				
+				if (largecla.equals("대분류")  || 
+					mediumcla.equals("중분류") || 
+					smallcla.equals("소분류")) {
+					JOptionPane.showMessageDialog(null, "분류를 설정해주세요 !", "확인",
+							JOptionPane.OK_OPTION);
+				}
+				
 				
 				int aftcnt = fao.insertGrosery(fto);
-			
-				
 				if (aftcnt == 1) {
 					JOptionPane.showMessageDialog(null, "냉장고에 들어갔어요~");
 					
 					groceryInput.dispose();
 					
 				} else {
-					JOptionPane.showMessageDialog(null, "다시 확인해주세요 !");
+					JOptionPane.showMessageDialog(null, "다시 확인해주세요");
 				}
 				
 			}
@@ -348,23 +360,23 @@ public class GroceryInput extends JFrame implements ActionListener {
 
 
 	private F_DTO getGroceryData(String id) {
+		String name = this.groName.getText();
 		String large = (String) this.large_classific.getSelectedItem();
 		String middle = (String) this.middle_classific.getSelectedItem();
 		String small = (String) this.small_classific.getSelectedItem();
 		String place = (String) this.storage_place.getSelectedItem();
-		String name = this.groName.getText();
 		String quan = this.inQuan.getText();
-		String price = this.price.getText();
 		String unit = (String) this.unit.getSelectedItem();
-		String store = (String) this.store.getSelectedItem();
+		String price = this.price.getText();
 		String indate = this.model.getYear() + "/" + (this.model.getMonth() + 1) + "/" + this.model.getDay();
 		String exdate = this.model1.getYear() + "/" + (this.model1.getMonth() + 1) + "/" + this.model1.getDay();
-		String uid = this.id;
 		String memo = this.memo.getText();
+		String uid = this.id;
+		String store = (String) this.store.getSelectedItem();
 		System.out.println(uid);
 		
-		F_DTO fto = new F_DTO(large, middle, small, place, name, quan, price, store,
-				              indate, exdate, unit, memo, uid);
+		F_DTO fto = new F_DTO(name, large, middle, small, place, quan, unit, price, 
+				              indate, exdate, memo, uid, store) ;
 		
 		return fto;
 	}

@@ -53,15 +53,23 @@ public class F_Dao {
 		String uid = fto.getUser_id();
 		String store = fto.getStore_name(); 
 		
-		System.out.println(uid);
+		System.out.println();
+		
+//		if (fto.getGrocery_name().equals("")) {
+//			JOptionPane.showMessageDialog(null, "식자재 이름을 입력해주세요 !");
+//		} else if (fto.getQuantity().equals("")) {
+//			JOptionPane.showMessageDialog(null, "식자재 수량을 입력해주세요 !");
+//		} else if (fto.getPrice().equals("")) {
+//			JOptionPane.showMessageDialog(null, "식자재 가격을 입력해주세요 !");
+//		} 
 		
 		int aftcnt = insertGrosery(fname, large, middle, small, place, quan, unit,
 		        price, indate, exdate, memo, uid, store);
 		return aftcnt;
 	}
 
-	private int insertGrosery(String large, String middle, String small, String place, String fname,
-			String quan, String price, String store, String indate, String exdate, String unit, String memo, String uid) {
+	private int insertGrosery(String fname, String large, String middle, String small, String place, 
+			String quan, String unit, String price, String indate, String exdate, String memo, String uid, String store) {
 		String sql = "INSERT INTO GROCERIES "
 				+ "(GROCERY_ID, GROCERY_NAME, "
 				+ "LARGE_ID, "
