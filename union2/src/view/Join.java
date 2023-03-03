@@ -208,8 +208,13 @@ public class Join {
 		String id = this.idTxt.getText();
 		U_Dao uao = new U_Dao();
 		
-		String msg = uao.checkExist(id);
-		JOptionPane.showMessageDialog(null, msg);
+		if(id.equals("")) {
+			JOptionPane.showMessageDialog(null, "아이디를 입력해주세요 !");
+		} else {
+			String msg = uao.checkExist(id);
+			JOptionPane.showMessageDialog(null, msg);
+		}
+		
 		
 	}
 	
