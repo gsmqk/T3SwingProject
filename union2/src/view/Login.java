@@ -115,8 +115,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("회원가입 클릭");
-				if(j != null)
-					j.dispose();
+				
 				j = new Join();
 				
 			}
