@@ -175,6 +175,61 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		setLocation(200, 200);
 		setVisible(true);
 		
+btnOutput.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("출고버튼 클릭");
+				state = "출고";
+				F_Dao ofao = new F_Dao();
+				F_DTO ofto = getOutputData();
+				int oaftcnt = ofao.insertOutput(ofto);
+				System.out.println(oaftcnt);
+				if (oaftcnt == 1) {
+					int oaftcnt1 = ofao.minusQuan(ofto, price, currQuan);
+					System.out.println(oaftcnt1);
+					if (oaftcnt1 == 1) {
+						JOptionPane.showMessageDialog(null, "출고되었습니다 !");
+						int expense = ofao.insertExpense(ofto, store, state, price, currQuan);
+						setVisible(false);
+					} else {
+						JOptionPane.showMessageDialog(null, "오류");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "출고 데이터를 다시 확인해주세요.");
+				}
+			
+				
+			}
+		});
+		
+		btnDiscard.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("폐기버튼 클릭");
+				state = "폐기";
+				F_Dao efao = new F_Dao();
+				F_DTO efto = getExpireData();
+				int eaftcnt = efao.insertExpire(efto);
+				System.out.println(eaftcnt);
+				if (eaftcnt == 1) {
+					int eaftcnt1 = efao.minusQuan(efto, price, currQuan);
+					System.out.println(eaftcnt1);
+					if (eaftcnt1 == 1) {
+						JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
+						int expense = efao.insertExpense(efto, store, state, price, currQuan);
+						setVisible(false);
+					} else {
+						JOptionPane.showMessageDialog(null, "오류");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "폐기 데이터를 다시 확인해주세요.");
+				}
+				
+			}
+		});
+		
 	}
 
 	private void init() {
@@ -249,13 +304,16 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		discard_quantity.setBounds(20, 431, 145, 40);
 		getContentPane().add(discard_quantity);
 
-		JButton btnOutput = new JButton("출고");
+		JButton btnOutput = new JButton("");
+		btnOutput.setIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/37.png")));
+		btnOutput.setSelectedIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/37.png")));
 		btnOutput.setBackground(new Color(73, 153, 221));
 		btnOutput.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnOutput.setBounds(230, 362, 90, 40);
 		getContentPane().add(btnOutput);
 
-		JButton btnDiscard = new JButton("폐기");
+		JButton btnDiscard = new JButton("");
+		btnDiscard.setIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/38.png")));
 		btnDiscard.setBackground(new Color(73, 153, 221));
 		btnDiscard.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnDiscard.setBounds(230, 430, 90, 40);
@@ -292,6 +350,8 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		setSize(360, 520);
 		setLocation(200, 200);
 		setVisible(true);
+		
+		
 
 	}
 
@@ -302,53 +362,53 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(e.getActionCommand()) {
-		case "출고" :
-			System.out.println("출고버튼 클릭");
-			state = "출고";
-			F_Dao ofao = new F_Dao();
-			F_DTO ofto = getOutputData();
-			int oaftcnt = ofao.insertOutput(ofto);
-			System.out.println(oaftcnt);
-			if (oaftcnt == 1) {
-				int oaftcnt1 = ofao.minusQuan(ofto, price, currQuan);
-				System.out.println(oaftcnt1);
-				if (oaftcnt1 == 1) {
-					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
-					int expense = ofao.insertExpense(ofto, this.store, state, price, currQuan);
-					this.dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "오류");
-				}
-			} else {
-				JOptionPane.showMessageDialog(null, "출고 데이터를 다시 확인해주세요.");
-			}
-			
-//			groceryOutput();
-			break;
-		case "폐기" :
-			System.out.println("폐기버튼 클릭");
-			state = "폐기";
-			F_Dao efao = new F_Dao();
-			F_DTO efto = getExpireData();
-			int eaftcnt = efao.insertExpire(efto);
-			System.out.println(eaftcnt);
-			if (eaftcnt == 1) {
-				int eaftcnt1 = efao.minusQuan(efto, price, currQuan);
-				System.out.println(eaftcnt1);
-				if (eaftcnt1 == 1) {
-					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
-					int expense = efao.insertExpense(efto, store, state, price, currQuan);
-					this.dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "오류");
-				}
-			} else {
-				JOptionPane.showMessageDialog(null, "폐기 데이터를 다시 확인해주세요.");
-			}
-			break;
-		}
-		
+//		switch(e.getActionCommand()) {
+//		case "출고" :
+//			System.out.println("출고버튼 클릭");
+//			state = "출고";
+//			F_Dao ofao = new F_Dao();
+//			F_DTO ofto = getOutputData();
+//			int oaftcnt = ofao.insertOutput(ofto);
+//			System.out.println(oaftcnt);
+//			if (oaftcnt == 1) {
+//				int oaftcnt1 = ofao.minusQuan(ofto, price, currQuan);
+//				System.out.println(oaftcnt1);
+//				if (oaftcnt1 == 1) {
+//					JOptionPane.showMessageDialog(null, "출고되었습니다 !");
+//					int expense = ofao.insertExpense(ofto, this.store, state, price, currQuan);
+//					this.dispose();
+//				} else {
+//					JOptionPane.showMessageDialog(null, "오류");
+//				}
+//			} else {
+//				JOptionPane.showMessageDialog(null, "출고 데이터를 다시 확인해주세요.");
+//			}
+//			
+////			groceryOutput();
+//			break;
+//		case "폐기" :
+//			System.out.println("폐기버튼 클릭");
+//			state = "폐기";
+//			F_Dao efao = new F_Dao();
+//			F_DTO efto = getExpireData();
+//			int eaftcnt = efao.insertExpire(efto);
+//			System.out.println(eaftcnt);
+//			if (eaftcnt == 1) {
+//				int eaftcnt1 = efao.minusQuan(efto, price, currQuan);
+//				System.out.println(eaftcnt1);
+//				if (eaftcnt1 == 1) {
+//					JOptionPane.showMessageDialog(null, "폐기되었습니다 !");
+//					int expense = efao.insertExpense(efto, store, state, price, currQuan);
+//					this.dispose();
+//				} else {
+//					JOptionPane.showMessageDialog(null, "오류");
+//				}
+//			} else {
+//				JOptionPane.showMessageDialog(null, "폐기 데이터를 다시 확인해주세요.");
+//			}
+//			break;
+//		}
+//		
 	}
 	
 	private F_DTO getOutputData() {
