@@ -25,7 +25,7 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 
-public class Grocery_Edit extends JFrame implements ActionListener {
+public class Grocery_Edit extends JFrame {
 	
 	JTextField  groName, inQuan, price, memo;
 	JButton btnInput, btnCancel;
@@ -297,8 +297,23 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		memo.setBounds(82, 490, 250, 106);
 		getContentPane().add(memo);
 
-		btnCancel.addActionListener(this);
-		btnInput.addActionListener(this);
+		btnCancel.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		btnInput.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("수정버튼 클릭");
+     			updateGrocery();
+				
+			}
+		});
 
 		setSize(370, 710);
 		setLocation(200, 200);
@@ -307,20 +322,20 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		
 	}
 
-@Override
-public void actionPerformed(ActionEvent e) {
-	switch(e.getActionCommand()) {
-	case "수정" :
-		System.out.println("수정버튼 클릭");
-		updateGrocery();
-		
-		break;
-	case "닫기" :
-		this.dispose();
-		break;
-	}
-		
-}
+//@Override
+//public void actionPerformed(ActionEvent e) {
+//	switch(e.getActionCommand()) {
+//	case "수정" :
+//		System.out.println("수정버튼 클릭");
+//		updateGrocery();
+//		
+//		break;
+//	case "닫기" :
+//		this.dispose();
+//		break;
+//	}
+//		
+//}
 
 private void updateGrocery() {
 	F_Dao fao = new F_Dao();
