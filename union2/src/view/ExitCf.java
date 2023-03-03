@@ -14,6 +14,7 @@ import model.U_DTO;
 import model.U_Dao;
 
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class ExitCf extends JFrame implements ActionListener {
 	
@@ -52,41 +53,65 @@ public class ExitCf extends JFrame implements ActionListener {
 		setSize(400,500);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("\uC815\uB9D0");
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ExitCf.class.getResource("/image/storageList/bye (1).png")));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 38));
-		lblNewLabel.setBounds(12, 67, 360, 73);
+		lblNewLabel.setBounds(12, 58, 360, 70);
 		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("\uD0C8\uD1F4 \uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?");
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(ExitCf.class.getResource("/image/storageList/bye (2).png")));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(new Color(255, 0, 0));
 		lblNewLabel_1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 38));
-		lblNewLabel_1.setBounds(12, 123, 360, 73);
+		lblNewLabel_1.setBounds(12, 121, 360, 73);
 		getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("\uD0C8\uD1F4\uC804 \uC8FC\uC758\uC0AC\uD56D\uC744 \uBAA8\uB450 \uC219\uC9C0\uD558\uC168\uB2E4\uBA74 ");
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(ExitCf.class.getResource("/image/storageList/bye (3).png")));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setBounds(12, 193, 360, 82);
 		getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("\uD0C8\uD1F4\uD558\uAE30 \uBC84\uD2BC\uC744 \uB20C\uB7EC\uC8FC\uC138\uC694");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setBounds(12, 225, 360, 82);
-		getContentPane().add(lblNewLabel_2_1);
-		
-		JButton yes = new JButton("탈퇴하기");
-		yes.setBounds(75, 317, 97, 23);
+		JButton yes = new JButton("");
+		yes.setIcon(new ImageIcon(ExitCf.class.getResource("/image/storageList/bye (4).png")));
+		yes.setBackground(new Color(73, 153, 221));
+		yes.setBounds(75, 317, 100, 40);
 		getContentPane().add(yes);
 		
-		JButton no = new JButton("취소하기");
-		no.setBounds(206, 317, 97, 23);
+		JButton no = new JButton("");
+		no.setIcon(new ImageIcon(ExitCf.class.getResource("/image/storageList/bye (5).png")));
+		no.setBackground(new Color(73, 153, 221));
+		no.setBounds(206, 317, 100, 40);
 		getContentPane().add(no);
 		setVisible(true);
 		
 		yes.addActionListener(this);
 		no.addActionListener(this);
+		
+		yes.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("탈퇴 확인");
+				deleteUser();
+				JOptionPane.showMessageDialog(null, "탈퇴되었습니다. 이용해주셔서 감사합니다.");
+				System.exit(1);;
+				
+			}
+		});
+		
+		no.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+				setVisible(false);
+				
+			}
+		});
 		
 		
 	}
@@ -100,16 +125,16 @@ public class ExitCf extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
-		case "취소하기" : 
-			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
-			this.dispose();
-			break;
-		case "탈퇴하기" :
-			System.out.println("탈퇴 확인");
-			deleteUser();
-			JOptionPane.showMessageDialog(null, "탈퇴되었습니다. 이용해주셔서 감사합니다.");
-			System.exit(1);;
-			break;
+//		case "취소하기" : 
+//			JOptionPane.showMessageDialog(null, "취소하셨습니다.");
+//			this.dispose();
+//			break;
+//		case "탈퇴하기" :
+//			System.out.println("탈퇴 확인");
+//			deleteUser();
+//			JOptionPane.showMessageDialog(null, "탈퇴되었습니다. 이용해주셔서 감사합니다.");
+//			System.exit(1);;
+//			break;
 		}
 		
 	}
