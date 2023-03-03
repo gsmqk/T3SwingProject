@@ -122,15 +122,19 @@ public class GroceryDisOut extends JFrame implements ActionListener {
 		discard_quantity.setBounds(20, 431, 145, 40);
 		getContentPane().add(discard_quantity);
 
-		JButton btnOutput = new JButton("출고");
+		JButton btnOutput = new JButton("");
+		btnOutput.setIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/37.png")));
+		btnOutput.setSelectedIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/37.png")));
 		btnOutput.setBackground(new Color(73, 153, 221));
 		btnOutput.setFont(new Font("D2Coding", Font.PLAIN, 16));
 		btnOutput.setBounds(230, 362, 90, 40);
 		getContentPane().add(btnOutput);
 
-		JButton btnDiscard = new JButton("폐기");
+		JButton btnDiscard = new JButton("");
 		btnDiscard.setBackground(new Color(73, 153, 221));
 		btnDiscard.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		btnDiscard.setSelectedIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/38.png")));
+		btnDiscard.setIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/38.png")));
 		btnDiscard.setBounds(230, 430, 90, 40);
 		getContentPane().add(btnDiscard);
 		
@@ -313,6 +317,7 @@ btnOutput.addActionListener(new ActionListener() {
 		getContentPane().add(btnOutput);
 
 		JButton btnDiscard = new JButton("");
+		btnDiscard.setSelectedIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/38.png")));
 		btnDiscard.setIcon(new ImageIcon(GroceryDisOut.class.getResource("/image/storageList/38.png")));
 		btnDiscard.setBackground(new Color(73, 153, 221));
 		btnDiscard.setFont(new Font("D2Coding", Font.PLAIN, 16));
