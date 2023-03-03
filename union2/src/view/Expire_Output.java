@@ -13,10 +13,13 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
 import model.ListDao2;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -63,29 +66,9 @@ public class Expire_Output {
 							}
 						}
 					);
-				table.getColumnModel().getColumn(0).setMaxWidth(400);
-				table.getColumnModel().getColumn(0).setMinWidth(200);
-				table.getColumnModel().getColumn(0).setWidth(200);
-
-				table.getColumnModel().getColumn(1).setMaxWidth(400);
-				table.getColumnModel().getColumn(1).setMinWidth(100);
-				table.getColumnModel().getColumn(1).setWidth(100);
 				
-				table.getColumnModel().getColumn(2).setMaxWidth(400);
-				table.getColumnModel().getColumn(2).setMinWidth(50);
-				table.getColumnModel().getColumn(2).setWidth(50);
+				resizeColumnWidth(table);
 				
-				table.getColumnModel().getColumn(3).setMaxWidth(400);
-				table.getColumnModel().getColumn(3).setMinWidth(50);
-				table.getColumnModel().getColumn(3).setWidth(50);
-
-				table.getColumnModel().getColumn(4).setMaxWidth(400);
-				table.getColumnModel().getColumn(4).setMinWidth(200);
-				table.getColumnModel().getColumn(4).setWidth(200);
-				
-				table.getColumnModel().getColumn(5).setMaxWidth(400);
-				table.getColumnModel().getColumn(5).setMinWidth(100);
-				table.getColumnModel().getColumn(5).setWidth(100);
 				
 				DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 			      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -114,25 +97,8 @@ public class Expire_Output {
 							}
 						}
 					);
-				table.getColumnModel().getColumn(0).setMaxWidth(400);
-				table.getColumnModel().getColumn(0).setMinWidth(400);
-				table.getColumnModel().getColumn(0).setWidth(400);
-
-				table.getColumnModel().getColumn(1).setMaxWidth(400);
-				table.getColumnModel().getColumn(1).setMinWidth(100);
-				table.getColumnModel().getColumn(1).setWidth(100);
 				
-				table.getColumnModel().getColumn(2).setMaxWidth(400);
-				table.getColumnModel().getColumn(2).setMinWidth(50);
-				table.getColumnModel().getColumn(2).setWidth(50);
-				
-				table.getColumnModel().getColumn(3).setMaxWidth(400);
-				table.getColumnModel().getColumn(3).setMinWidth(50);
-				table.getColumnModel().getColumn(3).setWidth(50);
-
-				table.getColumnModel().getColumn(4).setMaxWidth(400);
-				table.getColumnModel().getColumn(4).setMinWidth(100);
-				table.getColumnModel().getColumn(4).setWidth(100);
+				resizeColumnWidth(table);
 				
 				DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 			      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -158,30 +124,8 @@ public class Expire_Output {
 					}
 				}
 			);
-		
-		table.getColumnModel().getColumn(0).setMaxWidth(400);
-		table.getColumnModel().getColumn(0).setMinWidth(200);
-		table.getColumnModel().getColumn(0).setWidth(200);
 
-		table.getColumnModel().getColumn(1).setMaxWidth(400);
-		table.getColumnModel().getColumn(1).setMinWidth(100);
-		table.getColumnModel().getColumn(1).setWidth(100);
-		
-		table.getColumnModel().getColumn(2).setMaxWidth(400);
-		table.getColumnModel().getColumn(2).setMinWidth(50);
-		table.getColumnModel().getColumn(2).setWidth(50);
-		
-		table.getColumnModel().getColumn(3).setMaxWidth(400);
-		table.getColumnModel().getColumn(3).setMinWidth(50);
-		table.getColumnModel().getColumn(3).setWidth(50);
-
-		table.getColumnModel().getColumn(4).setMaxWidth(400);
-		table.getColumnModel().getColumn(4).setMinWidth(200);
-		table.getColumnModel().getColumn(4).setWidth(200);
-		
-		table.getColumnModel().getColumn(5).setMaxWidth(400);
-		table.getColumnModel().getColumn(5).setMinWidth(100);
-		table.getColumnModel().getColumn(5).setWidth(100);
+		resizeColumnWidth(table);
 		
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 	      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -244,5 +188,17 @@ public class Expire_Output {
 //		new Expire_Output();
 //	}
 
+	public void resizeColumnWidth(JTable table) {
+		final TableColumnModel columnModel = table.getColumnModel();
+		for (int column = 0; column < table.getColumnCount(); column++) {
+			int width = 10; // 최소 가로길이
+			for (int row = 0; row < table.getRowCount(); row++) {
+				TableCellRenderer renderer = table.getCellRenderer(row, column);
+				Component comp = table.prepareRenderer(renderer, row, column);
+				width = Math.max(comp.getPreferredSize().width + 1, width);
+			}
+			columnModel.getColumn(column).setPreferredWidth(width);
+		}
+	}
 	
 }
