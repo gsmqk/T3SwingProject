@@ -20,7 +20,7 @@ import model.U_Dao;
 import java.awt.Color;
 
 public class Exit extends JFrame implements ActionListener {
-
+//회원탈퇴창
 	GridBagConstraints gbc;
 	GridBagLayout gbl;
 	JLabel title, idLbl, pwLbl, pwcfLbl;
