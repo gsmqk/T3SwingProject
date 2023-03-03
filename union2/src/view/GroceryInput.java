@@ -68,7 +68,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 
 		//카테고리
 		JLabel jlbCat = new JLabel("카테고리");
-		jlbCat.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbCat.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbCat.setBounds(12, 10, 64, 24);
 		getContentPane().add(jlbCat);
 
@@ -308,6 +308,7 @@ public class GroceryInput extends JFrame implements ActionListener {
 		getContentPane().add(jlbExpD_1);
 		
 		memo = new JTextField(10);
+		memo.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 12));
 		memo.setBounds(82, 490, 250, 106);
 		getContentPane().add(memo);
 

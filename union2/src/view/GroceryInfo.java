@@ -51,7 +51,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		groName = new JTextField();
 		groName.setHorizontalAlignment(SwingConstants.LEFT);
 		groName.setBackground(new Color(255, 255, 255));
-		groName.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		groName.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		groName.setText(gFto.getGrocery_name());
 		groName.setEditable(false);
 		groName.setBounds(25, 30, 307, 40);
@@ -62,7 +62,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		majorCla.setHorizontalAlignment(SwingConstants.LEFT);
 		majorCla.setBackground(new Color(255, 255, 255));
 		majorCla.setText(gFto.getLarge_classific());
-		majorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		majorCla.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		majorCla.setEditable(false);
 		majorCla.setBounds(25, 100, 142, 40);
 		getContentPane().add(majorCla);
@@ -71,7 +71,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		moderCla.setHorizontalAlignment(SwingConstants.LEFT);
 		moderCla.setBackground(new Color(255, 255, 255));
 		moderCla.setText(gFto.getMedium_classific());
-		moderCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		moderCla.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		moderCla.setEditable(false);
 		moderCla.setBounds(190, 100, 142, 40);
 		getContentPane().add(moderCla);
@@ -80,7 +80,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		minorCla.setHorizontalAlignment(SwingConstants.LEFT);
 		minorCla.setBackground(new Color(255, 255, 255));
 		minorCla.setText(gFto.getSmall_classific());
-		minorCla.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		minorCla.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		minorCla.setEditable(false);
 		minorCla.setBounds(25, 155, 142, 40);
 		getContentPane().add(minorCla);
@@ -89,7 +89,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		storPlace.setHorizontalAlignment(SwingConstants.LEFT);
 		storPlace.setBackground(new Color(255, 255, 255));
 		storPlace.setText(gFto.getStorage_place());
-		storPlace.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		storPlace.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		storPlace.setEditable(false);
 		storPlace.setBounds(190, 155, 142, 40);
 		getContentPane().add(storPlace);
@@ -98,31 +98,32 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		groQuan.setHorizontalAlignment(SwingConstants.LEFT);
 		groQuan.setBackground(new Color(255, 255, 255));
 		groQuan.setText(gFto.getQuantity());
-		groQuan.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		groQuan.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		groQuan.setEditable(false);
-		groQuan.setBounds(23, 265, 227, 40);
+		groQuan.setBounds(25, 265, 215, 40);
 		getContentPane().add(groQuan);
 		
 		jtpUnit1 = new JTextField();
 		jtpUnit1.setHorizontalAlignment(SwingConstants.LEFT);
 		jtpUnit1.setBackground(new Color(255, 255, 255));
 		jtpUnit1.setText(gFto.getUnit());
-		jtpUnit1.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpUnit1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		jtpUnit1.setEditable(false);
 		jtpUnit1.setBounds(262, 265, 70, 40);
 		getContentPane().add(jtpUnit1);
 		
 		jtpPrice = new JTextField();
+		jtpPrice.setForeground(new Color(0, 0, 0));
 		jtpPrice.setHorizontalAlignment(SwingConstants.LEFT);
 		jtpPrice.setBackground(new Color(255, 255, 255));
 		jtpPrice.setText(gFto.getPrice());
-		jtpPrice.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpPrice.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		jtpPrice.setEditable(false);
-		jtpPrice.setBounds(22, 320, 270, 40);
+		jtpPrice.setBounds(25, 320, 242, 40);
 		getContentPane().add(jtpPrice);
 		
 		JLabel jlbWon1 = new JLabel("원");
-		jlbWon1.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jlbWon1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbWon1.setBounds(292, 320, 40, 40);
 		getContentPane().add(jlbWon1);
 		
@@ -132,7 +133,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		case "EA" : 
 			JTextPane jtpUnit3 = new JTextPane();
 			jtpUnit3.setText("개");
-			jtpUnit3.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit3.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 			jtpUnit3.setEditable(false);
 			jtpUnit3.setBounds(23, 375, 63, 40);
 			getContentPane().add(jtpUnit3);
@@ -141,7 +142,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		case "G" : 
 			JTextPane jtpUnit4 = new JTextPane();
 			jtpUnit4.setText("100g");
-			jtpUnit4.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit4.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 			jtpUnit4.setEditable(false);
 			jtpUnit4.setBounds(23, 375, 63, 40);
 			getContentPane().add(jtpUnit4);
@@ -150,7 +151,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		case "ML" : 
 			JTextPane jtpUnit5 = new JTextPane();
 			jtpUnit5.setText("100ml");
-			jtpUnit5.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUnit5.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 			jtpUnit5.setEditable(false);
 			jtpUnit5.setBounds(23, 375, 63, 40);
 			getContentPane().add(jtpUnit5);
@@ -159,7 +160,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		
 		
 		JLabel jlbPer = new JLabel("당");
-		jlbPer.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jlbPer.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbPer.setBounds(98, 370, 40, 40);
 		getContentPane().add(jlbPer);
 		
@@ -182,7 +183,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 
 			JTextPane jtpUcost1 = new JTextPane();
 			jtpUcost1.setText(pph1);
-			jtpUcost1.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 			jtpUcost1.setEditable(false);
 			jtpUcost1.setBounds(150, 375, 142, 40);
 			getContentPane().add(jtpUcost1);
@@ -202,7 +203,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 
 			JTextPane jtpUcost2 = new JTextPane();
 			jtpUcost2.setText(pph2);
-			jtpUcost2.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost2.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 			jtpUcost2.setEditable(false);
 			jtpUcost2.setBounds(150, 375, 142, 40);
 			getContentPane().add(jtpUcost2);
@@ -220,7 +221,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 
 			JTextPane jtpUcost3 = new JTextPane();
 			jtpUcost3.setText(pph3);
-			jtpUcost3.setFont(new Font("D2Coding", Font.PLAIN, 18));
+			jtpUcost3.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 			jtpUcost3.setEditable(false);
 			jtpUcost3.setBounds(150, 375, 142, 40);
 			getContentPane().add(jtpUcost3);
@@ -229,21 +230,21 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		}
 		
 		JLabel jlbWon2 = new JLabel("원");
-		jlbWon2.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jlbWon2.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbWon2.setBounds(292, 370, 40, 40);
 		getContentPane().add(jlbWon2);
 		
 		JLabel jtpPdate = new JLabel();
 		jtpPdate.setText("입고일");
-		jtpPdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpPdate.setBounds(12, 430, 111, 40);
+		jtpPdate.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		jtpPdate.setBounds(25, 430, 88, 40);
 		getContentPane().add(jtpPdate);
 		
 		jtpIndate = new JTextField();
 		jtpIndate.setHorizontalAlignment(SwingConstants.LEFT);
 		jtpIndate.setBackground(new Color(255, 255, 255));
 		jtpIndate.setText(gFto.getInput_date());
-		jtpIndate.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpIndate.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		jtpIndate.setEditable(false);
 		jtpIndate.setBounds(130, 430, 202, 40);
 		getContentPane().add(jtpIndate);
@@ -252,15 +253,15 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		jtpExdate.setHorizontalAlignment(SwingConstants.LEFT);
 		jtpExdate.setBackground(new Color(255, 255, 255));
 		jtpExdate.setText(gFto.getExpire_date());
-		jtpExdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpExdate.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		jtpExdate.setEditable(false);
 		jtpExdate.setBounds(130, 485, 202, 40);
 		getContentPane().add(jtpExdate);
 		
 		JLabel jtpDdate = new JLabel();
 		jtpDdate.setText("소비기한");
-		jtpDdate.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpDdate.setBounds(12, 485, 112, 40);
+		jtpDdate.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		jtpDdate.setBounds(25, 485, 89, 40);
 		getContentPane().add(jtpDdate);
 		
 		JButton btnConfirm = new JButton("");
@@ -285,6 +286,7 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		getContentPane().add(btnCancel);
 		
 		memoTa = new JTextField();
+		memoTa.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		memoTa.setBackground(new Color(255, 255, 255));
 		memoTa.setText(gFto.getMemo());
 		memoTa.setEditable(false);
@@ -294,14 +296,14 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		JLabel jtpDdate_1 = new JLabel();
 		jtpDdate_1.setHorizontalAlignment(SwingConstants.CENTER);
 		jtpDdate_1.setText("메모");
-		jtpDdate_1.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		jtpDdate_1.setBounds(122, 535, 100, 40);
+		jtpDdate_1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
+		jtpDdate_1.setBounds(120, 532, 100, 40);
 		getContentPane().add(jtpDdate_1);
 		
 		jtpstore = new JTextField();
 		jtpstore.setHorizontalAlignment(SwingConstants.LEFT);
 		jtpstore.setBackground(new Color(255, 255, 255));
-		jtpstore.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jtpstore.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		jtpstore.setText(gFto.getStore_name());
 		jtpstore.setEditable(false);
 		jtpstore.setBounds(25, 210, 142, 40);

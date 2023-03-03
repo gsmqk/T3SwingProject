@@ -21,6 +21,8 @@ import model.F_Dao;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class Grocery_Edit extends JFrame implements ActionListener {
 	
@@ -35,6 +37,7 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 	StorageList slist = null;
 	
 	public Grocery_Edit(F_DTO fto) {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		F_DTO ffto = fto;
 		init(ffto);
 	}
@@ -53,7 +56,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 
 		//카테고리
 		JLabel jlbCat = new JLabel("카테고리");
-		jlbCat.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbCat.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbCat.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbCat.setBounds(12, 10, 64, 24);
 		getContentPane().add(jlbCat);
 
@@ -63,6 +67,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		String[] arrayLarge = large.toArray(new String[large.size()]);
 		
 		large_classific = new JComboBox (arrayLarge);
+		large_classific.setBackground(new Color(250, 250, 250));
+		large_classific.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		large_classific.setToolTipText("대분류");
 		large_classific.setSelectedItem(fto.getLarge_classific());
 		large_classific.setBounds(12, 44, 155, 40);
@@ -75,6 +81,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		String[] arrayMedium = mList1.toArray(new String[mList1.size()]);
 		
 		middle_classific = new JComboBox(arrayMedium);
+		middle_classific.setBackground(new Color(250, 250, 250));
+		middle_classific.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		middle_classific.setToolTipText("중분류");
 		middle_classific.setSelectedItem(fto.getMedium_classific());
 		middle_classific.setBounds(177, 44, 155, 40);
@@ -87,6 +95,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		String[] arraySmall = sList1.toArray(new String[sList1.size()]);
 		
 		small_classific = new JComboBox(arraySmall);
+		small_classific.setBackground(new Color(250, 250, 250));
+		small_classific.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		small_classific.setToolTipText("소분류");
 		small_classific.setSelectedItem(fto.getSmall_classific());
 		small_classific.setBounds(12, 94, 155, 40);
@@ -130,6 +140,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		
 		
 		storage_place = new JComboBox(new String [] {"실온", "냉장", "냉동"});
+		storage_place.setBackground(new Color(250, 250, 250));
+		storage_place.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		storage_place.setToolTipText("보관장소");
 		storage_place.setSelectedItem(fto.getStorage_place());
 		storage_place.setBounds(177, 94, 155, 40);
@@ -137,17 +149,20 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 
 		//세부정보
 		JLabel jlbDet = new JLabel("세부정보");
-		jlbDet.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbDet.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbDet.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbDet.setBounds(12, 149, 64, 24);
 		getContentPane().add(jlbDet);
 
 		//식자재이름
 		JLabel jlbName = new JLabel("이름");
-		jlbName.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbName.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbName.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbName.setBounds(12, 183, 50, 40);
 		getContentPane().add(jlbName);
 		
 		groName        = new JTextField(20);
+		groName.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		groName.setBounds(82, 183, 250, 40);
 		groName.setText(fto.getGrocery_name());
 		preGroName = fto.getGrocery_name();
@@ -157,11 +172,13 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 
 		//식자재수량
 		JLabel jlbQuan = new JLabel("수량");
-		jlbQuan.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbQuan.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbQuan.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbQuan.setBounds(12, 234, 50, 40);
 		getContentPane().add(jlbQuan);
 
 		inQuan         = new JTextField(20);
+		inQuan.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		inQuan.setColumns(10);
 		inQuan.setText(fto.getQuantity());
 		inQuan.setBounds(82, 234, 195, 40);
@@ -169,30 +186,35 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		
 		String [] units = {"G", "KG", "ML", "L", "EA"};
 		unit = new JComboBox(units);
+		unit.setBackground(new Color(250, 250, 250));
+		unit.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		unit.setSelectedItem(fto.getUnit());
 		unit.setBounds(282, 234, 50, 39);
 		getContentPane().add(unit);
 
 		//식자재가격
 		JLabel jlbPri  = new JLabel("가격");
-		jlbPri.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbPri.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbPri.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbPri.setBounds(12, 284, 50, 40);
 		getContentPane().add(jlbPri);
 
 		price          = new JTextField(20);
+		price.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		price.setColumns(10);
 		price.setText(fto.getPrice());
 		price.setBounds(82, 284, 195, 40);
 		getContentPane().add(price);
 
 		JLabel jlbWon  = new JLabel("원");
-		jlbWon.setFont(new Font("D2Coding", Font.PLAIN, 18));
+		jlbWon.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 18));
 		jlbWon.setBounds(284, 284, 40, 40);
 		getContentPane().add(jlbWon);
 
 		//구매처
 		JLabel jlbSto  = new JLabel("구매처");
-		jlbSto.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbSto.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbSto.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbSto.setBounds(12, 334, 64, 40);
 		getContentPane().add(jlbSto);
 
@@ -200,6 +222,8 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		storename = fao.getStore();
 		
 		store = new JComboBox(storename);
+		store.setBackground(new Color(250, 250, 250));
+		store.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		store.setSelectedItem(fto.getStore_name());
 		System.out.println(fto.getStore_name());
 		store.setBounds(82, 334, 250, 40);
@@ -207,13 +231,15 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 
 		//입고일
 		JLabel jlbInpD  = new JLabel("입고일");
-		jlbInpD.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbInpD.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbInpD.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbInpD.setBounds(12, 384, 64, 40);
 		getContentPane().add(jlbInpD);
 		
 		model = new UtilDateModel();
 		JDatePanelImpl datePanel = new JDatePanelImpl(model);
 		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel);
+		datePicker.setBackground(new Color(255, 255, 255));
 		int dateY1 = Integer.parseInt(fto.getInput_date().substring(0, 4));
 		int dateM1 = Integer.parseInt(fto.getInput_date().substring(5, 7)) - 1;
 		int dateD1 = Integer.parseInt(fto.getInput_date().substring(8));
@@ -225,13 +251,15 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 
 		//소비기한
 		JLabel jlbExpD  = new JLabel("소비기한");
-		jlbExpD.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbExpD.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbExpD.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbExpD.setBounds(12, 434, 64, 40);
 		getContentPane().add(jlbExpD);
 		
 		model1 = new UtilDateModel();
 		JDatePanelImpl datePanel1 = new JDatePanelImpl(model1);
 		JDatePickerImpl datePicker1 = new JDatePickerImpl(datePanel1);
+		datePicker1.setBackground(new Color(255, 255, 255));
 		int dateY2 = Integer.parseInt(fto.getExpire_date().substring(0, 4));
 		int dateM2 = Integer.parseInt(fto.getExpire_date().substring(5, 7)) - 1;
 		int dateD2 = Integer.parseInt(fto.getExpire_date().substring(8));
@@ -253,11 +281,13 @@ public class Grocery_Edit extends JFrame implements ActionListener {
 		getContentPane().add(btnCancel);
 		
 		JLabel jlbExpD_1 = new JLabel("메모");
-		jlbExpD_1.setFont(new Font("D2Coding", Font.PLAIN, 16));
+		jlbExpD_1.setHorizontalAlignment(SwingConstants.CENTER);
+		jlbExpD_1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
 		jlbExpD_1.setBounds(12, 484, 64, 40);
 		getContentPane().add(jlbExpD_1);
 		
 		memo = new JTextField(10);
+		memo.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		memo.setText(fto.getMemo());
 		memo.setBounds(82, 490, 250, 106);
 		getContentPane().add(memo);
