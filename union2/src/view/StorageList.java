@@ -50,7 +50,7 @@ public class StorageList implements MouseListener {
 	
 	MainTable01 mT01 = null;
 	StorageList mSt01 = null;
-	FindRecipe mFr   = null;
+	FindRacipeTest mFr   = null;
 	GroceryInput mGi = null;
 	GrocerySearch mGs = null;
 	String id, large1, medium1, small1;
@@ -131,7 +131,7 @@ public class StorageList implements MouseListener {
 		p.add(btnmain);
 		
 		btnAhb = new JButton("");
-		btnAhb.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/04.png")));
+		btnAhb.setIcon(new ImageIcon(StorageList.class.getResource("/image/storageList/26.png")));
 		btnAhb.setForeground(Color.WHITE);
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(73, 153, 221));
@@ -165,9 +165,8 @@ public class StorageList implements MouseListener {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(mFr != null)
-					mFr.dispose();
-				mFr = new FindRecipe();
+				
+				mFr = new FindRacipeTest();
 				
 			}
 		}); 

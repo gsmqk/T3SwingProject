@@ -49,7 +49,7 @@ public class MainTable01 implements MouseListener {
 	Login     mLog  = null;
 	MainTable01 mT01 = null;
 	StorageList mT02 = null;
-	FindRecipe mFr   = null;
+	FindRacipeTest mFr   = null;
 	GroceryInput mGi = null;
 	public MainTable01 mt01 = null;
 	Expire_Output mEo = null;
@@ -139,7 +139,7 @@ public class MainTable01 implements MouseListener {
 		p.add(btnStorage);
 		
 		btnAhb = new JButton("");
-		btnAhb.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/04.png")));
+		btnAhb.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/26.png")));
 		btnAhb.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		btnAhb.setBackground(new Color(73, 153, 221));
 		btnAhb.setForeground(Color.WHITE);
@@ -191,9 +191,8 @@ public class MainTable01 implements MouseListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if(mFr != null)
-					mFr.dispose();
-				mFr = new FindRecipe();
+				
+				mFr = new FindRacipeTest();
 	
 				
 				

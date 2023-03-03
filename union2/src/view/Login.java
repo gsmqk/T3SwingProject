@@ -47,7 +47,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		logo.setBounds(30, 30, 280, 260);
 		getContentPane().add(logo);
 		setVisible(true);
-
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 
@@ -102,6 +102,7 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("로그인 클릭");
 				String aid = idTxt.getText();
+				
 				if(aid.equals("admin")) {
 					adminLogin();
 				} else {
@@ -189,12 +190,18 @@ public class Login extends JFrame implements ActionListener, KeyListener {
 		String id = idTxt.getText();
 		String pw = pwTxt.getText();
 		U_Dao uao = new U_Dao();
-		System.out.println("login:" + pw );
-		boolean flag = uao.login(id,pw);
+		
+		if (id.equals("") && pw.equals("")) {
+			JOptionPane.showMessageDialog(null, "정보를 입력해주세요", "확인", JOptionPane.OK_OPTION);
+		} else {
+			System.out.println("login:" + pw);
+			boolean flag = uao.login(id, pw);
 
-		if (flag == true) {
-			this.dispose();
-			MainTable01 mt1 = new MainTable01(this);
+			if (flag == true) {
+				this.dispose();
+				MainTable01 mt1 = new MainTable01(this);
+			}
+
 		}
 
 	}
