@@ -216,7 +216,7 @@ public class Grocery_Edit extends JFrame {
 		JLabel jlbSto  = new JLabel("구매처");
 		jlbSto.setHorizontalAlignment(SwingConstants.CENTER);
 		jlbSto.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
-		jlbSto.setBounds(12, 334, 64, 40);
+		jlbSto.setBounds(12, 341, 64, 40);
 		getContentPane().add(jlbSto);
 
 		Vector<String> storename = new Vector<String>();
@@ -227,14 +227,14 @@ public class Grocery_Edit extends JFrame {
 		store.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		store.setSelectedItem(fto.getStore_name());
 		System.out.println(fto.getStore_name());
-		store.setBounds(82, 334, 250, 40);
+		store.setBounds(82, 339, 250, 45);
 		getContentPane().add(store);
 
 		//입고일
 		JLabel jlbInpD  = new JLabel("입고일");
 		jlbInpD.setHorizontalAlignment(SwingConstants.CENTER);
 		jlbInpD.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
-		jlbInpD.setBounds(12, 384, 64, 40);
+		jlbInpD.setBounds(12, 394, 69, 40);
 		getContentPane().add(jlbInpD);
 		
 		model = new UtilDateModel();
@@ -248,13 +248,13 @@ public class Grocery_Edit extends JFrame {
 		model.setSelected(true);
 		
 		getContentPane().add(datePicker);
-		datePicker.setBounds(82, 390, 250, 40);
+		datePicker.setBounds(82, 405, 250, 40);
 
 		//소비기한
 		JLabel jlbExpD  = new JLabel("소비기한");
 		jlbExpD.setHorizontalAlignment(SwingConstants.CENTER);
 		jlbExpD.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
-		jlbExpD.setBounds(12, 434, 64, 40);
+		jlbExpD.setBounds(12, 444, 69, 40);
 		getContentPane().add(jlbExpD);
 		
 		model1 = new UtilDateModel();
@@ -268,33 +268,33 @@ public class Grocery_Edit extends JFrame {
 		model1.setSelected(true);
 		
 		getContentPane().add(datePicker1);
-		datePicker1.setBounds(82, 440, 250, 40);
+		datePicker1.setBounds(82, 455, 250, 40);
 		
 		//입력/취소버튼
 		btnInput  = new JButton("");
 		btnInput.setBackground(new Color(73, 153, 221));
 		btnInput.setIcon(new ImageIcon(Grocery_Edit.class.getResource("/image/storageList/35.png")));
 		btnInput.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		btnInput.setBounds(70, 610, 90, 40);
+		btnInput.setBounds(70, 659, 90, 40);
 		getContentPane().add(btnInput);
 
 		JButton btnCancel = new JButton("");
 		btnCancel.setBackground(new Color(73, 153, 221));
 		btnCancel.setIcon(new ImageIcon(Grocery_Edit.class.getResource("/image/storageList/36.png")));
 		btnCancel.setFont(new Font("D2Coding", Font.PLAIN, 18));
-		btnCancel.setBounds(182, 610, 90, 40);
+		btnCancel.setBounds(187, 659, 90, 40);
 		getContentPane().add(btnCancel);
 		
 		JLabel jlbExpD_1 = new JLabel("메모");
 		jlbExpD_1.setHorizontalAlignment(SwingConstants.CENTER);
 		jlbExpD_1.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 15));
-		jlbExpD_1.setBounds(12, 484, 64, 40);
+		jlbExpD_1.setBounds(12, 505, 69, 40);
 		getContentPane().add(jlbExpD_1);
 		
 		memo = new JTextField(10);
 		memo.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
 		memo.setText(fto.getMemo());
-		memo.setBounds(82, 490, 250, 106);
+		memo.setBounds(82, 512, 250, 123);
 		getContentPane().add(memo);
 
 		btnCancel.addActionListener(new ActionListener() {
@@ -315,7 +315,7 @@ public class Grocery_Edit extends JFrame {
 			}
 		});
 
-		setSize(370, 710);
+		setSize(370, 765);
 		setLocation(200, 200);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

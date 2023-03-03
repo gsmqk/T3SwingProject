@@ -265,21 +265,21 @@ public class GroceryInfo extends JFrame implements ActionListener {
 		getContentPane().add(jtpDdate);
 		
 		JButton btnConfirm = new JButton("");
-		btnConfirm.setBackground(new Color(73, 172, 250));
+		btnConfirm.setBackground(new Color(73, 153, 221));
 		btnConfirm.setIcon(new ImageIcon(GroceryInfo.class.getResource("/image/sujung.png")));
 		btnConfirm.setFont(new Font("D2Coding", Font.PLAIN, 14));
 		btnConfirm.setBounds(12, 680, 100, 40);
 		getContentPane().add(btnConfirm);
 		
 		JButton btnOutDis = new JButton("");
-		btnOutDis.setBackground(new Color(73, 172, 250));
+		btnOutDis.setBackground(new Color(73, 153, 221));
 		btnOutDis.setIcon(new ImageIcon(GroceryInfo.class.getResource("/image/out_discard.png")));
 		btnOutDis.setFont(new Font("D2Coding", Font.PLAIN, 14));
 		btnOutDis.setBounds(122, 680, 100, 40);
 		getContentPane().add(btnOutDis);
 		
 		JButton btnCancel = new JButton("");
-		btnCancel.setBackground(new Color(73, 172, 250));
+		btnCancel.setBackground(new Color(73, 153, 221));
 		btnCancel.setIcon(new ImageIcon(GroceryInfo.class.getResource("/image/dispose.png")));
 		btnCancel.setFont(new Font("D2Coding", Font.PLAIN, 14));
 		btnCancel.setBounds(232, 680, 100, 40);
