@@ -57,7 +57,8 @@ public class FindRacipeTest {
 		frame.setLocation(200, 200);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 484, 661);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 494, 671);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
