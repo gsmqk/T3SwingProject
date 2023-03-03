@@ -10,7 +10,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import model.ListDao2;
 import java.awt.Color;
@@ -60,28 +63,6 @@ public class Expire_Output {
 							}
 						}
 					);
-				
-			}
-		});
-		p.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(Expire_Output.class.getResource("/image/storageList/11.png")));
-		btnNewButton_1.setBackground(new Color(73, 153, 221));
-		btnNewButton_1.setBounds(494, 63, 150, 50);
-		btnNewButton_1.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				table.setModel(
-						new DefaultTableModel( getDataListEO(), getColumnListEO() )	{
-
-							@Override
-							public boolean isCellEditable(int row, int column) {
-								return false; // 모든 cell 편집불가능
-							}
-						}
-					);
 				table.getColumnModel().getColumn(0).setMaxWidth(400);
 				table.getColumnModel().getColumn(0).setMinWidth(200);
 				table.getColumnModel().getColumn(0).setWidth(200);
@@ -105,6 +86,60 @@ public class Expire_Output {
 				table.getColumnModel().getColumn(5).setMaxWidth(400);
 				table.getColumnModel().getColumn(5).setMinWidth(100);
 				table.getColumnModel().getColumn(5).setWidth(100);
+				
+				DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+			      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+			      TableColumnModel tcm = table.getColumnModel();
+			      for(int i = 0; i < tcm.getColumnCount(); i++) {
+			         tcm.getColumn(i).setCellRenderer(dtcr);
+			      }
+			}
+		});
+		p.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon(Expire_Output.class.getResource("/image/storageList/11.png")));
+		btnNewButton_1.setBackground(new Color(73, 153, 221));
+		btnNewButton_1.setBounds(494, 63, 150, 50);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				table.setModel(
+						new DefaultTableModel( getDataListEO(), getColumnListEO() )	{
+
+							@Override
+							public boolean isCellEditable(int row, int column) {
+								return false; // 모든 cell 편집불가능
+							}
+						}
+					);
+				table.getColumnModel().getColumn(0).setMaxWidth(400);
+				table.getColumnModel().getColumn(0).setMinWidth(400);
+				table.getColumnModel().getColumn(0).setWidth(400);
+
+				table.getColumnModel().getColumn(1).setMaxWidth(400);
+				table.getColumnModel().getColumn(1).setMinWidth(100);
+				table.getColumnModel().getColumn(1).setWidth(100);
+				
+				table.getColumnModel().getColumn(2).setMaxWidth(400);
+				table.getColumnModel().getColumn(2).setMinWidth(50);
+				table.getColumnModel().getColumn(2).setWidth(50);
+				
+				table.getColumnModel().getColumn(3).setMaxWidth(400);
+				table.getColumnModel().getColumn(3).setMinWidth(50);
+				table.getColumnModel().getColumn(3).setWidth(50);
+
+				table.getColumnModel().getColumn(4).setMaxWidth(400);
+				table.getColumnModel().getColumn(4).setMinWidth(100);
+				table.getColumnModel().getColumn(4).setWidth(100);
+				
+				DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+			      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+			      TableColumnModel tcm = table.getColumnModel();
+			      for(int i = 0; i < tcm.getColumnCount(); i++) {
+			         tcm.getColumn(i).setCellRenderer(dtcr);
+			      }
 			}
 		});
 		p.add(btnNewButton_1);
@@ -147,6 +182,13 @@ public class Expire_Output {
 		table.getColumnModel().getColumn(5).setMaxWidth(400);
 		table.getColumnModel().getColumn(5).setMinWidth(100);
 		table.getColumnModel().getColumn(5).setWidth(100);
+		
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+	      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+	      TableColumnModel tcm = table.getColumnModel();
+	      for(int i = 0; i < tcm.getColumnCount(); i++) {
+	         tcm.getColumn(i).setCellRenderer(dtcr);
+	      }
 		
 		scrollPane.setViewportView(table);
 		
