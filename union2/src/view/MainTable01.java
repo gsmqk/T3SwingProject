@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 import org.jfree.ui.RefineryUtilities;
 
@@ -285,7 +286,40 @@ public class MainTable01 implements MouseListener {
 		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
 //		table.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
-//		table.getColumn("")
+		
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+	      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+	      TableColumnModel tcm = table.getColumnModel();
+	      for(int i = 0; i < tcm.getColumnCount(); i++) {
+	         tcm.getColumn(i).setCellRenderer(dtcr);
+	      }
+		table.getColumnModel().getColumn(0).setMaxWidth(400);
+		table.getColumnModel().getColumn(0).setMinWidth(200);
+		table.getColumnModel().getColumn(0).setWidth(200);
+
+		table.getColumnModel().getColumn(1).setMaxWidth(400);
+		table.getColumnModel().getColumn(1).setMinWidth(10);
+		table.getColumnModel().getColumn(1).setWidth(10);
+		
+		table.getColumnModel().getColumn(2).setMaxWidth(400);
+		table.getColumnModel().getColumn(2).setMinWidth(10);
+		table.getColumnModel().getColumn(2).setWidth(10);
+		
+		table.getColumnModel().getColumn(3).setMaxWidth(400);
+		table.getColumnModel().getColumn(3).setMinWidth(10);
+		table.getColumnModel().getColumn(3).setWidth(10);
+
+		table.getColumnModel().getColumn(4).setMaxWidth(400);
+		table.getColumnModel().getColumn(4).setMinWidth(100);
+		table.getColumnModel().getColumn(4).setWidth(100);
+		
+		table.getColumnModel().getColumn(5).setMaxWidth(400);
+		table.getColumnModel().getColumn(5).setMinWidth(100);
+		table.getColumnModel().getColumn(5).setWidth(100);
+
+		table.getColumnModel().getColumn(6).setMaxWidth(400);
+		table.getColumnModel().getColumn(6).setMinWidth(50);
+		table.getColumnModel().getColumn(6).setWidth(50);
 		
 		btnRefresh = new JButton("");
 		btnRefresh.setIcon(new ImageIcon(MainTable01.class.getResource("/image/storageList/39.png")));
@@ -340,9 +374,15 @@ public class MainTable01 implements MouseListener {
 		class ColorRenderer extends DefaultTableCellRenderer {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 		Component renderer = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+		
 		if (column == 6) { // 7번째 컬럼에 대해서만 적용
+			
 		int dday = Integer.parseInt(value.toString());
-		if (dday <= 0) {
+		if (dday >= -7 && dday < 0) {
+			
+		renderer.setForeground(Color.WHITE);
+		renderer.setBackground(Color.BLACK);
+		} else if (dday <= 0) {
 		renderer.setForeground(Color.BLACK);
 		renderer.setBackground(Color.RED);
 		} else if (dday <= 3) {
@@ -359,6 +399,7 @@ public class MainTable01 implements MouseListener {
 		renderer.setForeground(table.getForeground());
 		renderer.setBackground(table.getBackground());
 		}
+		
 		return renderer;
 		}
 		
@@ -416,8 +457,44 @@ public class MainTable01 implements MouseListener {
 	public void jTableRefresh() {
 		table.setModel(new DefaultTableModel(getDataList(), getColumnList()));
 
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+	      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+	      TableColumnModel tcm = table.getColumnModel();
+	      for(int i = 0; i < tcm.getColumnCount(); i++) {
+	         tcm.getColumn(i).setCellRenderer(dtcr);
+	      }
+		
 		TableColumn column = table.getColumnModel().getColumn(6);
 		column.setCellRenderer(new ColorRenderer());
+		
+		table.getColumnModel().getColumn(0).setMaxWidth(400);
+		table.getColumnModel().getColumn(0).setMinWidth(200);
+		table.getColumnModel().getColumn(0).setWidth(200);
+
+		table.getColumnModel().getColumn(1).setMaxWidth(400);
+		table.getColumnModel().getColumn(1).setMinWidth(10);
+		table.getColumnModel().getColumn(1).setWidth(10);
+		
+		table.getColumnModel().getColumn(2).setMaxWidth(400);
+		table.getColumnModel().getColumn(2).setMinWidth(10);
+		table.getColumnModel().getColumn(2).setWidth(10);
+		
+		table.getColumnModel().getColumn(3).setMaxWidth(400);
+		table.getColumnModel().getColumn(3).setMinWidth(10);
+		table.getColumnModel().getColumn(3).setWidth(10);
+
+		table.getColumnModel().getColumn(4).setMaxWidth(400);
+		table.getColumnModel().getColumn(4).setMinWidth(100);
+		table.getColumnModel().getColumn(4).setWidth(100);
+		
+		table.getColumnModel().getColumn(5).setMaxWidth(400);
+		table.getColumnModel().getColumn(5).setMinWidth(100);
+		table.getColumnModel().getColumn(5).setWidth(100);
+
+		table.getColumnModel().getColumn(6).setMaxWidth(400);
+		table.getColumnModel().getColumn(6).setMinWidth(50);
+		table.getColumnModel().getColumn(6).setWidth(50);
+		
 		
 		table.repaint();
 		

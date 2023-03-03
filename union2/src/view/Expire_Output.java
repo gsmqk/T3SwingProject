@@ -82,7 +82,29 @@ public class Expire_Output {
 							}
 						}
 					);
+				table.getColumnModel().getColumn(0).setMaxWidth(400);
+				table.getColumnModel().getColumn(0).setMinWidth(200);
+				table.getColumnModel().getColumn(0).setWidth(200);
+
+				table.getColumnModel().getColumn(1).setMaxWidth(400);
+				table.getColumnModel().getColumn(1).setMinWidth(100);
+				table.getColumnModel().getColumn(1).setWidth(100);
 				
+				table.getColumnModel().getColumn(2).setMaxWidth(400);
+				table.getColumnModel().getColumn(2).setMinWidth(50);
+				table.getColumnModel().getColumn(2).setWidth(50);
+				
+				table.getColumnModel().getColumn(3).setMaxWidth(400);
+				table.getColumnModel().getColumn(3).setMinWidth(50);
+				table.getColumnModel().getColumn(3).setWidth(50);
+
+				table.getColumnModel().getColumn(4).setMaxWidth(400);
+				table.getColumnModel().getColumn(4).setMinWidth(200);
+				table.getColumnModel().getColumn(4).setWidth(200);
+				
+				table.getColumnModel().getColumn(5).setMaxWidth(400);
+				table.getColumnModel().getColumn(5).setMinWidth(100);
+				table.getColumnModel().getColumn(5).setWidth(100);
 			}
 		});
 		p.add(btnNewButton_1);
@@ -101,6 +123,31 @@ public class Expire_Output {
 					}
 				}
 			);
+		
+		table.getColumnModel().getColumn(0).setMaxWidth(400);
+		table.getColumnModel().getColumn(0).setMinWidth(200);
+		table.getColumnModel().getColumn(0).setWidth(200);
+
+		table.getColumnModel().getColumn(1).setMaxWidth(400);
+		table.getColumnModel().getColumn(1).setMinWidth(100);
+		table.getColumnModel().getColumn(1).setWidth(100);
+		
+		table.getColumnModel().getColumn(2).setMaxWidth(400);
+		table.getColumnModel().getColumn(2).setMinWidth(50);
+		table.getColumnModel().getColumn(2).setWidth(50);
+		
+		table.getColumnModel().getColumn(3).setMaxWidth(400);
+		table.getColumnModel().getColumn(3).setMinWidth(50);
+		table.getColumnModel().getColumn(3).setWidth(50);
+
+		table.getColumnModel().getColumn(4).setMaxWidth(400);
+		table.getColumnModel().getColumn(4).setMinWidth(200);
+		table.getColumnModel().getColumn(4).setWidth(200);
+		
+		table.getColumnModel().getColumn(5).setMaxWidth(400);
+		table.getColumnModel().getColumn(5).setMinWidth(100);
+		table.getColumnModel().getColumn(5).setWidth(100);
+		
 		scrollPane.setViewportView(table);
 		
 		lblNewLabel = new JLabel("New label");

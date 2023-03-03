@@ -19,9 +19,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import org.jfree.ui.RefineryUtilities;
 
@@ -206,6 +209,57 @@ public class StorageList implements MouseListener {
 				}
 			);
 			
+		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+	      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+	      TableColumnModel tcm = table.getColumnModel();
+	      for(int i = 0; i < tcm.getColumnCount(); i++) {
+	         tcm.getColumn(i).setCellRenderer(dtcr);
+	      }
+		
+		table.getColumnModel().getColumn(0).setMaxWidth(400);
+		table.getColumnModel().getColumn(0).setMinWidth(50);
+		table.getColumnModel().getColumn(0).setWidth(50);
+
+		table.getColumnModel().getColumn(1).setMaxWidth(400);
+		table.getColumnModel().getColumn(1).setMinWidth(50);
+		table.getColumnModel().getColumn(1).setWidth(50);
+		
+		table.getColumnModel().getColumn(2).setMaxWidth(400);
+		table.getColumnModel().getColumn(2).setMinWidth(50);
+		table.getColumnModel().getColumn(2).setWidth(50);
+		
+		table.getColumnModel().getColumn(3).setMaxWidth(400);
+		table.getColumnModel().getColumn(3).setMinWidth(10);
+		table.getColumnModel().getColumn(3).setWidth(10);
+
+		table.getColumnModel().getColumn(4).setMaxWidth(400);
+		table.getColumnModel().getColumn(4).setMinWidth(200);
+		table.getColumnModel().getColumn(4).setWidth(200);
+		
+		table.getColumnModel().getColumn(5).setMaxWidth(400);
+		table.getColumnModel().getColumn(5).setMinWidth(10);
+		table.getColumnModel().getColumn(5).setWidth(10);
+
+		table.getColumnModel().getColumn(6).setMaxWidth(400);
+		table.getColumnModel().getColumn(6).setMinWidth(10);
+		table.getColumnModel().getColumn(6).setWidth(10);
+		
+		table.getColumnModel().getColumn(7).setMaxWidth(400);
+		table.getColumnModel().getColumn(7).setMinWidth(50);
+		table.getColumnModel().getColumn(7).setWidth(50);
+		
+		table.getColumnModel().getColumn(8).setMaxWidth(400);
+		table.getColumnModel().getColumn(8).setMinWidth(100);
+		table.getColumnModel().getColumn(8).setWidth(100);
+		
+		table.getColumnModel().getColumn(9).setMaxWidth(400);
+		table.getColumnModel().getColumn(9).setMinWidth(100);
+		table.getColumnModel().getColumn(9).setWidth(100);
+		
+		table.getColumnModel().getColumn(10).setMaxWidth(400);
+		table.getColumnModel().getColumn(10).setMinWidth(10);
+		table.getColumnModel().getColumn(10).setWidth(10);
+		
 		table.addMouseListener(this);
 			
 			JScrollPane scrollPane1 = new JScrollPane();
@@ -289,6 +343,16 @@ public class StorageList implements MouseListener {
 								}
 							}
 						);
+					
+					DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+				      dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+				      TableColumnModel tcm = table.getColumnModel();
+				      for(int i = 0; i < tcm.getColumnCount(); i++) {
+				         tcm.getColumn(i).setCellRenderer(dtcr);
+				      }
+					
+					
+					
 				}
 			});
 			resetInput.setIcon(new ImageIcon(StorageList.class.getResource("/image/free-icon-reset-5307970 (1).png")));
@@ -466,6 +530,51 @@ public class StorageList implements MouseListener {
 						}
 					}
 				);
+			
+			table.getColumnModel().getColumn(0).setMaxWidth(400);
+			table.getColumnModel().getColumn(0).setMinWidth(50);
+			table.getColumnModel().getColumn(0).setWidth(50);
+
+			table.getColumnModel().getColumn(1).setMaxWidth(400);
+			table.getColumnModel().getColumn(1).setMinWidth(50);
+			table.getColumnModel().getColumn(1).setWidth(50);
+			
+			table.getColumnModel().getColumn(2).setMaxWidth(400);
+			table.getColumnModel().getColumn(2).setMinWidth(50);
+			table.getColumnModel().getColumn(2).setWidth(50);
+			
+			table.getColumnModel().getColumn(3).setMaxWidth(400);
+			table.getColumnModel().getColumn(3).setMinWidth(10);
+			table.getColumnModel().getColumn(3).setWidth(10);
+
+			table.getColumnModel().getColumn(4).setMaxWidth(400);
+			table.getColumnModel().getColumn(4).setMinWidth(200);
+			table.getColumnModel().getColumn(4).setWidth(200);
+			
+			table.getColumnModel().getColumn(5).setMaxWidth(400);
+			table.getColumnModel().getColumn(5).setMinWidth(10);
+			table.getColumnModel().getColumn(5).setWidth(10);
+
+			table.getColumnModel().getColumn(6).setMaxWidth(400);
+			table.getColumnModel().getColumn(6).setMinWidth(10);
+			table.getColumnModel().getColumn(6).setWidth(10);
+			
+			table.getColumnModel().getColumn(7).setMaxWidth(400);
+			table.getColumnModel().getColumn(7).setMinWidth(50);
+			table.getColumnModel().getColumn(7).setWidth(50);
+			
+			table.getColumnModel().getColumn(8).setMaxWidth(400);
+			table.getColumnModel().getColumn(8).setMinWidth(100);
+			table.getColumnModel().getColumn(8).setWidth(100);
+			
+			table.getColumnModel().getColumn(9).setMaxWidth(400);
+			table.getColumnModel().getColumn(9).setMinWidth(100);
+			table.getColumnModel().getColumn(9).setWidth(100);
+			
+			table.getColumnModel().getColumn(10).setMaxWidth(400);
+			table.getColumnModel().getColumn(10).setMinWidth(10);
+			table.getColumnModel().getColumn(10).setWidth(10);
+			
 			table.repaint();
 		}
 }

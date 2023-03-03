@@ -437,7 +437,7 @@ public class U_Dao {
 				
 				Vector v = new Vector();
 				int dDate = Integer.parseInt(due_date);
-				if (dDate>=0 && dDate <= 7) {
+				if (dDate>= -7 && dDate <= 7) {
 					v.add(grocery_name);
 					v.add(storage_place);
 					v.add(quantity);
