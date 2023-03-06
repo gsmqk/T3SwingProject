@@ -32,14 +32,14 @@ public class AdminEdit extends JFrame  {
 	GridBagConstraints gbc;
 
 	JTextField idTxt, pwTxt, nameTxt, emailTxt, gradeTxt, statusTxt;
-	JButton intoBtn, updateBtn, cancelBtn;
+	JButton intoBtn, updateBtn,rfreBtn, cancelBtn;
 	JLabel title, idLbl, pwLbl, nameLbl, emailLbl, gradeLbl, statusLbl;
 	
 	
 	Admin Admin = null;
-	private JLabel lblNewLabel;
 	
 	public AdminEdit() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setForeground(new Color(255, 255, 255));
 		
 		setTitle("회원정보수정");
@@ -169,19 +169,20 @@ public class AdminEdit extends JFrame  {
 		updateBtn = new JButton("수정하기");
 		updateBtn.setBackground(new Color(238, 251, 255));
 		updateBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
-		updateBtn.setBounds(103, 437, 97, 23);
+		updateBtn.setBounds(58, 437, 97, 23);
 		getContentPane().add(updateBtn);
 		
-		cancelBtn = new JButton("취소");
-		cancelBtn.setBackground(new Color(238, 251, 255));
-		cancelBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
-		cancelBtn.setBounds(225, 437, 97, 23);
-		getContentPane().add(cancelBtn);
+		rfreBtn = new JButton("\uC0C8\uB85C\uACE0\uCE68");
+		rfreBtn.setBackground(new Color(238, 251, 255));
+		rfreBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		rfreBtn.setBounds(167, 437, 97, 23);
+		getContentPane().add(rfreBtn);
 		
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setIcon(new ImageIcon(AdminEdit.class.getResource("/image/\u3147\u3147\u3147\u3147\u3147\u3147.png")));
-		lblNewLabel.setBounds(-11, -14, 433, 592);
-		getContentPane().add(lblNewLabel);
+		cancelBtn = new JButton("\uCDE8\uC18C");
+		cancelBtn.setFont(new Font("한컴산뜻돋움", Font.PLAIN, 13));
+		cancelBtn.setBackground(new Color(238, 251, 255));
+		cancelBtn.setBounds(276, 437, 97, 23);
+		getContentPane().add(cancelBtn);
 		
 		
 		intoBtn.addActionListener( new ActionListener() {
@@ -202,15 +203,24 @@ public class AdminEdit extends JFrame  {
 			}
 		});
 		
-		cancelBtn.addActionListener(new ActionListener() {
+		rfreBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("취소버튼 클릭...");
+				System.out.println("새로고침 클릭...");
 				cancleMember();
 				
 			}
 
+		});
+		
+		cancelBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
 		});
 		
 	}//-----------이까지 ----------------------생성자
